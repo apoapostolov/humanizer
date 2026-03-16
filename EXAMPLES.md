@@ -94,6 +94,16 @@ Use these examples when the model needs concrete patterns to imitate rather than
 
 > This fix closes a bug that had been breaking exports for enterprise customers.
 
+### Not just X, but also Y
+
+**Before:**
+
+> It's not just about the beat riding under the vocals; it's part of the aggression and atmosphere. It's not merely a song, it's a statement.
+
+**After:**
+
+> The heavy beat adds to the aggressive tone.
+
 ### Generic positive conclusion
 
 **Before:**
@@ -168,6 +178,16 @@ Use these examples when the model needs concrete patterns to imitate rather than
 
 > The French Revolution began in 1789 when financial crisis and food shortages led to widespread unrest.
 
+### Prompt refusal residue
+
+**Before:**
+
+> As an AI language model, I can't directly add content for you, but I can help you draft it.
+
+**After:**
+
+> Here is a draft you can adapt.
+
 ### Knowledge-cutoff disclaimer
 
 **Before:**
@@ -197,6 +217,60 @@ Use these examples when the model needs concrete patterns to imitate rather than
 **After:**
 
 > The policy may affect outcomes.
+
+### Phrasal template leftovers
+
+**Before:**
+
+> Subject: Concerns about Inaccurate Information
+>
+> Dear Wikipedia,
+>
+> I am writing to express my deep concern about the spread of misinformation on your platform. Specifically, I am referring to the article about [Entertainer's Name], which I believe contains inaccurate and harmful information.
+
+**After:**
+
+> I'm writing about a factual error in the article on Kjersti Flaa. The current version says she attended the 2002 awards ceremony, but the source linked for that claim does not mention her.
+
+### Placeholder instruction block
+
+**Before:**
+
+> I have identified an area within the article that requires updating. [Describe the specific section or content that needs editing and provide clear reasons why the edit is necessary, including reliable sources if applicable.]
+
+**After:**
+
+> The lead should be updated to reflect the 2024 annual report. The current revenue figure is from 2022, and the company's latest filing lists a materially different number.
+
+### Abrupt cut off
+
+**Before:**
+
+> The rollout failed for three reasons. First, the approval chain was too long. Second, ownership was split between teams that never agreed on the final scope. Third,
+
+**After:**
+
+> The rollout failed for three reasons: the approval chain was too long, ownership was split between teams, and the final scope never settled.
+
+### Sudden style shift
+
+**Before:**
+
+> we tried to get this out fast and honestly the process was kind of a mess. The implementation, however, constitutes a robust and strategically aligned modernization effort that meaningfully enhances organizational efficiency.
+
+**After:**
+
+> We tried to get this out fast, and the process was messy. The new version is simpler and easier to maintain, which is the main win.
+
+### Subject-line residue
+
+**Before:**
+
+> Subject: Request for Review and Clarification Regarding Draft Article
+
+**After:**
+
+> I'd like a review of the draft and a quick clarification on whether the sourcing is strong enough.
 
 ## Domain Examples
 

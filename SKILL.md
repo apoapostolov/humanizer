@@ -359,6 +359,26 @@ Scan for the following patterns and fix them when they weaken the text.
 
 **Fix:** End on a concrete fact, implication, open question, or next step.
 
+### 25. Phrasal templates and placeholder text
+
+**Problem:** LLMs sometimes emit fill-in-the-blank scaffolds or leave placeholder text unfinished.
+
+**Words to watch:** `[Name]`, `[Company]`, `[Describe the section here]`, `2025-xx-xx`, `insert source`, `add details here`
+
+**Fix:** Replace placeholders with real content or remove the whole template frame. If the output still contains blanks, it is not finished writing.
+
+### 26. Abrupt cut offs
+
+**Problem:** AI output sometimes ends mid-thought, mid-list, or at an unnatural stopping point after hitting a generation boundary.
+
+**Fix:** Check the ending. If it feels truncated, finish the thought cleanly or shorten the passage so it ends with intent.
+
+### 27. Sudden shift in writing style
+
+**Problem:** A rewrite may sound suspicious if one paragraph or sentence abruptly changes register, polish level, or English variety compared with the rest.
+
+**Fix:** Keep the rewrite stylistically continuous. Match the surrounding voice instead of dropping in one ultra-polished or mismatched passage that sounds imported.
+
 ## Audience And Ethics
 
 Rewrite for real readers, not for a generic average user.
@@ -368,6 +388,14 @@ Rewrite for real readers, not for a generic average user.
 - do not add false specificity, fake sources, or invented personal experience
 - do not make the text sound "human" by injecting errors or making it clumsy
 - do not optimize for AI-detector evasion as an end in itself
+
+Do not rely on weak detection heuristics such as:
+
+- perfect grammar by itself
+- vague claims that something "just sounds robotic"
+- isolated formal wording without any stronger pattern
+
+Use concrete evidence from the text.
 
 If a draft is misleading, say so briefly and offer a cleaner alternative.
 
@@ -418,6 +446,8 @@ Before finishing, verify:
 - jargon, hype, filler, and vague claims have been reduced
 - no fake specificity or invented evidence was added
 - sentence rhythm is varied enough to sound alive
+- the output does not contain placeholders, template residue, or truncated endings
+- the rewrite does not introduce a sudden voice or register shift
 - the text still preserves the original meaning
 - any requested style preset is clearly reflected
 - if no input text was provided, you asked for it instead of improvising
