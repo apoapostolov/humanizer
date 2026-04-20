@@ -74,6 +74,16 @@ Use these examples when the model needs concrete patterns to imitate rather than
 
 > The report is an overview of the team's quarterly performance.
 
+### Passive voice
+
+**Before:**
+
+> The report was published by the agency last week.
+
+**After:**
+
+> The agency published the report last week.
+
 ### Rule of three
 
 **Before:**
@@ -113,6 +123,16 @@ Use these examples when the model needs concrete patterns to imitate rather than
 **After:**
 
 > The organization plans to open two more clinics next year.
+
+### Hyphenated word pair overuse
+
+**Before:**
+
+> The team delivered a high-quality, data-driven, client-facing plan.
+
+**After:**
+
+> The team delivered a high quality, data driven, client facing plan.
 
 ### Formulaic future-prospects section
 
@@ -177,6 +197,16 @@ Use these examples when the model needs concrete patterns to imitate rather than
 **After:**
 
 > The French Revolution began in 1789 when financial crisis and food shortages led to widespread unrest.
+
+### Persuasive authority trope
+
+**Before:**
+
+> The real question is whether teams can adapt. At its core, what really matters is organizational readiness.
+
+**After:**
+
+> The question is whether teams can adapt. That depends on whether the organization is ready to change its habits.
 
 ### Prompt refusal residue
 
@@ -260,7 +290,33 @@ Use these examples when the model needs concrete patterns to imitate rather than
 
 **After:**
 
-> We tried to get this out fast, and the process was messy. The new version is simpler and easier to maintain, which is the main win.
+> We tried to ship this fast, and the process was messy. The implementation still improves the workflow, but not every part of it was elegant.
+
+### Signposting and announcements
+
+**Before:**
+
+> Let's dive into how caching works in Next.js. Here's what you need to know.
+
+**After:**
+
+> Next.js caches data at multiple layers, including request memoization, the data cache, and the router cache.
+
+### Fragmented header
+
+**Before:**
+
+> ## Performance
+>
+> Speed matters.
+>
+> When users hit a slow page, they leave.
+
+**After:**
+
+> ## Performance
+>
+> When users hit a slow page, they leave.
 
 ### Subject-line residue
 
