@@ -1,6 +1,6 @@
 ---
 name: humanizer
-version: 1.0.0
+version: 1.0.1
 description: |
   Remove signs of AI-generated writing from text and rewrite it in a clear,
   natural, human voice. Use when editing or reviewing prose that sounds robotic,
@@ -378,6 +378,20 @@ Scan for the following patterns and fix them when they weaken the text.
 **Problem:** A rewrite may sound suspicious if one paragraph or sentence abruptly changes register, polish level, or English variety compared with the rest.
 
 **Fix:** Keep the rewrite stylistically continuous. Match the surrounding voice instead of dropping in one ultra-polished or mismatched passage that sounds imported.
+
+### 28. Signposting and announcements
+
+**Words to watch:** let's dive in, let's explore, let's break this down, here's what you need to know, now let's look at, without further ado
+
+**Problem:** AI often announces what it is about to do instead of just doing it.
+
+**Fix:** Start with the content.
+
+### 29. Fragmented headers
+
+**Problem:** A heading followed by a one-line paragraph that just restates the heading before the real content begins usually adds padding rather than meaning.
+
+**Fix:** Let the heading do the work and begin with the substantive point.
 
 ## Audience And Ethics
 
