@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-04-20
+
+- Added coverage for passive voice, hyphenated pair overuse, persuasive authority tropes, signposting and announcements, and fragmented headers.
+- Extended examples for the new pattern families.
+- Kept the local skill aligned with the public `apoapostolov/humanizer` repo shape and versioning.
+
 ## [1.0.0] - 2026-03-16
 
 - Detects and removes common signs of AI-generated writing.
