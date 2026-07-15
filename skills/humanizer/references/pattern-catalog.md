@@ -18,6 +18,7 @@ quoted language, and the writer's established voice.
 - [Dialogue and setting](#dialogue-and-setting-patterns-28-38)
 - [Openings and endings](#openings-and-endings-patterns-39-43)
 - [Lists and compression](#lists-and-compression-patterns-44-55)
+- [Secondary cleanup patterns](#secondary-cleanup-patterns)
 - [Delivery and provenance](#delivery-and-provenance)
 - [How to use the catalog](#how-to-use-the-catalog)
 
@@ -87,9 +88,10 @@ beats three generic ones.
 
 ### 9. Negative-then-positive clarification
 
-**Tell:** Repeated *It is not X. It is Y.* constructions manufacture emphasis.
+**Tell:** Repeated *It is not X. It is Y.* and *X rather than Y* constructions
+manufacture emphasis or sophistication without sharpening the distinction.
 
-**Repair:** State Y directly or make the distinction factual.
+**Repair:** State the claim directly or make the contrast factual.
 
 ### 10. Copula avoidance
 
@@ -444,6 +446,36 @@ claims mastery the passage does not provide.
 
 **Repair:** State the actual scope. Use *all* only for a closed, defined set.
 
+## Secondary cleanup patterns
+
+Use these patterns after the first cleanup pass. They are common ways a rewrite
+can remain artificial even after the obvious vocabulary has gone.
+
+- **Cleanup-pass uniformity:** Every paragraph ends with a quotable one-liner,
+  balanced antithesis, or run of short declarative fragments. Keep only emphasis
+  the argument earns; combine manufactured punchlines and let some sentences end
+  without a flourish.
+- **Aphorism formula:** Constructions such as *X is the language of Y*, *X is the
+  currency of Y*, or *X is not a tool but a mirror* make an ordinary claim sound
+  profound. Replace the formula with the concrete relationship.
+- **Fake-candid opener:** *Honestly?*, *Here's the thing*, *Let's be real*, or a
+  rhetorical question creates theatrical intimacy before a routine point. Start
+  with the point unless the opener belongs to the writer's demonstrated voice.
+- **Replacement tic:** A removed cliché is replaced everywhere by the same new
+  bridge or landing phrase, such as *the real question* or *what this means in
+  practice*. The usual repair is omission, not a standard substitute.
+- **Diff-anchored writing:** Documentation or comments narrate that something
+  *was added*, *was changed*, or *replaces the old approach* when the document is
+  not a changelog or migration guide. Describe the current behavior and keep
+  history only when readers need it to act.
+- **Speculative gap filling:** Missing information becomes stock biography or
+  motive: someone *keeps a low profile*, *values privacy*, or *likely* followed a
+  plausible path. State the gap once or omit it; do not turn absence into fact.
+- **Evidence-strength drift:** Verbs such as *proves*, *demonstrates*, or
+  *confirms*, unsupported thresholds, and citation dumps claim more than the
+  evidence carries. Match the verb and scope to the evidence, name the baseline,
+  and explain the relevant source.
+
 ## Delivery and provenance
 
 Check these publication-level patterns after the prose itself is sound:
@@ -462,7 +494,9 @@ Check these publication-level patterns after the prose itself is sound:
 - **False range:** Replace dramatic *from X to Y* constructions unless the
   endpoints define a real spectrum.
 - **Mechanical formatting:** Remove decorative bold labels, title case, emoji,
-  and repeated label-colon lists. Keep hierarchy that helps scanning.
+  repeated label-colon lists, unnecessary small tables, skipped heading levels,
+  and thematic breaks that merely precede headings. Keep hierarchy and tables
+  that help readers scan or compare.
 - **Typographic over-polish:** Match surrounding quotation marks, punctuation,
   capitalization, and spacing.
 - **Assistant residue:** Remove pleasantries, refusals, offers, knowledge-cutoff
@@ -475,6 +509,9 @@ Check these publication-level patterns after the prose itself is sound:
   following paragraph already contains the substance.
 - **Hyphenated modifier pile:** Rewrite clusters such as *high-quality,
   data-driven, client-facing* instead of mechanically deleting valid hyphens.
+- **Audit-report inflation:** Do not attach an exhaustive narrative of minor edits
+  unless the user needs an audit trail. Report only consequential choices,
+  evidence gaps, and changes the writer may want to reverse.
 
 ## How to use the catalog
 

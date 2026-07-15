@@ -101,11 +101,13 @@ Update this section every time you perform a real maintenance review.
 
 ### Last repository maintenance review
 
-- Last full external review: `2026-03-16T12:25:42+02:00`
-- Last targeted Wikipedia history review: `2026-03-16T12:42:53+02:00`
-- Last targeted skill-reference sync: `2026-07-15T03:41:02-07:00`
+- Last full external review: `2026-07-15T04:11:17-07:00`
+- Last targeted Wikipedia history review: `2026-07-15T04:11:17-07:00`
+- Last targeted skill-reference sync: `2026-07-15T04:11:17-07:00`
 - Reviewer: AI agent
-- Review scope: Wikipedia baseline, major GitHub upstreams, GitHub search baseline, maintenance workflow refresh, last-3-weeks Wikipedia revision review, and the Forbidden Lands writing skill's seven-layer anti-AI reference
+- Review scope: current Wikipedia page and revision history since the prior
+  baseline, tracked upstream repositories and their intervening commits, GitHub
+  repository and code discovery, and the current Forbidden Lands reference
 
 ### Baseline sources already checked
 
@@ -113,46 +115,82 @@ Update this section every time you perform a real maintenance review.
 
 - Source: `https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing`
 - Role: primary taxonomy source for recurring AI-writing tells
-- Last read: `2026-03-16T12:42:53+02:00`
-- Last analyzed: `2026-03-16T12:42:53+02:00`
+- Last read: `2026-07-15T04:11:17-07:00`
+- Last analyzed: `2026-07-15T04:11:17-07:00`
 - Latest review notes:
-  - Strong additions worth carrying into this repo: phrasal templates and placeholder text, abrupt cut offs, and sudden shift in writing style
-  - The page also reinforced the importance of ineffective indicators; perfect grammar or vague "robotic" feel alone should not be treated as sufficient evidence
-  - Most new markup/citation/template sections remain too Wikipedia-specific for the main humanizer skill
+  - Added the newer `X rather than Y` negative-parallelism form to the existing
+    sentence-pattern guidance.
+  - Added broadly useful formatting checks for unnecessary small tables, skipped
+    heading levels, and decorative thematic breaks.
+  - The expanded speculation-about-source-gaps guidance reinforced the rule
+    against inventing privacy, motive, or biography when information is missing.
+  - The page now stresses even more clearly that patterns are surface signals,
+    not the underlying problem or reliable proof of authorship; the skill already
+    follows that standard.
+  - New Wikipedia markup, citation-bug, moderation, user-page, and permissions
+    indicators remain platform-specific and were not imported.
 
 #### 2. blader/humanizer
 
 - Source: `https://github.com/blader/humanizer`
 - Role: primary public upstream in the same skill family
-- Last read: `2026-03-16T12:25:42+02:00`
-- Last analyzed: `2026-03-16T12:25:42+02:00`
-- Baseline notes:
-  - Repo updated on `2026-03-16T10:24:58Z`
-  - Recent commits include example upgrades and installation guidance improvements
+- Last read: `2026-07-15T04:11:17-07:00`
+- Last analyzed: `2026-07-15T04:11:17-07:00`
+- Latest review notes:
+  - Reviewed all commits since the March baseline through upstream version 2.8.2;
+    the repository's latest content push was `2026-06-29T20:43:06Z`.
+  - Adopted diff-anchored prose, manufactured punchline runs, aphorism formulas,
+    fake-candid openers, speculative gap filling, and stronger cleanup-pass
+    checks.
+  - Voice calibration, content preservation, passive-voice nuance, and
+    false-positive safeguards were already represented in this repository.
+  - Recent issues reinforced the existing light-edit default for human-written
+    input. Universal-audience appeals overlap with promotional language; casual
+    intensifiers and isolated subjectless-fragment proposals remain on hold for
+    stronger cross-source evidence.
+  - Did not adopt the upstream hard ban on em and en dashes; this repository
+    continues to judge punctuation in context.
 
 #### 3. op7418/Humanizer-zh
 
 - Source: `https://github.com/op7418/Humanizer-zh`
 - Role: translation and derivative signal for how the skill is being extended or adapted
-- Last read: `2026-03-16T12:25:42+02:00`
-- Last analyzed: `2026-03-16T12:25:42+02:00`
-- Baseline notes:
-  - Repo updated on `2026-03-16T09:54:09Z`
+- Last read: `2026-07-15T04:11:17-07:00`
+- Last analyzed: `2026-07-15T04:11:17-07:00`
+- Latest review notes:
+  - The repository has no content commits since `2026-01-19T07:46:35Z` and no
+    commits after the previous baseline.
+  - Its Chinese adaptation, core rules, 24-pattern catalog, scoring rubric, and
+    examples added no durable general guidance missing from this skill.
 
 #### 4. GitHub discovery search
 
 - Source: GitHub repo and code search
 - Role: discovery lane for new humanizer skills, prompts, examples, and discussions
-- Last read: `2026-03-16T12:25:42+02:00`
-- Last analyzed: `2026-03-16T12:25:42+02:00`
+- Last read: `2026-07-15T04:11:17-07:00`
+- Last analyzed: `2026-07-15T04:11:17-07:00`
+- Latest review notes:
+  - Reviewed repository and code searches for humanizer skills, `SKILL.md`
+    implementations, and references to Wikipedia's signs-of-AI page.
+  - `orange2ai/renwei-writing` reinforced minimal intervention, treating rough
+    edges as possible author fingerprints, and avoiding invented scene anchors.
+  - `asavvin-pixel/unslop` contributed useful epistemic checks, replacement-tic
+    detection, and the cleanup-pass uniformity idea.
+  - `AIScientists-Dev/academic-humanizer` contributed evidence-strength, named
+    baseline, and citation-relevance checks that generalize beyond academia.
+  - Detector-focused projects that prescribe random disfluency, detector-scored
+    variants, rigid punctuation quotas, or fabricated plausible specificity were
+    rejected as detector-evasion guidance.
 
 #### 5. Forbidden Lands writing voice anti-AI reference
 
 - Source: `apoapostolov/Forbidden-Lands-2e`, `skills/forbidden-lands-writing-voice/references/anti-ai-humanizer.md`
 - Role: source for the seven-layer failure model, 55-pattern catalog, enumeration standard, diagnostic checklist, and staged revision protocol
-- Last read: `2026-07-15T03:41:02-07:00`
-- Last analyzed: `2026-07-15T03:41:02-07:00`
+- Last read: `2026-07-15T04:11:17-07:00`
+- Last analyzed: `2026-07-15T04:11:17-07:00`
 - Integration notes:
+  - Verified the reference is unchanged since commit `0dfac815` on
+    `2026-07-14T20:09:44Z`; it added no content beyond the existing sync.
   - Port the general editing rules and preserve their pattern numbering.
   - Generalize manuscript-specific examples instead of importing Forbidden Lands lore or author emulation guidance.
   - Retain this repository's web, assistant-residue, attribution, formatting, and template checks alongside the 55-pattern model.

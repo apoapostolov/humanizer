@@ -43,6 +43,11 @@ Choose an intervention before editing:
    copying conspicuous phrases.
 4. **Critique:** Explain what weakens the draft and how to repair it.
 
+When the user brings their own writing and asks for polishing rather than a full
+rewrite, default to cleanup. Make a change only when you can name the reader-facing
+problem it solves. Treat unusual cadence, repetition, abstraction, and small rough
+edges as possible fingerprints before treating them as defects.
+
 ## 2. Write for the actual reader
 
 Identify what the reader needs to understand, feel, decide, or do. Put that before
@@ -69,12 +74,20 @@ evaluate.
 - Prefer exact nouns and active relationships over prestige words.
 - Support significance with consequence rather than adjectives.
 - Attribute claims to a real source when the source matters.
+- Match the strength and scope of each verb to its evidence. A limited comparison
+  may *suggest* or *show* a result; it does not *prove* a universal claim.
+- Name the baseline behind thresholds, ratings, and words such as *healthy*,
+  *strong*, or *significant*.
+- Explain why a citation matters instead of using a long citation list as borrowed
+  authority.
 - Keep uncertainty that follows from the evidence; remove empty hedge stacks.
 - Choose one telling detail instead of inventing a decorative catalog.
 - State the actual scope instead of claiming completeness.
 
 Do not create specificity from nothing. If the draft lacks the fact needed for a
-credible claim, generalize honestly, flag the gap, or ask for context.
+credible claim, generalize honestly, flag the gap, or ask for context. Do not turn
+missing information into a claim that someone is private, keeps a low profile, or
+probably had a plausible background.
 
 ## 4. Preserve voice and point of view
 
@@ -116,7 +129,10 @@ Let syntax follow the thought rather than a learned cadence.
   balance.
 
 Read the passage aloud. Repair places where the prose feels uniformly smooth,
-breathless, padded, or conspicuously engineered.
+breathless, padded, or conspicuously engineered. Then inspect the cleanup itself:
+if every paragraph now lands on a punchline, balanced contrast, or clipped
+fragment, the rewrite has replaced one template with another. Remove repeated
+substitute phrases instead of standardizing on a new tic.
 
 ## 6. Shape paragraphs and lists
 

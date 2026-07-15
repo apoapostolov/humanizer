@@ -9,6 +9,10 @@ All notable changes to this project will be documented in this file.
 - Added a 55-pattern diagnostic catalog covering words, sentences, paragraphs,
   point of view, dialogue, setting, openings, endings, lists, and delivery
   residue.
+- Added checks for cleanup-pass uniformity, manufactured punchlines, aphorism
+  formulas, fake-candid openers, replacement tics, and diff-anchored prose.
+- Strengthened evidence matching, source-gap handling, citation relevance, and
+  formatting-residue checks.
 - Improved handling of flat lists, adjective piles, causal chains,
   pseudo-inventories, modifier trains, and exaggerated claims of completeness.
 - Expanded guidance for voice preservation, tone shifts, fiction, dialogue,

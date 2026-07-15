@@ -152,6 +152,31 @@ Keep the limit that evidence requires, not every hedge the sentence accumulated.
 
 Use the quantified claim only when the source supports it.
 
+### Evidence stronger than the claim
+
+**Before:**
+
+> These experiments prove that the method is universally more robust than existing approaches.
+
+**After:**
+
+> On the three test datasets, the method lost two accuracy points under distribution shift; the strongest baseline lost eleven.
+
+Match the claim to the tested scope. Do not turn one comparison into a universal
+conclusion.
+
+### Speculation filling an information gap
+
+**Before:**
+
+> Little is known about her early life, suggesting that she values privacy and likely grew up in a close-knit household.
+
+**After:**
+
+> The available sources do not document her early life.
+
+Omit the sentence when the gap itself is not relevant.
+
 ## Rebuild sentences and paragraphs
 
 ### Plain verb
@@ -239,6 +264,36 @@ Use the quantified claim only when the source supports it.
 > ## Performance
 >
 > When users hit a slow page, they leave.
+
+### Manufactured punchlines
+
+**Before:**
+
+> Then the new model arrived. No assumptions. No nostalgia. No compromise. The old rules were gone.
+
+**After:**
+
+> The new model did not favor the assumptions built into the earlier search, so several of the old rules stopped helping.
+
+### Aphorism instead of a claim
+
+**Before:**
+
+> Symmetry is the language of trust, and efficiency becomes a trap when teams forget the human layer.
+
+**After:**
+
+> Symmetric layouts often feel more predictable. Teams can still optimize a workflow past the point where people find it usable.
+
+### Fake-candid opener
+
+**Before:**
+
+> Is it worth the price? Honestly? It depends on how often you'll use it.
+
+**After:**
+
+> Whether it is worth the price depends on how often you'll use it.
 
 ## Select and order detail
 
@@ -496,6 +551,19 @@ Keep poetic language only when the brief and source voice support it.
 **After:**
 
 > The product launches in Q3. User research showed a preference for simplicity. Next step: schedule a follow-up meeting.
+
+### Diff-anchored documentation
+
+**Before:**
+
+> This function was added to replace the previous loop, which caused quadratic lookup time.
+
+**After:**
+
+> This function uses a hash map for constant-time lookups instead of scanning the collection for each item.
+
+Describe the current behavior unless the document is specifically about the
+migration or change history.
 
 ## Complete task examples
 
