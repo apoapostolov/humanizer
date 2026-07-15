@@ -95,6 +95,18 @@ cp -R skills/humanizer "${CODEX_HOME:-$HOME/.codex}/skills/"
 
 Start a new Codex session if the skill is not discovered automatically.
 
+### skills.sh CLI
+
+Install Humanizer for the current project with the skills.sh CLI. The command
+runs through `npx`, so no global CLI installation is required:
+
+```bash
+npx skills add apoapostolov/humanizer --skill humanizer
+```
+
+Add `--global` to make the skill available across projects. The CLI detects
+supported agents and prompts you to choose the installation targets.
+
 ### VS Code agents
 
 VS Code does not define one universal skill directory. Copy
