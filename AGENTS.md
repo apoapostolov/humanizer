@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD013 MD026 -->
+
 # AGENTS.md
 
 This document teaches AI agents how to maintain the `humanizer` skill over time.
@@ -18,12 +20,24 @@ Maintain this repository as a high-quality humanizer skill that:
 
 This repository currently centers on:
 
-- [`SKILL.md`](./SKILL.md): main skill logic and workflow
-- [`EXAMPLES.md`](./EXAMPLES.md): concrete before/after examples
+- [`skills/humanizer/SKILL.md`](./skills/humanizer/SKILL.md): concise skill
+  routing, workflow, guardrails, and output contract
+- [`skills/humanizer/agents/openai.yaml`](./skills/humanizer/agents/openai.yaml):
+  OpenAI-facing display metadata and default prompt
+- [`skills/humanizer/references/pattern-catalog.md`](./skills/humanizer/references/pattern-catalog.md):
+  ordered 55-pattern diagnostic catalog and delivery-residue checks
+- [`skills/humanizer/references/examples.md`](./skills/humanizer/references/examples.md):
+  concrete before/after examples
+- [`skills/humanizer/references/humanizing-text.md`](./skills/humanizer/references/humanizing-text.md):
+  complete editing workflow, voice preservation, audience adaptation, and tone
+  guidance
 - [`README.md`](./README.md): public-facing documentation and installation guidance
 - [`CHANGELOG.md`](./CHANGELOG.md): user-facing release notes only
 
 Do not turn this repository into a general prompt dump. Keep it focused on maintaining one strong humanizer skill.
+
+Keep the installable package self-contained under `skills/humanizer/`. Do not
+place runtime references or agent metadata at the repository root.
 
 ## Source Of Truth Hierarchy
 
@@ -70,8 +84,14 @@ Bad signals include:
 
 When updating:
 
-- keep `SKILL.md` coherent and readable
-- keep `EXAMPLES.md` example-heavy and practical
+- keep `skills/humanizer/SKILL.md` concise, imperative, and focused on routing
+- keep `skills/humanizer/references/pattern-catalog.md` complete, ordered,
+  and free of duplicate core text
+- keep `skills/humanizer/references/examples.md` example-heavy and practical
+- keep `skills/humanizer/references/humanizing-text.md` focused on the complete
+  editing workflow and calibration rather than pattern taxonomy
+- keep `skills/humanizer/agents/openai.yaml` aligned with the current skill name
+  and behavior; regenerate it with the skill-creator utility
 - keep `README.md` professional and install-focused
 - keep `CHANGELOG.md` user-facing, not development-log style
 
@@ -83,8 +103,9 @@ Update this section every time you perform a real maintenance review.
 
 - Last full external review: `2026-03-16T12:25:42+02:00`
 - Last targeted Wikipedia history review: `2026-03-16T12:42:53+02:00`
+- Last targeted skill-reference sync: `2026-07-15T03:41:02-07:00`
 - Reviewer: AI agent
-- Review scope: Wikipedia baseline, major GitHub upstreams, GitHub search baseline, maintenance workflow refresh, plus last-3-weeks Wikipedia revision review
+- Review scope: Wikipedia baseline, major GitHub upstreams, GitHub search baseline, maintenance workflow refresh, last-3-weeks Wikipedia revision review, and the Forbidden Lands writing skill's seven-layer anti-AI reference
 
 ### Baseline sources already checked
 
@@ -125,6 +146,17 @@ Update this section every time you perform a real maintenance review.
 - Last read: `2026-03-16T12:25:42+02:00`
 - Last analyzed: `2026-03-16T12:25:42+02:00`
 
+#### 5. Forbidden Lands writing voice anti-AI reference
+
+- Source: `apoapostolov/Forbidden-Lands-2e`, `skills/forbidden-lands-writing-voice/references/anti-ai-humanizer.md`
+- Role: source for the seven-layer failure model, 55-pattern catalog, enumeration standard, diagnostic checklist, and staged revision protocol
+- Last read: `2026-07-15T03:41:02-07:00`
+- Last analyzed: `2026-07-15T03:41:02-07:00`
+- Integration notes:
+  - Port the general editing rules and preserve their pattern numbering.
+  - Generalize manuscript-specific examples instead of importing Forbidden Lands lore or author emulation guidance.
+  - Retain this repository's web, assistant-residue, attribution, formatting, and template checks alongside the 55-pattern model.
+
 ## Review Cadence
 
 Run a maintenance review:
@@ -145,8 +177,11 @@ Follow this sequence.
 
 Read:
 
-- `SKILL.md`
-- `EXAMPLES.md`
+- `skills/humanizer/SKILL.md`
+- `skills/humanizer/agents/openai.yaml`
+- `skills/humanizer/references/pattern-catalog.md`
+- `skills/humanizer/references/examples.md`
+- `skills/humanizer/references/humanizing-text.md`
 - `README.md`
 - `CHANGELOG.md`
 - this `AGENTS.md`
@@ -169,9 +204,10 @@ Check the page for:
 
 Questions to answer:
 
-- Is there a genuinely new tell not represented in `SKILL.md`?
+- Is there a genuinely new tell not represented in the pattern catalog?
 - Is an existing tell better described than our current version?
-- Is there a better example that belongs in `EXAMPLES.md`?
+- Is there a better example that belongs in
+  `skills/humanizer/references/examples.md`?
 
 ### Step 4. Review tracked humanizer projects
 
@@ -335,21 +371,38 @@ Reject when the idea:
 
 Use this file mapping when integrating improvements.
 
-### Update `SKILL.md` when:
+### Update `skills/humanizer/SKILL.md` when:
 
 - the core workflow improves
 - the intake logic improves
 - rewrite modes need adjustment
-- a new durable AI-writing tell should be taught
 - ethics or guardrails need strengthening
-- evaluation criteria improve
+- reference routing or output behavior changes
 
-### Update `EXAMPLES.md` when:
+### Update `skills/humanizer/references/pattern-catalog.md` when:
+
+- a new durable AI-writing tell should be taught
+- a pattern split, merge, definition, diagnostic, or repair improves
+- the catalog's organization or delivery checks change
+
+### Update `skills/humanizer/references/examples.md` when:
 
 - a better before/after example exists
 - a current example is weaker than a newly found one
 - a new domain or tone needs coverage
 - weaker models would benefit from additional contrastive examples
+
+### Update `skills/humanizer/references/humanizing-text.md` when:
+
+- the end-to-end editing sequence improves
+- voice-preservation guidance improves
+- audience or platform adaptation changes
+- tone presets or style-continuity checks improve
+
+### Update `skills/humanizer/agents/openai.yaml` when:
+
+- the display name, short description, or default prompt no longer matches the skill
+- the skill is renamed or its primary user-facing behavior changes
 
 ### Update `README.md` when:
 
@@ -394,8 +447,10 @@ When comparing examples:
 
 Do not let maintenance drift into these failures:
 
-- bloating `SKILL.md` with too many redundant examples
-- turning `EXAMPLES.md` into an uncurated dump
+- bloating `skills/humanizer/SKILL.md` with detailed catalogs or examples
+- duplicating the same rule in the core and a reference
+- turning `skills/humanizer/references/examples.md` into an uncurated dump
+- letting `skills/humanizer/agents/openai.yaml` drift from the core skill
 - weakening the skill into generic "write better" advice
 - confusing "natural" with sloppy
 - confusing "human" with deceptive
@@ -406,11 +461,12 @@ Do not let maintenance drift into these failures:
 When a review produces real improvements:
 
 1. Update `AGENTS.md` timestamps and notes
-2. Patch `SKILL.md` and `EXAMPLES.md`
-3. Update `README.md` only if public behavior changed
-4. Add concise user-facing notes to `CHANGELOG.md`
-5. Run a final editorial pass for consistency
-6. Commit, push, and tag only when the change is meaningful
+2. Patch the relevant files under `skills/humanizer/`
+3. Regenerate `agents/openai.yaml` when interface metadata may be stale
+4. Update `README.md` only if public behavior or installation changed
+5. Add concise user-facing notes to `CHANGELOG.md`
+6. Run skill validation, Markdown checks, and a final editorial pass
+7. Commit, push, and tag only when the change is meaningful
 
 If the review produces no worthwhile change:
 
