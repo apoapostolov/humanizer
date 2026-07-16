@@ -103,11 +103,11 @@ Update this section every time you perform a real maintenance review.
 
 - Last full external review: `2026-07-15T04:11:17-07:00`
 - Last targeted Wikipedia history review: `2026-07-15T04:11:17-07:00`
-- Last targeted skill-reference sync: `2026-07-15T04:11:17-07:00`
+- Last targeted skill-reference sync: `2026-07-16T12:41:17-07:00`
 - Reviewer: AI agent
-- Review scope: current Wikipedia page and revision history since the prior
-  baseline, tracked upstream repositories and their intervening commits, GitHub
-  repository and code discovery, and the current Forbidden Lands reference
+- Latest review scope: targeted audit of `conorbronsdon/avoid-ai-writing`,
+  including its current skill, detector map, changelog, commit history, issues,
+  and merged pull requests; other baseline sources were not refreshed
 
 ### Baseline sources already checked
 
@@ -194,6 +194,31 @@ Update this section every time you perform a real maintenance review.
   - Port the general editing rules and preserve their pattern numbering.
   - Generalize manuscript-specific examples instead of importing Forbidden Lands lore or author emulation guidance.
   - Retain this repository's web, assistant-residue, attribution, formatting, and template checks alongside the 55-pattern model.
+
+#### 6. conorbronsdon/avoid-ai-writing
+
+- Source: `https://github.com/conorbronsdon/avoid-ai-writing`
+- Role: source for publication fingerprints, conversational response residue,
+  persuasive-template checks, and false-positive review practices
+- Last read: `2026-07-16T12:41:17-07:00`
+- Last analyzed: `2026-07-16T12:41:17-07:00`
+- Latest review notes:
+  - Reviewed the repository through version 3.16.0 and commit `af346121`, plus
+    its detector category map, tests, changelog, issues, and merged pull requests.
+  - Adopted checks for prompt and reasoning echoes, recap-flattery, speculative
+    scenario openers, generic endorsement closers, novelty inflation, leaked
+    citation or attachment tokens, and AI-added URL parameters.
+  - Added a context-sensitive conversational-layout check and a clearer
+    exclusion for quoted examples, code, and attributed excerpts.
+  - Vague third-party validation, split negative pivots, evidence calibration,
+    voice matching, and most formatting guidance were already covered.
+  - Did not import the deterministic detector, tiered word blacklist, hard
+    punctuation quotas, TTR thresholds, mandatory first person, edit-to-zero
+    iteration, or list-label punctuation rule. These either optimize for
+    detection, overgeneralize from weak signals, or conflict with contextual
+    editing.
+  - Held the new metaphorical `load-bearing` rule for observation. Its literal
+    carve-out remains under active upstream discussion in issue 56.
 
 ## Review Cadence
 

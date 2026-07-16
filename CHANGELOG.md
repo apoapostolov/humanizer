@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.2.0] - 2026-07-16
+
+- Added checks for prompt and reasoning echoes, recap-flattery, speculative
+  scenario openers, novelty inflation, and generic endorsement closers.
+- Added cleanup for leaked citation or attachment tokens and AI-tool tracking
+  parameters in otherwise useful URLs.
+- Strengthened conversational-layout guidance and protection for quoted examples,
+  code blocks, and attributed excerpts.
+
 ## [1.1.0] - 2026-07-15
 
 - Added an end-to-end humanization workflow that preserves meaning while

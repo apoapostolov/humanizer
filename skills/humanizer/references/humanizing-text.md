@@ -62,6 +62,7 @@ ceremonial framing. Match the form to the reading situation.
 | Academic or analytical prose | sourced claim, reasoning, calibrated limit | fake authority and empty abstraction |
 | Fiction | embodied point of view, selective detail, pressure | explanations of every feeling and motive |
 | Personal writing | the writer's diction, priorities, and honest tension | polished sentiment imported from nowhere |
+| Conversational reply | answer, decision, or next action | prompt recap, praise recap, reasoning scaffolds, and dense unbroken blocks |
 
 Honor platform expectations without forcing every text into a casual voice.
 
@@ -196,11 +197,17 @@ detail—not casual slang or random errors.
 Inspect the finished text as a published artifact:
 
 - remove assistant pleasantries, response announcements, refusals, and offers
+- remove prompt restatements, sycophantic validation, recap-flattery, and exposed
+  reasoning scaffolds; keep brief thanks that serve the exchange
 - resolve placeholders, sample fields, subject-line scaffolding, and unfinished
   lists
+- replace leaked citation or attachment tokens with real references and strip
+  AI-tool tracking parameters from otherwise useful URLs
 - repair abrupt cutoffs and sudden changes in voice
 - verify quotations and attributions
 - match surrounding punctuation, capitalization, heading style, and formatting
+- match the surrounding line-break rhythm in conversational replies, splitting
+  distinct thoughts without forcing formal prose into chat-sized blocks
 - remove decorative headings, emoji, bold labels, or list structures that do not
   help the reader navigate
 

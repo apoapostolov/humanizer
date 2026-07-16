@@ -295,6 +295,33 @@ Omit the sentence when the gap itself is not relevant.
 
 > Whether it is worth the price depends on how often you'll use it.
 
+### Speculative scenario instead of a claim
+
+**Before:**
+
+> Imagine a world where every deploy is instant, seamless, and stress-free.
+
+**After:**
+
+> Cutting deploy time from a day to minutes would let the team ship urgent fixes
+> during the same support shift.
+
+Use the consequence the evidence supports. Keep scenario framing when it is a
+real thought experiment or teaching device.
+
+### Inflated novelty claim
+
+**Before:**
+
+> She coined a concept nobody else is naming: context debt.
+
+**After:**
+
+> She used *context debt* to describe the cleanup required after decisions lose
+> their original rationale.
+
+Claim invention only when the source establishes it.
+
 ## Select and order detail
 
 ### Flat list
@@ -498,6 +525,22 @@ Keep poetic language only when the brief and source voice support it.
 
 ## Remove delivery residue
 
+### Prompt and reasoning echo
+
+**Before:**
+
+> Great question. You're asking whether the migration is safe, so let's break
+> this down step by step. Thanks for all the careful work you've already done on
+> the rollback plan. First, let's consider the database change.
+
+**After:**
+
+> The migration is safe if the rollback script is tested against a production
+> snapshot before the database change.
+
+Answer before recapping the prompt, praising the reader, or narrating the
+reasoning process.
+
 ### Assistant chatter
 
 **Before:**
@@ -517,6 +560,20 @@ Keep poetic language only when the brief and source voice support it.
 **After:**
 
 > The lead should use the revenue figure in the 2024 annual report. The current figure comes from the 2022 filing.
+
+### Tool fingerprint residue
+
+**Before:**
+
+> The release notes describe the fix. citeturn0search0 See
+> `https://example.com/release?utm_source=chatgpt.com`
+
+**After:**
+
+> The release notes describe the fix: `https://example.com/release`
+
+Replace internal citation tokens with real references when available, and remove
+AI-tool tracking parameters without deleting a useful destination.
 
 ### Abrupt cutoff
 

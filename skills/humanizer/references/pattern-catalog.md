@@ -8,7 +8,9 @@ sequence.
 
 Patterns are contextual prompts, not proof of AI authorship. Diagnose clusters and
 reader impact. Preserve intentional rhetoric, genre conventions, technical terms,
-quoted language, and the writer's established voice.
+quoted language, and the writer's established voice. Do not score or rewrite
+quoted examples, code blocks, or attributed excerpts unless the brief includes
+them.
 
 ## Contents
 
@@ -471,6 +473,18 @@ can remain artificial even after the obvious vocabulary has gone.
 - **Speculative gap filling:** Missing information becomes stock biography or
   motive: someone *keeps a low profile*, *values privacy*, or *likely* followed a
   plausible path. State the gap once or omit it; do not turn absence into fact.
+- **Speculative scenario opener:** *Imagine a world where*, *picture a future in
+  which*, or similar framing lists desirable outcomes instead of supporting a
+  claim. State the proposition and evidence directly. Preserve fiction, useful
+  thought experiments, and concrete instructional examples.
+- **Novelty inflation:** *Coined*, *introduced*, *the idea nobody is naming*, or
+  an undefined invented label makes an established concept sound newly
+  discovered. Verify a real priority claim; otherwise describe the application
+  or mechanism without claiming invention.
+- **Generic endorsement closer:** *This is worth your time*, *bookmark this*,
+  *don't miss this*, or *thank me later* performs enthusiasm without explaining
+  the recommendation. Name the relevant value and audience or remove the
+  sign-off.
 - **Evidence-strength drift:** Verbs such as *proves*, *demonstrates*, or
   *confirms*, unsupported thresholds, and citation dumps claim more than the
   evidence carries. Match the verb and scope to the evidence, name the baseline,
@@ -500,9 +514,17 @@ Check these publication-level patterns after the prose itself is sound:
 - **Typographic over-polish:** Match surrounding quotation marks, punctuation,
   capitalization, and spacing.
 - **Assistant residue:** Remove pleasantries, refusals, offers, knowledge-cutoff
-  disclaimers, response announcements, and fake quotations.
+  disclaimers, response announcements, prompt restatements, sycophantic praise,
+  recap-flattery, exposed reasoning scaffolds, and fake quotations. Keep a brief,
+  earned thank-you when the exchange calls for one.
+- **Tool fingerprint residue:** Remove internal citation or attachment tokens and
+  AI-tool tracking parameters from URLs. Replace a meaningful token with a real,
+  verifiable citation; keep the clean destination URL when the link still helps.
 - **Template residue:** Resolve placeholders, bracketed instructions, sample
   dates, subject-line scaffolding, unfinished lists, and abrupt cutoffs.
+- **Conversational block shape:** In chat, issue comments, direct messages, and
+  casual email, break distinct thoughts where the surrounding conversation would.
+  Do not impose short-paragraph quotas on formal prose.
 - **Voice discontinuity:** Match surrounding register, dialect, spelling, polish,
   and point of view.
 - **Fragmented headers:** Delete a one-line restatement beneath a heading when the

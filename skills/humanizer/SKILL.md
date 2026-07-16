@@ -58,6 +58,8 @@ Load only what the task needs.
   feature as inherently artificial.
 - Preserve intentional rhetoric, genre conventions, accessibility, and house
   style when they serve the text.
+- Do not rewrite quoted examples, code blocks, or attributed excerpts unless the
+  user asks. Flag a problem in protected material separately when it matters.
 - Do not add fake sources, facts, quotations, memories, emotions, sensory detail,
   slang, typos, or first-person experience.
 - Do not flatten necessary technical precision or evidence-based qualification.

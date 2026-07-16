@@ -19,6 +19,8 @@ a 55-pattern catalog supports deeper diagnosis when needed.
   false completeness
 - identify placeholders, assistant chatter, vague attribution, cutoffs, and
   abrupt voice shifts
+- remove prompt and reasoning echoes, generic endorsement closers, leaked
+  citation tokens, and AI-tool URL parameters
 - critique a draft without rewriting it
 
 The goal is better writing, not AI-detector evasion or artificial imperfection.
@@ -147,7 +149,7 @@ audience, desired tone, and any phrases or facts that must remain unchanged.
 
 ## Version
 
-Current version: `1.1.0`
+Current version: `1.2.0`
 
 See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
