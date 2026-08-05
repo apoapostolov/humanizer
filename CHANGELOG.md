@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.1] - 2026-08-05
+
+Patch: engine pin absorb + vale upgrade.
+
+- **ai-writing-detector**: absorb upstream `Object.hasOwn` guard fix
+  (prevents `constructor` prototype FP in tier lookups). Fix
+  `check-engine-pin.sh` syntax bug and update engine pin to post-v3.23.0
+  tip `1ea2f0c`. Skill version 1.0.4.
+- **writing-prose**: vale binary updated v3.17.0 to v3.17.1 (perf:
+  startup core allocation, lookaround hoisting, rule compilation skip;
+  fix: Org HTML writer, dry-run config, rule-embedded scripts validation;
+  feat: Windows on ARM build). No style-pack or config changes. Skill
+  version 1.0.1.
+- **SOURCES.md**: updated all active ingest timestamps. Engine pin moved
+  from `v3.22.3`/`5897f7b` to post-tag tip `1ea2f0c`.
+
 ## [1.0.0] - 2026-08-05
 
 Initial clean release. Four writing skills for agents:

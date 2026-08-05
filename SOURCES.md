@@ -15,18 +15,18 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `1.0.0` |
+| package_version | `1.0.1` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/plain-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
 | plain_english_skill_version | `1.0.0` |
-| ai_writing_detector_skill_version | `1.0.0` |
-| writing_prose_skill_version | `1.0.0` |
+| ai_writing_detector_skill_version | `1.0.4` |
+| writing_prose_skill_version | `1.0.1` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_plain_english_path | `~/.hermes/skills/writing/plain-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-08-05T00:00:00-07:00` |
-| last_package_release | `2026-08-05` (1.4.1, writing-prose absorbed legacy writing craft refs) |
+| last_sources_sync | `2026-08-05T12:10:00-07:00` |
+| last_package_release | `2026-08-05` (1.0.1, engine pin absorb + vale v3.17.1) |
 
 ### Version bump policy (semver)
 
@@ -68,10 +68,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.0.3` |
+| skill_version | `1.0.4` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ pin `v3.22.3` / `5897f7b` (no detector delta in v3.23.0) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ post-tag tip `1ea2f0c` (Object.hasOwn FP fix, after v3.23.0) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Production signals-only report. Batch summary, quiet, CI smoke. Not rewrite/evasion/authorship. |
 
@@ -81,7 +81,7 @@ sources were touched.
 | --- | --- |
 | id | `writing-prose` |
 | status | `packaged_skill` |
-| skill_version | `1.0.0` |
+| skill_version | `1.0.1` |
 | path | `skills/writing-prose/` |
 | live_clone | `~/.hermes/skills/writing/writing-prose` |
 | upstream_kit | `https://github.com/vale-cli/vale` (binary + style packs; house config is ours) |
@@ -106,7 +106,7 @@ humanizer.
 | last_ingested_version | `3.23.0` |
 | last_ingested_ref | `f666087e52764c6b24e2dfb9c2a699281fec5516` |
 | last_ingested_at | `2026-08-04T02:19:06-07:00` |
-| last_checked_at | `2026-08-04T02:19:06-07:00` |
+| last_checked_at | `2026-08-05T12:10:00-07:00` |
 | compare_base | `v3.23.0` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
@@ -137,7 +137,7 @@ git -C avoid-ai-writing diff 5897f7b49713bbac043d11e30995cf241df66d5e..origin/ma
 | last_ingested_version | `2.9.1` |
 | last_ingested_ref | `523374dee72d67c7b2b5f858ea0094ffda49c3ac` |
 | last_ingested_at | `2026-07-31T03:42:49-07:00` |
-| last_checked_at | `2026-07-31T03:42:49-07:00` |
+| last_checked_at | `2026-08-05T12:10:00-07:00` |
 | local_clone | `blader-humanizer` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |
@@ -165,7 +165,7 @@ git -C blader-humanizer diff 523374dee72d67c7b2b5f858ea0094ffda49c3ac..origin/ma
 | last_ingested_version | `path@0dfac815` |
 | last_ingested_ref | `0dfac815` |
 | last_ingested_at | `2026-07-15T04:11:17-07:00` |
-| last_checked_at | `2026-07-15T04:11:17-07:00` |
+| last_checked_at | `2026-08-05T12:10:00-07:00` |
 | local_clone | `Forbidden-Lands-2e` |
 | clone_policy | personal/public → `<git-public>` |
 | primary_paths | `skills/forbidden-lands-writing-voice/references/anti-ai-humanizer.md` |
@@ -184,7 +184,7 @@ git -C blader-humanizer diff 523374dee72d67c7b2b5f858ea0094ffda49c3ac..origin/ma
 | last_ingested_version | `tip@8da1f03` |
 | last_ingested_ref | `8da1f030185bdfe8471220585162991eaeb970e9` |
 | last_ingested_at | `2026-08-04T00:00:00-07:00` |
-| last_checked_at | `2026-08-04T00:00:00-07:00` |
+| last_checked_at | `2026-08-05T12:10:00-07:00` |
 | compare_base | `8da1f03` |
 | local_clone | `hardikpandya-stop-slop` |
 | clone_policy | third-party → `<git-ext>` only |
@@ -216,16 +216,16 @@ by the scan script via the GitHub releases API (no local clone needed).
 | status | `active_ingest` |
 | kind | `release_api` (Go binary + style packs; no vendored prose) |
 | repo | `https://github.com/vale-cli/vale` |
-| release_tag | `v3.17.0` |
-| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.17.0` |
-| last_ingested_version | `3.17.0` |
+| release_tag | `v3.17.1` |
+| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.17.1` |
+| last_ingested_version | `3.17.1` |
 | last_ingested_at | `2026-08-05` |
-| last_checked_at | `2026-08-05` |
-| win11_winget | `errata-ai.Vale` 3.15.1 (winget lags; WSL binary is canonical at 3.17.0) |
+| last_checked_at | `2026-08-05T12:10:00-07:00` |
+| win11_winget | `errata-ai.Vale` 3.15.1 (winget lags; WSL binary is canonical at 3.17.1) |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |
-| next_check | On a release tag newer than `v3.17.0`, or a winget manifest newer than `3.15.1`. |
+| next_check | On a release tag newer than `v3.17.1`, or a winget manifest newer than `3.15.1`. |
 
 ## Monitor-only sources
 
