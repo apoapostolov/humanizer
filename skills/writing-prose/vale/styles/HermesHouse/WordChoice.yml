@@ -1,0 +1,38 @@
+# Plain-English word choices (STE-flavored). Advisory level.
+extends: substitution
+message: "Prefer '%s' over '%s'."
+level: warning
+ignorecase: true
+swap:
+  utilize: use
+  utilization: use
+  leverage: use
+  leveraging: use
+  leveraged: used
+  facilitate: help
+  facilitates: helps
+  facilitated: helped
+  commence: start
+  commenced: started
+  commences: starts
+  initiate: start
+  initiated: started
+  prior to: before
+  subsequent to: after
+  regarding: about
+  obtain: get
+  obtained: got
+  demonstrate: show
+  demonstrates: shows
+  demonstrated: showed
+  additionally: also
+  furthermore: also
+  moreover: also
+  endeavor: try
+  endeavors: tries
+  expedite: speed up
+  expedited: sped up
+  "in order to": to
+  "in order for": for
+  ascertain: find out
+  ascertain[d]?: found out

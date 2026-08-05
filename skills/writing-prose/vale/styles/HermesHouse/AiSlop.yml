@@ -1,0 +1,35 @@
+# AI-slop and marketing words. Advisory level; plain wording preferred.
+extends: existence
+message: "AI-slop or marketing word: '%s'. Use plain wording."
+level: warning
+ignorecase: true
+tokens:
+  - delve
+  - tapestry
+  - seamless
+  - cutting-edge
+  - state-of-the-art
+  - world-class
+  - game-changer
+  - game-changing
+  - supercharge
+  - supercharged
+  - revolutionize
+  - revolutionary
+  - holistic
+  - synergy
+  - impactful
+  - harness
+  - empower
+  - elevating
+  - elevate
+  - unlock
+  - unlocking
+  - "it is important to note"
+  - "at the end of the day"
+  - "circle back"
+  - "fast-paced"
+  - "in conclusion"
+  - "dive into"
+  - "landscape of"
+  - "in today's"

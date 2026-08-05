@@ -1,0 +1,16 @@
+# Vague intensifiers and filler. Advisory level.
+extends: existence
+message: "Weasel word: '%s'. Prefer a concrete statement or cut it."
+level: suggestion
+ignorecase: true
+tokens:
+  - very
+  - really
+  - quite
+  - basically
+  - essentially
+  - arguably
+  - somewhat
+  - "kind of"
+  - "sort of"
+  - "a lot of"

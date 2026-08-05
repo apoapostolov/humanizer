@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Writing Detector"
+  short_description: "Signals-only AI-writing scan + rewrite preservation validate"
+  default_prompt: "Use $ai-writing-detector to analyze text for AI-writing signals (signals_only report, not authorship proof) or validate a rewrite preserved protected spans. Never score-chase."

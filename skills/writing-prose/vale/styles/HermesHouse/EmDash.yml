@@ -1,0 +1,7 @@
+# House rule: no em dash anywhere in Hermes output.
+extends: existence
+message: "Em dash found. House rule: no em dashes; use a period, comma, colon, or restructure the sentence."
+level: error
+nonword: true
+tokens:
+  - '—'
