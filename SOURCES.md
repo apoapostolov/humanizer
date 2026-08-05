@@ -101,19 +101,19 @@ humanizer.
 | id | `avoid-ai-writing` |
 | status | `active_ingest` |
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
-| release_tag | `v3.23.0` |
-| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.23.0` |
-| last_ingested_version | `3.23.0` |
-| last_ingested_ref | `f666087e52764c6b24e2dfb9c2a699281fec5516` |
-| last_ingested_at | `2026-08-04T02:19:06-07:00` |
-| last_checked_at | `2026-08-05T12:10:00-07:00` |
-| compare_base | `v3.23.0` |
+| release_tag | `v3.23.1` |
+| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.23.1` |
+| last_ingested_version | `3.23.1` |
+| last_ingested_ref | `a575602b3d6cb313dd0ceaf03a121fd8a79c18a6` |
+| last_ingested_at | `2026-08-06T00:15:00+03:00` |
+| last_checked_at | `2026-08-06T00:15:00+03:00` |
+| compare_base | `v3.23.1` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.23.0`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
+| next_check | On newer tag than `v3.23.1`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
 
 Diff helpers:
 

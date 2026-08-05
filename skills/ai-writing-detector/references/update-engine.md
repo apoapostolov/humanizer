@@ -70,6 +70,14 @@ covers mechanical form control via the sibling `plain-english` STE lint. On
 such releases, update SOURCES release pins but keep the engine pin and
 `check-engine-pin.sh` `expected_upstream_tag` unchanged.
 
+v3.23.1 (2026-08-05) changed no `detector/` files. The Object.hasOwn FP fix
+(`constructor` and other `Object.prototype` collisions) was already at our
+engine pin `1ea2f0c` (post-v3.23.0 tip). `patterns.js` and the functional body
+of `validate.js` are byte-identical between our pin and the tag. The release
+formalized CI/release automation (npm provenance pipeline, cursor-rules leak
+gate, pattern-count CI assertion). SOURCES release pins updated; engine pin,
+detector skill version, and `check-engine-pin.sh` unchanged.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
