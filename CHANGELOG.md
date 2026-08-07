@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.2] - 2026-08-07
+
+Patch: dropped a tracked ingest source.
+
+- **SOURCES.md**: removed `apoapostolov/Forbidden-Lands-2e` from active
+  ingest (user decision). Already-absorbed generalized rules stay in
+  humanizer references. Remaining sources renumbered.
+
 ## [1.0.1] - 2026-08-05
 
 Patch: engine pin absorb + vale upgrade.

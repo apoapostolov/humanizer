@@ -15,7 +15,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `1.0.1` |
+| package_version | `1.0.2` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/plain-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
 | plain_english_skill_version | `1.0.0` |
@@ -25,7 +25,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_plain_english_path | `~/.hermes/skills/writing/plain-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-08-05T12:10:00-07:00` |
+| last_sources_sync | `2026-08-07T15:30:00+03:00` |
 | last_package_release | `2026-08-05` (1.0.1, engine pin absorb + vale v3.17.1) |
 
 ### Version bump policy (semver)
@@ -154,26 +154,7 @@ git -C blader-humanizer log --oneline 523374dee72d67c7b2b5f858ea0094ffda49c3ac..
 git -C blader-humanizer diff 523374dee72d67c7b2b5f858ea0094ffda49c3ac..origin/main -- SKILL.md README.md
 ```
 
-### 3. apoapostolov/Forbidden-Lands-2e (anti-ai humanizer reference)
-
-| Field | Value |
-| --- | --- |
-| id | `forbidden-lands-anti-ai` |
-| status | `active_ingest` |
-| repo | `https://github.com/apoapostolov/Forbidden-Lands-2e` |
-| path_in_repo | `skills/forbidden-lands-writing-voice/references/anti-ai-humanizer.md` |
-| last_ingested_version | `path@0dfac815` |
-| last_ingested_ref | `0dfac815` |
-| last_ingested_at | `2026-07-15T04:11:17-07:00` |
-| last_checked_at | `2026-08-05T12:10:00-07:00` |
-| local_clone | `Forbidden-Lands-2e` |
-| clone_policy | personal/public → `<git-public>` |
-| primary_paths | `skills/forbidden-lands-writing-voice/references/anti-ai-humanizer.md` |
-| lands_in | `skills/humanizer/references/pattern-catalog.md`, `humanizing-text.md` (generalized) |
-| ingest_policy | Port general editing rules; preserve pattern numbering where useful. Strip FL lore and author-emulation. |
-| next_check | Diff that path after `0dfac815`. |
-
-### 4. hardikpandya/stop-slop
+### 3. hardikpandya/stop-slop
 
 | Field | Value |
 | --- | --- |
@@ -273,6 +254,8 @@ Do not re-litigate unless upstream evidence improves:
 - TTR thresholds as proof of AI authorship
 - Mandatory first person in neutral/technical registers
 - Using `ai-writing-detector` scores as rewrite targets or integrity verdicts
+- `apoapostolov/Forbidden-Lands-2e` as a tracked ingest source (dropped by
+  user decision; already-absorbed generalized rules stay in humanizer refs)
 
 ## Update procedure
 
