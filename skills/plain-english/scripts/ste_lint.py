@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Heuristic anti-slop linter: mechanical subset of ASD-STE100.
 
-Score = violations per 100 words (lower is cleaner). Deterministic.
+Reports form findings per 100 words. The caller chooses strict or flavored
+mode and decides which findings require edits.
 Not a certified STE checker. Em dashes counted as slop markers.
 
 Source: woosal1337/blog videos/ep01-the-cure-for-ai-slop/ste-lint.py

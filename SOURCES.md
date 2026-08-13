@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD007 -->
+
 # Tracked ingest sources
 
 Machine-facing version pins for external material regularly reviewed or
@@ -15,12 +17,13 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `1.0.3` |
+| package_version | `1.1.0` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/plain-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
-| plain_english_skill_version | `1.0.0` |
+| humanizer_skill_version | `1.1.0` |
+| plain_english_skill_version | `1.1.0` |
 | ai_writing_detector_skill_version | `1.0.5` |
-| writing_prose_skill_version | `1.0.1` |
+| writing_prose_skill_version | `1.1.0` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_plain_english_path | `~/.hermes/skills/writing/plain-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
@@ -55,12 +58,12 @@ sources were touched.
 | --- | --- |
 | id | `plain-english` |
 | status | `packaged_skill` |
-| skill_version | `1.0.0` |
+| skill_version | `1.1.0` |
 | path | `skills/plain-english/` |
 | live_clone | `~/.hermes/skills/writing/plain-english` |
 | upstream_kit | `https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop` |
 | lands_in | monorepo `skills/plain-english/` (SKILL, references, `scripts/ste_lint.py`) |
-| note | Controlled STE writing + linter. Not a humanizer ingest source. Version in SKILL.md frontmatter. |
+| note | Strict STE procedures plus a judgment-led flavored mode for technical prose. The linter reports form; it does not own product voice. |
 
 ### ai-writing-detector
 
@@ -81,12 +84,12 @@ sources were touched.
 | --- | --- |
 | id | `writing-prose` |
 | status | `packaged_skill` |
-| skill_version | `1.0.1` |
+| skill_version | `1.1.0` |
 | path | `skills/writing-prose/` |
 | live_clone | `~/.hermes/skills/writing/writing-prose` |
 | upstream_kit | `https://github.com/vale-cli/vale` (binary + style packs; house config is ours) |
 | lands_in | monorepo `skills/writing-prose/` (SKILL.md, `references/required-checks.md`, `scripts/vale-lint.sh`, `vale/vale.ini`, `vale/styles/`) |
-| note | Vale-gated prose craft. Editorial rules + deterministic lint gate. Owns the Hermes house style. Ingest sources tracked in the writing-prose lane below. |
+| note | Vale-assisted prose craft. Editorial judgment owns voice; deterministic findings are reread prompts, not automatic rewrites. |
 
 ## Active ingest sources
 

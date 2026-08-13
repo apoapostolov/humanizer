@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-08-14
+
+Minor: clearer voice ownership across the writing suite.
+
+- **humanizer 1.1.0**: adds an explicit voice hierarchy. User samples, medium,
+  audience, and source voice now outrank generic pattern rules. Mixed documents
+  are edited by section job instead of passing through every skill in sequence.
+- **plain-english 1.1.0**: separates strict form control from STE-flavored
+  diagnosis. Contractions and sentence-length findings are no longer automatic
+  failures in natural technical prose. Mixed-document whole-file scoring is
+  explicitly rejected.
+- **writing-prose 1.1.0**: treats Vale warnings as reread prompts, removes a
+  stale dependency on the retired `writing` skill, and prevents forced facts,
+  manufactured digressions, and uniform short-sentence cleanup.
+- Adds mode-boundary examples and regression tests for the cross-skill voice
+  contract.
+
 ## [1.0.3] - 2026-08-13
 
 Patch: engine pin absorb v3.24.0 + v3.25.0 + editorial.

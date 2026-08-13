@@ -2,7 +2,7 @@
 name: writing-prose
 category: writing
 description: "Draft/revise reader-facing prose with the vale house gate; articles, docs, criticism."
-version: 1.0.1
+version: 1.1.0
 tags:
 - prose
 - revision
@@ -13,10 +13,11 @@ related_skills:
 - plain-english
 - humanizer
 - ai-writing-detector
-- writing
 - markdown-lint
 - writing-skills-maintenance
 ---
+
+<!-- markdownlint-disable MD013 -->
 
 # Writing Prose (vale-gated)
 
@@ -28,6 +29,10 @@ repetition). The editorial rules catch what a linter cannot: specificity,
 regularity, voice, fact discipline. Vale is a gate, not a writer. It never
 replaces the editorial pass.
 
+Human voice comes from selection, relationships, judgment, and fit to the
+reader. It does not come from maximizing sentence variation or clearing every
+warning a tool can produce.
+
 ## When to use
 
 Reader-facing prose: articles, blog posts, docs, criticism, reports, long
@@ -38,14 +43,14 @@ When not to use:
 - Strict technical docs, procedures, error messages, release notes: use
   `plain-english` (STE) with `ste_lint.py` instead.
 - "Make this sound human" rewrites of AI text: use `humanizer`.
-- Deep anti-formula or avoid-AI catalogs: use the legacy `writing` skill
-  references.
+- Mechanical AI-signal catalogs or scoring: use `ai-writing-detector`. For
+  editorial pattern diagnosis, use the references in this skill or `humanizer`.
 
 ## Tooling
 
 - vale binary: WSL `~/.local/bin/vale`; Win11 via winget (`errata-ai.Vale`).
   The latest release is tracked as ingest source #1; pins live in the
-  monorepo `SOURCES.md` (not here).
+  repository root `SOURCES.md` (not here).
 - Gate script (WSL): `scripts/vale-lint.sh` runs vale with the house config at
   warning level. Exit 0 = no error-level violations. Warnings are shown but do
   not block the exit code.
@@ -59,10 +64,10 @@ When not to use:
 
 1. Identify the medium, audience, reader need, and job of the text.
 2. Draft for that context, not for an abstract idea of good writing.
-3. Mechanical pass (gate): run `scripts/vale-lint.sh <file>`. Fix every error
-   (em dash, spelling, repetition). Review each warning (word choice, AI slop,
-   passive voice, sentence length) and fix what is real. Re-run until the gate
-   is clean.
+3. Mechanical pass (gate): run `scripts/vale-lint.sh <file>`. Fix house-format
+   errors. Review each warning (word choice, AI slop, passive voice, sentence
+   length) and change only what harms the text. Re-run until errors are clear
+   and every remaining warning has an intentional reason to stay.
 4. Editorial pass: run the required checks
    (`references/required-checks.md`), all ten tripwires.
 5. Cut what is generic, ceremonial, over-engineered, or too cleanly modular.
@@ -109,13 +114,14 @@ linter cannot see. They are mandatory, not optional.
    that could be pasted into any thread is generic even when the prose is
    clean. Keep register stable across the piece.
 2. **Fit the format to the medium.** Over-structuring casual writing feels
-   templated. Under-structuring technical writing is hard to use. Match the
+   formulaic. Under-structuring technical writing is hard to use. Match the
    format, do not obey a global ban on bullets or headers.
 3. **Prefer concrete specificity over polished generality.** Each substantial
-   paragraph carries at least one concrete anchor: a proper noun, a specific
-   number, a direct quote, a named decision, a checkable detail. Vague
-   intensifiers (essentially, fundamentally, ultimately) and bare milestone
-   names do not count.
+   passage needs a concrete anchor: a proper noun, a specific number, a direct
+   quote, a named decision, a checkable detail, or a clear relationship to an
+   anchor established nearby. Do not force a new fact into every paragraph.
+   Vague intensifiers (essentially, fundamentally, ultimately) and bare
+   milestone names do not count.
 4. **Specificity must be earned.** Fewer verified facts beat many guessed
    ones. No invented milestone names, synthetic quotes, or decorative
    factuality. Do not narrate hidden mechanisms as fact. Treat exact quotes,
@@ -146,9 +152,10 @@ linter cannot see. They are mandatory, not optional.
     every paragraph: these read as machine output. Break the pattern where it
     starts to dominate. Do not over-correct into false crispness (splitting
     every clause into its own sentence).
-11. **Let the thought develop.** Longer pieces should not feel pre-solved.
-    Pause, double back, notice a concrete detail off the main line. A
-    cumulative sentence can carry the claim plus its reason.
+11. **Let the thought develop when the material supports it.** Longer pieces
+    should not feel pre-solved, but do not manufacture hesitation, asides, or
+    digressions to imitate a person. A cumulative sentence can carry the claim
+    plus its reason.
 12. **Choose structure consciously for longer pieces.** Default genre shapes
     are not wrong, only wrong by reflex. For retrospectives and criticism
     avoid starting-state -> changes -> verdict and one-bucket-per-paragraph.
@@ -163,6 +170,17 @@ linter cannot see. They are mandatory, not optional.
     two tightly related sentences can be the cleaner edit when it restores the
     relationship between thoughts.
 
+## Skill boundaries
+
+- Use `humanizer` when preserving or matching a particular writer's voice is
+  the main job.
+- Use `plain-english` strict mode for procedures, safety text, and errors.
+- Use this skill for broader reader-facing prose and section-level product copy.
+- Use `ai-writing-detector` only for mechanical signals or preservation checks.
+- For a mixed document, route sections by job. Do not run every skill across the
+  whole file in sequence; each pass can erase decisions made by the previous
+  one.
+
 ## Required checks
 
 `references/required-checks.md`: ten tripwires (register fit, concrete-anchor
@@ -173,18 +191,18 @@ output the audit unless asked.
 
 ## References (absorbed from the legacy writing skill)
 
-- `references/examples.md` — useful corrections to read when a paragraph feels
+- `references/examples.md`: useful corrections to read when a paragraph feels
   generic, puffy, vague, choppy, or over-regular
-- `references/long-form-diagnostics.md` — optional deeper diagnostics when the
+- `references/long-form-diagnostics.md`: optional deeper diagnostics when the
   required checks passed but longer work still feels off
-- `references/formula-watchlist.md` — repeated formula and fallback jargon scan
-- `references/provenance.md` — authorship-adjudication guidance for
+- `references/formula-watchlist.md`: repeated formula and fallback jargon scan
+- `references/provenance.md`: authorship-adjudication guidance for
   high-stakes contexts (read only when an authorship claim is at stake)
-- `references/book-writer.md` — long-form manuscript and book writing support
+- `references/book-writer.md`: long-form manuscript and book writing support
 - `references/book-development-estimator.md` (+ `book-development-estimator/`)
-  — cost/stage modeling for Markdown book projects (token models, hybrid
+  Cost and stage modeling for Markdown book projects (token models, hybrid
   routing, break-even)
-- `references/llm-rewrite-cost-patterns.md` — cost estimation for
+- `references/llm-rewrite-cost-patterns.md`: cost estimation for
   ingest-reasoning-rewrite loops over large documents
 
 ## Pitfalls
@@ -201,25 +219,28 @@ output the audit unless asked.
   BasedOnStyles. Whitelist explicitly (Microsoft.X = NO) or you get double
   flags on the same word from Microsoft.Wordiness and HermesHouse.WordChoice.
 - The Microsoft pack is fetched by `vale sync` (Packages = Microsoft in the
-  ini). Re-sync after a vale upgrade.
+  `.ini`). Re-sync after a Vale upgrade.
 - Do not let the gate become the editor. It cannot judge specificity,
   regularity, voice, or facts. The editorial pass is mandatory.
+- Do not clear warnings by making prose uniformly short, explicit, or regular.
+  A warning identifies a place to read again, not a required rewrite.
 
 ## Versioning & sources
 
-This skill is packaged in the writing-skills monorepo (apoapostolov/humanizer
+This skill is packaged in the writing-skills repository (apoapostolov/humanizer
 on GitHub)
 alongside humanizer, plain-english, and ai-writing-detector. The package
 version and the ingest pins for vale-cli/vale (ingest source #1) live in the
-monorepo `SOURCES.md`, not here. Bump policy: ingest-only work bumps patch;
+root `SOURCES.md`, not here. Bump policy: ingest-only work bumps patch;
 a new packaging story bumps minor. The Microsoft style pack under
 `vale/styles/Microsoft/` is a sync artifact from `vale sync`, refreshed on
 vale release ingests.
 
 ## Related
 
-- `plain-english`: strict STE and ste_lint.py for docs, procedures, errors.
+- `plain-english`: strict STE for procedures and errors; flavored control for
+  technical reference.
 - `humanizer` / `ai-writing-detector`: voice rewrites and AI-signal scoring.
 - `markdown-lint`: markdown formatting and syntax.
-- `writing-skills-maintenance`: monorepo source ingest, vale release updates,
+- `writing-skills-maintenance`: repository source ingest, Vale release updates,
   packaging, live sync.

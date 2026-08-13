@@ -2,7 +2,7 @@
 
 # Humanizer Suite
 
-**Writing skills that make AI agents sound human.**
+**Writing skills that help AI agents produce clear, natural prose.**
 
 Four installable skills, one consistent design: clear, specific, and
 readable output. No AI-sounding filler, no form-slop, no walls of text.
@@ -18,19 +18,19 @@ problem, from rewriting to linting to detection:
 
 | Skill | Version | What it does |
 | --- | --- | --- |
-| [**humanizer**](#humanizer) | `1.0.0` | Rewrites stiff or generated-sounding prose, keeps the voice |
-| [**plain-english**](#plain-english) | `1.0.0` | STE-flavored technical writing with a deterministic linter |
-| [**ai-writing-detector**](#ai-writing-detector) | `1.0.0` | Signals-only AI-writing scan and preservation check |
-| [**writing-prose**](#writing-prose) | `1.0.0` | Vale-gated prose craft with a house lint gate |
+| [**humanizer**](#humanizer) | `1.1.0` | Rewrites stiff prose while preserving the writer's voice |
+| [**plain-english**](#plain-english) | `1.1.0` | Strict procedures or a lighter technical clarity pass |
+| [**ai-writing-detector**](#ai-writing-detector) | `1.0.5` | Signals-only AI-writing scan and preservation check |
+| [**writing-prose**](#writing-prose) | `1.1.0` | Reader-focused prose craft with a judgment-led lint gate |
 
 Pick by job:
 
 - **humanizer** for essays, social posts, memos, and voice-preserving cleanup
-- **plain-english** for docs, PR text, errors, runbooks, and form-slop cleanup
+- **plain-english** for procedures, errors, runbooks, and technical sections
 - **ai-writing-detector** for scores and issue lists, or to check that an edit
   left code, URLs, and structure alone. Not authorship proof. Not evasion.
-- **writing-prose** for reader-facing prose craft with a deterministic vale
-  lint gate: articles, docs, criticism, long replies
+- **writing-prose** for reader-facing prose craft with a Vale-assisted
+  editorial pass: articles, product copy, criticism, and long replies
 
 ---
 
@@ -96,8 +96,9 @@ The same product README, before and after:
 | Traditional caches miss constantly in LLM workloads because users rarely phrase the same question identically — fluxcache solves this by embedding incoming prompts and matching them against previously cached queries within a configurable similarity threshold. It ships with sensible defaults so you can get semantic caching running in a few lines of code, while exposing the knobs — similarity thresholds, TTLs, namespacing, custom scoring — that real applications need as they scale. | A normal cache matches requests by exact text. A small change in wording then causes a cache miss. fluxcache compares the meaning of a new prompt with the prompts already in the cache. If two prompts are close enough in meaning, fluxcache returns the stored response instead of a new call to the model. This lowers the number of calls to the model and cuts the cost and response time of the application. |
 <!-- vale on -->
 
-Modes: **STE-flavored** (default for docs and PRs) and **strict** (procedures,
-safety, errors).
+Modes: **STE-flavored** for technical explanations and **strict** for
+procedures, safety, and errors. In flavored mode, sentence length and
+contractions are review findings rather than automatic failures.
 
 ```bash
 python3 skills/plain-english/scripts/ste_lint.py path/to/draft.md
@@ -135,13 +136,13 @@ humanizer. **Do not chase the score.**
 
 ## Writing-prose
 
-Reader-facing prose craft with a deterministic vale lint gate. Editorial
+Reader-facing prose craft with a deterministic Vale lint gate. Editorial
 rules plus a house style layer (HermesHouse: em-dash ban, word choice,
 AI-slop markers, weasel words) over a whitelisted Microsoft pack. The same
 lint rules run on any machine with the vale binary.
 
 **Who it's for:** anyone writing articles, docs, criticism, or long replies
-who wants a hard gate on form-slop before it ships.
+who wants a mechanical check without letting the linter rewrite the voice.
 
 ```bash
 bash skills/writing-prose/scripts/vale-lint.sh path/to/draft.md
@@ -187,7 +188,7 @@ npx skills add apoapostolov/humanizer --skill writing-prose
 | Need | Skill |
 | --- | --- |
 | Natural voice, social, essay, fiction polish | humanizer |
-| Docs, PR body, errors, runbooks, form-slop cleanup | plain-english |
+| Procedures, errors, runbooks, technical clarity | plain-english |
 | Score, issue list, keep code+URLs intact after edit | ai-writing-detector |
 | Reader-facing prose craft with a deterministic gate | writing-prose |
 | Authorship or integrity claim | provenance evidence, not a detector score |
@@ -223,11 +224,11 @@ pins live only in `SOURCES.md`, never inside skill runtime docs.
 
 | Component | Version |
 | --- | --- |
-| Release tag | `v1.0.0` |
-| humanizer | `1.0.0` |
-| plain-english | `1.0.0` |
-| ai-writing-detector | `1.0.0` |
-| writing-prose | `1.0.0` |
+| Package | `1.1.0` |
+| humanizer | `1.1.0` |
+| plain-english | `1.1.0` |
+| ai-writing-detector | `1.0.5` |
+| writing-prose | `1.1.0` |
 
 Ingest-only updates bump **patch** only. New packaged skill bumps **minor**.
 See [CHANGELOG.md](CHANGELOG.md) and [SOURCES.md](SOURCES.md).

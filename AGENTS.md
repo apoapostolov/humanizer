@@ -28,12 +28,12 @@ This repository currently centers on:
   update procedure, packaged skill versions
 - [`skills/humanizer/`](./skills/humanizer/): natural-voice humanizer skill
 - [`skills/plain-english/`](./skills/plain-english/): STE plain-english skill
-  (v1.0.0) + `ste_lint.py`
+  (v1.1.0) + `ste_lint.py`
 - [`skills/ai-writing-detector/`](./skills/ai-writing-detector/): production
-  AI-writing signals + preservation validate (v1.0.3); batch summary + CI smoke;
+  AI-writing signals + preservation validate (v1.0.5); batch summary + CI smoke;
   not a rewrite skill
 - [`skills/writing-prose/`](./skills/writing-prose/): vale-gated prose craft
-  (v1.0.0); editorial rules + deterministic lint gate; house style in `vale/`;
+  (v1.1.0); editorial rules + deterministic lint gate; house style in `vale/`;
   ingest source vale-cli/vale tracked in `SOURCES.md`
 - [`README.md`](./README.md): public docs and install
 - [`CHANGELOG.md`](./CHANGELOG.md): user-facing release notes only
@@ -46,6 +46,10 @@ Keep each installable skill self-contained under `skills/<name>/`. Do not place
 runtime references or agent metadata at the repository root. Do **not** ship
 third-party detector engines inside `skills/humanizer/`. Detector engines and
 validate scripts belong only in `skills/ai-writing-detector/`.
+
+The skills may cooperate, but they must not become a sequential filter stack.
+Route by the job of each section. Plain English controls technical form;
+humanizer preserves a writer; writing-prose shapes broader reader-facing prose.
 
 ## Source Of Truth Hierarchy
 
