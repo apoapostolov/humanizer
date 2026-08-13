@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2026-08-13
+
+Patch: engine pin absorb v3.24.0 + v3.25.0 + editorial.
+
+- **ai-writing-detector**: absorb upstream `unnecessary-hyphenation` engine
+  rule (48 `type`s, 62 categories). New pattern catches welded open noun
+  phrases (`research-impact` to `research impact`), closed-form compounds
+  (`code-base` to `codebase`), and adverbial attributive hyphens (`in
+  real-time` to `in real time`). Zero-weight P2 copyedit, does not affect
+  AI score. Path masking hardened against superlinear backtracking.
+  validate.js unchanged. Engine pin moved from post-v3.23.0 tip `1ea2f0c`
+  to v3.25.0 tag tip `3c0fd8a`. Skill version 1.0.5.
+- **humanizer**: pattern-catalog pattern 57 expanded with cut-first
+  `actually` guidance (delete when emphasis-only, keep for named
+  corrections). New pattern 78 (unnecessary hyphenation). "Hyphenated
+  modifier pile" renamed to "hyphenated modifier stacking" to match
+  upstream taxonomy split.
+- **SOURCES.md**: pins updated for avoid-ai-writing v3.25.0.
+
 ## [1.0.2] - 2026-08-07
 
 Patch: dropped a tracked ingest source.

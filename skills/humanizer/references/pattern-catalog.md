@@ -466,7 +466,12 @@ eventually*, *might ultimately*.
 ### 57. Real or actual adjective inflation
 
 **Tell:** *Real*, *actual*, *genuine*, or *true* intensifies an abstract noun
-without naming the fake contrast (*real utility*, *genuine tokenomics*).
+without naming the fake contrast (*real utility*, *genuine tokenomics*). The
+word *actually* works the same way as an emphasis-only filler (*this actually
+makes the process simpler*). The default fix for *actually* is deletion, not
+substitution: just state the fact. Keep *actually* when it marks a specific
+correction or expectation gap the sentence names (*we expected a cache hit; it
+was actually a miss*), though a direct contrast may still be clearer.
 
 **Repair:** Drop the intensifier and add the specific claim, or name the contrast
 explicitly when it is honest.
@@ -657,8 +662,23 @@ the [thing].* / *X. And Y. And Z.* / *This unlocks something. [Word].*
 Manufactured profundity.
 
 **Repair:** Complete sentences, and trust content over presentation. One
-fragment can carry real emphasis; a run of them is a rhythm tell. (Adapted
-from hardikpandya/stop-slop, MIT.)
+fragment can carry real emphasis; a run of them is a rhythm tell. (Adapted from
+hardikpandya/stop-slop, MIT.)
+
+### 78. Unnecessary hyphenation
+
+**Tell:** Three subtypes. Welded open noun phrases are hyphenated when the
+standard form is open (*research-impact aggregator* becomes *research impact
+aggregator*). Compounds whose established form is closed keep the hyphen by
+mistake (*code-base* becomes *codebase*, *data-set* becomes *dataset*).
+Attributive compounds used adverbially or as nouns keep the hyphen where it
+does not belong (*in real-time* becomes *in real time*), while the same compound
+before a noun stays hyphenated (*real-time analytics* is correct).
+
+**Repair:** Treat a clear hit as P2 copyediting, not evidence of machine
+authorship. Preserve established and technical compounds (*high-quality*,
+*third-party*, *family-owned*). Spelling varies by dialect and house style, so
+ambiguous pairs are judgment calls.
 
 ## Secondary cleanup patterns
 
@@ -741,8 +761,10 @@ Check these publication-level patterns after the prose itself is sound:
   and point of view.
 - **Fragmented headers:** Delete a one-line restatement beneath a heading when the
   following paragraph already contains the substance.
-- **Hyphenated modifier pile:** Rewrite clusters such as *high-quality,
-  data-driven, client-facing* instead of mechanically deleting valid hyphens.
+- **Hyphenated modifier stacking:** Clusters such as *high-quality,
+  data-driven, client-facing* pile compound modifiers on one noun. The
+  individual hyphens may be correct; the tell is the density. Rewrite to the
+  modifier that matters.
 - **Audit-report inflation:** Do not attach an exhaustive narrative of minor edits
   unless the user needs an audit trail. Report only consequential choices,
   evidence gaps, and changes the writer may want to reverse.

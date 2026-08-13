@@ -342,6 +342,10 @@ const AIDetector = (() => {
     'ai-placeholder': 10,
     'ai-citation-markup': 15,
     'ai-utm-source': 12,
+    // Curated P2 copyedits, not authorship evidence. Keep them visible in the
+    // issue list without moving the AI score, label, probabilities, or
+    // trinary classification on short documents.
+    'unnecessary-hyphenation': 0,
   };
 
   // ─── Transition phrases ────────────────────────────────────────────
@@ -700,6 +704,12 @@ const AIDetector = (() => {
     return typeof index === 'number' && ranges.some(([a, b]) => index >= a && index < b);
   }
 
+  function blankRange(chars, start, end) {
+    for (let i = start; i < end && i < chars.length; i += 1) {
+      if (chars[i] !== '\n') chars[i] = ' ';
+    }
+  }
+
   // Copy of the text with fenced blocks and inline code spans blanked out.
   // Index-preserving: each masked character becomes a space and newlines are
   // kept, so offsets into the result still address the same position in the
@@ -709,12 +719,7 @@ const AIDetector = (() => {
   // inline span and swallow the prose between them.
   function maskCode(text) {
     const chars = text.split('');
-    const blank = (a, b) => {
-      for (let i = a; i < b && i < chars.length; i += 1) {
-        if (chars[i] !== '\n') chars[i] = ' ';
-      }
-    };
-    for (const [a, b] of fenceRanges(text)) blank(a, b);
+    for (const [a, b] of fenceRanges(text)) blankRange(chars, a, b);
     // Indented code blocks are deliberately NOT masked. Four spaces is a code
     // block only at top level; under a list marker it is a paragraph
     // continuation, so blanking it silences real tag blocks. #90 reports
@@ -722,8 +727,185 @@ const AIDetector = (() => {
     const withoutFences = chars.join('');
     const inlineRe = /(`+)(?:(?!\1)[^\n])+\1/g;
     let m;
-    while ((m = inlineRe.exec(withoutFences)) !== null) blank(m.index, m.index + m[0].length);
+    while ((m = inlineRe.exec(withoutFences)) !== null) blankRange(chars, m.index, m.index + m[0].length);
     return chars.join('');
+  }
+
+  function maskTopLevelIndentedCode(chars) {
+    const lines = chars.join('').split('\n');
+    let offset = 0;
+    let inBlock = false;
+    for (let i = 0; i < lines.length; i += 1) {
+      const line = lines[i];
+      const indented = /^(?: {4}|\t)\S/.test(line);
+      const previousBlank = i === 0 || lines[i - 1].trim() === '';
+      if (indented && (inBlock || previousBlank)) {
+        blankRange(chars, offset, offset + line.length);
+        inBlock = true;
+      } else if (line.trim() !== '') {
+        inBlock = false;
+      }
+      offset += line.length + 1;
+    }
+  }
+
+  function maskYamlFrontmatter(chars) {
+    const lines = chars.join('').split('\n');
+    const bare = (line) => line.replace(/\r$/, '');
+    const first = bare(lines[0]).replace(/^\uFEFF/, '');
+    if (first !== '---' || lines.length < 2 || /^\s*$/.test(bare(lines[1]))) return;
+
+    let closingLine = -1;
+    for (let i = 1; i < lines.length; i += 1) {
+      if (bare(lines[i]) === '---') {
+        closingLine = i;
+        break;
+      }
+    }
+    if (closingLine === -1) return;
+
+    let end = 0;
+    for (let i = 0; i <= closingLine; i += 1) {
+      end += lines[i].length;
+      if (i < lines.length - 1) end += 1;
+    }
+    blankRange(chars, 0, end);
+  }
+
+  function maskYamlMetadata(chars) {
+    const lines = chars.join('').split('\n');
+    let offset = 0;
+    let nestedAfterIndent = null;
+    for (const line of lines) {
+      const bare = line.replace(/\r$/, '');
+      // Lowercase keys are the common unfenced-YAML shape. Keeping this
+      // case-sensitive prevents prose labels such as "Note: ..." from being
+      // mistaken for metadata and silencing a real copyedit on the line.
+      const key = bare.match(/^([ \t]*)(?:-[ \t]+)?[a-z_][a-z0-9_.-]*[ \t]*:(.*)$/);
+      const indentation = (bare.match(/^[ \t]*/) || [''])[0].length;
+      let shouldMask = false;
+
+      if (key) {
+        shouldMask = true;
+        nestedAfterIndent = key[2].trim() === '' ? key[1].length : null;
+      } else if (nestedAfterIndent !== null && bare.trim() !== '' && indentation > nestedAfterIndent) {
+        shouldMask = true;
+      } else if (bare.trim() === '') {
+        nestedAfterIndent = null;
+      } else {
+        nestedAfterIndent = null;
+      }
+
+      if (shouldMask) blankRange(chars, offset, offset + line.length);
+      offset += line.length + 1;
+    }
+  }
+
+  function maskMarkdownTables(chars) {
+    const lines = chars.join('').split('\n');
+    const delimiter = /^\s*\|?\s*:?-{3,}:?\s*(?:\|\s*:?-{3,}:?\s*)+\|?\s*\r?$/;
+    const rows = new Set();
+    for (let i = 0; i < lines.length; i += 1) {
+      if (!delimiter.test(lines[i])) continue;
+      if (i > 0 && lines[i - 1].includes('|')) rows.add(i - 1);
+      rows.add(i);
+      for (let j = i + 1; j < lines.length && lines[j].includes('|'); j += 1) rows.add(j);
+    }
+
+    let offset = 0;
+    for (let i = 0; i < lines.length; i += 1) {
+      if (rows.has(i)) blankRange(chars, offset, offset + lines[i].length);
+      offset += lines[i].length + 1;
+    }
+  }
+
+  function maskDelimitedQuotes(chars, open, close, apostropheAware = false) {
+    const isWord = (char) => char !== undefined && /[a-z0-9]/i.test(char);
+    const isEscaped = (index) => {
+      let slashes = 0;
+      for (let i = index - 1; i >= 0 && chars[i] === '\\'; i -= 1) slashes += 1;
+      return slashes % 2 === 1;
+    };
+    let start = -1;
+    for (let i = 0; i < chars.length; i += 1) {
+      if (start === -1) {
+        if (chars[i] === open && !isEscaped(i) && (!apostropheAware || !isWord(chars[i - 1]))) start = i;
+      } else if (chars[i] === close && !isEscaped(i) && (!apostropheAware || !isWord(chars[i + 1]))) {
+        blankRange(chars, start, i + 1);
+        start = -1;
+      }
+    }
+  }
+
+  // Additional protected spans for the hyphenation copyedit. Unlike general
+  // AI-tell matching, this rule must not "correct" a literal spelling in a
+  // quote, URL, path, filename, command flag, or Markdown blockquote.
+  function maskHyphenationProtected(text) {
+    const chars = maskCode(text).split('');
+    maskTopLevelIndentedCode(chars);
+    maskYamlFrontmatter(chars);
+    maskYamlMetadata(chars);
+    maskMarkdownTables(chars);
+    maskDelimitedQuotes(chars, '"', '"');
+    maskDelimitedQuotes(chars, '“', '”');
+    maskDelimitedQuotes(chars, "'", "'", true);
+    maskDelimitedQuotes(chars, '‘', '’', true);
+    const maskMatches = (regex) => {
+      const source = chars.join('');
+      let match;
+      while ((match = regex.exec(source)) !== null) {
+        blankRange(chars, match.index, match.index + match[0].length);
+      }
+    };
+
+    maskMatches(/^[ \t]*>[^\n]*$/gm);
+    maskMatches(/\b(?:https?:\/\/|www\.)[^\s<>]+/gi);
+    maskMatches(/<[!?/]?[a-z][^>\n]*>/gi);
+    maskMatches(/(?<![a-z0-9_-])--?[a-z0-9][a-z0-9-]{0,127}/gi);
+
+    // Paths and filenames use bounded components. Besides preventing
+    // superlinear backtracking on long kebab blobs, the explicit prefix and
+    // trailing-slash forms cover single-component paths such as C:\\code-base,
+    // ~/code-base, /code-base, and code-base/.
+    maskMatches(/(?:[a-z]:[\\/]|\.{1,2}[\\/]|~[\\/]|[\\/])[a-z0-9_.-]{1,255}/gi);
+    maskMatches(/(?:[a-z]:[\\/]|(?:\.\.?[\\/])?)(?:[a-z0-9_.-]{1,64}[\\/]){1,128}[a-z0-9_.-]{1,64}/gi);
+    maskMatches(/\b[a-z0-9_.]{0,63}-[a-z0-9_.-]{1,64}[\\/]/gi);
+    maskMatches(/\b[a-z0-9_.-]{1,64}-[a-z0-9_.-]{1,64}\.[a-z0-9]{1,16}\b/gi);
+
+    // Technical identifiers that are distinguishable from ordinary prose:
+    // selectors, scoped packages, versioned tokens, assignments, and kebab
+    // names next to an explicit identifier cue. Plain lowercase compounds
+    // remain visible to the curated copyedit patterns below.
+    maskMatches(/[.#][a-z_][a-z0-9_.-]{0,63}-[a-z0-9_.-]{1,64}\b/gi);
+    maskMatches(/@[a-z0-9_.-]{1,64}\/[a-z0-9_.-]{1,64}-[a-z0-9_.-]{1,64}(?:@[^\s,;)\]}]{1,32})?/gi);
+    maskMatches(/\b[a-z0-9_.-]{1,64}-[a-z0-9_.-]{1,64}@[~^]?v?\d[a-z0-9*_.+-]{0,31}\b/gi);
+    maskMatches(/\b(?:[a-z0-9_.-]{0,64}\d[a-z0-9_.-]{0,64}-[a-z0-9_.-]{1,64}|[a-z0-9_.-]{1,64}-[a-z0-9_.-]{0,64}\d[a-z0-9_.-]{0,64})\b/gi);
+    maskMatches(/\b[a-z_][a-z0-9_.]{0,63}(?:-[a-z0-9_.]{1,64}){1,8}(?=[ \t]*[=:])/gi);
+    maskMatches(/\b[a-z_][a-z0-9_.]{0,63}(?:-[a-z0-9_.]{1,64}){1,8}(?=[ \t]+(?:npm[ \t]+)?(?:package|module|class|selector|config(?:uration)?[ \t]+key|key|identifier|property|setting|token|slug|command|option)\b)/gi);
+    maskMatches(/\b(?:(?:file(?:name)?|directory|folder|package|module|class|selector|config(?:uration)?[ \t]+key|identifier|property|setting|token|slug|command|option)(?:[ \t]+(?:named|called|is|was))?|key[ \t]+(?:named|called|is|was))[ \t]+(?:@[a-z0-9_.-]{1,64}\/)?[a-z_][a-z0-9_.]{0,63}(?:-[a-z0-9_.]{1,64}){1,8}\b/gi);
+    maskMatches(/\b(?:npm|pnpm|yarn)[ \t]+(?:add|install)[ \t]+(?:@[a-z0-9_.-]{1,64}\/)?[a-z0-9_.]{1,64}(?:-[a-z0-9_.]{1,64}){1,8}/gi);
+
+    return chars.join('');
+  }
+
+  function findUnnecessaryHyphenation(text) {
+    const scanText = maskHyphenationProtected(text);
+    const issues = [];
+    for (const entry of UNNECESSARY_HYPHENATION) {
+      const regex = new RegExp(entry.pattern.source, entry.pattern.flags);
+      let match;
+      while ((match = regex.exec(scanText)) !== null) {
+        issues.push({
+          type: 'unnecessary-hyphenation',
+          text: match[0],
+          severity: 'medium',
+          suggestion: typeof entry.suggestion === 'function'
+            ? entry.suggestion(match[0])
+            : entry.suggestion,
+        });
+      }
+    }
+    return issues;
   }
 
   // ─── Forms that open with `#` but are not social tags ──────────────
@@ -821,6 +1003,46 @@ const AIDetector = (() => {
     /\bbookmark\s+this(?:\s+(?:one|post|thread))?(?=\s*(?:[:.!\n]|$))/gi,
     /\bdo\s*n['’]?t\s+sleep\s+on\s+this\b/gi,
     /\btrust\s+me,?\s+(?:on\s+this|you['’]?ll)\b/gi,
+  ];
+
+  // ─── Unnecessary hyphenation (#107) ───────────────────────────────
+  // Precision-first subclasses only. The general question of whether a
+  // compound modifier is established English needs editorial judgment and
+  // remains in SKILL.md; the engine covers only curated open/closed forms and
+  // compounds whose surrounding syntax makes the unhyphenated form clear.
+  const UNNECESSARY_HYPHENATION = [
+    // Welded open noun phrases reported in #107. Match the complete phrase so
+    // a project-specific spelling of the pair in another role is not swept in.
+    { pattern: /\bresearch-impact\s+aggregat(?:or|ion)s?\b/g, suggestion: (match) => match.replace('research-impact', 'research impact') },
+    { pattern: /\bdata-source\s+strateg(?:y|ies)\b/g, suggestion: (match) => match.replace('data-source', 'data source') },
+    { pattern: /\bPython-package\s+usage\b/g, suggestion: (match) => match.replace('Python-package', 'Python package') },
+    { pattern: /\bRust-crate\s+usage\b/g, suggestion: (match) => match.replace('Rust-crate', 'Rust crate') },
+    { pattern: /\bsingle-Project\s+Manifest\b/g, suggestion: (match) => match.replace('single-Project', 'single Project') },
+    { pattern: /\btotal-downloads\s+figures?\b/g, suggestion: (match) => match.replace('total-downloads', 'total downloads') },
+    { pattern: /\blife-sciences-native\s+citation\s+count\b/g, suggestion: 'citation count from a life sciences source' },
+
+    // Compounds whose standard spelling is closed. Kept as a small curated
+    // list rather than guessing that every noun-noun pair should close up.
+    { pattern: /\bcode-base\b/g, suggestion: (match) => match.replace('-', '') },
+    { pattern: /\bdata-set\b/g, suggestion: (match) => match.replace('-', '') },
+    { pattern: /\btime-frame\b/g, suggestion: (match) => match.replace('-', '') },
+    { pattern: /\broad-map\b/g, suggestion: (match) => match.replace('-', '') },
+
+    // Attributive-only forms used adverbially or as nouns. The boundary after
+    // real-time / long-term is intentionally narrow: "real-time analytics"
+    // and "long-term plan" must not fire.
+    {
+      pattern: /\bin\s+real-time(?=\s*(?:[,.!?;:]|$)|\s+(?:(?:across|as|automatically|because|but|continuously|during|dynamically|every|for|from|immediately|instantly|on|simultaneously|through|throughout|until|via|when|while|with|without)\b))/gi,
+      suggestion: 'in real time',
+    },
+    {
+      pattern: /\b(?:for|over)\s+the\s+long-term(?=\s*(?:[,.!?;:]|$)|\s+(?:across|because|but|by|during|for|from|on|through|throughout|until|via|when|while|with|without)\b)/gi,
+      suggestion: (match) => match.replace(/long-term/i, 'long term'),
+    },
+    {
+      pattern: /\b(?:functions?|functioned|functioning|operates?|operated|operating|runs?|ran|running|works?|worked|working)\s+out-of-the-box\b/gi,
+      suggestion: (match) => match.replace(/out-of-the-box/i, 'out of the box'),
+    },
   ];
 
   // ═══ Helpers ═══════════════════════════════════════════════════════
@@ -1068,6 +1290,7 @@ const AIDetector = (() => {
     issues.push(...matchPatterns(text, FUTURE_NARRATIVE, 'future-narrative', 'high'));
     issues.push(...matchPatterns(text, REAL_ACTUAL_INFLATION, 'real-actual-inflation', 'medium'));
     issues.push(...matchPatterns(text, SOCIAL_CTA_CLOSER, 'social-cta-closer', 'high'));
+    issues.push(...findUnnecessaryHyphenation(text));
 
     // ── Tier 1 v2: formulaic openers + parenthetical hedges ──────────
     issues.push(...matchPatterns(text, FORMULAIC_OPENERS, 'formulaic-opener', 'high'));
@@ -1671,13 +1894,17 @@ const AIDetector = (() => {
     }
     if (sentences.length === 0) return [];
 
-    // Map issue.text back to sentence indexes via substring search. Issues
-    // without a meaningful text (e.g. summary signals like "Punctuation
-    // density uniform across paragraphs") have no sentence anchor — they
-    // contribute to the document-level signal but not to highlights.
+    // Map issue.text back to sentence indexes via substring search. Two
+    // kinds of issue stay out of the AI-highlight regions. Summary signals
+    // like "Punctuation density uniform across paragraphs" have no sentence
+    // anchor — they contribute to the document-level signal but not to
+    // highlights. Zero-weight style copyedits (unnecessary-hyphenation) do
+    // have an anchor, but they are P2 grammar cleanup rather than evidence
+    // of machine authorship, so they belong in issues[] and nowhere near a
+    // field reserved for AI sentence highlights.
     // Filter by issue TYPE not text-regex: text-based filtering used to
     // drop legitimate phrase issues containing "across" / "density".
-    const SUMMARY_ONLY_TYPES = new Set([
+    const NON_HIGHLIGHT_TYPES = new Set([
       'punct-distribution',
       'cross-para-burstiness',
       'fnword-trigram-entropy',
@@ -1691,13 +1918,14 @@ const AIDetector = (() => {
       'tier3-phrase-cluster',
       'hashtag-stuff',
       'bullet-np-list',
+      'unnecessary-hyphenation',
     ]);
     const hits = sentences.map(() => ({ count: 0, weight: 0 }));
     const lowerText = text.toLowerCase();
     let unmappedHighlights = 0;
     for (const issue of issues) {
       if (!issue.text || issue.text.length > 200) continue;
-      if (SUMMARY_ONLY_TYPES.has(issue.type)) continue;
+      if (NON_HIGHLIGHT_TYPES.has(issue.type)) continue;
       const needle = issue.text.toLowerCase();
       let idx = 0;
       let matched = false;
@@ -1930,6 +2158,7 @@ const AIDetector = (() => {
     'ai-placeholder': 'Unfilled placeholder',
     'ai-citation-markup': 'Chatbot citation markup leak',
     'ai-utm-source': 'AI-tool URL parameter',
+    'unnecessary-hyphenation': 'Unnecessary hyphenation',
   };
 
   return {

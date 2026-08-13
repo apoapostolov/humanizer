@@ -15,18 +15,18 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `1.0.2` |
+| package_version | `1.0.3` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/plain-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
 | plain_english_skill_version | `1.0.0` |
-| ai_writing_detector_skill_version | `1.0.4` |
+| ai_writing_detector_skill_version | `1.0.5` |
 | writing_prose_skill_version | `1.0.1` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_plain_english_path | `~/.hermes/skills/writing/plain-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-08-07T15:30:00+03:00` |
-| last_package_release | `2026-08-05` (1.0.1, engine pin absorb + vale v3.17.1) |
+| last_sources_sync | `2026-08-13T12:15:00+03:00` |
+| last_package_release | `2026-08-13` (1.0.3, engine pin absorb v3.25.0 + editorial) |
 
 ### Version bump policy (semver)
 
@@ -68,10 +68,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.0.4` |
+| skill_version | `1.0.5` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ post-tag tip `1ea2f0c` (Object.hasOwn FP fix, after v3.23.0) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ tag tip `3c0fd8a` (unnecessary-hyphenation, after v3.25.0) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Production signals-only report. Batch summary, quiet, CI smoke. Not rewrite/evasion/authorship. |
 
@@ -101,13 +101,13 @@ humanizer.
 | id | `avoid-ai-writing` |
 | status | `active_ingest` |
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
-| release_tag | `v3.23.1` |
-| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.23.1` |
-| last_ingested_version | `3.23.1` |
-| last_ingested_ref | `a575602b3d6cb313dd0ceaf03a121fd8a79c18a6` |
-| last_ingested_at | `2026-08-06T00:15:00+03:00` |
-| last_checked_at | `2026-08-06T00:15:00+03:00` |
-| compare_base | `v3.23.1` |
+| release_tag | `v3.25.0` |
+| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.25.0` |
+| last_ingested_version | `3.25.0` |
+| last_ingested_ref | `3c0fd8a26689` |
+| last_ingested_at | `2026-08-13T12:15:00+03:00` |
+| last_checked_at | `2026-08-13T12:15:00+03:00` |
+| compare_base | `v3.25.0` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
@@ -121,8 +121,8 @@ Diff helpers:
 # After git fetch in local_clone:
 git -C avoid-ai-writing fetch --tags origin
 git -C avoid-ai-writing tag -l 'v*' --sort=v:refname | tail -5
-git -C avoid-ai-writing log --oneline 5897f7b49713bbac043d11e30995cf241df66d5e..origin/main
-git -C avoid-ai-writing diff 5897f7b49713bbac043d11e30995cf241df66d5e..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md README.md
+git -C avoid-ai-writing log --oneline 3c0fd8a26689..origin/main
+git -C avoid-ai-writing diff 3c0fd8a26689..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md README.md
 ```
 
 ### 2. blader/humanizer

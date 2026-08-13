@@ -1,103 +1,122 @@
-<!-- markdownlint-disable MD013 -->
+# Category map: SKILL.md ↔ detector
 
-# Category map (engine types)
+This table is the anti-drift contract between the human-readable rules in
+`../SKILL.md` and the executable engine in `patterns.js`. When you add a rule to
+the skill, decide here whether it's regex-detectable (give it a detector `type`)
+or LLM-only judgment (mark it so). When you add a detector `type`, point it back
+at the skill section it enforces.
 
-Local map for **ai-writing-detector**. The executable types live in
-`scripts/patterns.js`. Editorial rewrite guidance lives in the sibling skill
-**humanizer** (pattern catalog + vocabulary tiers), not in this package’s
-SKILL.md.
+The engine exposes 48 issue `type`s (see `TYPE_LABELS` in `patterns.js`). The
+skill has more `###` sections than that — the gap is **not** missing coverage,
+it's rules that are judgment calls a regex can't make. The three groups below
+account for every entry on both sides.
 
-Upstream origin of the type list:
-[avoid-ai-writing `detector/CATEGORIES.md`](https://github.com/conorbronsdon/avoid-ai-writing/blob/main/detector/CATEGORIES.md)
-(MIT). This file is rewritten for this package so paths and ownership are
-correct.
+Three counts coexist on purpose and should not be forced to match: the README's
+**pattern-category count** (the human-facing prose catalog, derived from SKILL.md
+and guarded in CI), the engine's **48 `type`s** (which split the vocabulary tiers
+and add stylometric signals), and SKILL.md's `###` sections (which also include
+writer-side tests with no detectable form). The
+`categories.test.js` enforces the engine ↔ this-file mapping, and checks every
+prose statement of the engine `type` total against `TYPE_LABELS`.
 
-Three layers (do not force the counts to match):
+## A. Direct mapping (skill rule → detector `type`)
 
-1. **Engine types** (47) — what `analyze` can flag mechanically
-2. **Humanizer editorial catalog** — judgment + rewrite (sibling skill)
-3. **Judgment-only tells** — listed in section C; no engine type on purpose
-
-## A. Engine types (direct)
-
-| Detector `type` | Label | Editorial home (sibling / concept) |
+| Detector `type` | Label | SKILL.md section |
 |---|---|---|
-| `tier1` | AI vocabulary marker | humanizer vocabulary Tier 1A |
-| `tier1-clarity` | Wordiness / clarity | humanizer vocabulary Tier 1B (not authorship) |
-| `tier2` / `tier3` | Cluster / density vocab | humanizer vocabulary tiers |
-| `transition` | AI transition | humanizer transitions |
-| `template-phrase` | Template phrase | humanizer templates |
-| `tier3-phrase` / `tier3-phrase-cluster` | Boilerplate phrase | humanizer tier-3 phrases |
-| `chatbot` | Chatbot artifact | humanizer assistant residue |
-| `sycophantic` | Sycophantic tone | humanizer sycophancy |
-| `acknowledgment-loop` | Acknowledgment loop | humanizer prompt restatement |
-| `filler` | Filler phrase | humanizer filler |
-| `hollow-intensifier` | Hollow intensifier | humanizer intensifiers |
-| `generic-conclusion` | Generic conclusion | humanizer endings |
-| `social-cta-closer` | Engagement-bait closer | humanizer social closers |
-| `future-narrative` | Generic future narrative | humanizer future-narrative |
-| `lets-construction` | "Let's" opener | humanizer let’s constructions |
-| `reasoning-artifact` | Reasoning artifact | humanizer scaffolding |
-| `significance-inflation` | Significance inflation | humanizer pattern 1 / extended |
-| `novelty-inflation` | Novelty inflation | humanizer novelty |
-| `real-actual-inflation` | Real/actual inflation | humanizer pattern 57 |
-| `vague-attribution` | Vague attribution | humanizer vague attribution |
-| `emotional-flatline` | Emotional flatline | humanizer extended tells |
-| `lingering-attention` | Lingering-attention | humanizer pattern 61 |
-| `cutoff-disclaimer` | Cutoff disclaimer | humanizer cutoff residue |
-| `false-concession` | False concession | humanizer rhetoric |
-| `rhetorical-question` | Rhetorical question opener | humanizer openers |
-| `formulaic-opener` | Formulaic opener | humanizer openings |
-| `speculative-opener` | Speculative scenario opener | humanizer speculative openers |
-| `confidence-calibration` | Confidence stacking | humanizer hedges |
-| `hedge-stack` | Hedge-stacked prediction | humanizer pattern 56 |
-| `parenthetical-hedge` | Parenthetical hedge | humanizer pattern 66 |
-| `hashtag-stuff` | Hashtag stuffing | humanizer pattern 62 |
-| `bullet-np-list` | Bullet-NP list | humanizer pattern 63 |
-| `title-case-header` | Title Case header | humanizer pattern 68 |
-| `em-dash` / `formatting` | Em dash / formatting | humanizer dash drama (not authorship proof) |
-| `uniformity` | Rhythm uniformity | humanizer rhythm |
-| `low-ttr` | Low vocabulary diversity | weak stylometric; never proof alone |
-| `ai-placeholder` | Unfilled placeholder | humanizer template residue |
-| `ai-citation-markup` | Citation markup leak | humanizer tool fingerprint |
-| `ai-utm-source` | AI-tool URL parameter | humanizer tool fingerprint |
-| `smart-punct-signature` | Smart-punct signature | weak corroborating only |
+| `tier1` / `tier2` / `tier3` | AI vocabulary / Word cluster / Overused word | Words and phrases to replace |
+| `tier1-clarity` | Wordiness | Words and phrases to replace (Tier 1B) |
+| `transition` | AI transition | Transition phrases to remove or rewrite |
+| `template-phrase` | Template phrase | Template phrases (avoid) |
+| `tier3-phrase` / `tier3-phrase-cluster` | Boilerplate phrase / cluster | Template phrases (avoid) |
+| `chatbot` | Chatbot artifact | Chatbot artifacts |
+| `sycophantic` | Sycophantic tone | Sycophantic tone |
+| `acknowledgment-loop` | Acknowledgment loop | Acknowledgment loops |
+| `filler` | Filler phrase | Filler phrases |
+| `hollow-intensifier` | Hollow intensifier | Filler phrases (intensifiers), except context-dependent `actually` (see §C) |
+| `generic-conclusion` | Generic conclusion | Generic conclusions |
+| `social-cta-closer` | Engagement-bait closer | Social endorsement closers |
+| `future-narrative` | Generic future narrative | Generic future-narrative closers |
+| `lets-construction` | "Let's" opener | "Let's" constructions |
+| `reasoning-artifact` | Reasoning artifact | Reasoning chain artifacts |
+| `significance-inflation` | Significance inflation | Significance inflation |
+| `novelty-inflation` | Novelty inflation | Novelty inflation *(the invented-concept-labels sub-rule is LLM-judgment only — open-ended coinages aren't regex-matchable)* |
+| `real-actual-inflation` | "Real/actual" inflation | "Real/actual" adjective inflation |
+| `vague-attribution` | Vague attribution | Vague attributions |
+| `emotional-flatline` | Emotional flatline | Emotional flatline / Superficial -ing analyses |
+| `lingering-attention` | Lingering-attention claim | Lingering-attention claims *(noun-anchored frames only — the bare "I keep coming back to X" stays LLM-judgment, since a following reason clause makes it legitimate and isn't regex-detectable)* |
+| `cutoff-disclaimer` | Cutoff disclaimer | Cutoff disclaimers |
+| `false-concession` | False concession | False concession structure |
+| `rhetorical-question` | Rhetorical question | Rhetorical question openers |
+| `formulaic-opener` | Formulaic opener | Formulaic challenges |
+| `speculative-opener` | Speculative scenario opener | Speculative scenario openers |
+| `confidence-calibration` | Confidence stacking | Confidence calibration phrases |
+| `hedge-stack` | Hedge-stacked prediction | Hedge-stacked predictions |
+| `parenthetical-hedge` | Parenthetical hedge | Parenthetical hedging |
+| `hashtag-stuff` | Hashtag stuffing | Hashtag stuffing |
+| `bullet-np-list` | Bullet-NP list | Bullet lists of bare noun phrases |
+| `title-case-header` | Title Case header | Title case headings |
+| `em-dash` / `formatting` | Em dash overuse / Formatting | Formatting |
+| `uniformity` | Rhythm uniformity | Rhythm and uniformity |
+| `low-ttr` | Low vocabulary diversity | Vocabulary diversity (stylometric) |
+| `ai-placeholder` | Unfilled placeholder | Unfilled placeholders |
+| `ai-citation-markup` | Chatbot citation markup leak | Chatbot citation markup leaks |
+| `ai-utm-source` | AI-tool URL parameter | AI-tool URL parameters |
+| `smart-punct-signature` | Smart-punct signature | Formatting (curly quotation marks) — *partial* |
+| `unnecessary-hyphenation` | Unnecessary hyphenation | Unnecessary hyphenation *(curated open, closed, and position-dependent subclasses only)* |
 
-`smart-punct-signature` is partial: curly quotes alone are not enough; the engine
-requires co-occurrence conditions. Never treat it as conclusive.
+> **Partial map:** `smart-punct-signature` fires only when curly quotes co-occur
+> with an em-dash, an Oxford comma, and clean typing (≥80 words) — never on curly
+> punctuation alone. The SKILL.md Formatting rule treats curly quotes as a weak,
+> corroborating signal in plain-text contexts and excludes apostrophes. The two
+> agree in spirit (curly punctuation is never conclusive on its own) but differ in
+> mechanism — so this is a partial map, not 1:1.
 
-## B. Engine-only stylometric / fingerprint types
+## B. Detector-only (stylometric / fingerprint — no skill prose)
 
-No phrase lookup; whole-document math or bypass tricks:
+These extend the skill with signals that work as math over the whole document,
+not as a phrase a human editor would look up:
 
-| Detector `type` | Label |
-|---|---|
-| `punct-distribution` | Punctuation distribution |
-| `fnword-trigram-entropy` | Grammar repetition |
-| `cross-para-burstiness` | Cross-paragraph rhythm |
-| `normalization-flag` | Bypass-trick chars (zero-width / homoglyph) |
+| Detector `type` | Label | Why it's engine-only |
+|---|---|---|
+| `punct-distribution` | Punctuation distribution | Per-paragraph punctuation uniformity |
+| `fnword-trigram-entropy` | Grammar repetition | Function-word trigram entropy |
+| `cross-para-burstiness` | Cross-paragraph rhythm | Sentence-length variance across paragraphs |
+| `normalization-flag` | Bypass-trick chars | Zero-width / homoglyph humanizer-bypass detection |
 
-## C. Judgment-only (no engine type)
+## C. Skill-only (LLM judgment — no detector `type`)
 
-These need a reader. They are **not** missing coverage in the engine. Prefer
-humanizer detect/critique for them:
+Rules that require reading for meaning, so they live in the skill prose and are
+applied by the model, not the regex engine. Listed so future contributors don't
+mistake their absence for a coverage gap:
 
-- Synonym cycling, copula avoidance, promotional language
-- Split "not X, Y" / multi-negation countdown / tailing negation
-- Excessive structure, inline-header lists, numbered-list inflation
-- Moral-adjective category errors, invented contrast pairs, false ranges
-- Notability dump, vague third-party validation, self-labeling significance
-- Wall-of-text replies (detector tried and reverted — too many FP)
+- Synonym cycling
+- Copula avoidance
+- Promotional language
+- Context-dependent `actually` as a hollow intensifier *(delete it when it only adds emphasis; keep it when it carries a named correction or expectation gap). The same token performs both jobs, so matching it unconditionally would flag ordinary corrective prose.*
+- Sentence structure: "It's not X — it's Y" / split-sentence form / multi-negation countdown / tailing negation
+- Structural issues / Excessive structure / Inline-header lists / Numbered list inflation
+- Moral-adjective category errors (including ontological slop on assumptions, gratuitous universal quantifiers)
+- Invented contrast-pair mirroring
+- Hyphenated modifier stacking
+- Unnecessary hyphenation outside the detector's curated subclasses
+- False ranges
+- Notability name-dropping
+- Vague third-party validation
+- Self-labeling significance
+- Wall-of-text replies (missing line breaks) *(tried as a detector — "reply-length, >=4 sentences, zero newlines" — and reverted; it fires on any ordinary short paragraph, not just conversational-reply register, so it stayed judgment-only. See the NOTE in `patterns.js` near the bullet-NP-list block)*
 - Recap-flattery opener
-- **Narrated candor** (detector tried and reverted — COI / comparative FP)
-- Subjectless fragments / agentless passives (docs carve-outs)
-- Diff-anchored writing (changelog carve-outs)
-- Manufactured punchlines / staccato drama, aphorism formulas
-- Full context/voice profiles beyond `contextMode=general|technical`
+- Narrated candor *(tried as a detector and reverted: the phrasings are shared with idiomatic conflict-of-interest disclosure ("in the interest of full disclosure, I own shares in...") and with the ordinary English comparative ("I'd rather die than let you drive"), so any regex tight enough to avoid those stopped matching the tell. Judging it needs reading whether the clause carries information or only announces that information is coming)*
+- Immaculate typography in casual registers *(folded into the Formatting section — same weak-signal tier as curly quotes, not a standalone category)*
+- Subjectless fragments and agentless passives *(docs and changelog registers are carve-outs — the fragment is the correct form there)*
+- Diff-anchored writing *(changelogs, release notes, and migration guides are carve-outs)*
+- Manufactured punchlines / staccato drama
+- Aphorism formulas *(a regex for "X is the Y of Z" would flag ordinary genitive copulas — "Paris is the capital of France")*
+- When to rewrite from scratch vs. patch
+- Severity tiers (P0 / P1 / P2)
+- Self-reference escape hatch
+- Output format
 
-## Reporting rules for this package
-
-1. Always separate `tier1` (markers) from `tier1-clarity` (wordiness).
-2. Never upgrade a type hit into “AI-written.”
-3. Clean engine pass ≠ clean editorial pass (section C still applies).
-4. For rewrites after a scan, hand off to humanizer — do not score-chase.
+> **Partial:** the skill's **Context profiles / Tolerance matrix / Auto-detection
+> cues** are partly realized by the engine's `options.contextMode`
+> (`general` / `technical`), which suppresses context-inappropriate flags. Full
+> profile-based tolerance remains an LLM-side judgment.

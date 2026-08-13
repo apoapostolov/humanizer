@@ -3,7 +3,7 @@
 # Measurement notes
 
 Absorbed summary of detector research published with
-[avoid-ai-writing v3.22.3](https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.22.3).
+[avoid-ai-writing v3.25.0](https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.25.0).
 This skill does **not** ship the hash-only corpus or re-run RAID/HC3 by default.
 Full methodology lives upstream in that repository under `corpus/` and
 measurement scripts when you need to reproduce research.

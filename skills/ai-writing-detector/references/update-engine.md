@@ -78,6 +78,22 @@ formalized CI/release automation (npm provenance pipeline, cursor-rules leak
 gate, pattern-count CI assertion). SOURCES release pins updated; engine pin,
 detector skill version, and `check-engine-pin.sh` unchanged.
 
+### Engine-delta releases
+
+v3.24.0 (2026-08-07) added `unnecessary-hyphenation` to `patterns.js`: a
+zero-weight P2 copyedit with 48 engine `type`s (was 47) and 62 categories
+(was 61). Three curated subclasses: welded open noun phrases, closed-form
+compounds, and adverbial attributive hyphens. Protected-span masking
+hardened (code, quotes, URLs, paths, YAML, tables, HTML) with bounded path
+components to prevent superlinear backtracking. `validate.js` unchanged.
+Engine pin moved to `3c0fd8a`. Detector skill version 1.0.5.
+
+v3.25.0 (2026-08-12) added `actually` as a cut-first hollow intensifier to
+`SKILL.md` only. No `detector/` changes. The token is context-dependent
+(emphasis filler vs corrective prose), so a regex would flag ordinary
+corrective writing. Catalog stays at 62 categories, engine at 48 `type`s.
+Editorial-only absorb into humanizer pattern 57.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
