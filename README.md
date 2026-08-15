@@ -11,7 +11,7 @@ technical prose, mechanical writing signals, and Vale-gated editorial work.
 - Writing Prose treats Vale findings as reread prompts rather than automatic
   rewrite instructions.
 - Cross-skill tests now protect the rule that mixed documents are handled by
-  section job, not a filter stack.
+  section job. Filter stacks play no part in that path.
 
 See [CHANGELOG.md](CHANGELOG.md) for the complete release history and
 [SOURCES.md](SOURCES.md) for upstream pins and ingest policy.
