@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.1] - 2026-08-17
+
+Patch: blader/humanizer v2.9.2 - v2.11.0 editorial absorb.
+
+- **humanizer 1.1.1**: new patterns 79 (shadowboxing objections) and 80
+  (editorial scar tissue); pattern 11 extended with repeated sentence openings
+  and pattern 21 with casual-register signposts ("heads up", "quick note",
+  "one thing that bit me"); figurative "gate/gated/gating" added to Tier 2
+  vocabulary with a technical-usage carve-out (CI gates, gated clocks, gated
+  releases stay). False-positive discipline added for each: named objections,
+  real design alternatives, and deliberate rhetorical repetition stay.
+- Upstream's v2.11.0 plain-language reskin of its own SKILL.md was reviewed and
+  not adopted (house voice already plain; our catalog is organized by editing
+  layer). Their em-dash rule moved from hard ban to sample-aware, matching the
+  house stance since 1.1.0.
+
 ## [2.0.0] - 2026-08-17
 
 Major: `plain-english` renamed to `simple-english` + upstream STE catalog merge.

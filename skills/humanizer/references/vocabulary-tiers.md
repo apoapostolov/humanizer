@@ -97,6 +97,12 @@ rafter, girder, capacity), optionally with one material or position adjective,
 is building terminology. Abstract nouns such as structure, element, frame, or
 foundation still count as metaphorical when the claim is rhetorical.
 
+**gate carve-out:** established technical usage is not the metaphor. CI gates,
+gated clocks in hardware, gated memory management, security gating, and
+gated releases are terms of art; keep them. Only figurative uses that dress a
+plain condition in drama (*conversations that gate trust*, *a gated mindset*)
+count toward a cluster. (Adapted from blader/humanizer, MIT.)
+
 In technical docs, keep `robust`, `comprehensive`, `seamless`, `ecosystem`, and
 literal `leverage` when they are standard terms of art.
 
@@ -161,6 +167,7 @@ machine-authorship signals.
 | quintessential | typical, classic, defining |
 | overarching | main, central, broad |
 | quietly (magic adverb) | cut, or name the concrete contrast |
+| gate / gated / gating (figurative) | condition, filter, checkpoint, or name the rule |
 | deeply (significance collocations only: deeply integrated / committed / rooted) | cut, or name what runs deep |
 | underpinning / underpinnings | basis, foundation, what supports |
 

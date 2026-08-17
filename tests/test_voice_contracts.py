@@ -26,7 +26,7 @@ def load_ste_lint():
 class VoiceContractTests(unittest.TestCase):
     def test_skill_and_package_versions_are_aligned(self) -> None:
         versions = {
-            "humanizer": "1.1.0",
+            "humanizer": "1.1.1",
             "simple-english": "2.0.0",
             "writing-prose": "1.1.0",
         }
@@ -35,7 +35,7 @@ class VoiceContractTests(unittest.TestCase):
         for name, version in versions.items():
             self.assertIn(f"version: {version}", read_skill(name))
             self.assertIn(f"| [`{name}`](skills/{name}/) | `{version}` |", readme)
-        self.assertIn("| package_version | `2.0.0` |", sources)
+        self.assertIn("| package_version | `2.0.1` |", sources)
 
     def test_simple_english_separates_strict_and_flavored_modes(self) -> None:
         skill = read_skill("simple-english")

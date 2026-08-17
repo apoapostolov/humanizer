@@ -103,13 +103,19 @@ manufacture emphasis or sophistication without sharpening the distinction.
 
 **Repair:** Prefer the plain verb unless the substitute adds meaning.
 
-### 11. Elegant variation
+### 11. Elegant variation and repeated openings
 
 **Tell:** Synonyms rotate to avoid repeating the correct name, technical term, or
-role.
+role. Related: several consecutive sentences open on the same subject, often
+*she* or *he*, because each sentence restarts from zero instead of joining the
+one before it.
 
-**Repair:** Repeat the right word. Consistency is clearer than decorative
-variation.
+**Repair:** Repeat the right word; consistency is clearer than decorative
+variation. For repeated openings, merge the sentences, change the subject when
+that helps, or open on the action. Fix the repeated sentence pattern, not the
+word: the repaired sentence may still start with *She*. Keep deliberate
+repetition that builds rhythm or pressure, as in *She came. She saw. She
+conquered.* (Extension adapted from blader/humanizer, MIT.)
 
 ### 12. Hedging stack
 
@@ -180,7 +186,10 @@ turns and longer ones for connected reasoning.
 ### 21. Signposting sentence
 
 **Tell:** *It is important to note*, *the key point is*, *here is what matters*,
-or *let's dive in* announces emphasis before delivering content.
+or *let's dive in* announces emphasis before delivering content. The casual
+register counts too: *heads up*, *quick note*, *before I forget*, or *one thing
+that bit me, so pay attention to this part* announces the point instead of
+making it. Remove the announcement, not just its formal tone.
 
 **Repair:** Begin with the important content.
 
@@ -453,7 +462,8 @@ claims mastery the passage does not provide.
 
 Use with [ai-ism-audit.md](ai-ism-audit.md) and
 [vocabulary-tiers.md](vocabulary-tiers.md). These extend the core 55 patterns
-with publication, social, and credibility shapes absorbed from avoid-ai-writing.
+with publication, social, and credibility shapes absorbed from
+avoid-ai-writing, hardikpandya/stop-slop, and blader/humanizer.
 Still contextual prompts, not authorship proof.
 
 ### 56. Hedge-stacked prediction
@@ -679,6 +689,33 @@ before a noun stays hyphenated (*real-time analytics* is correct).
 authorship. Preserve established and technical compounds (*high-quality*,
 *third-party*, *family-owned*). Spelling varies by dialect and house style, so
 ambiguous pairs are judgment calls.
+
+### 79. Shadowboxing objections
+
+**Tell:** The text answers an objection nobody raised: *This isn't mainly about
+X*, *I'm not arguing that Y*, *To be clear*, *Don't get me wrong*, *You could
+frame this differently, but*, *Some might say... but*. The named objection
+appears nowhere else and nobody in the text holds it.
+
+**Repair:** Remove the unsupported defense. If it contains a real claim, state
+that claim directly. Keep an objection when the text names its source or answers
+it in full; a direct claim such as *the API is not thread-safe* is not this
+pattern. (Adapted from blader/humanizer, MIT.)
+
+### 80. Editorial scar tissue
+
+**Tell:** The draft still records the writer's earlier drafting choices: *A
+tempting approach would be to... but*, *One might be tempted to*, *An obvious
+approach would be*, *You might think... but*, *It would be easy to just*, *Some
+would suggest*. An option no reader would consider gets introduced and rejected
+in a clause, then never appears again. Several short unrelated rejections in one
+passage are a stronger sign than one.
+
+**Repair:** Remove the fake option and state the real constraint or current
+behavior directly. Ask what new information each sentence adds; if it only
+records an earlier edit, rewrite the paragraph around its main point. Keep real
+alternatives a reader may genuinely weigh in a design doc, tutorial, or
+argument. (Adapted from blader/humanizer, MIT.)
 
 ## Secondary cleanup patterns
 

@@ -3,6 +3,13 @@
 Four installable writing skills for AI agents: natural rewrites, controlled
 technical prose, mechanical writing signals, and Vale-gated editorial work.
 
+## What's New in 2.0.1
+
+Humanizer 1.1.1 absorbs blader/humanizer v2.9.2 - v2.11.0: two new patterns
+(shadowboxing objections, editorial scar tissue), repeated-sentence-opening and
+casual-signposting extensions, and figurative "gated" vocabulary with a
+technical-usage carve-out.
+
 ## What's New in 2.0.0
 
 `plain-english` is now `simple-english` (v2.0.0): merged the Hermes
@@ -29,7 +36,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the complete release history and
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.1.0` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.1.1` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.0.0` |
 | Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.0.5` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.1.0` |

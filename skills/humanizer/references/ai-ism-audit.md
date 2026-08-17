@@ -216,6 +216,16 @@ Use these with the catalog. Prefer clusters and reader impact over single hits.
   later" without who-it-is-for substance.
 - **Infomercial hooks and fake-candid openers:** "The catch?", "Honestly?",
   "Real talk:" as theatrical setup before ordinary points.
+- **Shadowboxing objections:** answering an objection nobody raised ("This isn't
+  mainly about X", "I'm not arguing that", "Don't get me wrong", "Some might
+  say... but") when the objection appears nowhere else. Remove the unsupported
+  defense; keep objections the text names or answers in full. See pattern 79.
+- **Editorial scar tissue:** rejected fake alternatives left in the draft
+  ("A tempting approach would be... but", "One might be tempted to", "It would
+  be easy to just"). One rejection may be valid; several short unrelated ones
+  are a stronger sign. Remove the fake option, state the constraint directly.
+  Keep real alternatives in design docs, tutorials, and arguments. See pattern
+  80. (Adapted from blader/humanizer, MIT.)
 - **Narrated candor:** announcing the disclosure instead of disclosing ("Two
   caveats I would rather flag than let you discover later:", "I want to be
   upfront:", "rather than bury this"). Deletion test: cut the frame; if nothing
@@ -335,7 +345,10 @@ writing about AI writing patterns, illustrative bad examples stay intact.
 
 ## Attribution
 
-Content synthesized from conorbronsdon/avoid-ai-writing (MIT), which itself
-cross-audits blader/humanizer, Aboudjem/humanizer-skill, brandonwise vocabulary
+Content synthesized from conorbronsdon/avoid-ai-writing (MIT),
+blader/humanizer (MIT, direct absorbs: shadowboxing, scar tissue, repeated
+openings, casual signposting, gated vocabulary), and
+hardikpandya/stop-slop (MIT). avoid-ai-writing itself cross-audits
+blader/humanizer, Aboudjem/humanizer-skill, brandonwise vocabulary
 research, Wikipedia Signs of AI writing, and tropes.fyi. Keep this skill's
 mission: better writing and voice preservation, not detector evasion.

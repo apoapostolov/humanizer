@@ -17,10 +17,10 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.0.0` |
+| package_version | `2.0.1` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
-| humanizer_skill_version | `1.1.0` |
+| humanizer_skill_version | `1.1.1` |
 | simple_english_skill_version | `2.0.0` |
 | ai_writing_detector_skill_version | `1.0.5` |
 | writing_prose_skill_version | `1.1.0` |
@@ -28,7 +28,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-08-13T12:15:00+03:00` |
+| last_sources_sync | `2026-08-17T12:44:55-07:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -109,7 +109,7 @@ humanizer.
 | last_ingested_version | `3.25.0` |
 | last_ingested_ref | `3c0fd8a26689` |
 | last_ingested_at | `2026-08-13T12:15:00+03:00` |
-| last_checked_at | `2026-08-13T12:15:00+03:00` |
+| last_checked_at | `2026-08-17T12:44:55-07:00` |
 | compare_base | `v3.25.0` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
@@ -135,26 +135,26 @@ git -C avoid-ai-writing diff 3c0fd8a26689..origin/main -- SKILL.md CHANGELOG.md 
 | id | `blader-humanizer` |
 | status | `active_ingest` |
 | repo | `https://github.com/blader/humanizer` |
-| release_tag | `v2.9.1` |
-| release_url | `https://github.com/blader/humanizer/releases/tag/v2.9.1` |
-| last_ingested_version | `2.9.1` |
-| last_ingested_ref | `523374dee72d67c7b2b5f858ea0094ffda49c3ac` |
-| last_ingested_at | `2026-07-31T03:42:49-07:00` |
-| last_checked_at | `2026-08-05T12:10:00-07:00` |
+| release_tag | `v2.11.0` |
+| release_url | `https://github.com/blader/humanizer/releases/tag/v2.11.0` |
+| last_ingested_version | `2.11.0` |
+| last_ingested_ref | `43c97670b563cfa75e4f16ef00c32e933104d10a` |
+| last_ingested_at | `2026-08-17T12:44:55-07:00` |
+| last_checked_at | `2026-08-17T12:44:55-07:00` |
 | local_clone | `blader-humanizer` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |
-| lands_in | `skills/humanizer/SKILL.md`, `skills/humanizer/references/humanizing-text.md`, `skills/humanizer/references/ai-ism-audit.md`, `skills/humanizer/references/required-checks.md` (workflow rules; historical catalog) |
-| ingest_policy | Primary same-family upstream. Import durable tells and examples. Do not adopt hard em/en dash bans. Prefer light-edit default for human-authored input. Keep information-over-shape and no-fabrication rules. Voice sample outranks generic style defaults. |
-| next_check | On newer tag than `v2.9.1`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
+| lands_in | `skills/humanizer/SKILL.md`, `skills/humanizer/references/humanizing-text.md`, `skills/humanizer/references/ai-ism-audit.md`, `skills/humanizer/references/pattern-catalog.md` (79-80, 11/21 extensions), `skills/humanizer/references/vocabulary-tiers.md` (gated vocabulary), `skills/humanizer/references/required-checks.md` (workflow rules; historical catalog) |
+| ingest_policy | Primary same-family upstream. Import durable tells and examples. Do not adopt hard em/en dash bans. Prefer light-edit default for human-authored input. Keep information-over-shape and no-fabrication rules. Voice sample outranks generic style defaults. v2.11.0 plain-language reskin of upstream SKILL.md not adopted (house voice already plain); absorb new tells and FP carve-outs only. |
+| next_check | On newer tag than `v2.11.0`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
 
 Diff helpers:
 
 ```bash
 git -C blader-humanizer fetch --tags origin
 git -C blader-humanizer tag -l 'v*' --sort=v:refname | tail -5
-git -C blader-humanizer log --oneline 523374dee72d67c7b2b5f858ea0094ffda49c3ac..origin/main
-git -C blader-humanizer diff 523374dee72d67c7b2b5f858ea0094ffda49c3ac..origin/main -- SKILL.md README.md
+git -C blader-humanizer log --oneline 43c97670b563cfa75e4f16ef00c32e933104d10a..origin/main
+git -C blader-humanizer diff 43c97670b563cfa75e4f16ef00c32e933104d10a..origin/main -- SKILL.md README.md
 ```
 
 ### 3. hardikpandya/stop-slop
@@ -168,7 +168,7 @@ git -C blader-humanizer diff 523374dee72d67c7b2b5f858ea0094ffda49c3ac..origin/ma
 | last_ingested_version | `tip@8da1f03` |
 | last_ingested_ref | `8da1f030185bdfe8471220585162991eaeb970e9` |
 | last_ingested_at | `2026-08-04T00:00:00-07:00` |
-| last_checked_at | `2026-08-05T12:10:00-07:00` |
+| last_checked_at | `2026-08-17T12:44:55-07:00` |
 | compare_base | `8da1f03` |
 | local_clone | `hardikpandya-stop-slop` |
 | clone_policy | third-party → `<git-ext>` only |
@@ -204,7 +204,7 @@ by the scan script via the GitHub releases API (no local clone needed).
 | release_url | `https://github.com/vale-cli/vale/releases/tag/v3.17.1` |
 | last_ingested_version | `3.17.1` |
 | last_ingested_at | `2026-08-05` |
-| last_checked_at | `2026-08-05T12:10:00-07:00` |
+| last_checked_at | `2026-08-17T12:44:55-07:00` |
 | win11_winget | `errata-ai.Vale` 3.15.1 (winget lags; WSL binary is canonical at 3.17.1) |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
