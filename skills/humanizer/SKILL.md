@@ -1,13 +1,17 @@
 ---
 name: humanizer
 description: Humanize AI-sounding text with natural rewrites, voice preservation, editorial critique, and optional AI-ism audit modes.
-version: 1.1.1
+version: 1.2.0
 ---
 
 # Humanizer
 
 Make text sound natural, specific, and true to its writer. Improve the writing;
 do not optimize for detector evasion or manufacture human-like mistakes.
+
+**Pi register: Human.** Other humans: READMEs, changelogs, public posts, OSS
+issues and PR comments. PR bodies bounce to `simple-english`. Chat with Apo
+loads neither skill.
 
 ## Establish the brief
 

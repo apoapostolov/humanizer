@@ -9,7 +9,7 @@ tags:
 - anti-slop
 - docs
 - lint
-version: 2.0.0
+version: 2.1.0
 related_skills:
 - writing-prose
 - humanizer
@@ -23,6 +23,9 @@ related_skills:
 Write technical prose with ASD-STE100 control. Use full control for
 procedures, safety text, and errors. Use a lighter clarity pass for reference
 documentation, PR descriptions, and technical sections inside mixed documents.
+
+**Pi register: Worker.** Machines and procedures only. README and changelog
+work bounces to `humanizer`. Chat with Apo loads neither skill.
 
 **Not for:** code, identifiers, command syntax, product voice, essays, personal
 writing, or any section whose job is to persuade or carry a distinct voice. STE
@@ -41,9 +44,9 @@ Source kit (episode materials, adapted):
 Spec: ASD-STE100 Issue 9 (free official standard at https://asd-ste100.org,
 copyrighted, do not paste the full standard). Additional adaptation from
 AminBlg/SimpleEnglish and the Hermes optional-skill port
-`optional-skills/creative/simple-english` (merged 2026-08-17).
+`optional-skills/creative/simple-english` (merged; see monorepo history).
 
-Skill version: **2.0.0** (renamed from `plain-english`; package ship:
+Skill version: **2.1.0** (renamed from `plain-english`; package ship:
 apoapostolov/humanizer repository).
 
 ## When to use

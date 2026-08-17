@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-08-17
+
+Voice routing registers for cross-agent use (Hermes + Pi three-mode model).
+
+- **simple-english 2.1.0**: `Pi register: Worker` block (machines and
+  procedures only; README/changelog bounces to humanizer); removed the
+  hard date stamp from the optional-skills merge note; body version
+  aligned with frontmatter.
+- **humanizer 1.2.0**: `Pi register: Human` block (READMEs, changelogs,
+  public posts, OSS issues and PR comments; PR bodies bounce to
+  simple-english).
+
 ## [2.0.1] - 2026-08-17
 
 Patch: blader/humanizer v2.9.2 - v2.11.0 editorial absorb.
