@@ -27,8 +27,8 @@ This repository currently centers on:
 - [`SOURCES.md`](./SOURCES.md): external source pins, version policy, ingest
   update procedure, packaged skill versions
 - [`skills/humanizer/`](./skills/humanizer/): natural-voice humanizer skill
-- [`skills/plain-english/`](./skills/plain-english/): STE plain-english skill
-  (v1.1.0) + `ste_lint.py`
+- [`skills/simple-english/`](./skills/simple-english/): STE simple-english skill
+  (v2.0.0) + `ste_lint.py`
 - [`skills/ai-writing-detector/`](./skills/ai-writing-detector/): production
   AI-writing signals + preservation validate (v1.0.5); batch summary + CI smoke;
   not a rewrite skill
@@ -39,7 +39,7 @@ This repository currently centers on:
 - [`CHANGELOG.md`](./CHANGELOG.md): user-facing release notes only
 
 Do not turn this repository into a general prompt dump. Keep each writing skill
-on one job: voice (humanizer), STE form (plain-english), mechanical signals
+on one job: voice (humanizer), STE form (simple-english), mechanical signals
 (ai-writing-detector), vale-gated prose craft (writing-prose).
 
 Keep each installable skill self-contained under `skills/<name>/`. Do not place
@@ -48,7 +48,7 @@ third-party detector engines inside `skills/humanizer/`. Detector engines and
 validate scripts belong only in `skills/ai-writing-detector/`.
 
 The skills may cooperate, but they must not become a sequential filter stack.
-Route by the job of each section. Plain English controls technical form;
+Route by the job of each section. Simple English controls technical form;
 humanizer preserves a writer; writing-prose shapes broader reader-facing prose.
 
 ## Source Of Truth Hierarchy
@@ -214,7 +214,7 @@ links; confirm against stronger sources before editing the skill.
 | Silent post-edit QA checklist | `references/required-checks.md` |
 | Extra long-form heuristics | `references/long-form-diagnostics.md` |
 | Authorship vs style (high-stakes) | `skills/humanizer/references/provenance.md` |
-| STE / plain tech docs / ste-lint | `skills/plain-english/**` |
+| STE / plain tech docs / ste-lint | `skills/simple-english/**` |
 | Display name / default prompt | `skills/*/agents/openai.yaml` |
 | Install paths or public positioning | `README.md` |
 | User-facing capability change | `CHANGELOG.md` |
