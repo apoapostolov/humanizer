@@ -146,7 +146,7 @@ function buildAnalyzeReport(engineResult, opts = {}) {
     },
     handoff: {
       rewrite_quality: "humanizer",
-      ste_docs: "plain-english",
+      ste_docs: "simple-english",
       note: "Load humanizer for natural rewrites. Do not optimize text only to lower this score.",
     },
   };

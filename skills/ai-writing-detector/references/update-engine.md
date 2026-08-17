@@ -66,7 +66,7 @@ optional `--style` house-style layer: user-supplied JSON config
 mechanics, and `examples/` starters. No bundled guides; a bare guide name is a
 best-effort fallback with an explicit no-compliance claim. Not vendored: it is
 upstream CLI machinery outside the detector engine, and this package already
-covers mechanical form control via the sibling `plain-english` STE lint. On
+covers mechanical form control via the sibling `simple-english` STE lint. On
 such releases, update SOURCES release pins but keep the engine pin and
 `check-engine-pin.sh` `expected_upstream_tag` unchanged.
 

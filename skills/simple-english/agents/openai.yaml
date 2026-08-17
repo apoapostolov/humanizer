@@ -1,0 +1,4 @@
+interface:
+  display_name: "Simple English"
+  short_description: "STE plain tech prose + ste-lint"
+  default_prompt: "Use $simple-english to rewrite this technical text in simplified English and lint it."

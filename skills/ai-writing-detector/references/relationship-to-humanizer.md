@@ -1,13 +1,13 @@
 <!-- markdownlint-disable MD013 -->
 
-# Relationship to humanizer and plain-english
+# Relationship to humanizer and simple-english
 
 This monorepo splits jobs on purpose.
 
 | Skill | Job | Ships mechanical engine? |
 | --- | --- | --- |
 | **humanizer** | Natural voice, rewrite, editorial pattern catalog | No |
-| **plain-english** | STE controlled tech prose + `ste_lint.py` | Yes (STE linter) |
+| **simple-english** | STE controlled tech prose + `ste_lint.py` | Yes (STE linter) |
 | **ai-writing-detector** | Deterministic AI-writing *signals* + preservation validate | Yes (`patterns.js`, `validate.js`) |
 
 ## Why detector code is not inside humanizer
@@ -28,7 +28,7 @@ scan and preservation checks.
    samples (never from `document_classification`; default report omits it).
 2. **Improve prose:** `humanizer` rewrite → optional `ai-writing-detector`
    validate on before/after if a file edit must protect code and structure.
-3. **Docs / errors:** `plain-english` (+ ste-lint) rather than AI-signal scoring.
+3. **Docs / errors:** `simple-english` (+ ste-lint) rather than AI-signal scoring.
 4. **Both voice and signals:** analyze first if useful, rewrite with humanizer,
    never reverse the goal into "clear the score."
 5. **Regression:** `bash scripts/smoke.sh` after engine pin bumps.
@@ -40,7 +40,7 @@ scan and preservation checks.
 | Pattern catalog, voice, never-inject | humanizer |
 | Tier 1A/1B *editorial* tables | humanizer `vocabulary-tiers.md` |
 | Engine types including `tier1-clarity` | ai-writing-detector |
-| STE sentence rules | plain-english |
+| STE sentence rules | simple-english |
 | Hard em-dash ban as authorship proof | rejected in monorepo policy |
 | Detector-score optimization / fake typos | rejected everywhere |
 

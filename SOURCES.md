@@ -17,19 +17,19 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `1.1.0` |
+| package_version | `2.0.0` |
 | package_path | `.` |
-| skills | `skills/humanizer/`, `skills/plain-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
+| skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
 | humanizer_skill_version | `1.1.0` |
-| plain_english_skill_version | `1.1.0` |
+| simple_english_skill_version | `2.0.0` |
 | ai_writing_detector_skill_version | `1.0.5` |
 | writing_prose_skill_version | `1.1.0` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
-| live_plain_english_path | `~/.hermes/skills/writing/plain-english` |
+| live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
 | last_sources_sync | `2026-08-13T12:15:00+03:00` |
-| last_package_release | `2026-08-13` (1.0.3, engine pin absorb v3.25.0 + editorial) |
+| last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
 
@@ -42,7 +42,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 Hard rule: **"update humanizer sources"** and other humanizer ingest-only work
 MUST bump **patch only**. Do not bump minor for an upstream absorb.
 
-`plain-english` and `ai-writing-detector` keep their own `version` in each
+`simple-english` and `ai-writing-detector` keep their own `version` in each
 skill's `SKILL.md`. Bump those fields when the skill changes; bump monorepo
 `package_version` when the release ships.
 
@@ -52,18 +52,18 @@ sources were touched.
 
 ## Packaged skills (this monorepo)
 
-### plain-english
+### simple-english
 
 | Field | Value |
 | --- | --- |
-| id | `plain-english` |
+| id | `simple-english` |
 | status | `packaged_skill` |
-| skill_version | `1.1.0` |
-| path | `skills/plain-english/` |
-| live_clone | `~/.hermes/skills/writing/plain-english` |
-| upstream_kit | `https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop` |
-| lands_in | monorepo `skills/plain-english/` (SKILL, references, `scripts/ste_lint.py`) |
-| note | Strict STE procedures plus a judgment-led flavored mode for technical prose. The linter reports form; it does not own product voice. |
+| skill_version | `2.0.0` |
+| path | `skills/simple-english/` |
+| live_clone | `~/.hermes/skills/writing/simple-english` |
+| upstream_kit | `https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop` (original); merged 2026-08-17 from Hermes optional-skill `creative/simple-english` (ASD-STE100 Issue 9 catalog, checklist, use-cases) |
+| lands_in | monorepo `skills/simple-english/` (SKILL, references, `scripts/ste_lint.py`) |
+| note | Strict STE procedures plus a judgment-led flavored mode for technical prose. The linter reports form; it does not own product voice. Formerly `plain-english` (renamed 2026-08-17). |
 
 ### ai-writing-detector
 

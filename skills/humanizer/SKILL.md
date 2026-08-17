@@ -76,7 +76,7 @@ task only needs the cleaned text.
 - Read [references/examples.md](references/examples.md) when contrastive examples
   would improve calibration.
 - For engineer-facing docs, PR text, errors, or STE form control, use the sibling
-  skill `plain-english` instead of forcing humanizer voice rules onto STE.
+  skill `simple-english` instead of forcing humanizer voice rules onto STE.
 - For mechanical AI-writing **scores**, engine issue types, or rewrite
   preservation validate, use sibling skill `ai-writing-detector`. Do not
   score-chase.

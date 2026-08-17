@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0] - 2026-08-17
+
+Major: `plain-english` renamed to `simple-english` + upstream STE catalog merge.
+
+- **simple-english 2.0.0** (renamed from plain-english): merges the Hermes
+  optional-skill port `creative/simple-english` (ASD-STE100 Issue 9) into the
+  existing STE skill. Adds the full practical rule catalog (word/verb/sentence/
+  punctuation/structure rules with ASD-STE100 rule-number citations), the modal
+  ladder (should/would/may/might/could -> must/can/restructured), the slop-to-
+  simple substitution table, vocabulary discipline, word-counting rules
+  (backticked commands count as one word), the condition-first rule, the
+  warnings-before-steps pattern, and the beyond-documentation use cases
+  (error messages, runbooks, incident reports, release notes, agent
+  instructions, translation prep). Adds `references/checklist.md` (verification
+  pass with searchable patterns) and `references/use-cases.md` (long-form
+  adaptations). Existing strict/STE-flavored modes, ste_lint.py workflow, and
+  guardrails are preserved.
+- All cross-skill references (humanizer, ai-writing-detector, writing-prose,
+  README, tests) updated to the new name. Install command is now
+  `npx skills add apoapostolov/humanizer --skill simple-english`.
+
 ## [1.1.0] - 2026-08-14
 
 Minor: clearer voice ownership across the writing suite.

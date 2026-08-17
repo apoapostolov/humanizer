@@ -73,6 +73,6 @@ Next: rewrite with humanizer if you want better prose — I will not score-chase
 | User ask | Load instead |
 | --- | --- |
 | Make this sound human | humanizer |
-| STE / plain docs | plain-english |
+| STE / plain docs | simple-english |
 | Did AI write this? (verdict) | refuse verdict; optional signals + provenance |
 | Lower the detector score | refuse evasion framing |

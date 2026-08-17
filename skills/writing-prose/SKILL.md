@@ -10,7 +10,7 @@ tags:
 - vale
 - lint
 related_skills:
-- plain-english
+- simple-english
 - humanizer
 - ai-writing-detector
 - markdown-lint
@@ -41,7 +41,7 @@ replies. Anything a human will read and judge for quality.
 When not to use:
 
 - Strict technical docs, procedures, error messages, release notes: use
-  `plain-english` (STE) with `ste_lint.py` instead.
+  `simple-english` (STE) with `ste_lint.py` instead.
 - "Make this sound human" rewrites of AI text: use `humanizer`.
 - Mechanical AI-signal catalogs or scoring: use `ai-writing-detector`. For
   editorial pattern diagnosis, use the references in this skill or `humanizer`.
@@ -174,7 +174,7 @@ linter cannot see. They are mandatory, not optional.
 
 - Use `humanizer` when preserving or matching a particular writer's voice is
   the main job.
-- Use `plain-english` strict mode for procedures, safety text, and errors.
+- Use `simple-english` strict mode for procedures, safety text, and errors.
 - Use this skill for broader reader-facing prose and section-level product copy.
 - Use `ai-writing-detector` only for mechanical signals or preservation checks.
 - For a mixed document, route sections by job. Do not run every skill across the
@@ -229,7 +229,7 @@ output the audit unless asked.
 
 This skill is packaged in the writing-skills repository (apoapostolov/humanizer
 on GitHub)
-alongside humanizer, plain-english, and ai-writing-detector. The package
+alongside humanizer, simple-english, and ai-writing-detector. The package
 version and the ingest pins for vale-cli/vale (ingest source #1) live in the
 root `SOURCES.md`, not here. Bump policy: ingest-only work bumps patch;
 a new packaging story bumps minor. The Microsoft style pack under
@@ -238,7 +238,7 @@ vale release ingests.
 
 ## Related
 
-- `plain-english`: strict STE for procedures and errors; flavored control for
+- `simple-english`: strict STE for procedures and errors; flavored control for
   technical reference.
 - `humanizer` / `ai-writing-detector`: voice rewrites and AI-signal scoring.
 - `markdown-lint`: markdown formatting and syntax.

@@ -14,7 +14,7 @@ def read_skill(name: str) -> str:
 
 
 def load_ste_lint():
-    script = ROOT / "skills" / "plain-english" / "scripts" / "ste_lint.py"
+    script = ROOT / "skills" / "simple-english" / "scripts" / "ste_lint.py"
     spec = importlib.util.spec_from_file_location("ste_lint_contract", script)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
@@ -27,25 +27,25 @@ class VoiceContractTests(unittest.TestCase):
     def test_skill_and_package_versions_are_aligned(self) -> None:
         versions = {
             "humanizer": "1.1.0",
-            "plain-english": "1.1.0",
+            "simple-english": "2.0.0",
             "writing-prose": "1.1.0",
         }
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         sources = (ROOT / "SOURCES.md").read_text(encoding="utf-8")
         for name, version in versions.items():
             self.assertIn(f"version: {version}", read_skill(name))
-            self.assertIn(f"| {name} | `{version}` |", readme)
-        self.assertIn("| package_version | `1.1.0` |", sources)
+            self.assertIn(f"| [`{name}`](skills/{name}/) | `{version}` |", readme)
+        self.assertIn("| package_version | `2.0.0` |", sources)
 
-    def test_plain_english_separates_strict_and_flavored_modes(self) -> None:
-        skill = read_skill("plain-english")
+    def test_simple_english_separates_strict_and_flavored_modes(self) -> None:
+        skill = read_skill("simple-english")
         self.assertIn("Strict mode controls form", skill)
         self.assertIn("A reported item is not an automatic", skill)
-        self.assertIn("contractions are\n  allowed", skill)
+        self.assertIn("contractions are allowed", skill)
         self.assertIn("Do not apply one whole-file score", skill)
         self.assertIn("Follow the project's established spelling", skill)
-        self.assertIn("Passive voice can stay", skill)
-        self.assertIn("In STE-flavored prose, keep one", skill)
+        self.assertIn("Passive voice stays when the actor is unknown", skill)
+        self.assertIn("In STE-flavored prose, contractions are allowed", skill)
         self.assertNotIn("\n- American spelling.\n", skill)
 
     def test_natural_copy_findings_require_interpretation(self) -> None:
@@ -58,7 +58,7 @@ class VoiceContractTests(unittest.TestCase):
         )
         result = lint.lint(sample)
         self.assertGreater(result["total"], 0)
-        self.assertIn("not an automatic", read_skill("plain-english"))
+        self.assertIn("not an automatic", read_skill("simple-english"))
 
     def test_humanizer_uses_a_voice_hierarchy(self) -> None:
         skill = read_skill("humanizer")

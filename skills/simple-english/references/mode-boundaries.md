@@ -47,8 +47,8 @@ Route sections separately:
 | Section | Primary writing discipline |
 | --- | --- |
 | Value proposition and feature overview | `humanizer` or `writing-prose` |
-| Installation steps | `plain-english`, strict when the procedure is sensitive |
-| Settings and compatibility | `plain-english`, STE-flavored |
+| Installation steps | `simple-english`, strict when the procedure is sensitive |
+| Settings and compatibility | `simple-english`, STE-flavored |
 | API example | Precise developer prose; preserve literal code |
 | Maintainer note or project story | `humanizer` or `writing-prose` |
 

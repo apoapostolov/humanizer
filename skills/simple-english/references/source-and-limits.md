@@ -16,7 +16,7 @@ Official standard (free download; copyrighted; do not paste in full):
 
 Adaptations:
 
-- Skill name: `plain-english` (category `writing`; formerly simplified-english)
+- Skill name: `simple-english` (category `writing`; formerly plain-english, before that simplified-english)
 - Hard ban on em dash (package house rule + common slop marker)
 - Cross-links to `writing` and sibling `humanizer` so STE is not used for voice
   work

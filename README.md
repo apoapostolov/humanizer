@@ -3,6 +3,15 @@
 Four installable writing skills for AI agents: natural rewrites, controlled
 technical prose, mechanical writing signals, and Vale-gated editorial work.
 
+## What's New in 2.0.0
+
+`plain-english` is now `simple-english` (v2.0.0): merged the Hermes
+optional-skill port of ASD-STE100 Issue 9 into the existing STE skill. Full
+rule catalog with rule-number citations, modal ladder, slop-to-simple
+substitution table, word-counting rules, warnings-before-steps pattern,
+verification checklist, and beyond-documentation use cases. Same ste_lint.py
+workflow, same strict/STE-flavored modes.
+
 ## What's New in 1.1.0
 
 - User samples, medium, audience, and source voice now outrank generic pattern
@@ -21,7 +30,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the complete release history and
 | Need | Skill | Version |
 | --- | --- | --- |
 | Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.1.0` |
-| Write procedures, errors, runbooks, and clear technical sections | [`plain-english`](skills/plain-english/) | `1.1.0` |
+| Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.0.0` |
 | Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.0.5` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.1.0` |
 
@@ -50,7 +59,7 @@ inventing facts or a new personality.
 Plain English includes a deterministic linter:
 
 ```bash
-python3 skills/plain-english/scripts/ste_lint.py path/to/draft.md
+python3 skills/simple-english/scripts/ste_lint.py path/to/draft.md
 ```
 
 AI Writing Detector exposes a zero-dependency Node.js scan and a preservation
@@ -87,7 +96,7 @@ For a Hermes category layout:
 ```bash
 mkdir -p ~/.hermes/skills/writing
 cp -R skills/humanizer ~/.hermes/skills/writing/
-cp -R skills/plain-english ~/.hermes/skills/writing/
+cp -R skills/simple-english ~/.hermes/skills/writing/
 cp -R skills/ai-writing-detector ~/.hermes/skills/writing/
 cp -R skills/writing-prose ~/.hermes/skills/writing/
 ```
@@ -96,7 +105,7 @@ Or install an individual package with `skills.sh`:
 
 ```bash
 npx skills add apoapostolov/humanizer --skill humanizer
-npx skills add apoapostolov/humanizer --skill plain-english
+npx skills add apoapostolov/humanizer --skill simple-english
 npx skills add apoapostolov/humanizer --skill ai-writing-detector
 npx skills add apoapostolov/humanizer --skill writing-prose
 ```
@@ -106,7 +115,7 @@ npx skills add apoapostolov/humanizer --skill writing-prose
 ```text
 skills/
 ├── humanizer/
-├── plain-english/
+├── simple-english/
 ├── ai-writing-detector/
 └── writing-prose/
 ```
@@ -118,7 +127,7 @@ runtime scripts it needs. Maintainer guidance is in [AGENTS.md](AGENTS.md).
 
 This repository is licensed under the [MIT License](LICENSE).
 
-Plain English source limits and credits are documented in
-[`source-and-limits.md`](skills/plain-english/references/source-and-limits.md).
+Simple English source limits and credits are documented in
+[`source-and-limits.md`](skills/simple-english/references/source-and-limits.md).
 Detector engine attribution is in
 [`ATTRIBUTION.md`](skills/ai-writing-detector/references/ATTRIBUTION.md).

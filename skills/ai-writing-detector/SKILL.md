@@ -11,7 +11,7 @@ tags:
 version: 1.0.5
 related_skills:
 - humanizer
-- plain-english
+- simple-english
 - writing
 ---
 
@@ -37,7 +37,7 @@ into authorship claims.
 - **Signals, not proof.** Never use output alone for academic integrity, hiring,
   discipline, or attribution.
 - **Not detector evasion.** Do not minimize a score. Do not add typos or noise.
-  Quality rewrites → `humanizer`. STE docs → `plain-english`.
+  Quality rewrites → `humanizer`. STE docs → `simple-english`.
 - **Do not invent facts** to clear flags.
 - Prefer clusters and reader impact over single weak hits.
 - Default CLI/JSON **omits** authorship-shaped engine fields
@@ -49,7 +49,7 @@ into authorship claims.
 | Need | Load |
 | --- | --- |
 | Natural rewrite / voice | `humanizer` |
-| STE / docs form control | `plain-english` |
+| STE / docs form control | `simple-english` |
 | Score, issue list, category map | **this skill** |
 | Preserve code/URLs/structure after edit | **this skill** (`validate`) |
 | Cron / batch signal scan | **this skill** (`--quiet`, multi-file) |
@@ -58,7 +58,7 @@ into authorship claims.
 ## When not to use
 
 - User wants better prose, voice, or a rewrite → `humanizer`
-- User wants STE/docs form control → `plain-english` (+ `ste_lint.py`)
+- User wants STE/docs form control → `simple-english` (+ `ste_lint.py`)
 - User asks “was this written by AI?” as a verdict → refuse; offer signals +
   provenance, not a classification label
 - Text is a few words → report will mark `too_short`; do not call it clean
