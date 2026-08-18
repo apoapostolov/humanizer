@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.0] - 2026-08-18
+
+ste_lint catches the single clipped negation fragment (`"Not a X."`) closing
+a paragraph. That is the sharper AI-slop tell than staccato stacking.
+
+- **simple-english 2.3.0**: `detect_rhythm()` gains `end_para_neg_fragments`:
+  verbless negation fragments that close a paragraph, e.g. "This was a really
+  good session. Not a random waste." Precise shape keeps false positives near
+  zero: paragraph-final segment only, negation lead plus determiner/adjective,
+  no finite verb, no contrast-comma continuation. Skipped idioms: "Not that",
+  "No,", "No thanks", "No one", "Not everyone". Report-only, never counted
+  toward the form total.
+
 ## [2.2.0] - 2026-08-18
 
 Prose-rhythm findings join the mechanical lint, giving the house voice bans

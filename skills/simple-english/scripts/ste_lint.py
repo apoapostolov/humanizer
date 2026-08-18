@@ -130,6 +130,46 @@ def strip_code(t: str) -> str:
     return t
 
 
+# Clipped negation fragment (AI-slop tell): a verbless "Not a X." noun phrase
+# closing a paragraph, e.g. "This was a good session. Not a random waste."
+# Precise shape avoids false positives: paragraph-final segment, negation lead
+# + determiner/adjective, no finite verb, no contrast-comma continuation.
+_NEG_LEAD = re.compile(r"^\s*(Not|No|Never|Nothing|None)\s+", re.I)
+_NEG_DET = re.compile(
+    r"^(a|an|the|really|just|even|at\s+all|my|your|our|their|his|her|its|"
+    r"this|that|these|those|one|much|any|more|merely|simply)\b", re.I
+)
+_NEG_VERBS = re.compile(
+    r"\b(?:is|are|was|were|am|be|been|being|have|has|had|do|does|did|"
+    r"will|would|can|could|should|shall|may|might|must|"
+    r"change[sd]?|mean[sdt]?|work[sd]?|care[sd]?|agree[sd]?|come[sd]?|"
+    r"help[sd]?|matter[sd]?|look[sd]?|seem[sd]?|feel[sd]?|want[sd]?|"
+    r"need[sd]?|made|make[s]?|got|get[s]?|took|take[s]?|came|go[es]?|said|say[s]?)\b",
+    re.I,
+)
+
+
+def is_neg_fragment(s: str) -> bool:
+    m = _NEG_LEAD.search(s)
+    if not m:
+        return False
+    rest = s[m.end():].strip(" .,!?;")
+    if not rest:
+        return False
+    low = s.lower()
+    if low.startswith("no,") or low.startswith("no thanks") or low.startswith("not that"):
+        return False
+    if low.startswith("no one") or low.startswith("no-one"):
+        return False
+    if "," in s or " and " in low or " but " in low or " while " in low:
+        return False
+    if not _NEG_DET.search(rest):
+        return False
+    if _NEG_VERBS.search(rest):
+        return False
+    return wc(s) <= 8
+
+
 def sentences(text: str) -> list[str]:
     out: list[str] = []
     for line in text.split("\n"):
@@ -217,6 +257,7 @@ def detect_rhythm(raw: str) -> dict:
     text = strip_code(raw)
     staccato: list[tuple[int, list[int]]] = []
     frag_tails: list[str] = []
+    neg_frag: list[str] = []
     stack_w: list[int] = []
     prev_bullet = False
     for line in text.split("\n"):
@@ -275,6 +316,10 @@ def detect_rhythm(raw: str) -> dict:
         frags = [p for p in parts if re.match(r"^(?:No|None)\s+\w", p)]
         if len(frags) >= 2 and wc(last) <= 12:
             frag_tails.append(last)
+        # AI-slop tell: verbless negation fragment closing the paragraph
+        segs = [p.strip() for p in re.split(r"(?<=[.!?])\s+(?=[A-Z0-9\"'\-(])", last) if p.strip()]
+        if segs and is_neg_fragment(segs[-1]):
+            neg_frag.append(segs[-1])
 
     lens = [wc(p) for p in sentences(text)]
     return {
@@ -282,6 +327,8 @@ def detect_rhythm(raw: str) -> dict:
         "staccato_samples": staccato[:3],
         "negation_fragment_tails": len(frag_tails),
         "negation_fragment_samples": frag_tails[:3],
+        "end_para_neg_fragments": len(neg_frag),
+        "end_para_neg_fragment_samples": neg_frag[:3],
         "sentence_len_variance": round(variance(lens), 2),
     }
 
