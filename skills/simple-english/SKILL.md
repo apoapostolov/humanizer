@@ -9,7 +9,7 @@ tags:
 - anti-slop
 - docs
 - lint
-version: 2.1.0
+version: 2.2.0
 related_skills:
 - writing-prose
 - humanizer
@@ -46,7 +46,7 @@ copyrighted, do not paste the full standard). Additional adaptation from
 AminBlg/SimpleEnglish and the Hermes optional-skill port
 `optional-skills/creative/simple-english` (merged; see monorepo history).
 
-Skill version: **2.1.0** (renamed from `plain-english`; package ship:
+Skill version: **2.2.0** (renamed from `plain-english`; package ship:
 apoapostolov/humanizer repository).
 
 ## When to use

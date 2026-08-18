@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2026-08-18
+
+Prose-rhythm findings join the mechanical lint, giving the house voice bans
+the same checkable surface as the em dash rule.
+
+- **simple-english 2.2.0**: ste_lint gains `detect_rhythm()` reporting
+  staccato stacks (3+ consecutive sentences of six words or fewer) and
+  clipped negation-fragment tails ("No X. No Y." closing a paragraph).
+  Sentence-length variance ships as context. Markdown-aware: headings break
+  stacks, each bullet is one unit, table rows are skipped. Rhythm findings
+  are reported separately and never counted toward the form total.
+
 ## [2.1.0] - 2026-08-17
 
 Voice routing registers for cross-agent use (Hermes + Pi three-mode model).
