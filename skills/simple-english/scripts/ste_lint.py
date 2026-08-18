@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+from typing import Sequence
 
 MARKETING = [
     "seamless",
@@ -189,6 +190,7 @@ def lint(text: str) -> dict:
     v["long_paragraph(>6s)"] = sum(1 for p in paras if len(sentences(strip_code(p))) > 6)
     em = raw.count("\u2014") + raw.count("\u2013")
     total = sum(v.values())
+    rhythm = detect_rhythm(raw)
     return {
         "words": words,
         "sentences": len(sents),
@@ -196,12 +198,95 @@ def lint(text: str) -> dict:
         "total": total,
         "total_per100w": round(total * 100.0 / words, 2),
         "em_dash(slop-marker)": em,
+        "rhythm": rhythm,
         "longest_sentence_words": (
             max(longs)[0] if longs else max((wc(s) for s in sents), default=0)
         ),
         "sample_marketing": list(dict.fromkeys(mh))[:6],
         "sample_banned": list(dict.fromkeys(bh))[:6],
     }
+
+
+def detect_rhythm(raw: str) -> dict:
+    """Prose-rhythm findings mirroring the house voice bans.
+
+    Flags staccato stacks (3+ consecutive sentences of <=6 words) and clipped
+    negation-fragment tails ("No X." lines closing a paragraph). Variance is
+    reported as context only and never counts toward total.
+    """
+    text = strip_code(raw)
+    staccato: list[tuple[int, list[int]]] = []
+    frag_tails: list[str] = []
+    stack_w: list[int] = []
+    prev_bullet = False
+    for line in text.split("\n"):
+        s = line.strip()
+        if not s or s.startswith("|") or re.match(r"^[-*_]{3,}$", s):
+            continue
+        is_heading = bool(re.match(r"^#{1,6}\s", s))
+        is_bullet = bool(re.match(r"(?:[-*+]|\d+[.)])\s+", s))
+        if is_heading:
+            if len(stack_w) >= 3:
+                staccato.append((len(staccato), list(stack_w)))
+            stack_w = []
+            continue
+        if is_bullet and not prev_bullet and stack_w:
+            # prose ended, list starts: close the prose stack
+            if len(stack_w) >= 3:
+                staccato.append((len(staccato), list(stack_w)))
+            stack_w = []
+        s = re.sub(r"^\s*#{1,6}\s*", "", s)
+        s = re.sub(r"^\s*(?:[-*+]|\d+[.)])\s+", "", s)
+        if not s:
+            prev_bullet = is_bullet
+            continue
+        parts = re.split(r"(?<=[.!?:])\s+(?=[A-Z0-9\"'\-])", s)
+        line_stack: list[int] = []
+        for p in parts:
+            p = p.strip()
+            if not p:
+                continue
+            n = wc(p)
+            if n <= 6:
+                stack_w.append(n)
+                line_stack.append(n)
+            else:
+                if len(stack_w) >= 3:
+                    staccato.append((len(staccato), list(stack_w)))
+                stack_w = []
+                line_stack = []
+        if is_bullet:
+            # a bullet is one unit: its short items never chain into the next bullet
+            if len(line_stack) >= 3:
+                staccato.append((len(staccato), list(line_stack)))
+            stack_w = []
+        prev_bullet = is_bullet
+
+    for para in re.split(r"\n\s*\n", text):
+        plines = [l for l in para.strip().split("\n") if l.strip() and not l.strip().startswith("|")]
+        if not plines:
+            continue
+        last = plines[-1].strip()
+        parts = re.split(r"(?<=[.!?:])\s+", last)
+        frags = [p for p in parts if re.match(r"^(?:No|None)\s+\w", p)]
+        if len(frags) >= 2 and wc(last) <= 12:
+            frag_tails.append(last)
+
+    lens = [wc(p) for p in sentences(text)]
+    return {
+        "staccato_stacks(3+ <=6w)": len(staccato),
+        "staccato_samples": staccato[:3],
+        "negation_fragment_tails": len(frag_tails),
+        "negation_fragment_samples": frag_tails[:3],
+        "sentence_len_variance": round(variance(lens), 2),
+    }
+
+
+def variance(xs: "Sequence[float]") -> float:
+    if not xs:
+        return 0.0
+    mu = sum(xs) / len(xs)
+    return sum((x - mu) ** 2 for x in xs) / len(xs)
 
 
 if __name__ == "__main__":
