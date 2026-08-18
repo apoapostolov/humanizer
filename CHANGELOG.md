@@ -13,6 +13,8 @@ the same checkable surface as the em dash rule.
   Sentence-length variance ships as context. Markdown-aware: headings break
   stacks, each bullet is one unit, table rows are skipped. Rhythm findings
   are reported separately and never counted toward the form total.
+- **simple-english 2.2.1**: flush staccato stacks that run to end of text
+  (a stack interrupted by nothing was never recorded).
 
 ## [2.1.0] - 2026-08-17
 

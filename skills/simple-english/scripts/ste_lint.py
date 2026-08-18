@@ -262,6 +262,10 @@ def detect_rhythm(raw: str) -> dict:
             stack_w = []
         prev_bullet = is_bullet
 
+    # EOF flush: a stack that runs to the end of the text is still a stack
+    if len(stack_w) >= 3:
+        staccato.append((len(staccato), list(stack_w)))
+
     for para in re.split(r"\n\s*\n", text):
         plines = [l for l in para.strip().split("\n") if l.strip() and not l.strip().startswith("|")]
         if not plines:
