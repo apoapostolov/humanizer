@@ -16,7 +16,7 @@ technical-usage carve-out.
 optional-skill port of ASD-STE100 Issue 9 into the existing STE skill. Full
 rule catalog with rule-number citations, modal ladder, slop-to-simple
 substitution table, word-counting rules, warnings-before-steps pattern,
-verification checklist, and beyond-documentation use cases. Same ste_lint.py
+verification checklist, and beyond-documentation use cases. Same voice_lint.py
 workflow, same strict/STE-flavored modes.
 
 ## What's New in 1.1.0
@@ -36,8 +36,8 @@ See [CHANGELOG.md](CHANGELOG.md) for the complete release history and
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.1.1` |
-| Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.0.0` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.2.0` |
+| Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.0` |
 | Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.0.5` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.1.0` |
 
@@ -66,7 +66,7 @@ inventing facts or a new personality.
 Plain English includes a deterministic linter:
 
 ```bash
-python3 skills/simple-english/scripts/ste_lint.py path/to/draft.md
+python3 skills/simple-english/scripts/voice_lint.py path/to/draft.md
 ```
 
 AI Writing Detector exposes a zero-dependency Node.js scan and a preservation

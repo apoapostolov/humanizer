@@ -6,7 +6,7 @@ Adapted from the public episode kit:
 
 - Repo path: https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop
 - Core skill text: `ste-writing-skill.md`
-- Linter: `ste-lint.py`
+- Linter: `voice-lint.py`
 - Experiments: `experiment-results.md`, `experiment-results-openai.md`
 - Samples: `before-after-samples.md`
 
@@ -62,4 +62,4 @@ Claim safe to reuse: give the model a writing system and form-slop drops by abou
 
 ## Reproduction note
 
-The kit's `run-openai.py` needs companion files (`prompts.json`, condition system prompts, local `ste_lint` import) that were not all published in the same folder. This package ships the **linter + rules + results snapshots** only. Re-run experiments only if you rebuild that harness.
+The kit's `run-openai.py` needs companion files (`prompts.json`, condition system prompts, local `voice_lint` import) that were not all published in the same folder. This package ships the **linter + rules + results snapshots** only. Re-run experiments only if you rebuild that harness.

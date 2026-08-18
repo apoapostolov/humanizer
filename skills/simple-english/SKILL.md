@@ -1,7 +1,7 @@
 ---
 name: simple-english
 category: writing
-description: "STE (ASD-STE100) rewrite + ste-lint for docs, PRs, errors."
+description: "STE (ASD-STE100) rewrite + voice-lint for docs, PRs, errors."
 tags:
 - ste
 - simplified-technical-english
@@ -9,7 +9,7 @@ tags:
 - anti-slop
 - docs
 - lint
-version: 2.3.0
+version: 2.4.0
 related_skills:
 - writing-prose
 - humanizer
@@ -46,7 +46,7 @@ copyrighted, do not paste the full standard). Additional adaptation from
 AminBlg/SimpleEnglish and the Hermes optional-skill port
 `optional-skills/creative/simple-english` (merged; see monorepo history).
 
-Skill version: **2.3.0** (renamed from `plain-english`; package ship:
+Skill version: **2.4.0** (renamed from `plain-english`; package ship:
 apoapostolov/humanizer repository).
 
 ## When to use
@@ -282,11 +282,11 @@ Same rules, different targets. Full adaptations in
 
 ```bash
 # From this skill directory (repo or install):
-python3 scripts/ste_lint.py path/to/draft.md
-python3 scripts/ste_lint.py < draft.md
+python3 scripts/voice_lint.py path/to/draft.md
+python3 scripts/voice_lint.py < draft.md
 
 # Install path (if installed under writing/):
-python3 ~/.hermes/skills/writing/simple-english/scripts/ste_lint.py path/to/draft.md
+python3 ~/.hermes/skills/writing/simple-english/scripts/voice_lint.py path/to/draft.md
 ```
 
 5. Score = findings per 100 words. In strict mode, use the delta as a form
@@ -295,6 +295,19 @@ python3 ~/.hermes/skills/writing/simple-english/scripts/ste_lint.py path/to/draf
 6. Return the cleaned prose (and the lint summary only if the user wants it).
    For a full audit, run the verification checklist:
    `references/checklist.md` in check mode.
+
+The script (renamed from `ste_lint.py`; the tool is a generic **voice_lint**,
+not STE-locked) also returns two report-only dicts that never count toward the
+score:
+
+- `rhythm`: staccato stacks, negation-fragment tails, and paragraph-closing
+  "Not a X." fragments (AI-slop shape tells).
+- `tells`: cliché global openers, conclusion signposts, hedge softeners,
+  AI buzzwords, and "No A. No B. Just C." negation triads.
+
+Findings there are agent judgment cues, not automatic rewrites. The mechanical
+bans (banned words, marketing adjectives, em dashes, passive voice) are the
+ones that move the score.
 
 ## Self-lint (before return)
 
@@ -350,7 +363,7 @@ Mode examples and mixed-document routing are in
   GPT category breakdown
 - [references/source-and-limits.md](references/source-and-limits.md):
   attribution, what the linter does and does not do
-- [scripts/ste_lint.py](scripts/ste_lint.py): deterministic anti-slop linter
+- [scripts/voice_lint.py](scripts/voice_lint.py): deterministic anti-slop linter
 
 Rule citations reference the ASD-STE100 Issue 9 numbering (as adapted by the
 upstream Hermes simple-english port); the practical substance is merged here.

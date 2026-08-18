@@ -7,7 +7,7 @@ This monorepo splits jobs on purpose.
 | Skill | Job | Ships mechanical engine? |
 | --- | --- | --- |
 | **humanizer** | Natural voice, rewrite, editorial pattern catalog | No |
-| **simple-english** | STE controlled tech prose + `ste_lint.py` | Yes (STE linter) |
+| **simple-english** | STE controlled tech prose + `voice_lint.py` | Yes (STE linter) |
 | **ai-writing-detector** | Deterministic AI-writing *signals* + preservation validate | Yes (`patterns.js`, `validate.js`) |
 
 ## Why detector code is not inside humanizer
@@ -28,7 +28,7 @@ scan and preservation checks.
    samples (never from `document_classification`; default report omits it).
 2. **Improve prose:** `humanizer` rewrite → optional `ai-writing-detector`
    validate on before/after if a file edit must protect code and structure.
-3. **Docs / errors:** `simple-english` (+ ste-lint) rather than AI-signal scoring.
+3. **Docs / errors:** `simple-english` (+ voice-lint) rather than AI-signal scoring.
 4. **Both voice and signals:** analyze first if useful, rewrite with humanizer,
    never reverse the goal into "clear the score."
 5. **Regression:** `bash scripts/smoke.sh` after engine pin bumps.

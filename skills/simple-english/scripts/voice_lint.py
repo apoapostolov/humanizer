@@ -117,6 +117,52 @@ MODAL_HEDGE = [
     "as mentioned",
     "as noted above",
 ]
+# Report-only AI-slop tells (never counted toward `total`). These are softer
+# than the mechanical bans above: each is a real signal, but all have narrow
+# legitimate uses, so they ship in the `tells` dict for agent judgment.
+T_CLICHE_OPENERS = [
+    "in today's fast-paced",
+    "in the ever-evolving",
+    "in the ever changing",
+    "in the dynamic world",
+    "in the evolving landscape",
+    "in the fast-paced digital",
+    "as the world continues to evolve",
+    "in the landscape of",
+    "at the end of the day",
+]
+T_CONCLUSION = [
+    "in conclusion",
+    "to summarize",
+    "in summary",
+    "to wrap up",
+    "in essence",
+]
+T_HEDGE = [
+    "it could be argued",
+    "generally speaking",
+    "to some extent",
+    "in many ways",
+    "one might argue",
+    "arguably",
+]
+T_BUZZ = [
+    "delve",
+    "tapestry",
+    "testament",
+    "ignite",
+    "ignites",
+    "underscore",
+    "underscores",
+    "streamline",
+    "streamlines",
+    "pivotal",
+    "multifaceted",
+    "uncover",
+    "unearths",
+    "harness",
+    "harnesses",
+]
 BE = r"(?:am|is|are|was|were|be|been|being)"
 PP_IRREG = (
     r"(?:done|made|sent|read|built|kept|held|set|put|run|written|shown|"
@@ -168,6 +214,60 @@ def is_neg_fragment(s: str) -> bool:
     if _NEG_VERBS.search(rest):
         return False
     return wc(s) <= 8
+
+
+def detect_tells(raw: str) -> dict:
+    """Report-only AI-slop tells for the agent to judge. Never counts toward
+    `total`; each signal is softer than the mechanical bans and rides on the
+    same low-false-positive discipline as the rhythm detectors.
+    """
+    text = strip_code(raw)
+    low = text.lower()
+
+    def hits(phrases: list[str]) -> tuple[int, list[str]]:
+        n = 0
+        seen: list[str] = []
+        for ph in phrases:
+            c = low.count(ph)
+            if c:
+                n += c
+                seen.append(ph)
+        return n, list(dict.fromkeys(seen))[:6]
+
+    c1, s1 = hits(T_CLICHE_OPENERS)
+    c2, s2 = hits(T_CONCLUSION)
+    c3, s3 = hits(T_HEDGE)
+    c4, s4 = hits(T_BUZZ)
+
+    # negation triad: 3+ consecutive sentence-initial negation fragments
+    # ("No A. No B. Just C."); the Rule-of-Three negation header tell.
+    triads: list[str] = []
+    for line in text.split("\n"):
+        s = line.strip()
+        if not s or s.startswith("|") or re.match(r"^#{1,6}\s", s):
+            continue
+        s = re.sub(r"^[-*+]\s+", "", s)
+        parts = [p.strip() for p in re.split(r"(?<=[.!?:])\s+(?=[A-Z0-9\"'\-])", s) if p.strip()]
+        run = 0
+        for p in parts:
+            if re.match(r"^(?:No|Not|Never|Nothing|None)\b", p):
+                run += 1
+            elif run >= 2 and re.match(r"^Just\b", p):
+                # "No A. No B. Just C."; the Just-capper keeps the triad
+                run += 1
+            else:
+                run = 0
+            if run >= 3:
+                triads.append(s)
+                break
+
+    return {
+        "cliche_openers": {"count": c1, "samples": s1},
+        "conclusion_signposts": {"count": c2, "samples": s2},
+        "hedge_softeners": {"count": c3, "samples": s3},
+        "ai_buzzwords": {"count": c4, "samples": s4},
+        "negation_triads": {"count": len(triads), "samples": triads[:3]},
+    }
 
 
 def sentences(text: str) -> list[str]:
@@ -231,6 +331,7 @@ def lint(text: str) -> dict:
     em = raw.count("\u2014") + raw.count("\u2013")
     total = sum(v.values())
     rhythm = detect_rhythm(raw)
+    tells = detect_tells(raw)
     return {
         "words": words,
         "sentences": len(sents),
@@ -239,6 +340,7 @@ def lint(text: str) -> dict:
         "total_per100w": round(total * 100.0 / words, 2),
         "em_dash(slop-marker)": em,
         "rhythm": rhythm,
+        "tells": tells,
         "longest_sentence_words": (
             max(longs)[0] if longs else max((wc(s) for s in sents), default=0)
         ),

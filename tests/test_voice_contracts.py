@@ -13,9 +13,9 @@ def read_skill(name: str) -> str:
     return (ROOT / "skills" / name / "SKILL.md").read_text(encoding="utf-8")
 
 
-def load_ste_lint():
-    script = ROOT / "skills" / "simple-english" / "scripts" / "ste_lint.py"
-    spec = importlib.util.spec_from_file_location("ste_lint_contract", script)
+def load_voice_lint():
+    script = ROOT / "skills" / "simple-english" / "scripts" / "voice_lint.py"
+    spec = importlib.util.spec_from_file_location("voice_lint_contract", script)
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
@@ -26,8 +26,8 @@ def load_ste_lint():
 class VoiceContractTests(unittest.TestCase):
     def test_skill_and_package_versions_are_aligned(self) -> None:
         versions = {
-            "humanizer": "1.1.1",
-            "simple-english": "2.0.0",
+            "humanizer": "1.2.0",
+            "simple-english": "2.4.0",
             "writing-prose": "1.1.0",
         }
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
@@ -35,7 +35,7 @@ class VoiceContractTests(unittest.TestCase):
         for name, version in versions.items():
             self.assertIn(f"version: {version}", read_skill(name))
             self.assertIn(f"| [`{name}`](skills/{name}/) | `{version}` |", readme)
-        self.assertIn("| package_version | `2.0.1` |", sources)
+        self.assertIn("| package_version | `2.4.0` |", sources)
 
     def test_simple_english_separates_strict_and_flavored_modes(self) -> None:
         skill = read_skill("simple-english")
@@ -49,7 +49,7 @@ class VoiceContractTests(unittest.TestCase):
         self.assertNotIn("\n- American spelling.\n", skill)
 
     def test_natural_copy_findings_require_interpretation(self) -> None:
-        lint = load_ste_lint()
+        lint = load_voice_lint()
         sample = (
             "You'll see the colors already in your scene, so you can reuse one "
             "without rebuilding it by eye. A preset keeps stroke, fill, text, "

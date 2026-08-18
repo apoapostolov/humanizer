@@ -2,9 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.0] - 2026-08-18
+
+ste_lint becomes **voice_lint**: the linter is renamed and un-shackled from
+simple-english, and gains report-only AI-slop "tells" so prose-rule checks
+ride beside the mechanical bans.
+
+- **Rename**: `scripts/ste_lint.py` → `scripts/voice_lint.py`. The tool is a
+  generic voice linter, not STE-locked, and can move to writing-voice. All
+  usage docs, the test contract, SOURCES lands_in, and sibling references
+  updated. Historical changelog entries keep the old name.
+- **New `tells` report-only dict** (never counted toward `total`): cliché
+  global openers, conclusion signposts, hedge softeners, AI buzzwords, and the
+  "No A. No B. Just C." negation triad. Each is a real signal with narrow
+  legitimate uses, so they ship as agent judgment cues rather than violations.
+  Loved the discipline from the 2.3.0 negation-fragment work: paragraph-final
+  scoping, no-verb/no-comma guards, and FP probes before shipping.
+- **simple-english 2.4.0**: version bump for the rename + tells feature.
+
 ## [2.3.0] - 2026-08-18
 
-ste_lint catches the single clipped negation fragment (`"Not a X."`) closing
+voice_lint catches the single clipped negation fragment (`"Not a X."`) closing
 a paragraph. That is the sharper AI-slop tell than staccato stacking.
 
 - **simple-english 2.3.0**: `detect_rhythm()` gains `end_para_neg_fragments`:
@@ -20,7 +38,7 @@ a paragraph. That is the sharper AI-slop tell than staccato stacking.
 Prose-rhythm findings join the mechanical lint, giving the house voice bans
 the same checkable surface as the em dash rule.
 
-- **simple-english 2.2.0**: ste_lint gains `detect_rhythm()` reporting
+- **simple-english 2.2.0**: voice_lint gains `detect_rhythm()` reporting
   staccato stacks (3+ consecutive sentences of six words or fewer) and
   clipped negation-fragment tails ("No X. No Y." closing a paragraph).
   Sentence-length variance ships as context. Markdown-aware: headings break

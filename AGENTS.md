@@ -28,7 +28,7 @@ This repository currently centers on:
   update procedure, packaged skill versions
 - [`skills/humanizer/`](./skills/humanizer/): natural-voice humanizer skill
 - [`skills/simple-english/`](./skills/simple-english/): STE simple-english skill
-  (v2.0.0) + `ste_lint.py`
+  (v2.0.0) + `voice_lint.py`
 - [`skills/ai-writing-detector/`](./skills/ai-writing-detector/): production
   AI-writing signals + preservation validate (v1.0.5); batch summary + CI smoke;
   not a rewrite skill
@@ -214,7 +214,7 @@ links; confirm against stronger sources before editing the skill.
 | Silent post-edit QA checklist | `references/required-checks.md` |
 | Extra long-form heuristics | `references/long-form-diagnostics.md` |
 | Authorship vs style (high-stakes) | `skills/humanizer/references/provenance.md` |
-| STE / plain tech docs / ste-lint | `skills/simple-english/**` |
+| STE / plain tech docs / voice-lint | `skills/simple-english/**` |
 | Display name / default prompt | `skills/*/agents/openai.yaml` |
 | Install paths or public positioning | `README.md` |
 | User-facing capability change | `CHANGELOG.md` |

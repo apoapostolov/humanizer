@@ -41,7 +41,7 @@ replies. Anything a human will read and judge for quality.
 When not to use:
 
 - Strict technical docs, procedures, error messages, release notes: use
-  `simple-english` (STE) with `ste_lint.py` instead.
+  `simple-english` (STE) with `voice_lint.py` instead.
 - "Make this sound human" rewrites of AI text: use `humanizer`.
 - Mechanical AI-signal catalogs or scoring: use `ai-writing-detector`. For
   editorial pattern diagnosis, use the references in this skill or `humanizer`.

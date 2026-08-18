@@ -17,7 +17,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.3.0` |
+| package_version | `2.4.0` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
 | humanizer_skill_version | `1.1.1` |
@@ -62,7 +62,7 @@ sources were touched.
 | path | `skills/simple-english/` |
 | live_clone | `~/.hermes/skills/writing/simple-english` |
 | upstream_kit | `https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop` (original); merged 2026-08-17 from Hermes optional-skill `creative/simple-english` (ASD-STE100 Issue 9 catalog, checklist, use-cases) |
-| lands_in | monorepo `skills/simple-english/` (SKILL, references, `scripts/ste_lint.py`) |
+| lands_in | monorepo `skills/simple-english/` (SKILL, references, `scripts/voice_lint.py`) |
 | note | Strict STE procedures plus a judgment-led flavored mode for technical prose. The linter reports form; it does not own product voice. Formerly `plain-english` (renamed 2026-08-17). |
 
 ### ai-writing-detector

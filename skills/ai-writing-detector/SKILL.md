@@ -58,7 +58,7 @@ into authorship claims.
 ## When not to use
 
 - User wants better prose, voice, or a rewrite → `humanizer`
-- User wants STE/docs form control → `simple-english` (+ `ste_lint.py`)
+- User wants STE/docs form control → `simple-english` (+ `voice_lint.py`)
 - User asks “was this written by AI?” as a verdict → refuse; offer signals +
   provenance, not a classification label
 - Text is a few words → report will mark `too_short`; do not call it clean
