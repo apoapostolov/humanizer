@@ -25,7 +25,7 @@ procedures, safety text, and errors. Use a lighter clarity pass for reference
 documentation, PR descriptions, and technical sections inside mixed documents.
 
 **Pi register: Worker.** Machines and procedures only. README and changelog
-work bounces to `humanizer`. Chat with Apo loads neither skill.
+work bounces to `humanizer`. Chat with the primary user loads neither skill.
 
 **Not for:** code, identifiers, command syntax, product voice, essays, personal
 writing, or any section whose job is to persuade or carry a distinct voice. STE

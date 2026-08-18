@@ -10,7 +10,7 @@ Make text sound natural, specific, and true to its writer. Improve the writing;
 do not optimize for detector evasion or manufacture human-like mistakes.
 
 **Pi register: Human.** Other humans: READMEs, changelogs, public posts, OSS
-issues and PR comments. PR bodies bounce to `simple-english`. Chat with Apo
+issues and PR comments. PR bodies bounce to `simple-english`. Chat with the primary user
 loads neither skill.
 
 ## Establish the brief
