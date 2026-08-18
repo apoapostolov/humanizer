@@ -297,7 +297,9 @@ python3 ~/.hermes/skills/writing/simple-english/scripts/voice_lint.py path/to/dr
    `references/checklist.md` in check mode.
 
 The script (renamed from `ste_lint.py`; the tool is a generic **voice_lint**,
-not STE-locked) also returns two report-only dicts that never count toward the
+not STE-locked; the canonical script lives in
+`~/.hermes/skills/user-profile/writing-voice/scripts/voice_lint.py` and is
+mirrored here for standalone use) also returns two report-only dicts that never count toward the
 score:
 
 - `rhythm`: staccato stacks, negation-fragment tails, and paragraph-closing
