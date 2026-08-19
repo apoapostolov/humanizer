@@ -717,6 +717,64 @@ records an earlier edit, rewrite the paragraph around its main point. Keep real
 alternatives a reader may genuinely weigh in a design doc, tutorial, or
 argument. (Adapted from blader/humanizer, MIT.)
 
+### 81. Rhetorical setup
+
+**Tell:** The text announces insight instead of delivering it: *What if [the
+problem is really X]?*, *Here's what I mean:*, *Think about it:*, *And that's
+okay.* A Socratic question, redundant preview, condescending prompt, or
+permission-granting tagline precedes a point that could stand alone. The
+question is answered immediately, every time.
+
+**Repair:** Make the point. Cut the scaffold and let readers draw the
+conclusion. A genuine open question that the piece later answers with evidence
+is not this pattern; the tell is the setup that exists only to stage the
+answer. (Adapted from hardikpandya/stop-slop, MIT.)
+
+### 82. Narrator from a distance
+
+**Tell:** The prose floats above the scene: *Nobody designed this.*, *This
+happens because...*, *This is why...*, *People tend to...*. A disembodied
+observer describes behavior in general instead of putting the reader in the
+room where it happens.
+
+**Repair:** Put the reader in the scene. *You don't sit down one day and decide
+to write sloppy* beats *Nobody designed this*. Where general statement is the
+actual job (a spec, a summary), keep it; the tell is floating voice used where
+specifics would carry more. (Adapted from hardikpandya/stop-slop, MIT.)
+
+### 83. Announced significance
+
+**Tell:** The text asserts its own difficulty or importance instead of showing
+it: *This is genuinely hard*, *This is what leadership actually looks like*,
+*This is what X actually looks like*, *actually matters*. Telling instead of
+showing, in the register of profundity.
+
+**Repair:** Cut the announcement. Show the hard part or the example. If the
+claim survives only because the announcement is there, the passage was not
+carrying it. (Adapted from hardikpandya/stop-slop, MIT.)
+
+### 84. Additive hedge escalation
+
+**Tell:** Escalating additive constructions: *not just X but also Y*, *not
+merely X but Y*, *X isn't only Y, it's Z*. The negation inflates the second
+item by pretending the first was ever in question.
+
+**Repair:** State Y (or both items) directly. Distinct from pattern 9
+(negative-then-positive contrast): the additive hedge stacks items rather than
+correcting a real misconception. Keep genuine two-part scope (*not just the
+client, the server too*) when both halves are load-bearing facts. (Adapted from hardikpandya/stop-slop, MIT.)
+
+### 85. Template narrative arc
+
+**Tell:** Prefab story templates carry the paragraph: *By the time X, I was
+Y*, *It started with... It ended with...*, *At first... Then...*. The arc does
+real narrative work the writer did not do; events slot into a shape that
+arrived before them.
+
+**Repair:** Report the events in their own order and let the sequence carry
+the arc. Keep the template when the events genuinely follow it and the shape
+is not doing the persuading. (Adapted from hardikpandya/stop-slop, MIT.)
+
 ## Secondary cleanup patterns
 
 Use these patterns after the first cleanup pass. They are common ways a rewrite

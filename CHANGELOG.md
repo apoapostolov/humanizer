@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.0] - 2026-08-19
+
+humanizer absorbs the remaining durable tells from stop-slop (MIT): five new
+pattern-catalog entries close the gap the August ingest left open.
+
+- **New patterns 81-85**: rhetorical setup (*What if...?*, *Think about it:*,
+  *And that's okay*), narrator-from-a-distance, announced significance (*this
+  is what X actually looks like*), additive hedge escalation (*not just X but
+  also Y*), and template narrative arc (*By the time X, I was Y*). Each with
+  tell/repair/carve-outs, cross-referenced against adjacent patterns 9 and 76.
+- **humanizer 1.3.0**: version bump for the five new catalog patterns;
+  SOURCES.md lands_in + ingest_policy updated to record full coverage of the
+  pinned stop-slop tip (8da1f03).
+
 ## [2.4.0] - 2026-08-18
 
 ste_lint becomes **voice_lint**: the linter is renamed and un-shackled from
