@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.1] - 2026-08-19
+
+ai-writing-detector engine pin moves to `b504e20` (upstream tip after
+v3.25.0) for the closing-fence blank guard (upstream PR #127, fixes #77).
+
+- **Engine absorb (patterns.js only)**: `fenceRanges()` now treats a closing
+  Markdown fence as valid only when followed by spaces or tabs (CommonMark).
+  An info string such as ` ```js ` no longer closes an outer fence, so
+  headings inside a fenced block stay masked instead of reaching the
+  title-case-header rule. Patterns byte-for-byte identical to upstream tip.
+- **ai-writing-detector 1.0.6**: version bump for the engine absorb. New
+  `scripts/fence-probe.js` behavioral probe (info-string masking, blank-suffix
+  close, nbsp stays fenced, CRLF close) wired into `smoke.sh`; smoke
+  16/16 green.
+- **blader-humanizer v2.11.1**: checked, release is packaging-only (Claude
+  Desktop-ready flat `humanizer/SKILL.md` zip; no change to the 35 patterns),
+  nothing absorbed. Release pins updated only.
+
 ## [2.5.0] - 2026-08-19
 
 humanizer absorbs the remaining durable tells from stop-slop (MIT): five new

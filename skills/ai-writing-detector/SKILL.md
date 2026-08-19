@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.0.5
+version: 1.0.6
 related_skills:
 - humanizer
 - simple-english
@@ -157,4 +157,4 @@ Self-contained: no external clone required.
 
 Requires **Node.js >= 18** (`package.json` engines). No npm dependencies.
 
-Skill version: **1.0.5**. Engine pin: avoid-ai-writing **v3.25.0**.
+Skill version: **1.0.6**. Engine pin: avoid-ai-writing **v3.25.0+tip** (`b504e20`, closing-fence blank guard).

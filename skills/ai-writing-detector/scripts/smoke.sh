@@ -139,6 +139,8 @@ execFileSync(process.execPath,['$VALIDATE','--fail-on-warnings','$FIX/validate-b
 
 run_check "report module loads" node -e "require('$ROOT/scripts/report.js')"
 
+run_check "fence requires blank closing (#77)" node "$ROOT/scripts/fence-probe.js"
+
 run_check "check-engine-pin runs" bash -c "
   set +e
   out=\$(bash '$ROOT/scripts/check-engine-pin.sh' 2>&1)

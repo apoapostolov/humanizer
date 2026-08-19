@@ -94,6 +94,16 @@ v3.25.0 (2026-08-12) added `actually` as a cut-first hollow intensifier to
 corrective writing. Catalog stays at 62 categories, engine at 48 `type`s.
 Editorial-only absorb into humanizer pattern 57.
 
+Untagged tip `b504e20` (2026-08-19, upstream PR #127, fixes #77) tightened
+`fenceRanges()` so a closing Markdown fence is valid only when followed by
+spaces or tabs (CommonMark). Previously any same-char fence line, including
+an info-string opener such as ```js, closed an outer fence, which exposed
+headings inside a fenced block to the title-case-header detector. Patterns
+byte-for-byte identical to upstream tip; `validate.js` unchanged. Engine pin
+moved to `b504e20`. Detector skill version 1.0.6. No editorial change (engine
+FP/masking fix only). Behavioral probe `scripts/fence-probe.js` added and
+wired into `smoke.sh`.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
