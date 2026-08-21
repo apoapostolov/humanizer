@@ -1,5 +1,6 @@
 # Tech terms and product names used in the vale house vocab.
 # Add project-specific terms here so Vale.Spelling does not flag them.
+READMEs
 Jellyfin
 Jellyseerr
 Overseerr

@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.2] - 2026-08-21
+
+Vale pin moves to `v3.18.0`; blader/humanizer tip checked and absorbed as a
+pin-only update (packaging rework, no new tells).
+
+- **writing-prose 1.1.1**: WSL vale binary updated to 3.18.0 (largest format
+  expansion since 3.0: native MDX, Typst, Quarto, MyST, QDoc, R Markdown;
+  scoping and alert-position fixes). House gate verified on the sample set
+  and a real draft: behavior-neutral on house rules. Win11 winget manifest
+  reached 3.17.1 and still lags 3.18.0; the WSL binary stays canonical.
+- **Vocab**: `READMEs` added to the house accept list (pre-existing
+  `Vale.Spelling` false positive, unrelated to the 3.18.0 upgrade).
+- **blader-humanizer**: tip `e2e92e7` (two commits past v2.11.1) is packaging
+  only: README restructured, plugin symlink and separate Claude Desktop zip
+  removed, SKILL.md description reworded. No change to the 35 patterns, no
+  editorial absorb.
+
 ## [2.5.1] - 2026-08-19
 
 ai-writing-detector engine pin moves to `b504e20` (upstream tip after
