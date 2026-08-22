@@ -137,12 +137,15 @@ Independent of context. Optional. If the writer supplies a sample, match that
 instead of a named profile. The sample outranks generic style defaults when they
 conflict. Do not impose a persona on text that already has one.
 
+Every target below is bounded by the Never-inject guardrails: a voice profile
+can bring out what the source already has, never manufacture what it lacks.
+
 | Voice | Targets |
 | --- | --- |
-| casual | contractions, shorter sentences, concrete touch, low jargon |
-| professional | active voice, varied length, one concrete claim per paragraph, explicit ask |
+| casual | contractions, shorter sentences, keep concrete and first-person touches the source already has, low jargon |
+| professional | active voice, varied length, prefer a concrete claim per paragraph where the source provides one, keep the ask explicit where the source makes one |
 | technical | plain copulas, one idea per sentence, define jargon once, useful lists only |
-| warm | direct "you", cut empty intensifiers, no performative empathy openers |
+| warm | direct "you" and acknowledgment where the source already addresses the reader, cut empty intensifiers, no performative empathy openers |
 | blunt | claim first, periods over dash drama, near-zero hedge stacks |
 
 When voice and context conflict on the same rule, prefer the stricter useful

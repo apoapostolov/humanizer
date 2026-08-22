@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.5.3] - 2026-08-22
+
+avoid-ai-writing pin moves to `v3.25.1` (ca2206c): voice-profile targets
+bound to the Never-inject guardrails (upstream #100 / PR #133, wording
+ported back from wshobson/agents#645).
+
+- **humanizer 1.3.1**: `ai-ism-audit.md` voice-profile table now opens with
+  the binding line ("a voice profile can bring out what the source already
+  has, never manufacture what it lacks") and the casual / professional /
+  warm rows carry bounded targets. The old rows could be read as requiring
+  the editor to add a first-person touch, a concrete claim, an explicit
+  ask, or an acknowledgment the source never contained, which contradicted
+  the Never-inject list two sections above. Now both sections agree.
+  Engine untouched (no detector changes in v3.25.1).
+
 ## [2.5.2] - 2026-08-21
 
 Vale pin moves to `v3.18.0`; blader/humanizer tip checked and absorbed as a

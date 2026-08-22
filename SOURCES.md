@@ -17,10 +17,10 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.5.2` |
+| package_version | `2.5.3` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/` |
-| humanizer_skill_version | `1.1.1` |
+| humanizer_skill_version | `1.3.1` |
 | simple_english_skill_version | `2.4.0` |
 | ai_writing_detector_skill_version | `1.0.6` |
 | writing_prose_skill_version | `1.1.1` |
@@ -28,7 +28,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-08-21T13:45:00-07:00` |
+| last_sources_sync | `2026-08-22T02:20:00-07:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -104,19 +104,19 @@ humanizer.
 | id | `avoid-ai-writing` |
 | status | `active_ingest` |
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
-| release_tag | `v3.25.0` |
-| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.25.0` |
-| last_ingested_version | `3.25.0+tip (b504e20)` |
-| last_ingested_ref | `b504e2086bd3` |
-| last_ingested_at | `2026-08-19T13:30:00-07:00` |
-| last_checked_at | `2026-08-19T13:30:00-07:00` |
-| compare_base | `v3.25.0` |
+| release_tag | `v3.25.1` |
+| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.25.1` |
+| last_ingested_version | `3.25.1 (ca2206c)` |
+| last_ingested_ref | `ca2206c2f5fa` |
+| last_ingested_at | `2026-08-22T02:20:00-07:00` |
+| last_checked_at | `2026-08-22T02:20:00-07:00` |
+| compare_base | `v3.25.1` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.25.0`, or untagged commits on default branch after `b504e20` if the user wants tip tracking. |
+| next_check | On newer tag than `v3.25.1`, or untagged commits on default branch after `ca2206c` if the user wants tip tracking. |
 
 Diff helpers:
 
