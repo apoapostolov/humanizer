@@ -140,6 +140,10 @@ conflict. Do not impose a persona on text that already has one.
 Every target below is bounded by the Never-inject guardrails: a voice profile
 can bring out what the source already has, never manufacture what it lacks.
 
+This table doubles as the tone definition store for the writing-voice subtype
+tones ("casual worker", "professional human", "warm agent"): writing-voice
+routes `<tone> <mode>` requests here and never restates the targets.
+
 | Voice | Targets |
 | --- | --- |
 | casual | contractions, shorter sentences, keep concrete and first-person touches the source already has, low jargon |

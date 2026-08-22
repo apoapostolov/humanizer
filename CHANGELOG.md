@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.6.0] - 2026-08-22
+
+The humanizer voice-profile table becomes the tone definition store for the
+Hermes `writing-voice` subtype tones ("casual worker", "professional human",
+"warm agent"). writing-voice routes `<tone> <mode>` requests to this table
+and never restates the targets.
+
+- **humanizer 1.4.0**: `ai-ism-audit.md` voice-profile section gains a
+  one-line pointer declaring the table doubles as the tone definition store.
+  No target changes; the Never-inject binding from 2.5.3 carries over and
+  governs the tones everywhere they apply.
+
 ## [2.5.3] - 2026-08-22
 
 avoid-ai-writing pin moves to `v3.25.1` (ca2206c): voice-profile targets
