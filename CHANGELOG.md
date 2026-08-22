@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.7.0] - 2026-08-22
+
+New skill: `writing-voice` 1.0.0, the generic (user-agnostic) version of the
+Hermes voice skill.
+
+- Three audience modes (Chat, Human, Worker) plus tone overlays composed
+  from the humanizer voice-profile table (`<tone> <mode>`, e.g. "casual
+  worker", "professional human", "warm agent").
+- Tone definitions live in the humanizer voice-profile table only; the
+  skill routes and never restates them. Never-inject bounds every tone.
+- Contains no personal data: no user facts, no platform names, no host
+  paths beyond a deployment note. Personalized deployments keep their own
+  copy and add user-specific routing on top (documented in the skill's
+  Adaptation notes).
+
 ## [2.6.0] - 2026-08-22
 
 The humanizer voice-profile table becomes the tone definition store for the

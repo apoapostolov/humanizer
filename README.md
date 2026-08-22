@@ -40,6 +40,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the complete release history and
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.0` |
 | Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.0.6` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.1.1` |
+| Pick the right voice for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.0.0` |
 
 Use one skill for the job a section needs. A mixed document does not need to
 pass through all four in sequence.
