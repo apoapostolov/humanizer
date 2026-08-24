@@ -43,10 +43,12 @@ suggestion, not evidence about who wrote the text.
 
 ### edit
 
-Edit a named file in place with minimal targeted patches. Leave clean paragraphs
-alone. Do not rewrite quoted material, code blocks, or attributed speech; flag
-those instead. For large files, confirm scope first. Re-read and report only the
-spans changed plus verification.
+Edit a named file in place with minimal targeted patches. Before editing,
+confirm the target is a prose file. Refuse source code, configuration, and
+generated data files, and say why: a prose rewrite can corrupt structured
+content. Leave clean paragraphs alone. Do not rewrite quoted material, code
+blocks, or attributed speech; flag those instead. For large files, confirm
+scope first. Re-read and report only the spans changed plus verification.
 
 Trigger detect on: detect, flag only, audit only, scan, what AI patterns.
 Trigger edit when the user names a file and wants it fixed in place.

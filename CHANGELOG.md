@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.0] - 2026-08-24
+
+avoid-ai-writing pin moves to `v3.26.0` (three commits past v3.25.1; main
+sits exactly at the tag).
+
+- **humanizer 1.5.0**: edit mode gains the upstream prose-file gate
+  (#101/#136). Before editing a file in place, confirm it is prose and
+  refuse source code, configuration, and generated data files with the
+  reason (a prose rewrite can corrupt structured content). Absorbed into
+  `ai-ism-audit.md`'s edit-mode section in house voice. The existing
+  quoted-material/code-block/table refusals already covered the inside-a-
+  file case; this closes the choose-the-wrong-file case.
+- **Not absorbed**: README's `npx skills add` install section (we ingest
+  from git pins, not the CLI) and the MCP detector server pointer
+  (`avoid-ai-writing-mcp`; our vendored engine lives in
+  ai-writing-detector and stays offline-local). No detector changes;
+  catalog stays 62 / 112.
+
 ## [2.7.0] - 2026-08-22
 
 New skill: `writing-voice` 1.0.0, the generic (user-agnostic) version of the
