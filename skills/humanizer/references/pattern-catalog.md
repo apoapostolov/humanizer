@@ -816,6 +816,12 @@ can remain artificial even after the obvious vocabulary has gone.
   *confirms*, unsupported thresholds, and citation dumps claim more than the
   evidence carries. Match the verb and scope to the evidence, name the baseline,
   and explain the relevant source.
+- **Mid-sentence colon crutch:** A colon used as a connector between two full
+  clauses, often with comparison framing: "Coming from traditional automation:
+  instead of registering handlers, you describe conditions." The colon adds
+  nothing a period or comma would not. Colons stay legitimate before lists,
+  examples, and glosses; rewrite the connective use so the point stands on its
+  own.
 
 ## Delivery and provenance
 

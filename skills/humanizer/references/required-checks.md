@@ -111,6 +111,15 @@ Total below 35/50: revise once more, then re-run only the failed dimensions.
 Do not chase a perfect score for its own sake — the gate exists to catch a
 pass that is still flat, not to manufacture variation.
 
+### Interchangeability test
+
+For each sentence, ask: could this sentence appear unchanged in another
+project's docs or another writer's post? If yes, it carries nothing specific to
+this piece. Replace it with a concrete fact, number, mechanism, or instruction,
+or cut it. This catches feeling-named-instead-of-function prose ("the database
+stays close at hand", "types that follow your schema"); the fix names the
+mechanism (".toSQL() returns the exact string sent to the database").
+
 These checks catch genericity, visible regularity, false specificity, and
 modular structure. They are not goals to manufacture variation for its own sake.
 Subtraction and sharpening are in scope. Addition of stance, personality, or

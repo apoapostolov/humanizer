@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.1] - 2026-08-26
+
+New ingest source: cursor/plugins unslop (`pstack/skills/unslop/SKILL.md`,
+tip@99559f2). Patch bump, ingest-only.
+
+- **humanizer**: three absorbs, all rewritten into house voice:
+  - `vocabulary-tiers.md`: new "Abstract metaphor nouns" table (substrate,
+    wedge, vector, locus, vantage, nexus, primitive-as-noun, flywheel,
+    north star, endgame, and friends) with concrete-word substitutes.
+  - `required-checks.md`: "Interchangeability test" added to the revision
+    gate — a sentence that could appear unchanged in another project's docs
+    carries nothing specific to this piece.
+  - `pattern-catalog.md`: mid-sentence colon crutch joins the secondary
+    cleanup patterns (connective colon with comparison framing; list/example
+    colons stay legitimate).
+- **Not absorbed**: absolute em-dash ban including its no-parentheses /
+  no-en-dash extension (standing reject: hard dash bans as authorship proof);
+  the "adding soul" injection guidance (conflicts with never-inject
+  guardrails); everything else already covered by avoid-ai-writing, blader,
+  or stop-slop catalogs.
+
 ## [2.8.0] - 2026-08-24
 
 avoid-ai-writing pin moves to `v3.26.0` (three commits past v3.25.1; main

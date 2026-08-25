@@ -266,6 +266,35 @@ Prefer structure over stock bridges:
 - At the end of the day → cut
 - That said / That being said → but, yet, however (do not overuse one substitute)
 
+## Abstract metaphor nouns
+
+Jargon nouns that read as technical but usually have a plainer concrete word.
+Pick the concrete word:
+
+| Metaphor noun | Prefer |
+| --- | --- |
+| substrate | base, layer, foundation |
+| wedge (verb: "wedge in") | add, introduce |
+| vector | way, method, direction |
+| locus | place, center |
+| vantage / vantage point | position, view |
+| nexus | hub, link, connection |
+| primitive (as a noun) | building block, basic operation |
+| harness (as a metaphor for a runtime wrapper) | name it: test runner, plugin host |
+| surface ("API surface") | interface, exposed methods |
+| bedrock | foundation, basis |
+| scaffolding (as metaphor) | boilerplate, setup code |
+| modality | type, format, channel |
+| paradigm | model, approach |
+| gold-plating | more polish than the job needs |
+| ratchet (as metaphor) | name the mechanism, or "a limit that only tightens" |
+| flywheel | growth loop, feedback loop |
+| north star | main goal, guiding metric |
+| endgame | last phase, end state |
+| evacuate (for moving code/users) | move out |
+
+Keep any of these when the field uses them as a precise term of art.
+
 ## Hollow intensifiers and endorsement fluff
 
 Cut or replace: genuine / genuinely (empty intensifier), truly, quite frankly, to
@@ -277,6 +306,7 @@ Say why something matters instead of a generic thumbs-up.
 ## Source note
 
 Tables and tier logic follow avoid-ai-writing v3.22.3 (Tier 1A/1B split) and
-brandonwise/humanizer-influenced tiering. Keep this file as a rewrite aid. The
+brandonwise/humanizer-influenced tiering; the abstract-metaphor-nouns table
+absorbs cursor/plugins unslop (tip@99559f2). Keep this file as a rewrite aid. The
 main diagnosis path remains [pattern-catalog.md](pattern-catalog.md) and the
 editing sequence in [humanizing-text.md](humanizing-text.md).

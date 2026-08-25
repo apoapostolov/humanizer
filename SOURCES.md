@@ -17,7 +17,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.8.0` |
+| package_version | `2.8.1` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
 | humanizer_skill_version | `1.5.0` |
@@ -29,7 +29,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-08-22T02:20:00-07:00` |
+| last_sources_sync | `2026-08-26T00:00:00-07:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -185,6 +185,25 @@ git -C hardikpandya-stop-slop fetch origin
 git -C hardikpandya-stop-slop log --oneline 8da1f030185bdfe8471220585162991eaeb970e9..origin/main
 git -C hardikpandya-stop-slop diff 8da1f030185bdfe8471220585162991eaeb970e9..origin/main -- SKILL.md references/
 ```
+
+### 4. cursor/plugins unslop
+
+| Field | Value |
+| --- | --- |
+| id | `cursor-unslop` |
+| status | `active_ingest` |
+| repo | `https://github.com/cursor/plugins` |
+| release_tag | *(none — repo publishes no releases)* |
+| last_ingested_version | `tip@99559f2 (unslop SKILL.md, 2026-08-02)` |
+| last_ingested_ref | `99559f2f52047978602ef365589275831e76af07` |
+| last_ingested_at | `2026-08-26T00:00:00-07:00` |
+| last_checked_at | `2026-08-26T00:00:00-07:00` |
+| local_clone | `cursor-plugins` |
+| clone_policy | third-party → `<git-ext>` only |
+| primary_paths | `pstack/skills/unslop/SKILL.md` (note: under `pstack/`, not `skills/`) |
+| lands_in | `skills/humanizer/references/vocabulary-tiers.md` ("Abstract metaphor nouns" section), `skills/humanizer/references/required-checks.md` ("Interchangeability test" under revision gate), `skills/humanizer/references/pattern-catalog.md` (Secondary cleanup patterns: mid-sentence colon crutch) |
+| ingest_policy | Low-frequency single-file source. Absorb only items not already covered by avoid-ai-writing / blader / stop-slop catalogs. **Reject** the absolute em-dash ban (pattern 13, including its no-parentheses/no-en-dash extension) — standing reject: hard dash bans as authorship proof. **Reject** "adding soul" injection guidance — conflicts with never-inject guardrails (fake first person, manufactured stakes). Rewrite absorbed material into humanizer voice; no wholesale pattern numbering import. |
+| next_check | Diff `99559f2..origin/main -- pstack/skills/unslop/SKILL.md` on scan. |
 
 ## Writing-prose ingest sources
 
