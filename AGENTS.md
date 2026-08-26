@@ -51,6 +51,25 @@ The skills may cooperate, but they must not become a sequential filter stack.
 Route by the job of each section. Simple English controls technical form;
 humanizer preserves a writer; writing-prose shapes broader reader-facing prose.
 
+## Landing pages (non-negotiable)
+
+**Ingest pipeline is off the landing pages.**
+
+Agents may ingest other skills, mods, and upstream catalogs. Do that in
+`SOURCES.md`, `AGENTS.md`, and private maintainer notes only.
+
+Do **not** advertise ingest on:
+
+- `README.md` (no "absorbs X", "new ingest source", upstream pins, or
+  `SOURCES.md` ingest-policy links)
+- `CHANGELOG.md` (user-facing capabilities only — not pin diffs, absorb
+  lists, or "not absorbed" ledgers)
+- GitHub Releases (same rule as the changelog)
+
+What's New = latest version as capabilities the writer gains. Keep
+`SOURCES.md` as the ingest register. Do not cut a GitHub release just
+because an ingest bumped a patch.
+
 ## Source Of Truth Hierarchy
 
 When updating the skill, trust sources in this order:
@@ -235,8 +254,9 @@ When there are real improvements:
 2. Update `SOURCES.md` pins/timestamps for sources you touched
 3. Bump version per `SOURCES.md` policy (ingest-only = **patch only**)
 4. Regenerate `agents/openai.yaml` if interface metadata may be stale
-5. Update `README.md` only if public behavior or install changed
-6. Add concise user-facing notes to `CHANGELOG.md`
+5. Update `README.md` only if public behavior or install changed.
+   Never mention ingest, absorbs, pins, or `SOURCES.md` policy there.
+6. Add concise user-facing notes to `CHANGELOG.md`. No ingest diary.
 7. Sync `skills/humanizer/` → `~/.hermes/skills/writing/humanizer/`
 8. Commit; push/tag only when asked or when releasing
 
@@ -255,6 +275,8 @@ Do not:
 - confuse "natural" with sloppy or "human" with deceptive
 - overfit to one model family
 - duplicate `SOURCES.md` pin tables or update steps into this file
+- advertise ingest, absorbs, or upstream pins on README, CHANGELOG, or
+  GitHub Releases
 
 ## Suggested Prompts
 
@@ -274,6 +296,7 @@ Do not:
 
 - Record external checks and ingests in `SOURCES.md`, not as a second register
   here
+- Ingest pipeline is off the landing pages (README, CHANGELOG, GitHub Releases)
 - Prefer better writing over detector evasion
 - Compare against what the repository already does before adding anything
 - Keep this repo curated, not crowded
