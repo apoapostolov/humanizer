@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.2] - 2026-08-27
+
+vale-cli/vale pin moves to `v3.19.0` (from v3.18.0). Patch bump, pin-only.
+
+- **writing-prose**: WSL binary updated to 3.19.0; `vale sync` re-run for
+  the Microsoft style pack. No house config change: the release is MDX/JSX
+  children linting, Elixir comment extraction, and repeated-occurrence
+  tokens, none of which touch Markdown prose rules we run. House gate
+  verified on the skill set (SKILL.md clean, 0 errors).
+- **Win11 winget** still at 3.17.1 (manifest lag); house config stays
+  compatible with it.
+
 ## [2.8.1] - 2026-08-26
 
 Humanizer now flags empty metaphor nouns and a couple of sentence habits that make a paragraph sound interchangeable with another project's docs.

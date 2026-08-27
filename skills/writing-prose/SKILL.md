@@ -2,7 +2,7 @@
 name: writing-prose
 category: writing
 description: "Draft/revise reader-facing prose with the vale house gate; articles, docs, criticism."
-version: 1.1.1
+version: 1.1.2
 tags:
 - prose
 - revision
