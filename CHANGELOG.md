@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.8.3] - 2026-08-30
+
+The AI-writing signals skill tracks upstream engine release v3.28.0, and the humanizer catalog grows by seven rhetorical-tic patterns.
+
+### Added
+
+- **ai-writing-detector 1.1.0**: engine pin to `v3.28.0` with three new
+  detector types (`performed-insight`, `negation-chain`,
+  `dev-blog-boilerplate`) and `sourceMode: "rendered-markdown"` scoring that
+  masks YAML frontmatter and HTML comments while keeping issue offsets
+  aligned with the source file.
+- **humanizer patterns 86-92** in the catalog: performed insight, negation
+  chain, dev-blog boilerplate, stacked rhetorical questions, same-opener
+  sentence runs, stranded auxiliary contrast, and colon into a triple. The
+  deterministic detector covers only the narrow subset of these; the rest
+  stay editorial judgment.
+
 ## [2.8.2] - 2026-08-27
 
 vale-cli/vale pin moves to `v3.19.0` (from v3.18.0). Patch bump, pin-only.

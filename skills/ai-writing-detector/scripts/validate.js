@@ -5,9 +5,9 @@
  * Prefer scripts/validate-cli.js for CLI. Prefer humanizer for rewrites.
  *
  * SKILL.md promises that a rewrite leaves certain things alone: "Don't edit
- * quoted material, code blocks, or text attributed to someone else" (edit
- * mode), "Preserve the original structure, intent, and all specific technical
- * details" (rewrite mode). Nothing enforced those promises. This does.
+ * quoted material, code blocks, tables, or text attributed to someone else"
+ * (edit mode), "Preserve the original structure, intent, and all specific
+ * technical details" (rewrite mode). Nothing enforced those promises. This does.
  *
  * Usage:
  *   const { validate } = require('./validate.js');
@@ -23,8 +23,9 @@
  * validator:
  *
  *   1. AI-tool URL parameters (`utm_source=chatgpt.com` and friends). SKILL.md
- *      says "strip the parameter from every URL." So URLs are compared with
- *      those parameters removed from both sides.
+ *      says "strip the AI-referrer tracking parameter from every URL that
+ *      carries one." So URLs are compared with those parameters removed from
+ *      both sides.
  *   2. Heading text. SKILL.md says to convert Title Case headings to sentence
  *      case, and to cut emoji from headings. So heading *text* changing is a
  *      warning; heading count and nesting sequence changing is an error.

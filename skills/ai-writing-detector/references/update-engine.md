@@ -104,6 +104,26 @@ moved to `b504e20`. Detector skill version 1.0.6. No editorial change (engine
 FP/masking fix only). Behavioral probe `scripts/fence-probe.js` added and
 wired into `smoke.sh`.
 
+v3.28.0 (2026-08-28) added three new engine `type`s from Simon Willison's LLM
+cliche highlighter: `performed-insight` (weight 3, density-classified like
+tier2), `negation-chain` (weight 5, strong structural tell), and
+`dev-blog-boilerplate` (weight 3). Engine total 48 -> 51 `type`s. The
+deterministic subset is deliberately narrower than the editorial rules:
+performed-insight omits literal "the punchline" / "worth naming" senses;
+negation-chain fires only on sentence-initial chains of three-plus short
+"no ..." items, comma-joined subject-elided "did not ..." chains, and the
+"don't call it X -- call it Y" repeat (two-item chains stay judgment calls);
+dev-blog-boilerplate omits literal "batteries included" but keeps "it just
+works out of the box" detectable without reviving the "works out to" FP.
+The same release added `sourceMode: "rendered-markdown"` to `analyzeText`:
+initial YAML frontmatter and HTML comments are masked before scoring while
+issue and sentence-highlight offsets stay aligned with the source file. The
+`validate.js` comment contract was also refreshed ("tables" joined the
+protected-span list; AI-referrer wording tightened) with no logic change.
+Behavioral probes (hit + FP quiet + rendered-markdown masking) verified at
+absorb time. Detector skill version 1.1.0 (new engine capabilities: 3 rule
+types + scoring source mode).
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

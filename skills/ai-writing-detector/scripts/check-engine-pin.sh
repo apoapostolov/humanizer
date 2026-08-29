@@ -20,13 +20,13 @@ echo "ai-writing-detector engine pin check"
 echo "skill_root=$ROOT"
 echo "patterns_sha=$(sha "$PAT_LOCAL")"
 echo "validate_sha=$(sha "$VAL_LOCAL")"
-echo "expected_upstream_tag=v3.25.0+tip (fence blank-closing guard, pin b504e20, see monorepo SOURCES.md)"
+echo "expected_upstream_tag=v3.28.0 (3 rule types + rendered-markdown source mode, pin 3bd64f1, see monorepo SOURCES.md)"
 
 if [[ -z "$CLONE" ]]; then
   # Common layout — only used if present
   for c in \
     "${HOME}/.local/avoid-ai-writing" \
-    "/mnt/c/git-ext/avoid-ai-writing" \
+    "${HOME}/git-ext/avoid-ai-writing" \
     ; do
     if [[ -f "$c/detector/patterns.js" ]]; then
       CLONE="$c"

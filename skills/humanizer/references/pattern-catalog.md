@@ -775,6 +775,102 @@ arrived before them.
 the arc. Keep the template when the events genuinely follow it and the shape
 is not doing the persuading. (Adapted from hardikpandya/stop-slop, MIT.)
 
+### 86. Performed insight
+
+**Tell:** Essayist tics that announce profundity instead of delivering it:
+*sit with that for a moment*, *that's not nothing*, *you already know the
+answer*, *the punchline is*, *worth naming*, *don't take my word for it*,
+*that's the whole point*, *X is dead; long live X*, and sentence-initial
+*Turns out*. Each stages a reveal; none adds a fact.
+
+**Repair:** State the claim the phrase was gesturing at. *That's not nothing*
+becomes the actual size of the thing; *the punchline is* becomes the point,
+unannounced.
+
+**Carve-outs:** One hit can be a stylistic choice; several in one piece is the
+tell. Quoted speech and genuinely comedic writing keep literal punchlines.
+(Adapted from avoid-ai-writing, MIT.)
+
+### 87. Negation chain
+
+**Tell:** A drumroll of negations performing decisiveness: *No fluff, no
+filler, no jargon*, stacked *didn't ... didn't* clauses (*It didn't ask, it
+didn't wait*), and the negated-then-repeated verb (*Don't call it a pivot.
+Call it a correction*). Extends pattern 76 (negative-listing buildup); the
+chain form is the rhetorical drumroll even without fragment shaping.
+
+**Repair:** Say what the thing is. One negation earns its place when the reader
+would otherwise assume the opposite; a chain of them is staging.
+
+**Carve-outs:** Mid-sentence factual inventories (*takes no arguments, no
+headers, and no body*) and sequential narration with restated subjects (*I did
+not sleep well. I did not eat breakfast.*) are ordinary prose. (Adapted from
+avoid-ai-writing, MIT.)
+
+### 88. Dev-blog boilerplate
+
+**Tell:** Stock simplicity slogans from developer marketing: *batteries
+included*, *it just works*, *zero config*, *sane defaults*, *small enough to
+fit in your head*. Each substitutes a slogan for a property you could
+demonstrate.
+
+**Repair:** Name the concrete behavior. *Installs with no config file* beats
+*zero config*; *the whole API is six functions* beats *fits in your head*.
+
+**Carve-outs:** Quoting a product's own tagline or discussing the phrase
+itself. (Adapted from avoid-ai-writing, MIT.)
+
+### 89. Stacked rhetorical questions
+
+**Tell:** Two or more questions fired in a row, usually fragments after the
+first: *Do I know how it works? Where it breaks? Which corners it cut?* A
+performance of curiosity, not a real question. Extends pattern 81 (rhetorical
+setup) to the chain form.
+
+**Repair:** Keep at most one question, answer it, and convert the rest into the
+statements they were hiding.
+
+**Carve-outs:** Interviews, FAQs, and dialogue stack questions legitimately.
+(Adapted from avoid-ai-writing, MIT.)
+
+### 90. Same-opener sentence runs
+
+**Tell:** Three or more consecutive sentences opening on the same word (*Maybe
+nobody needed it. Maybe it solved the wrong problem. Maybe the timing was
+off.*), or consecutive sentences on one repeated skeleton. Deliberate anaphora
+is a rhetorical device; a run that is not doing persuasive work is a tell.
+
+**Repair:** Keep the first, vary or merge the rest.
+
+**Carve-outs:** Whether the repetition is earned is the judgment; pronoun-opener
+runs (*He... He... He...*) are ordinary narration. (Adapted from
+avoid-ai-writing, MIT.)
+
+### 91. Stranded auxiliary contrast
+
+**Tell:** A reversal landed on a bare auxiliary: *The tool died; the data
+didn't.* One instance is a fine sentence; as a recurring rhythm it is a
+signature move, and the clipped contrast poses as earned insight.
+
+**Repair:** Ration it. If the piece already has one, write the next contrast
+out in full.
+
+**Carve-outs:** The single deliberate instance is legitimate style; only
+density across a piece distinguishes voice from tic. (Adapted from
+avoid-ai-writing, MIT.)
+
+### 92. Colon into a triple
+
+**Tell:** A colon opening onto exactly three comma-separated items: *separate
+ports, processes, and local state*. The default rhythm LLM prose uses to sound
+concrete, whether or not the content has three parts.
+
+**Repair:** Audit the list. If there are really two things, or four, write
+that; if the items are padding, cut to the one that matters.
+
+**Carve-outs:** Three-item lists are often simply true, especially in technical
+writing. Weigh by genre, not per hit. (Adapted from avoid-ai-writing, MIT.)
+
 ## Secondary cleanup patterns
 
 Use these patterns after the first cleanup pass. They are common ways a rewrite
