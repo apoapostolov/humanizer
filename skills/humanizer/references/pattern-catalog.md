@@ -791,6 +791,21 @@ unannounced.
 tell. Quoted speech and genuinely comedic writing keep literal punchlines.
 (Adapted from avoid-ai-writing, MIT.)
 
+### 86. Performed-insight phrases
+
+- Essayist tics that announce profundity instead of delivering it: "sit with
+  that for a moment", "that's not nothing", "you already know the answer",
+  "worth naming", "that's the whole point", "is the entire business model",
+  "that's the part nobody mentions", "the only metric that matters", "X is
+  dead; long live X", and the sentence-initial "Turns out". Each stages a
+  reveal; none adds a fact.
+- One hit can be a stylistic choice; several in one piece is a tell. Fix:
+  state the claim the phrase was gesturing at. "That's not nothing" becomes
+  the actual size of the thing. Carve-out: quoted speech and genuinely
+  comedic writing, where a punchline is literal.
+- Source: Simon Willison's LLM cliché highlighter, via avoid-ai-writing
+  v3.28.0 (MIT). (Adapted from avoid-ai-writing, MIT.)
+
 ### 87. Negation chain
 
 **Tell:** A drumroll of negations performing decisiveness: *No fluff, no

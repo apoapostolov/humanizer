@@ -1,8 +1,8 @@
 /**
- * Avoid AI Writing — preservation validator
- *
  * Packaged in apoapostolov/humanizer as skills/ai-writing-detector/scripts/validate.js
  * Prefer scripts/validate-cli.js for CLI. Prefer humanizer for rewrites.
+ *
+ * Avoid AI Writing — preservation validator
  *
  * SKILL.md promises that a rewrite leaves certain things alone: "Don't edit
  * quoted material, code blocks, tables, or text attributed to someone else"

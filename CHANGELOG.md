@@ -2,7 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.8.3] - 2026-08-30
+## [2.9.0] - 2026-08-29
+
+avoid-ai-writing pin moves to `v3.28.0` (3bd64f1): three commits past
+v3.26.0 (v3.27.0 rendered-markdown source mode + v3.28.0 Willison
+rhetorical-tic categories). Upstream main carries one unreleased docs
+commit; not ingested.
+
+- **Engine vendored at v3.28.0** (ai-writing-detector 1.0.6 → 1.1.0):
+  patterns.js gains `performed-insight`, `negation-chain`,
+  `dev-blog-boilerplate` detector types (48 → 51 types) and
+  `analyzeText({sourceMode: "rendered-markdown"})` frontmatter/comment
+  masking. Upstream test fixtures all pass; house smoke suite 16/16.
+- **humanizer 1.5.0 → 1.6.0**: pattern catalog gains **pattern 86
+  Performed-insight phrases** (the one judgment rule our catalog lacked;
+  the other six Willison categories were already absorbed). Fix guidance
+  and the quoted-speech carve-out carried over in house voice.
+- **Not absorbed**: the unreleased related-work README block (marketing).
+
+## [2.8.0] - 2026-08-24
 
 The AI-writing signals skill tracks upstream engine release v3.28.0, and the humanizer catalog grows by seven rhetorical-tic patterns.
 

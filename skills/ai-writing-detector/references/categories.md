@@ -63,9 +63,9 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | `ai-utm-source` | AI-tool URL parameter | AI-tool URL parameters |
 | `smart-punct-signature` | Smart-punct signature | Formatting (curly quotation marks) — *partial* |
 | `unnecessary-hyphenation` | Unnecessary hyphenation | Unnecessary hyphenation *(curated open, closed, and position-dependent subclasses only)* |
-| `performed-insight` | Performed-insight phrase | Performed insight (pattern 86) - *partial; literal-sense phrases stay judgment calls* |
-| `negation-chain` | Negation chain | Negation chain (pattern 87) - *partial; three-item deterministic threshold, two-item chains stay judgment calls* |
-| `dev-blog-boilerplate` | Dev-blog boilerplate | Dev-blog boilerplate (pattern 88) - *partial; literal "batteries included" stays a judgment call* |
+| `performed-insight` | Performed-insight phrase | Performed-insight phrases — *partial; literal-sense exclusions documented in SKILL.md* |
+| `negation-chain` | Negation chain | Negation chains — *partial; three-item deterministic threshold documented in SKILL.md* |
+| `dev-blog-boilerplate` | Dev-blog boilerplate | Dev-blog boilerplate — *partial; literal-sense exclusion documented in SKILL.md* |
 
 > **Partial map:** `smart-punct-signature` fires only when curly quotes co-occur
 > with an em-dash, an Oxford comma, and clean typing (≥80 words) — never on curly
@@ -73,13 +73,11 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 > corroborating signal in plain-text contexts and excludes apostrophes. The two
 > agree in spirit (curly punctuation is never conclusive on its own) but differ in
 > mechanism — so this is a partial map, not 1:1.
->
-> `performed-insight`, `negation-chain`, and `dev-blog-boilerplate` (v3.28.0,
-> Simon Willison's LLM cliche highlighter) map to humanizer patterns 86-88. The
-> engine matches only the narrow deterministic subset; two-item "no" chains,
-> literal "the punchline" / "worth naming" / "batteries included" senses, and
-> stacked rhetorical questions / same-opener runs / stranded auxiliary
-> contrasts (patterns 89-91) remain editorial judgment with no detector type.
+> `performed-insight` omits literal "the punchline" and "worth naming" senses;
+> `dev-blog-boilerplate` omits literal "batteries included." Those ambiguous
+> surface forms remain judgment rules rather than deterministic matches.
+> `negation-chain` requires three short sentence-initial "no …" items; two-item
+> chains remain judgment calls.
 
 ## B. Detector-only (stylometric / fingerprint — no skill prose)
 
@@ -120,11 +118,11 @@ mistake their absence for a coverage gap:
 - Subjectless fragments and agentless passives *(docs and changelog registers are carve-outs — the fragment is the correct form there)*
 - Diff-anchored writing *(changelogs, release notes, and migration guides are carve-outs)*
 - Manufactured punchlines / staccato drama
+- Aphorism formulas *(a regex for "X is the Y of Z" would flag ordinary genitive copulas — "Paris is the capital of France")*
 - Stacked rhetorical questions *(interviews, FAQs, and dialogue stack questions legitimately; a regex can't read register)*
 - Same-opener sentence runs *(whether the anaphora is earned is the whole judgment; pronoun-opener runs are ordinary narration)*
 - Stranded auxiliary contrast *(a single instance is legitimate style; only density across a piece distinguishes voice from tic)*
 - Colon into a triple *(three-item lists are often simply true, especially in technical writing — weigh by genre, not per hit)*
-- Aphorism formulas *(a regex for "X is the Y of Z" would flag ordinary genitive copulas — "Paris is the capital of France")*
 - When to rewrite from scratch vs. patch
 - Severity tiers (P0 / P1 / P2)
 - Self-reference escape hatch
