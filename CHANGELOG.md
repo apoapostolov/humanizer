@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.1] - 2026-09-05
+
+avoid-ai-writing moves to `v3.29.0` (`d8c2351`) and vale to `3.20.0`.
+
+- **ai-writing-detector 1.1.0 → 1.1.1**: engine vendored at `v3.29.0` with
+  three new detector types (51 → 54): `launch-intro` (product-launch
+  introductions), `crowd-contrast` (claims propped on an invented lagging
+  crowd), and `fake-casual-prop` (stage directions and wink asides). Every
+  rule carries disclosed false-positive residue and deliberate misses;
+  upstream test fixtures pass and house smoke is green.
+- **humanizer catalog patterns 93-95**: the same three tells as editorial
+  entries with repair guidance and carve-outs. A duplicate pattern-86 section
+  was also merged back into one entry.
+- **writing-prose**: vale binary updated to `3.20.0` (WSL; style packs
+  resynced, house gate green). The release is style-authoring focused (rule
+  inheritance, nested rule directories); the house config is unchanged.
+- **Not absorbed**: corpus seed entries (upstream measurement infrastructure)
+  and the readme pattern-count wording.
+
 ## [2.9.0] - 2026-08-29
 
 avoid-ai-writing pin moves to `v3.28.0` (3bd64f1): three commits past

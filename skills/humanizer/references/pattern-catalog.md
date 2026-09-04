@@ -780,8 +780,9 @@ is not doing the persuading. (Adapted from hardikpandya/stop-slop, MIT.)
 **Tell:** Essayist tics that announce profundity instead of delivering it:
 *sit with that for a moment*, *that's not nothing*, *you already know the
 answer*, *the punchline is*, *worth naming*, *don't take my word for it*,
-*that's the whole point*, *X is dead; long live X*, and sentence-initial
-*Turns out*. Each stages a reveal; none adds a fact.
+*that's the whole point*, *is the entire business model*, *that's the part
+nobody mentions*, *the only metric that matters*, *X is dead; long live X*,
+and sentence-initial *Turns out*. Each stages a reveal; none adds a fact.
 
 **Repair:** State the claim the phrase was gesturing at. *That's not nothing*
 becomes the actual size of the thing; *the punchline is* becomes the point,
@@ -789,22 +790,8 @@ unannounced.
 
 **Carve-outs:** One hit can be a stylistic choice; several in one piece is the
 tell. Quoted speech and genuinely comedic writing keep literal punchlines.
-(Adapted from avoid-ai-writing, MIT.)
-
-### 86. Performed-insight phrases
-
-- Essayist tics that announce profundity instead of delivering it: "sit with
-  that for a moment", "that's not nothing", "you already know the answer",
-  "worth naming", "that's the whole point", "is the entire business model",
-  "that's the part nobody mentions", "the only metric that matters", "X is
-  dead; long live X", and the sentence-initial "Turns out". Each stages a
-  reveal; none adds a fact.
-- One hit can be a stylistic choice; several in one piece is a tell. Fix:
-  state the claim the phrase was gesturing at. "That's not nothing" becomes
-  the actual size of the thing. Carve-out: quoted speech and genuinely
-  comedic writing, where a punchline is literal.
-- Source: Simon Willison's LLM cliché highlighter, via avoid-ai-writing
-  v3.28.0 (MIT). (Adapted from avoid-ai-writing, MIT.)
+(Adapted from avoid-ai-writing v3.28.0, MIT; source: Simon Willison's LLM
+cliché highlighter.)
 
 ### 87. Negation chain
 
@@ -885,6 +872,63 @@ that; if the items are padding, cut to the one that matters.
 
 **Carve-outs:** Three-item lists are often simply true, especially in technical
 writing. Weigh by genre, not per hit. (Adapted from avoid-ai-writing, MIT.)
+
+### 93. Launch-copy dramatic introductions
+
+**Tell:** The default LLM move for product and launch posts: *Enter Flowdesk*,
+*Meet Flowdesk, your new favorite treasury dashboard*, *Say hello to Flowdesk*,
+*Think Notion meets Figma*. The product is introduced like a game-show
+contestant instead of being described. Sits next to the stale social-ad tells
+(unlock, elevate, link in bio), but no other entry names the introduction move
+itself.
+
+**Repair:** Say what the thing does and for whom. *Meet Flowdesk, your new
+favorite treasury dashboard* becomes *Flowdesk shows a fund's full treasury
+position on one screen*.
+
+**Carve-outs:** Bare *Enter X* is how UI and documentation instructions are
+written (*Enter Password.*) and how dramatic scripts mark stage entrances, so it
+flags only in launch and announcement copy, by judgment. Bare *Meet X, your new
+[role]* is how humans introduce colleagues, pets, and babies. *Say hello to X*
+covers ordinary human prose. (Adapted from avoid-ai-writing v3.29.0, MIT.)
+
+### 94. Fake-casual register
+
+**Tell:** The register models emit when asked for a lowercase-casual social
+voice, once the vocabulary tiers are clean: one-word verdict closers as the
+whole closing line (*wild.*, *insane.*), stage directions (*checks notes*,
+*chef's kiss*, *mic drop*), wink asides *(yes, really)*, label-prefix openers
+(*hot take*, *fun fact*, *pro tip*, *PSA*, *unpopular opinion*), *because of
+course it does*, and the self-QA volley (*Is it fast? Yes. Is it cheap? Also
+yes*). The drama is outsourced to the prop instead of carried by the content,
+which is why it survives cleanup.
+
+**Repair:** Delete the label and say the thing. Replace the verdict word with
+the specific surprise. Cut the wink and the stage business.
+
+**Carve-outs:** A writer whose established voice runs on these props keeps
+them; the register is a tell for imposed casualness, not a ban on playfulness.
+The deterministic detector covers only the mechanical props (six stage
+directions, four parentheticals, both closed lists). (Adapted from
+avoid-ai-writing v3.29.0, MIT.)
+
+### 95. Dramatized contrast against the crowd
+
+**Tell:** A claim propped on an invented lagging crowd, usually stamped with a
+date: *shipped it in 2022, while everyone else was still debating timelines*,
+*built it in a weekend, while the industry wrote think-pieces*. The crowd is
+invented, so the contrast costs nothing. Adjacent to significance inflation and
+self-labeling significance, but the surface is its own: the trailing *while
+everyone else...* clause with a dismissive verb.
+
+**Repair:** State the fact and cut the crowd clause, or name the actual
+competitor and what they did. If the crowd cannot be named, it was invented.
+
+**Carve-outs:** Literal simultaneity is ordinary narrative and stays
+unflagged: *she read while everyone else watched the movie*. The deterministic
+branch requires the dismissive verb in its -ing form plus *still*; the other
+two branches match their own stereotyped wording (*wrote think-pieces*,
+*played catch-up*). (Adapted from avoid-ai-writing v3.29.0, MIT.)
 
 ## Secondary cleanup patterns
 

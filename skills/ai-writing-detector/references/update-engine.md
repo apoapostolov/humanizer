@@ -124,6 +124,19 @@ Behavioral probes (hit + FP quiet + rendered-markdown masking) verified at
 absorb time. Detector skill version 1.1.0 (new engine capabilities: 3 rule
 types + scoring source mode).
 
+v3.29.0 (2026-09-03) added three more engine `type`s from the
+`welttowelt/stop-slop-refined` merged-system diff (upstream #108):
+`launch-intro` (weight 8, single-hit opener class), `crowd-contrast`
+(weight 6, gated on dismissive verbs in -ing plus "was still"), and
+`fake-casual-prop` (weight 8, closed lists: six asterisk stage directions
+and the four (yes|no) x (really|seriously) parentheticals). Engine total
+51 -> 54 `type`s. Precision-over-recall residue is disclosed per rule:
+two-token product names miss, literal progressive uses of the crowd verbs
+fire, and register neighbours like `*checks calendar*` stay clean on
+purpose. `validate.js` unchanged this release. Behavioral probes (hit +
+FP quiet on person-introductions, UI `Enter` instructions, and literal
+simultaneity) verified at absorb time. Detector skill version 1.1.1.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

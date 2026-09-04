@@ -17,19 +17,19 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.8.3` |
+| package_version | `2.9.1` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
 | humanizer_skill_version | `1.6.0` |
 | simple_english_skill_version | `2.4.0` |
-| ai_writing_detector_skill_version | `1.1.0` |
+| ai_writing_detector_skill_version | `1.1.1` |
 | writing_prose_skill_version | `1.1.2` |
 | writing_voice_skill_version | `1.0.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-08-29T14:06:00-07:00` |
+| last_sources_sync | `2026-09-05T00:00:00-07:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -72,10 +72,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.1.0` |
+| skill_version | `1.1.1` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ tag `v3.28.0` (`3bd64f1`; performed-insight + negation-chain + dev-blog-boilerplate, rendered-markdown source mode) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ tag `v3.29.0` (`d8c2351`; launch-intro + crowd-contrast + fake-casual-prop) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Production signals-only report. Batch summary, quiet, CI smoke. Not rewrite/evasion/authorship. |
 
@@ -105,19 +105,19 @@ humanizer.
 | id | `avoid-ai-writing` |
 | status | `active_ingest` |
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
-| release_tag | `v3.28.0` |
-| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.28.0` |
-| last_ingested_version | `3.28.0 (3bd64f1)` |
-| last_ingested_ref | `3bd64f19f41a` |
-| last_ingested_at | `2026-08-29T14:06:00-07:00` |
-| last_checked_at | `2026-08-29T14:06:00-07:00` |
-| compare_base | `v3.28.0` |
+| release_tag | `v3.29.0` |
+| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.29.0` |
+| last_ingested_version | `3.29.0 (d8c2351)` |
+| last_ingested_ref | `d8c235186ff7` |
+| last_ingested_at | `2026-09-05T00:00:00-07:00` |
+| last_checked_at | `2026-09-05T00:00:00-07:00` |
+| compare_base | `v3.29.0` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–92), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.28.0`, or untagged commits on default branch after `3bd64f1` if the user wants tip tracking. |
+| next_check | On newer tag than `v3.29.0`, or untagged commits on default branch after `d8c2351` if the user wants tip tracking. |
 
 Diff helpers:
 
@@ -220,16 +220,16 @@ by the scan script via the GitHub releases API (no local clone needed).
 | status | `active_ingest` |
 | kind | `release_api` (Go binary + style packs; no vendored prose) |
 | repo | `https://github.com/vale-cli/vale` |
-| release_tag | `v3.19.0` |
-| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.19.0` |
-| last_ingested_version | `3.19.0` |
-| last_ingested_at | `2026-08-27` |
-| last_checked_at | `2026-08-27T13:55:00-07:00` |
-| win11_winget | `errata-ai.Vale` 3.17.1 (winget lags; WSL binary is canonical at 3.19.0) |
+| release_tag | `v3.20.0` |
+| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.20.0` |
+| last_ingested_version | `3.20.0` |
+| last_ingested_at | `2026-09-05` |
+| last_checked_at | `2026-09-05T00:00:00-07:00` |
+| win11_winget | `errata-ai.Vale` 3.17.1 (winget lags; WSL binary is canonical at 3.20.0) |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |
-| next_check | On a release tag newer than `v3.19.0`, or a winget manifest newer than `3.17.1`. |
+| next_check | On a release tag newer than `v3.20.0`, or a winget manifest newer than `3.17.1`. |
 
 ## Monitor-only sources
 
