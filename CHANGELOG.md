@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.3] - 2026-09-08
+
+avoid-ai-writing tip `a465548` past `v3.33.0` (no new tag).
+
+- **ai-writing-detector 1.1.2 → 1.1.3**: the `em-dash` rule weight drops 4
+  to 0, so over-limit dashes stay visible as P2 writing-quality flags
+  without moving the score, label, probabilities, or classification
+  (upstream #73). Vendored `patterns.js` is byte-identical to upstream tip.
+  House smoke is green plus a behavioral probe (dash-heavy text flags but
+  scores the same as its baseline).
+- **humanizer 1.6.1 → 1.6.2**: pattern 7 notes dash frequency is a style
+  judgment, never an authorship signal, matching upstream's new zero
+  weight. The house rule was already there; upstream caught up.
+- **Held**: the bare-URL quote-boundary fix in upstream
+  `scripts/markdown-prose.js` (packaging tooling we do not vendor) and the
+  README follow invitation (packaging noise).
+
 ## [2.9.2] - 2026-09-06
 
 avoid-ai-writing moves to `v3.33.0` (`6da13ad`) and blader/humanizer to

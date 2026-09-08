@@ -79,7 +79,9 @@ abstraction.
 in one passage.
 
 **Repair:** Keep a dash for a real interruption or turn. Use a period, comma,
-colon, or reordered sentence elsewhere.
+colon, or reordered sentence elsewhere. Dash frequency is a style judgment,
+never an authorship signal: upstream scores it at zero weight for the same
+reason the house rule already states below.
 
 ### 8. Rule-of-three padding
 

@@ -156,6 +156,18 @@ pattern 9/72/74 extensions, not as engine changes. Behavioral probes
 (load-bearing allowlist hit + FP quiet + predicative quiet; CRLF frontmatter
 protection) verified at absorb time. Detector skill version 1.1.2.
 
+v3.33.0+tip `a465548` (2026-09-08; no new tag) changes the engine in one
+place. `patterns.js`: the `em-dash` rule weight drops 4 to 0, so over-limit
+dashes stay visible as P2 writing-quality flags without moving the score,
+label, probabilities, confidence, or classification (upstream #73). The
+technical-mode comment refreshes to match: prose-only rules carry their own
+gates instead of a blanket em-dash weight cut. `validate.js` unchanged.
+Vendored `patterns.js` is byte-identical to upstream tip. The URL
+quote-boundary fix in upstream `scripts/markdown-prose.js` is packaging
+tooling we do not vendor, so it stays held. Behavioral probe (em-dash-heavy
+text: flag visible, score and label unchanged vs baseline) verified at absorb
+time. Detector skill version 1.1.3.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
