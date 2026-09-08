@@ -92,9 +92,23 @@ beats three generic ones.
 ### 9. Negative-then-positive clarification
 
 **Tell:** Repeated *It is not X. It is Y.* and *X rather than Y* constructions
-manufacture emphasis or sophistication without sharpening the distinction.
+manufacture emphasis or sophistication without sharpening the distinction. The
+same move hides at larger scales: a split-sentence contrast (*This does not
+mean every choice is equal. It means no system confirms which is right.*), a
+multi-negation countdown stacking several rejections before the reveal (*It is
+not the price. It is not the features. It is the trust.*), and a clipped
+negative tail tacked onto a sentence (*The options come from the selected
+item, no guessing.*).
 
-**Repair:** State the claim directly or make the contrast factual.
+**Repair:** State the claim directly or make the contrast factual. Cut a
+countdown straight to the positive claim. Write a clipped tail as a real
+clause (*without forcing the user to guess*) or cut it.
+
+**Carve-outs:** Keep a contrast when the negative half corrects a belief the
+reader actually holds, or when both halves carry information. Negations
+enumerating spec constraints in a list (*no dependencies, no telemetry*) are
+list content, not a reveal. (Split-sentence, countdown, and tail forms adapted
+from avoid-ai-writing v3.33.0 and blader/humanizer v3.0.0, MIT.)
 
 ### 10. Copula avoidance
 
@@ -606,6 +620,15 @@ assumption*) outside structural engineering.
 **Repair:** Say essential, critical, or what breaks if removed. Keep literal
 building uses.
 
+**Boundary:** Flag hyphenated *load-bearing* only when it immediately modifies
+*assumption*, *claim*, *invariant*, *premise*, *constraint*, *dependency*,
+*argument*, or *abstraction* (including plurals). Unhyphenated *load bearing*
+is ordinary English. Unlisted nouns, intervening modifiers, mixed
+physical-or-abstract nouns (*structure*, *element*, *frame*, *foundation*),
+and predicative uses (*the wall is load-bearing*) pass. This deliberately
+misses some metaphors to avoid flagging ordinary writing. (Adapted from
+avoid-ai-writing v3.33.0, MIT.)
+
 ### 73. Narrated candor
 
 **Tell:** The prose announces its own disclosure instead of disclosing:
@@ -643,6 +666,18 @@ market rewards*. AI leans on this because it avoids naming the actor.
 **Repair:** Name the human. *The team fixed it that week* beats *the complaint
 becomes a fix*. If no specific person fits, use *you* to put the reader in the
 seat. (Adapted from hardikpandya/stop-slop, MIT.)
+
+Judgment-only P2: flag an obscured accountable decision-maker, as in *the
+decision emerged after the offsite* with no decider named. Apply only when a
+specific person or team exercised judgment and naming them matters to the
+passage. Name the actor only when the source identifies them; otherwise ask
+who decided instead of inventing a decider. Preserve conventional
+personification (*the data shows adoption is early*), literal system behavior,
+collective shorthand (*the market rewards shipping*), emergent change (*the
+culture shifted*), and causal dependence (*a bet lives or dies on
+distribution*). A consequential choice attributed to an abstraction, with its
+responsible actor missing, still flags. (P2 extension adapted from
+avoid-ai-writing v3.33.0, MIT.)
 
 ### 75. Wh- opener crutch
 
@@ -929,6 +964,63 @@ unflagged: *she read while everyone else watched the movie*. The deterministic
 branch requires the dismissive verb in its -ing form plus *still*; the other
 two branches match their own stereotyped wording (*wrote think-pieces*,
 *played catch-up*). (Adapted from avoid-ai-writing v3.29.0, MIT.)
+
+### 96. Transformation crutch
+
+**Tell:** Repeated unexplained relabeling across a passage: *the concern turns
+into panic*, *a feature turns into a strategy*, *the risk becomes real*. The
+passage asserts a change without the action, threshold, or consequence that
+would make it one.
+
+**Repair:** Ask what changed and read the surrounding passage before deciding
+the explanation is missing. Rewrite from supplied facts; never invent a
+mechanism or actor. If the explanation was already present elsewhere, leave
+the sentence alone.
+
+**Carve-outs:** Literal transformations (*water turns into ice*), supported
+metaphors, and changes explained anywhere in the passage pass, including
+deliberate summaries of explained changes. Judgment-only P2, not authorship
+evidence. (Adapted from avoid-ai-writing v3.31.0, MIT.)
+
+### 97. Consequence-free restatement
+
+**Tell:** *This matters because* or *here is why that matters* introduces a
+restatement of importance rather than a reason: *This matters because it is
+important.* The frame promises stakes and delivers the premise again.
+
+**Repair:** Cut the empty frame, or replace it with an explanation already
+present in the source. Never invent stakes. Preserve the frame when a concrete
+consequence follows (*This matters because retries can charge the customer
+twice*). Judgment-only P2 clarity check. (Adapted from avoid-ai-writing
+v3.31.0, MIT.)
+
+### 98. Repeated empty concessions
+
+**Tell:** Concession pairs staged to sound honest without saying where the
+claim fails: *Not always. Not perfectly.* repeated across a passage. One
+honest hedge becomes a rhythm of performed humility.
+
+**Repair:** Fold repeated empty concessions into a limitation already stated
+in the source, or cut them. Never invent a failure case.
+
+**Carve-outs:** Meaningful concessions (*Not during failover. Not for expired
+tokens*) and an isolated intentional pair pass. Judgment-only P2. (Adapted
+from avoid-ai-writing v3.31.0, MIT.)
+
+### 99. Repeated setup/reversal punchlines
+
+**Tell:** Two or more paraprosdokian reversals in one piece, especially in
+hooks, closers, or final list items: each sentence sets an expectation in its
+first half and flips it in the second, so repeated flips replace concrete
+claims with generic surprise or deflation. This concerns setup and payoff
+across sentences; pattern 77 covers runs of same-shape fragments.
+
+**Repair:** Keep at most one reversal and give the rest concrete claims.
+Treat as a clarity and rhythm edit, not proof of authorship.
+
+**Carve-outs:** Supported reversals, isolated intentional lines, and genuine
+comedy, fiction, speeches, and quotations pass. Repetition alone is not a
+finding. Judgment-only P2. (Adapted from avoid-ai-writing v3.30.0, MIT.)
 
 ## Secondary cleanup patterns
 

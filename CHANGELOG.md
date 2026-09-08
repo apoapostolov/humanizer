@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.2] - 2026-09-06
+
+avoid-ai-writing moves to `v3.33.0` (`6da13ad`) and blader/humanizer to
+`v3.0.0` (`9862685`).
+
+- **ai-writing-detector 1.1.1 → 1.1.2**: engine vendored at `v3.33.0` with
+  two precise fixes. The `load-bearing` rule flips from a structural-noun
+  blocklist to an abstract-noun allowlist (fires only before assumption,
+  claim, invariant, premise, constraint, dependency, argument, or
+  abstraction; literal, predicative, and unlisted uses pass), trading recall
+  for precision. The preservation validator normalizes CRLF line endings up
+  front so frontmatter and tables in Windows-authored documents stay visible
+  to protection checks. House smoke is green plus behavioral probes for both
+  fixes.
+- **humanizer 1.6.0 → 1.6.1**: catalog grows to patterns 96-99 as
+  judgment-only P2 entries (transformation crutch, consequence-free
+  restatement, repeated empty concessions, repeated setup/reversal
+  punchlines), each with carve-outs and a never-invent repair rule. Pattern
+  9 gains split-sentence, multi-negation, and tailing-negation forms.
+  Pattern 72 adopts the abstract-noun boundary; pattern 74 gains the
+  obscured-decision-maker P2. Required checks gain a five-tell post-rewrite
+  sweep (contrast, closer, dash, triad, bold label).
+- **Not absorbed**: OpenAI plugin packaging, quote-normalizer and
+  style-checker scripts, SKILL-to-references split, and prose-contract
+  rewordings (packaging and tooling, not editorial knowledge); blader v3.0
+  strength ordering kept as upstream organization, with its durable
+  workflow and carve-outs folded into the entries above.
+
 ## [2.9.1] - 2026-09-05
 
 avoid-ai-writing moves to `v3.29.0` (`d8c2351`) and vale to `3.20.0`.

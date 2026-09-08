@@ -137,6 +137,25 @@ purpose. `validate.js` unchanged this release. Behavioral probes (hit +
 FP quiet on person-introductions, UI `Enter` instructions, and literal
 simultaneity) verified at absorb time. Detector skill version 1.1.1.
 
+v3.30.0–v3.33.0 (2026-09-05; single absorb) changed the engine in exactly two
+places. `patterns.js`: the `load-bearing` rule flipped from a structural-noun
+blocklist (fire unless a building noun follows) to an abstract-noun allowlist
+(fire only before assumption, claim, invariant, premise, constraint,
+dependency, argument, or abstraction, including plurals). Literal building
+uses, unlisted nouns, intervening modifiers, mixed physical-or-abstract nouns
+(structure, element, frame, foundation), and predicative uses now pass by
+construction: precision over recall, with the missed-metaphor residue disclosed
+in the rule comment (upstream #56). `validate.js`: CRLF line endings normalize
+to LF once, up front, so YAML frontmatter and table blocks in Windows-authored
+documents stay visible to the protection extractors; a lone carriage return
+remains meaningful and still compares exactly. v3.30.0–v3.32.0 editorial
+additions (repeated setup/reversal punchlines, judgment-only clarity rules,
+quote normalizer, SKILL-to-references split, OpenAI plugin packaging) carry no
+engine delta and were absorbed as humanizer catalog entries 96–99 plus
+pattern 9/72/74 extensions, not as engine changes. Behavioral probes
+(load-bearing allowlist hit + FP quiet + predicative quiet; CRLF frontmatter
+protection) verified at absorb time. Detector skill version 1.1.2.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

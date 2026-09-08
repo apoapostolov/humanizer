@@ -270,7 +270,9 @@ Use these with the catalog. Prefer clusters and reader impact over single hits.
 - **Diff-anchored writing:** docs narrating the edit instead of current
   behavior. Carve out changelogs, release notes, migration guides, ADRs.
 - **Manufactured punchlines / staccato drama:** three or more same-shape reveal
-  fragments in a row. One emphatic fragment can be human variation.
+  fragments in a row. One emphatic fragment can be human variation. Repeated
+  setup/reversal flips across sentences are the same move at a larger scale;
+  flag at P2 only when they replace concrete claims (patterns 98-99).
 - **Paragraph-reshuffle immunity:** if body paragraphs can swap without loss,
   the piece is a list of modules, not a building argument. Add dependency or
   make the list explicit.

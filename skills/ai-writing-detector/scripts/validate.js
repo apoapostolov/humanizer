@@ -175,6 +175,17 @@ const AIDetectorValidate = (() => {
       throw new TypeError('validate(original, rewritten): both arguments must be strings');
     }
 
+    // Every extractor below anchors on a bare \n. A Windows-authored document
+    // arrives with CRLF, so YAML_FRONTMATTER and TABLE_BLOCK match nothing and
+    // their protected content turns invisible here: frontmatter could be
+    // rewritten and validate() would still return ok. Normalize once, up
+    // front, so extraction sees one line-ending shape. A rewrite that only
+    // re-terminates CRLF lines is not a preservation failure, but a lone
+    // carriage return can be meaningful code content and must remain visible
+    // to the exact-content comparisons.
+    original = original.replace(/\r\n/g, '\n');
+    rewritten = rewritten.replace(/\r\n/g, '\n');
+
     // ── Fenced code: exact, in order. Code is never the skill's business. ──
     const origFenced = extractAll(FENCED_CODE, original);
     const newFenced = extractAll(FENCED_CODE, rewritten);
