@@ -3,6 +3,11 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+
+# node.exe is a native binary: convert MSYS paths to C:/ form.
+if command -v cygpath >/dev/null 2>&1; then
+  ROOT="$(cygpath -m "$ROOT")"
+fi
 ANALYZE="$ROOT/scripts/analyze.js"
 VALIDATE="$ROOT/scripts/validate-cli.js"
 FIX="$ROOT/fixtures"
