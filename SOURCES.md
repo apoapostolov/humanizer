@@ -17,7 +17,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.9.3` |
+| package_version | `2.9.4` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
 | humanizer_skill_version | `1.6.2` |
@@ -220,12 +220,12 @@ by the scan script via the GitHub releases API (no local clone needed).
 | status | `active_ingest` |
 | kind | `release_api` (Go binary + style packs; no vendored prose) |
 | repo | `https://github.com/vale-cli/vale` |
-| release_tag | `v3.20.0` |
-| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.20.0` |
-| last_ingested_version | `3.20.0` |
-| last_ingested_at | `2026-09-05` |
-| last_checked_at | `2026-09-05T00:00:00-07:00` |
-| win11_winget | `errata-ai.Vale` 3.17.1 (winget lags; WSL binary is canonical at 3.20.0) |
+| release_tag | `v3.21.0` |
+| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.21.0` |
+| last_ingested_version | `3.21.0` |
+| last_ingested_at | `2026-09-11` |
+| last_checked_at | `2026-09-11T00:00:00-07:00` |
+| win11_winget | `errata-ai.Vale` 3.17.1 (winget still lags; WSL binary is canonical at 3.21.0) |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |

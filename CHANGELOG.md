@@ -2,7 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.9.3] - 2026-09-08
+## [2.9.4] - 2026-09-11
+
+vale-cli/vale `v3.20.0` → `v3.21.0` (pin refresh).
+
+- **writing-prose 1.1.2 → 1.1.3**: the house gate now runs on vale 3.21.0.
+  Style packs re-synced; house config unchanged and still single-voice
+  (HermesHouse over Microsoft). No new config keys needed: the release adds
+  `doc(...)` selections, TextFSM views, and Jupyter support, none of which
+  the house style uses yet.
 
 avoid-ai-writing tip `a465548` past `v3.33.0` (no new tag).
 
