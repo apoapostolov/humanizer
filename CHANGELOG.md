@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.9.5] - 2026-09-12
+
+avoid-ai-writing `v3.34.0` (`b3e4bbd`). No engine delta versus tip `a465548`.
+
+- **Pin only.** `detector/patterns.js` and `detector/validate.js` are unchanged
+  from the #73 em-dash zero-weight absorb. Detector skill stays 1.1.3.
+  Humanizer skill stays 1.6.2 (pattern 7 note already matches).
+- **Held:** upstream CLI (`bin/avoid-ai-writing.js`, #158), pattern-proposal
+  issue form, SSOT CI, README npm/follow docs. We already ship analyze and
+  validate CLIs; house style does not need their packaging layer.
+
 ## [2.9.4] - 2026-09-11
 
 vale-cli/vale `v3.20.0` → `v3.21.0` (pin refresh).

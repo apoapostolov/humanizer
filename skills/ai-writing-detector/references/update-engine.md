@@ -168,6 +168,14 @@ tooling we do not vendor, so it stays held. Behavioral probe (em-dash-heavy
 text: flag visible, score and label unchanged vs baseline) verified at absorb
 time. Detector skill version 1.1.3.
 
+v3.34.0 (2026-09-11; no-engine-delta) does not change `detector/patterns.js`,
+`detector/validate.js`, or `detector/CATEGORIES.md` versus tip `a465548`.
+The tag wraps the already-absorbed em-dash zero-weight (#73) plus a new
+zero-dependency CLI (`bin/avoid-ai-writing.js`), a pattern-proposal issue
+form, SSOT CI, and README/npm docs. We do not vendor the CLI: this package
+already ships `analyze.js` / `validate-cli.js`. Detector skill version stays
+1.1.3. Engine pin stays `a465548`.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
