@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.11.0] - 2026-09-12
+
+Generic writing-voice sample harvest.
+
+- **writing-voice 1.0.0 → 1.1.0:** on-demand compiled profile from the
+  user's own samples (`references/voice-from-samples.md`), fingerprint
+  collision rule, a few portable hard bans. No identity facts. Personalized
+  Hermes copy stays private.
+
 ## [2.10.0] - 2026-09-12
 
 Chase mode and hosted detector spread.
