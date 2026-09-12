@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.10.0] - 2026-09-12
+
+Chase mode and hosted detector spread.
+
+- **humanizer 1.6.2 → 1.7.0:** Chase depth iterates on `ai-writing-detector`
+  scores. Fingerprint gate (keep / ask / never inject) for social drafts.
+  Cargo-cult evasion (typos, fake personality) still rejected.
+- **ai-writing-detector 1.1.3 → 1.2.0:** `scripts/test_detectors.py` with
+  `--demo` (offline) and `--upload` (hosted APIs, full-draft disclosure).
+  Authorship claims still refused.
+
 ## [2.9.5] - 2026-09-12
 
 avoid-ai-writing `v3.34.0` (`b3e4bbd`). No engine delta versus tip `a465548`.

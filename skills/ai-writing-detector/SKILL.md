@@ -1,14 +1,14 @@
 ---
 name: ai-writing-detector
 category: writing
-description: "Production AI-writing signal scan + preservation validate. Not evasion or authorship proof."
+description: "AI-writing signal scan, hosted detector spread, preservation validate. Not authorship proof."
 tags:
 - detector
 - ai-isms
 - signals
 - audit
 - validate
-version: 1.1.3
+version: 1.2.0
 related_skills:
 - humanizer
 - simple-english
@@ -20,13 +20,15 @@ related_skills:
 Production skill for **deterministic** AI-writing **signals** and rewrite
 **preservation** checks.
 
-This is not humanizer. Humanizer improves writing and voice. This skill measures
-surface signals and protected-span integrity, then refuses to launder scores
-into authorship claims.
+This is not humanizer. Humanizer improves writing and voice, including Chase
+mode that consumes these scores. This skill measures surface signals, hosted
+detector spread, and protected-span integrity. It still refuses to launder
+scores into authorship claims.
 
 ## Mission
 
 - Flag regex-detectable AI-writing patterns (vendored engine)
+- Run an optional **hosted spread** tester (uploads only with `--upload`)
 - Emit a **sanitized report** (`interpretation: signals_only`) by default
 - Separate Tier 1A markers from Tier 1B clarity hits
 - Validate rewrites did not trash code, URLs, tables, or structure
@@ -36,9 +38,12 @@ into authorship claims.
 
 - **Signals, not proof.** Never use output alone for academic integrity, hiring,
   discipline, or attribution.
-- **Not detector evasion.** Do not minimize a score. Do not add typos or noise.
-  Quality rewrites → `humanizer`. STE docs → `simple-english`.
-- **Do not invent facts** to clear flags.
+- **Chase is allowed.** `humanizer` Chase mode may iterate on these scores.
+  Do not add typos, noise, invented facts, or fake first person to move a
+  number. House bans still win.
+- **Uploads need consent.** Hosted APIs send the full draft off-machine. Require
+  `--upload` and skip embargoed or NDA copy. See
+  [references/hosted-detectors.md](references/hosted-detectors.md).
 - Prefer clusters and reader impact over single weak hits.
 - Default CLI/JSON **omits** authorship-shaped engine fields
   (`document_classification`, `class_probabilities`, `confidence_category`).
@@ -49,8 +54,10 @@ into authorship claims.
 | Need | Load |
 | --- | --- |
 | Natural rewrite / voice | `humanizer` |
+| Chase hosted or local scores | `humanizer` Chase, then this skill |
 | STE / docs form control | `simple-english` |
 | Score, issue list, category map | **this skill** |
+| Hosted detector spread | **this skill** (`test_detectors.py`) |
 | Preserve code/URLs/structure after edit | **this skill** (`validate`) |
 | Cron / batch signal scan | **this skill** (`--quiet`, multi-file) |
 | Authorship claim | provenance — not this score |
@@ -62,7 +69,7 @@ into authorship claims.
 - User asks “was this written by AI?” as a verdict → refuse; offer signals +
   provenance, not a classification label
 - Text is a few words → report will mark `too_short`; do not call it clean
-- You are tempted to edit only to lower the score → stop; that is evasion
+- Confidential draft + `--upload` → stop; use local `analyze.js` or `--demo`
 
 ## Modes
 
@@ -96,6 +103,17 @@ echo 'text' | node scripts/analyze.js --stdin
 Human text puts **warnings first** (short-input trap visible before a low score)
 and labels tier1 as 1A markers vs tier1-clarity as 1B.
 
+### hosted spread
+
+```bash
+python scripts/test_detectors.py --demo --text "draft"
+python scripts/test_detectors.py --upload --text "draft"
+python scripts/test_detectors.py --upload --stdin --json report.json
+```
+
+`--upload` sends the full draft off-machine. Details:
+[references/hosted-detectors.md](references/hosted-detectors.md).
+
 ### validate
 
 ```bash
@@ -118,6 +136,8 @@ Warnings: reworded headings, missing figures, large word drop.
 - [references/relationship-to-humanizer.md](references/relationship-to-humanizer.md)
 - [references/examples.md](references/examples.md)
 - [references/update-engine.md](references/update-engine.md)
+- [references/hosted-detectors.md](references/hosted-detectors.md)
+- [references/hosted-detector-list.md](references/hosted-detector-list.md)
 
 ### smoke / pin check / CI
 

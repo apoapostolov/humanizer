@@ -1,13 +1,14 @@
 ---
 name: humanizer
 description: Humanize AI-sounding text with natural rewrites, voice preservation, editorial critique, and optional AI-ism audit modes.
-version: 1.6.2
+version: 1.7.0
 ---
 
 # Humanizer
 
-Make text sound natural, specific, and true to its writer. Improve the writing;
-do not optimize for detector evasion or manufacture human-like mistakes.
+Make text sound natural, specific, and true to its writer. Improve the writing.
+When asked to chase detectors, reduce mechanical tells and hosted scores without
+manufacturing a fake person, inventing facts, or leaking a confidential draft.
 
 **Pi register: Human.** Other humans: READMEs, changelogs, public posts, OSS
 issues and PR comments. PR bodies bounce to `simple-english`. Chat with the primary user
@@ -47,15 +48,21 @@ the thought better than the mechanically cleaner alternative.
 - **Critique:** Diagnose the strongest problems and recommend repairs without
   rewriting.
 - **Detect:** Flag AI-isms only; group by severity; no rewrite.
+- **Chase:** After the editorial rewrite, run sibling `ai-writing-detector`
+  analyze. Optionally run its hosted spread tester when the user consents to
+  upload. Iterate remaining tells (cap 2 extra passes). Stop if a pass would
+  invent facts, inject fingerprints, or break house bans. Scores are loop
+  input, never an authorship verdict.
 - **Edit:** Minimal in-place fixes on a named file; leave clean spans alone.
 - **Embedded:** When this skill is one step inside a larger job (PR body, commit
   message, doc step), return only the final prose. No draft dump, no audit
   ceremony.
 
 Use the lightest intervention that solves the request. Default is rewrite or
-cleanup. Trigger detect on audit/scan/flag-only language. Trigger edit when the
-user names a file and wants it changed in place. Trigger embedded when another
-task only needs the cleaned text.
+cleanup. Trigger detect on audit/scan/flag-only language. Trigger chase on
+"pass the detector", "lower the score", "chase GPTZero", or equivalent.
+Trigger edit when the user names a file and wants it changed in place. Trigger
+embedded when another task only needs the cleaned text.
 
 ## Load the right reference
 
@@ -81,9 +88,9 @@ task only needs the cleaned text.
   would improve calibration.
 - For engineer-facing docs, PR text, errors, or STE form control, use the sibling
   skill `simple-english` instead of forcing humanizer voice rules onto STE.
-- For mechanical AI-writing **scores**, engine issue types, or rewrite
-  preservation validate, use sibling skill `ai-writing-detector`. Do not
-  score-chase.
+- For mechanical AI-writing **scores**, hosted detector spread, or rewrite
+  preservation validate, use sibling skill `ai-writing-detector`. Chase mode
+  in this skill consumes those scores. It does not replace the detector.
 
 Load only what the task needs.
 
@@ -170,6 +177,19 @@ None of the following may be **added** to text that did not already contain it:
 **Test:** for each edit, ask whether the information came from the source.
 Subtraction and sharpening are in scope. Addition of stance, personality, or
 fact is not.
+
+### Fingerprint gate (keep, ask, never inject)
+
+On LinkedIn and other high-trust social, a draft is incomplete without these
+when the brief can supply them:
+
+- one odd-precision number with a named referent
+- one named entity
+- one first-person sensory detail already in the source
+- one dated uncomfortable fact stated flat, with no candor frame
+
+If the source has them, keep them. If the brief needs them and they are
+missing, ask. Never invent them to look human or to move a detector score.
 
 ## Deliver
 

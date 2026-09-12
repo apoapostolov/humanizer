@@ -5,8 +5,9 @@
 This document teaches AI agents how to maintain the `humanizer` skill over time.
 
 The job is not only to edit files when asked. Keep the skill aligned with the
-best available public practice for detecting and rewriting AI-sounding prose,
-while avoiding low-quality "AI detector evasion" cargo cults.
+best available public practice for detecting and rewriting AI-sounding prose.
+Chase mode may iterate on detector scores. Still reject cargo-cult evasion
+(typos, "undetectable" marketing, fake personality).
 
 **Source pins, last-ingested versions, clone paths, and the
 "update humanizer sources" procedure live only in
@@ -103,8 +104,8 @@ A good update usually lands in one of these buckets:
 
 ### 3. Avoid detector-evasion sludge
 
-Reject sources that frame the goal as "bypass AI detectors" without improving
-writing quality.
+Reject sources that promise "undetectable" output or that degrade writing to
+fool a classifier.
 
 Bad signals include:
 
@@ -113,6 +114,9 @@ Bad signals include:
 - content farm SEO language
 - advice that adds random typos or awkwardness to mimic humans
 - advice that encourages deception rather than better writing
+
+Chase mode (iterate on real tells / hosted spread with upload consent) is in
+scope. Cargo-cult bypass is not.
 
 Standing rejects and on-hold items for tracked upstreams are listed in
 `SOURCES.md`. Do not re-litigate them without new evidence.
@@ -189,7 +193,7 @@ new or materially better than what we have.
 
 **Hold** when interesting but thin, genre-narrow, or heavy overlap.
 
-**Reject** detector evasion, random errors, pure paraphrase of existing rules,
+**Reject** cargo-cult evasion, random errors, pure paraphrase of existing rules,
 clarity/honesty loss, or fabricated specificity / fake personal voice.
 
 Import the useful concept only. Rewrite it in this repository's style. Do not
@@ -297,6 +301,6 @@ Do not:
 - Record external checks and ingests in `SOURCES.md`, not as a second register
   here
 - Ingest pipeline is off the landing pages (README, CHANGELOG, GitHub Releases)
-- Prefer better writing over detector evasion
+- Prefer better writing over cargo-cult evasion. Chase mode may use scores.
 - Compare against what the repository already does before adding anything
 - Keep this repo curated, not crowded

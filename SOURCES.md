@@ -17,12 +17,12 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.9.5` |
+| package_version | `2.10.0` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
-| humanizer_skill_version | `1.6.2` |
+| humanizer_skill_version | `1.7.0` |
 | simple_english_skill_version | `2.4.0` |
-| ai_writing_detector_skill_version | `1.1.3` |
+| ai_writing_detector_skill_version | `1.2.0` |
 | writing_prose_skill_version | `1.1.2` |
 | writing_voice_skill_version | `1.0.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
@@ -77,7 +77,7 @@ sources were touched.
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
 | upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ `v3.33.0` + tip `a465548` (em-dash style-only zero weight, upstream #73; `v3.34.0` tagged the same engine files) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
-| note | Production signals-only report. Batch summary, quiet, CI smoke. Not rewrite/evasion/authorship. |
+| note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. |
 
 ### writing-prose
 
