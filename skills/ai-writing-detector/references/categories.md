@@ -42,7 +42,7 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | `novelty-inflation` | Novelty inflation | Novelty inflation *(the invented-concept-labels sub-rule is LLM-judgment only — open-ended coinages aren't regex-matchable)* |
 | `real-actual-inflation` | "Real/actual" inflation | "Real/actual" adjective inflation |
 | `vague-attribution` | Vague attribution | Vague attributions |
-| `emotional-flatline` | Emotional flatline | Emotional flatline / Superficial -ing analyses |
+| `emotional-flatline` | Stock reaction framing | Stock reaction framing / Superficial -ing analyses *(stable API type; style-only for authorship scoring under the precision-first evidence policy)* |
 | `lingering-attention` | Lingering-attention claim | Lingering-attention claims *(noun-anchored frames only — the bare "I keep coming back to X" stays LLM-judgment, since a following reason clause makes it legitimate and isn't regex-detectable)* |
 | `cutoff-disclaimer` | Cutoff disclaimer | Cutoff disclaimers |
 | `false-concession` | False concession | False concession structure |
@@ -137,5 +137,9 @@ mistake their absence for a coverage gap:
 
 > **Partial:** the skill's **Context profiles / Tolerance matrix / Auto-detection
 > cues** are partly realized by the engine's `options.contextMode`
-> (`general` / `technical`), which suppresses context-inappropriate flags. Full
-> profile-based tolerance remains an LLM-side judgment.
+> (`general` / `technical`; `marketing` and `personal` are accepted but score
+> like `general`). Only `technical` changes flagging: it skips Title Case
+> header checks and suppresses eight technical-legitimate terms (`robust`,
+> `comprehensive`, `seamless`, `ecosystem`, `leverage`, `facilitate`,
+> `underpin`, `streamline`). Full profile-based tolerance remains an LLM-side
+> judgment.

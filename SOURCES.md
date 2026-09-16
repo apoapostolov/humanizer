@@ -17,7 +17,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.11.0` |
+| package_version | `2.11.1` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
 | humanizer_skill_version | `1.7.0` |
@@ -72,10 +72,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.1.3` |
+| skill_version | `1.1.4` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ `v3.33.0` + tip `a465548` (em-dash style-only zero weight, upstream #73; `v3.34.0` tagged the same engine files) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ `v3.35.0` (`fc979c6`; technical-context term suppression #237, Title Case acronym interior tokens #240, quadratic-scan perf fixes #235) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. |
 
@@ -105,19 +105,19 @@ humanizer.
 | id | `avoid-ai-writing` |
 | status | `active_ingest` |
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
-| release_tag | `v3.34.0` |
-| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.34.0` |
-| last_ingested_version | `3.34.0` (engine unchanged from tip `a465548`) |
-| last_ingested_ref | `b3e4bbd0b23f` |
-| last_ingested_at | `2026-09-12T00:00:00-07:00` |
-| last_checked_at | `2026-09-12T00:00:00-07:00` |
-| compare_base | `v3.34.0` |
+| release_tag | `v3.35.0` |
+| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.35.0` |
+| last_ingested_version | `3.35.0` (engine delta absorbed into ai-writing-detector) |
+| last_ingested_ref | `fc979c6489ec` |
+| last_ingested_at | `2026-09-16T00:00:00-07:00` |
+| last_checked_at | `2026-09-16T00:00:00-07:00` |
+| compare_base | `v3.35.0` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99; 9/72/74 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.34.0`, or untagged commits on default branch after `b3e4bbd` if the user wants tip tracking. |
+| next_check | On newer tag than `v3.35.0`, or untagged commits on default branch after `fc979c6` if the user wants tip tracking. |
 
 Diff helpers:
 
@@ -224,7 +224,7 @@ by the scan script via the GitHub releases API (no local clone needed).
 | release_url | `https://github.com/vale-cli/vale/releases/tag/v3.21.0` |
 | last_ingested_version | `3.21.0` |
 | last_ingested_at | `2026-09-11` |
-| last_checked_at | `2026-09-11T00:00:00-07:00` |
+| last_checked_at | `2026-09-16T00:00:00-07:00` |
 | win11_winget | `errata-ai.Vale` 3.17.1 (winget still lags; WSL binary is canonical at 3.21.0) |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |

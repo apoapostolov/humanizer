@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.11.1] - 2026-09-16
+
+avoid-ai-writing v3.35.0 engine absorb.
+
+- **ai-writing-detector 1.1.3 → 1.1.4:** `patterns.js` refreshed to upstream
+  v3.35.0 (`fc979c6`). `--context technical` now suppresses eight
+  technical-legitimate terms (`robust`, `comprehensive`, `seamless`,
+  `ecosystem`, `leverage`, `facilitate`, `underpin`, `streamline`); Title Case
+  header rule accepts acronym interior tokens; quadratic scans in
+  `analyzeText()` are now linear; `emotional-flatline` relabeled "Stock
+  reaction framing", style-only for authorship scoring. `validate.js`
+  unchanged. Not vendored: upstream GitHub Action / pre-commit gate and
+  fp-measure tooling. `categories.md` aligned with the new behavior.
+- **humanizer:** audit ref gains the "Stock reaction framing" rename note and
+  the technical-context carve-out language.
+- Pins moved: `v3.34.0` → `v3.35.0`, ref `b3e4bbd` → `fc979c6`.
+- vale re-checked: latest release is still `v3.21.0` (scan false positive);
+  no ingest.
+
 ## [2.11.0] - 2026-09-12
 
 Generic writing-voice sample harvest.

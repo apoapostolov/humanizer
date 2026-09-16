@@ -242,8 +242,10 @@ Use these with the catalog. Prefer clusters and reader impact over single hits.
   conflict-of-interest openings that carry a real fact. Ordinary work
   comparatives ("I'd rather fix it than let you inherit the mess") are not this
   pattern. Judgment-only; see pattern 73 in the catalog.
-- **Emotional flatline:** announcing surprise or fascination the prose does not
-  earn, including bare "Interesting part:" headers.
+- **Stock reaction framing (was "Emotional flatline"):** announcing surprise or
+  fascination the prose does not earn, including bare "Interesting part:"
+  headers. Upstream renamed the category and made it style-only in authorship
+  scoring; keep specific reactions, flag empty framing.
 
 ### Structure and rhythm
 

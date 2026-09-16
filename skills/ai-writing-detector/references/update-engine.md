@@ -176,6 +176,23 @@ form, SSOT CI, and README/npm docs. We do not vendor the CLI: this package
 already ships `analyze.js` / `validate-cli.js`. Detector skill version stays
 1.1.3. Engine pin stays `a465548`.
 
+v3.35.0 (2026-09-16; patterns.js delta) changes engine behavior in three
+durable ways. (1) `--context technical` now suppresses eight
+technical-legitimate vocabulary terms (`robust`, `comprehensive`, `seamless`,
+`ecosystem`, `leverage`, `facilitate`, `underpin`, `streamline`) via a
+`TECHNICAL_EXEMPT` set; general mode still flags them (#237). (2) The
+Title Case header rule accepts acronyms (`AI`, `API`, `CLI`) and capital
+`A` as interior tokens, so more genuine tells flag without breaking all-caps
+banner lines (#240). (3) Several quadratic scans in `analyzeText()` are now
+linear, and the `emotional-flatline` category is relabeled "Stock reaction
+framing" with weight 2 to 0 (style-only for authorship scoring; the API type
+name is stable). Not vendored: the new GitHub Action / pre-commit gate
+(`avoid-ai-writing-gate`, per-file finding threshold) and fp-measure tooling;
+this package's report layer and smoke already cover the operator surface.
+Behavioral probe at absorb: 50-word technical prose with six exempt terms
+scored 16/5 issues in technical mode vs 53/14 in general, and no exempt term
+appeared in technical findings. Detector skill version 1.1.4.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
