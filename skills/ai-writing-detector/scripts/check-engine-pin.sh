@@ -20,7 +20,7 @@ echo "ai-writing-detector engine pin check"
 echo "skill_root=$ROOT"
 echo "patterns_sha=$(sha "$PAT_LOCAL")"
 echo "validate_sha=$(sha "$VAL_LOCAL")"
-echo "expected_upstream_tag=v3.35.0 fc979c6 (technical-context term suppression #237, Title Case acronym interior tokens #240, quadratic-scan perf fixes #235, on top of v3.33.0 pin 6da13ad, see monorepo SOURCES.md)"
+echo "expected_upstream_tag=tip 7a2c7d1 post-v3.35.0 untagged (acknowledgment-loop retired #239, CJK unsupported-script decline #241, CommonMark fence/inline-code #236/#314, Title Case line-bound + first-person I #291/#240, URL tracker-strip FP fix #210; engine pin base v3.35.0 fc979c6, see monorepo SOURCES.md)"
 
 if [[ -z "$CLONE" ]]; then
   # Common layout — only used if present

@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.0] - 2026-09-19
+
+avoid-ai-writing tip absorb (`7a2c7d1`, untagged, post-v3.35.0) plus vale 3.22.0
+release ingest.
+
+- **ai-writing-detector 1.1.4 -> 1.1.5:** engine refreshed to upstream tip
+  `7a2c7d1`. `acknowledgment-loop` retired as a detector type (#239): the three
+  phrases also open ordinary replies and standard analytical English, so the
+  engine exposes **53** types now. The skill keeps the rule as a judgment call.
+  CJK/Japanese unsegmented-script documents are declined as `Unsupported
+  script` before the word gate (#241). CommonMark-correct fence and inline-code
+  scanning (#236, #314), Title Case header matches are line-bound and accept
+  first-person `I` (#291, #240), URL tracker-strip false positive fixed
+  (#210), bullet-list parsing made CommonMark-exact, version-heading em-dash
+  counting rewritten as a line scanner. `validate.js` gains the CommonMark
+  fence scanner (#236) and punctuation-preserving URL normalization (#210);
+  package banner kept. Behavioral probes added for the ack-loop retirement,
+  CJK decline, Title Case line-bound, fence boundary, and URL-strip fixes.
+- **humanizer:** `ai-ism-audit.md` marks acknowledgment loops as a judgment
+  call with the upstream rationale (detector retired, rule stays).
+- **writing-prose 1.1.3 -> 1.1.4:** vale binary refreshed to `v3.22.0` in WSL
+  `~/.local/bin` (Hunspell-conformant spelling, per-section `Vocab`, empty
+  `BasedOnStyles`/`UNSET` clearing, MDX/notebook format gains), Microsoft
+  style pack re-synced, house gate verified clean on `README.md`. No house
+  config changes; the 3.22.0 features are opt-in and not adopted yet.
+- Pins moved: avoid-ai-writing `fc979c6` -> `7a2c7d1` (tip, untagged); vale
+  `v3.21.0` -> `v3.22.0`.
+- SOURCES drift fixed: `simple_english_skill_version` summary/table now match
+  the shipped 2.4.0; `writing_prose_skill_version` now matches 1.1.4;
+  `ai_writing_detector_skill_version` corrected to 1.1.5.
+- Note: `vale-lint.sh` in the monorepo has CRLF line endings, so it fails when
+  invoked from inside WSL. Windows git-bash invocation is unaffected. Fix
+  queued for the next packaging pass; the gate was verified by calling vale
+  directly.
+
 ## [2.11.1] - 2026-09-16
 
 avoid-ai-writing v3.35.0 engine absorb.

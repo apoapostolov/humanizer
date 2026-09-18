@@ -263,7 +263,11 @@ Use these with the catalog. Prefer clusters and reader impact over single hits.
   five discrete parallel items.
 - **Reasoning-chain artifacts:** "let me think step by step," exposed scaffolding
   in published prose.
-- **Acknowledgment loops:** restating the prompt before answering.
+- **Acknowledgment loops:** restating the prompt before answering. Judgment
+  call: the three classic phrases also open ordinary replies and standard
+  analytical English ("The question of whether X is settled..."), so the
+  finding needs reading whether the restatement adds anything before the answer
+  arrives. Not a regex tell; upstream retired its detector for it.
 - **Wall-of-text replies:** reply-length conversational text as one unbroken
   dense block. Break at thought boundaries. Never apply to deliberate long-form
   paragraphs.
