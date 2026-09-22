@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.1] - 2026-09-23
+
+avoid-ai-writing tip absorb (`3514947`, untagged, post-`7a2c7d1`).
+
+- **ai-writing-detector 1.1.5 -> 1.1.6:** engine absorb to upstream tip
+  `3514947`. Preservation validator no longer opens a fence on a backtick line
+  whose info string contains a backtick (upstream #330): a prose line like
+  `` ```npm test``` `` previously opened an unterminated fence, so every later
+  prose edit reported `code-block-modified`. Vendored `fence-probe.js` gains a
+  permanent probe for the fix; smoke is 16/16. `patterns.js` comment-only
+  refresh (stylometric TODO accounting, corpus calibration notes, #335).
+  Humanizer editorial unaffected; upstream CLI `--context` fix (#327) is not
+  vendored machinery here. Pin fields in SOURCES.md refreshed, monorepo patch.
+
 ## [2.12.0] - 2026-09-19
 
 avoid-ai-writing tip absorb (`7a2c7d1`, untagged, post-v3.35.0) plus vale 3.22.0

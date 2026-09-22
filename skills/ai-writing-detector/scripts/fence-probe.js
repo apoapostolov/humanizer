@@ -1,10 +1,15 @@
 'use strict';
-// Behavioral probe for engine pin b504e20 (upstream PR #127, fixes #77):
-// a closing Markdown fence may only be followed by spaces/tabs, per CommonMark.
-// An info string (e.g. "```js") must NOT close an outer fence, so headings
-// inside a fenced block stay masked instead of reaching title-case-header.
-// Mirrors upstream detector/patterns.test.js '#77' through the packaged API.
+// Behavioral probes for engine fence fixes (avoid-ai-writing upstream):
+// 1. Pin b504e20 (PR #127, fixes #77): a closing Markdown fence may only be
+//    followed by spaces/tabs, per CommonMark. An info string (e.g. "```js")
+//    must NOT close an outer fence, so headings inside a fenced block stay
+//    masked instead of reaching title-case-header.
+// 2. Fence info-string fix: a backtick line whose info string contains a
+//    backtick (e.g. ```npm test```) must NOT open a fence in the preservation
+//    validator, or every later prose edit reports code-block-modified.
+// Mirrors upstream detector tests through the packaged API.
 const { analyzeText } = require('./patterns.js');
+const v = require('./validate.js');
 
 const HEADING_BODY =
   '\n\nThe team closed three deals this quarter. Each agreement included ' +
@@ -38,4 +43,28 @@ for (const [name, text, want] of cases) {
   console.log(`${ok ? 'PASS' : 'FAIL'}  ${name} (got ${got}, want ${want})`);
   if (!ok) fail = 1;
 }
+
+// Preservation-validator probe for the fence info-string fix.
+const docOriginal = [
+  'Start of the document, long enough to matter for the validator.',
+  '',
+  '```npm test```',
+  '',
+  'Middle paragraph with its original wording intact here.',
+  '',
+  'End of the document prose.',
+].join('\n');
+const docRewritten = docOriginal.replace(
+  'Middle paragraph with its original wording intact here.',
+  'Middle paragraph now edited for clarity and flow.',
+);
+const preserve = v.validate(docOriginal, docRewritten);
+const findings = preserve.issues || preserve.errors || preserve.findings || [];
+const codeHits = findings.filter(
+  (i) => (i.type || i.code) === 'code-block-modified',
+).length;
+const preserveOk = codeHits === 0;
+console.log(`${preserveOk ? 'PASS' : 'FAIL'}  inline-span opens no fence (code-block-modified=${codeHits}, want 0)`);
+if (!preserveOk) fail = 1;
+
 process.exit(fail);
