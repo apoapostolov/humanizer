@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.2] - 2026-09-25
+
+Humanizer editing-contract clarification absorbed from avoid-ai-writing v3.36.0.
+
+- Separate candidate matches, justified findings, and authorized edits. Routine
+  cleanup preserves structure and argument; broad restructuring needs clear
+  scope. Ground factual changes in source material and preserve attribution,
+  quantities, conditions, causality, and uncertainty. Protect quotes, tables,
+  code, identifiers, and frontmatter. Leave clean input unchanged and report
+  protected or source-blocked findings instead of forcing edits.
+- Define a shared two-pass ceiling for corrective edits and preservation repair,
+  with explicit pass accounting and stop reasons.
+
 ## [2.12.1] - 2026-09-23
 
 avoid-ai-writing tip absorb (`3514947`, untagged, post-`7a2c7d1`).
