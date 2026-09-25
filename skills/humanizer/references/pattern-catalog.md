@@ -24,6 +24,7 @@ them.
 - [Secondary cleanup patterns](#secondary-cleanup-patterns)
 - [Delivery and provenance](#delivery-and-provenance)
 - [How to use the catalog](#how-to-use-the-catalog)
+- [Absorbed tells 100-106](#absorbed-tells-100-106)
 
 ## Words and claims: patterns 1-6
 
@@ -725,7 +726,8 @@ before a noun stays hyphenated (*real-time analytics* is correct).
 **Repair:** Treat a clear hit as P2 copyediting, not evidence of machine
 authorship. Preserve established and technical compounds (*high-quality*,
 *third-party*, *family-owned*). Spelling varies by dialect and house style, so
-ambiguous pairs are judgment calls.
+ambiguous pairs are judgment calls. Predicative after the noun stays open
+(*the report is high quality*). Hyphenate attributive-before-noun only.
 
 ### 79. Shadowboxing objections
 
@@ -1127,6 +1129,61 @@ Check these publication-level patterns after the prose itself is sound:
 4. Repair selection and relationships before swapping synonyms.
 5. Re-read for voice continuity and publication residue.
 6. Stop when the passage is clear, credible, and fit for purpose.
+
+## Absorbed tells 100-106
+
+Compact repairs from avoid-ai-writing, humanize, and humanizer-skill. Same
+status as the numbered catalog: editorial prompts, not authorship proof.
+
+### 100. Vague association
+
+**Tell:** *associated with*, *linked to*, *in connection with* with no named
+relationship.
+
+**Repair:** Use the relationship the source names. If it names none, keep the
+vague wording. Do not invent a CEO, consultant, or role to sound concrete.
+
+### 101. Empty concession sandwich
+
+**Tell:** *While X is impressive, Y remains a challenge* when both halves are
+vague.
+
+**Repair:** Specify both halves or pick a side. Distinct from empty "Not
+always. Not perfectly."
+
+### 102. Significance-adverb density
+
+**Tell:** *Notably*, *Interestingly*, *Importantly*, *Significantly* as a
+run, not a single hit.
+
+**Repair:** Treat as a density tell. One in a long piece can stay. Several in
+a short piece go. Replace the survivor with the fact.
+
+### 103. Parallel reason chains
+
+**Tell:** Three or more consecutive `subject + because/when + reason`.
+
+**Repair:** Break the chain. Vary the join.
+
+### 104. Intensifier / diminisher opposition
+
+**Tell:** *X obsessively / Y barely at all* as a fake contrast engine.
+
+**Repair:** State the actual difference without the theatrical poles.
+
+### 105. Participial reframe
+
+**Tell:** *Laid out that way*, *Seen this way*, *Put differently* as a
+throat-clear before the real sentence.
+
+**Repair:** Start at the claim.
+
+### 106. Hedged-enumeration openers
+
+**Tell:** *There are several ways to*, *a few things to consider*, *It is
+generally a good idea to*.
+
+**Repair:** Answer first. Drop the throat-clear.
 
 For before-and-after demonstrations, load [examples.md](examples.md). For tiered
 word replacements, load [vocabulary-tiers.md](vocabulary-tiers.md). For detect

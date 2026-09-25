@@ -1,7 +1,7 @@
 ---
 name: humanizer
 description: Humanize AI-sounding text with natural rewrites, voice preservation, editorial critique, and optional AI-ism audit modes.
-version: 1.7.1
+version: 1.7.2
 ---
 
 # Humanizer
@@ -131,6 +131,16 @@ Load only what the task needs.
 14. For mixed documents, edit by section job. Product copy, procedures, tables,
     API reference, and personal prose do not need the same rhythm. Do not pass
     the whole document through several writing skills as sequential filters.
+15. Prefer no-op to an uncertain edit. A scanner hit never authorizes an edit
+    alone. Diagnose completely before editing.
+16. After puffery is cut, do not pad back to original length. Shorter is
+    correct. Flag a real information gap instead of filling it.
+17. Treat your own in-thread draft as foreign text. If the edit log is mostly
+    substitutions, rebuild from claims.
+18. After a preservation FAIL, repair only the blocking spans. If a second
+    verify still fails, stop and report. Do not re-humanize the whole file.
+19. Match quote and apostrophe family (straight vs curly) to the unprotected
+    source. Apply only to edited spans.
 
 ## Guardrails
 
@@ -162,6 +172,30 @@ Load only what the task needs.
   deception.
 - When editing a person's casual writing, preserve useful rough edges that mark
   their fingerprint unless they asked for polish.
+- Do not modernize dated slang, resolve mixed feelings into a clean take, or
+  swap an odd specific for a generic one.
+- Do not modernize historical prose into a newer voice.
+- Low-variance formulaic prose can be a real writer's natural voice, including
+  autistic or ADHD cadence. Do not flag burstiness alone.
+- Preserve force-bearing "never", "must", and "all" exactly in safety,
+  security, legal, and technical rules. Do not upgrade approximations
+  ("about 50%" stays "about 50%"). Keep both bounds of ranges. Do not drop
+  list items. Do not weaken causation, drop comparison quantifiers, lose
+  conditionality, invert negation, or drop scope.
+- Deletion test: strike every added word; if the sentence still parses and
+  means the same, delete it. Reversion test: put the old wording back; if it
+  said the same in fewer words, keep the old.
+- Repair needed to parse is not growth. A rewrite must not come out more
+  promotional than its source.
+- In overloaded domains (crypto, security), do not use "proof" or "proof
+  point" where a reader could hear a technical proof.
+- Act on staging tells on one sighting (not-X-but-Y, closer, staged run-up).
+  Act on dash, copula, hyphen, or passive only when other tells share the
+  passage.
+- Same-genre samples only for lasting voice-match. Surface low confidence
+  when samples are thin or cross-genre. Never auto-approve AI-suspect
+  samples into a profile (that loop lives in `writing-voice`
+  `voice-from-samples.md`).
 
 ### Never inject these
 
@@ -182,10 +216,14 @@ None of the following may be **added** to text that did not already contain it:
   rhythm. Vary length by varying the sentences.
 - **Invented specifics.** No numbers, names, dates, tools, or mechanisms the
   source never contained. If detail is missing, flag the gap. Never fill it.
+  Fiction is the carve-out: invented detail is the task there. Still do not
+  invent in nonfiction.
 
 **Test:** for each edit, ask whether the information came from the source.
 Subtraction and sharpening are in scope. Addition of stance, personality, or
-fact is not.
+fact is not. After a Voice match, write 5 to 10 hypotheses on sentence
+length, word level, openers, punctuation tics, recurring phrases, and
+transitions, then match those. Do not only strip AI tells.
 
 ### Fingerprint gate (keep, ask, never inject)
 

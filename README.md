@@ -2,11 +2,11 @@
 
 Installable writing skills for AI agents. Each skill does one job. A mixed document does not pass through the whole suite.
 
-## What's New in 2.8.1
+## What's New in 2.12.3
 
-Humanizer now flags empty metaphor nouns and a couple of sentence habits that make a paragraph sound like it could live on any other project's docs.
+Humanizer keeps more of a writer's own material: dated slang, mixed feelings, historical voice, and low-variance cadence survive a rewrite, and force-bearing words in safety, legal, and technical rules come through unchanged. Seven more cataloged tells landed in the reference set, and Writing Prose gained fiction and scholarly registers.
 
-Vocabulary tiers suggest a concrete word when something like *substrate*, *wedge*, *flywheel*, or *north star* is standing in for a real thing. The revision gate has an interchangeability test: if a sentence could appear unchanged in another project's docs, it is not carrying this piece. Mid-sentence colons used as a comparison crutch get flagged. List and example colons stay.
+AI Writing Detector ships the current engine, with a preservation check that no longer trips over a code fence opened by a backtick line.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -14,10 +14,10 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.6.0` |
-| Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.0` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.1` |
-| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.1.2` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.2` |
+| Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.1` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.6` |
+| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.0` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 
 Use one skill for the job a section needs.

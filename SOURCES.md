@@ -17,19 +17,19 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.2` |
+| package_version | `2.12.3` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
-| humanizer_skill_version | `1.7.1` |
-| simple_english_skill_version | `2.4.0` |
-| ai_writing_detector_skill_version | `1.1.5` |
-| writing_prose_skill_version | `1.1.4` |
+| humanizer_skill_version | `1.7.2` |
+| simple_english_skill_version | `2.4.1` |
+| ai_writing_detector_skill_version | `1.1.6` |
+| writing_prose_skill_version | `1.2.0` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-09-25T00:55:43+03:00` |
+| last_sources_sync | `2026-09-25T19:24:07+03:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -59,7 +59,7 @@ sources were touched.
 | --- | --- |
 | id | `simple-english` |
 | status | `packaged_skill` |
-| skill_version | `2.4.0` |
+| skill_version | `2.4.1` |
 | path | `skills/simple-english/` |
 | live_clone | `~/.hermes/skills/writing/simple-english` |
 | upstream_kit | `https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop` (original); merged 2026-08-17 from Hermes optional-skill `creative/simple-english` (ASD-STE100 Issue 9 catalog, checklist, use-cases) |
@@ -72,7 +72,7 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.1.5` |
+| skill_version | `1.1.6` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
 | upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/` @ tip `7a2c7d1` (untagged, post-v3.35.0; base `fc979c6`: acknowledgment-loop retired #239, CJK unsupported-script decline #241, CommonMark fence/inline-code scanning #236/#314, Title Case line-bound + first-person I #291/#240, URL tracker-strip FP fix #210) |
@@ -85,11 +85,11 @@ sources were touched.
 | --- | --- |
 | id | `writing-prose` |
 | status | `packaged_skill` |
-| skill_version | `1.1.4` |
+| skill_version | `1.2.0` |
 | path | `skills/writing-prose/` |
 | live_clone | `~/.hermes/skills/writing/writing-prose` |
 | upstream_kit | `https://github.com/vale-cli/vale` (binary + style packs; house config is ours) |
-| lands_in | monorepo `skills/writing-prose/` (SKILL.md, `references/required-checks.md`, `scripts/vale-lint.sh`, `vale/vale.ini`, `vale/styles/`) |
+| lands_in | monorepo `skills/writing-prose/` (SKILL.md, `references/required-checks.md`, `references/narrative-architecture.md`, `references/scientific-register.md`, `scripts/vale-lint.sh`, `vale/vale.ini`, `vale/styles/`) |
 | note | Vale-assisted prose craft. Editorial judgment owns voice; deterministic findings are reread prompts, not automatic rewrites. |
 
 ## Active ingest sources

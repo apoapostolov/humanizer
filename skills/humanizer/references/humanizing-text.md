@@ -172,7 +172,10 @@ a reason to remain inline. Use a vertical list or table when scanning matters.
 ## 7. Handle narrative and dialogue
 
 Humanize fiction through plausible attention, incomplete knowledge, and selective
-detail—not casual slang or random errors.
+detail. Do not add casual slang or random errors to fake a person. For plot,
+theme, time, and cast tells, load `writing-prose`
+`references/narrative-architecture.md` and fix architecture before surface
+style.
 
 ### Interiority
 

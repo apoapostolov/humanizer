@@ -34,6 +34,9 @@ Also ask: does the rewrite state any fact, name, number, date, quote, or
 citation that is not in the source? A fabrication is a defect even when it
 sounds more human than the vague original.
 
+After merge, split, or reorder, verify ordinal rankings and simultaneity
+claims still exist unless a named pattern required cutting them.
+
 ## 4. Source-fit check
 
 For factual writing, check every exact quote, close paraphrase, public metric,
@@ -123,6 +126,12 @@ this piece. Replace it with a concrete fact, number, mechanism, or instruction,
 or cut it. This catches feeling-named-instead-of-function prose ("the database
 stays close at hand", "types that follow your schema"); the fix names the
 mechanism (".toSQL() returns the exact string sent to the database").
+
+Keep a sentence only if it adds a fact, distinction, or turn the reader does
+not already have. If any sentence can drop with no gap, the paragraph is too
+smooth. Do not inject misfires to "fix" smoothness.
+
+Match quote and apostrophe family to the unprotected source on edited spans.
 
 These checks catch genericity, visible regularity, false specificity, and
 modular structure. They are not goals to manufacture variation for its own sake.

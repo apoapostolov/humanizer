@@ -2,7 +2,7 @@
 name: writing-prose
 category: writing
 description: "Draft/revise reader-facing prose with the vale house gate; articles, docs, criticism."
-version: 1.1.4
+version: 1.2.0
 tags:
 - prose
 - revision
@@ -68,8 +68,11 @@ When not to use:
    errors. Review each warning (word choice, AI slop, passive voice, sentence
    length) and change only what harms the text. Re-run until errors are clear
    and every remaining warning has an intentional reason to stay.
-4. Editorial pass: run the required checks
-   (`references/required-checks.md`), all ten tripwires.
+4. **Editorial pass:** run the required checks
+   (`references/required-checks.md`), all ten tripwires. For fiction, also
+   load `references/narrative-architecture.md`. For papers and grant
+   prose, load `references/scientific-register.md`. Sample 2 to 3 recent
+   human artifacts from the same venue when they exist.
 5. Cut what is generic, ceremonial, over-engineered, or too cleanly modular.
 
 ## House style (what the gate enforces)
@@ -204,6 +207,10 @@ output the audit unless asked.
   routing, break-even)
 - `references/llm-rewrite-cost-patterns.md`: cost estimation for
   ingest-reasoning-rewrite loops over large documents
+- `references/narrative-architecture.md`: fiction plot/theme/time/cast
+  tells. Fix architecture before surface style.
+- `references/scientific-register.md`: scholarly voice, venue sampling,
+  tech-article dead ends
 
 ## Pitfalls
 

@@ -9,7 +9,7 @@ tags:
 - anti-slop
 - docs
 - lint
-version: 2.4.0
+version: 2.4.1
 related_skills:
 - writing-prose
 - humanizer
@@ -46,7 +46,7 @@ copyrighted, do not paste the full standard). Additional adaptation from
 AminBlg/SimpleEnglish and the Hermes optional-skill port
 `optional-skills/creative/simple-english` (merged; see monorepo history).
 
-Skill version: **2.4.0** (renamed from `plain-english`; package ship:
+Skill version: **2.4.1** (renamed from `plain-english`; package ship:
 apoapostolov/humanizer repository).
 
 ## When to use
@@ -181,6 +181,15 @@ descriptive (25-word limit, no imperative).
 - In strict mode, one topic per paragraph, at most six sentences (Rules 6.5,
   6.6); one new fact per sentence (Rule 6.1).
 - For steps, use a numbered vertical list with one action per item.
+- A heading must earn at least three sentences of body. Do not put a heading
+  over a one- or two-sentence stub.
+- Define a concept at first use in at most 10 words, one definition per
+  sentence. Skip product names, standards (Postgres, S3, HTTP), and the tool
+  the doc is about.
+- Vertical lists only for three or more parallel items: colon on the lead-in,
+  uppercase start, one instruction per item.
+- If a technical noun needs more than three words, write it in full once, then
+  a short form or hyphenated units (Rule 2.2).
 - Notes give information, never instructions (Rule 5.5). Notes get the
   25-word limit.
 - Warnings and cautions: command or condition FIRST, risk or result second
@@ -229,6 +238,14 @@ render are rejected (use "show"); ensure/confirm/verify are rejected as verbs
 | addresses the issue, tackles | corrects the fault, removes the error |
 
 If the word carries no fact, delete it instead of replacing it.
+
+Strict extras: `follow` means come after, never obey. `above` and `below`
+mean physical position only. `help` is a verb (noun becomes aid). If the
+possessive is unsure, write "the file of the user". Write `but` for
+`however`, `because` for causal `since`, `do` for `perform`, `prevent` for
+`avoid`, `do again` for `repeat`. Name the target instead of "the example
+below". Replace a phrasal verb with a one-word verb when a one-word verb
+exists (Rule 9.3).
 
 **Modal ladder** (Rule 3.2):
 

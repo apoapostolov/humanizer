@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.3] - 2026-09-25
+
+Live-install delta merge: editorial work that had reached the installed skills
+but never landed here is now in the monorepo, and the humanizer
+editing-contract work from 2.12.2 is back on the installed copies. Ingest-only
+release, patch.
+
+- **humanizer 1.7.1 -> 1.7.2:** five editing-procedure rules (prefer no-op to an
+  uncertain edit; do not pad back to length after cutting puffery; treat your own
+  in-thread draft as foreign text; after a preservation FAIL repair only the
+  blocking spans; match quote and apostrophe family on edited spans), nine
+  guardrail bullets (dated slang, historical voice, low-variance and
+  neurodivergent cadence, force-bearing quantifier preservation, deletion and
+  reversion tests, promotional drift, overloaded-domain "proof", staging-tell
+  thresholds, same-genre voice samples), the fiction carve-out for invented
+  detail, and a Voice-match hypothesis step in the invented-specifics test.
+- **humanizer references:** `pattern-catalog.md` gains **Absorbed tells 100-106**
+  (vague association, empty concession sandwich, significance-adverb density,
+  parallel reason chains, intensifier/diminisher opposition, participial
+  reframe, hedged-enumeration openers) plus the attributive-only hyphen rule on
+  pattern 78; `required-checks.md` gains the ordinal and simultaneity verify,
+  the sentence-adds-a-fact test, and quote-family matching; `humanizing-text.md`
+  routes fiction detail to the new prose reference and drops a contrast tail.
+- **simple-english 2.4.0 -> 2.4.1:** a heading must carry three sentences of
+  body; define a concept in at most ten words at first use; vertical lists only
+  for three or more parallel items; spell out a technical noun over three words
+  once; strict extras for `follow`, `above`/`below`, `help`, unsure possessives,
+  `but`/`because`, `do`/`prevent`/`do again`, named targets, and phrasal verbs.
+- **writing-prose 1.1.4 -> 1.2.0:** new `references/narrative-architecture.md`
+  (plot, theme, time, and cast tells; architecture before surface style) and
+  `references/scientific-register.md` (scholarly voice, venue sampling,
+  tech-article openings). SKILL.md routes fiction and paper prose to them and
+  samples recent artifacts from the target venue.
+- SOURCES drift fixed: `ai_writing_detector_skill_version` and the packaged
+  table now match the shipped **1.1.6**; README skill table refreshed from
+  1.6.0/2.4.0/1.1.1/1.1.2 to 1.7.2/2.4.1/1.1.6/1.2.0.
+- `tests/test_voice_contracts.py`: the version-alignment check read hardcoded
+  1.2.0/2.4.0/1.1.0/package 2.4.0 values and had been failing since long before
+  this release. It now derives each skill version from the skill's own
+  frontmatter and asserts README, SOURCES, and CHANGELOG agree, so the guard
+  cannot go stale again.
+- Merge method: files where the installed copy was a strict superset were taken
+  whole; `humanizer/SKILL.md` was hand-merged because both sides carried unique
+  rules. The installed Vale `accept.txt` keeps its local addition and stays out
+  of the public package.
+
 ## [2.12.2] - 2026-09-25
 
 Humanizer editing-contract clarification absorbed from avoid-ai-writing v3.36.0.

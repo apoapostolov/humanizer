@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -25,17 +26,27 @@ def load_voice_lint():
 
 class VoiceContractTests(unittest.TestCase):
     def test_skill_and_package_versions_are_aligned(self) -> None:
-        versions = {
-            "humanizer": "1.2.0",
-            "simple-english": "2.4.0",
-            "writing-prose": "1.1.0",
+        skills = {
+            "humanizer": "humanizer_skill_version",
+            "simple-english": "simple_english_skill_version",
+            "ai-writing-detector": "ai_writing_detector_skill_version",
+            "writing-prose": "writing_prose_skill_version",
+            "writing-voice": "writing_voice_skill_version",
         }
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         sources = (ROOT / "SOURCES.md").read_text(encoding="utf-8")
-        for name, version in versions.items():
-            self.assertIn(f"version: {version}", read_skill(name))
+        changelog = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")
+        for name, field in skills.items():
+            match = re.search(
+                r"^version:\s*(\S+)\s*$", read_skill(name), re.MULTILINE
+            )
+            self.assertIsNotNone(match, f"{name}: no frontmatter version")
+            version = match.group(1)
             self.assertIn(f"| [`{name}`](skills/{name}/) | `{version}` |", readme)
-        self.assertIn("| package_version | `2.4.0` |", sources)
+            self.assertIn(f"| {field} | `{version}`", sources)
+        package = re.search(r"\| package_version \| `([^`]+)` \|", sources)
+        self.assertIsNotNone(package, "SOURCES.md: no package_version row")
+        self.assertIn(f"## [{package.group(1)}]", changelog)
 
     def test_simple_english_separates_strict_and_flavored_modes(self) -> None:
         skill = read_skill("simple-english")
