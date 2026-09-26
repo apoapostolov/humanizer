@@ -194,7 +194,7 @@ scored 16/5 issues in technical mode vs 53/14 in general, and no exempt term
 appeared in technical findings. Detector skill version 1.1.4.
 
 v3.36.0 post-release tip `2a7e999` changes `patterns.js` only. It masks
-double-quoted spans and recognizes single-line and compact Markdown blockquotes,
+double-quoted spans and recognizes single-line and compact Markdown quote blocks,
 so quoted material is excluded before scoring while offsets remain aligned to
 the source. It adds narrow staged-discovery matches under the existing
 `performed-insight` type and deduplicates contained insight/flatline signals.

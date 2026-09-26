@@ -7,9 +7,9 @@ All notable changes to this project will be documented in this file.
 Humanizer source and Vale refresh, patch release.
 
 - **humanizer 1.7.2:** absorb rendered-surface line-break guidance and extend the fabricated-speaker guardrail to drafting in another person's voice. Add staged-discovery variants and narrow literal-use carve-outs to the performed-insight catalog.
-- **ai-writing-detector 1.1.6 -> 1.1.7:** update `patterns.js` to avoid-ai-writing tip `2a7e999`. Quoted spans and single-line blockquotes are masked; staged-discovery variants are covered. `validate.js` is unchanged.
+- **ai-writing-detector 1.1.6 -> 1.1.7:** update `patterns.js` to avoid-ai-writing tip `2a7e999`. Quoted spans and single-line quote blocks are masked; staged-discovery variants are covered. `validate.js` is unchanged.
 - **writing-prose 1.2.0 -> 1.2.1:** update Vale to `v3.23.0`, sync Microsoft styles, and verify Windows and WSL binaries. House config unchanged.
-- Monorepo package: `2.12.3` -> `2.12.4`.
+- Package version: `2.12.3` -> `2.12.4`.
 
 ## [2.12.3] - 2026-09-25
 
