@@ -112,7 +112,9 @@ Load only what the task needs.
 7. Prefer plain vocabulary from the tier tables when a stock AI word adds no
    meaning; keep correct technical terms.
 8. Compare the result with the source and its surrounding text before delivery.
-   Ask whether any fact, name, number, date, quote, or citation is new.
+   Ask whether any fact, name, number, date, quote, or citation is new. Check
+   how the destination renders single newlines; unwrap accidental hard wraps
+   only when they remain visible, and preserve intentional line breaks.
 9. On a full rewrite package, re-read once for leftover tells before delivery.
 10. For substantial rewrites, run the silent required-checks pass. Add long-form
     diagnostics only when the piece is long and still feels modular or metronomic.
@@ -203,8 +205,10 @@ Putting voice back on purpose has a failure mode: the editor installs a
 personality the author never had and trades one fingerprint for a louder one.
 None of the following may be **added** to text that did not already contain it:
 
-- **Fake first person.** No "I've seen this," "in my experience," or "I'll admit"
-  unless the source already had author presence.
+- **Invented speaker perspective.** No "I've seen this," "in my experience,"
+  or "I'll admit" without source support. The same rule applies when drafting
+  in another person's voice: do not invent their possessions, trials, opinions,
+  or reactions. Flag the missing source detail for the author.
 - **Manufactured stakes.** No "in a world where," "now more than ever," or empty
   stakes inflation the source did not argue.
 - **Forced contrarianism.** No invented "everyone says X, but they're wrong"

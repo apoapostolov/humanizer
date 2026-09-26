@@ -2,11 +2,9 @@
 
 Installable writing skills for AI agents. Each skill does one job. A mixed document does not pass through the whole suite.
 
-## What's New in 2.12.3
+## What's New in 2.12.4
 
-Humanizer keeps more of a writer's own material: dated slang, mixed feelings, historical voice, and low-variance cadence survive a rewrite, and force-bearing words in safety, legal, and technical rules come through unchanged. Seven more cataloged tells landed in the reference set, and Writing Prose gained fiction and scholarly registers.
-
-AI Writing Detector ships the current engine, with a preservation check that no longer trips over a code fence opened by a backtick line.
+Humanizer adds rendered-surface line-break checks, extends its no-invented-experience guardrail to drafting in another person's voice, and absorbs staged-discovery detector guidance. The detector masks quoted material and single-line quote blocks and recognizes narrow staged-discovery variants. Writing Prose now uses Vale 3.23.0 with refreshed Microsoft styles.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -16,8 +14,8 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 | --- | --- | --- |
 | Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.2` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.1` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.6` |
-| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.0` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.7` |
+| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.1` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 
 Use one skill for the job a section needs.

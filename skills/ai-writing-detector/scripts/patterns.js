@@ -876,6 +876,16 @@ const AIDetector = (() => {
     /\b(?:that|this)(?:['\u2019]s|\s+(?:is|was))\s+why\s+[^.!?\n]{0,60}\s+mattered\b/gi,
   ];
 
+  const STAGED_DISCOVERY = [
+    // Staged discovery: a judgment framed as a twist the writer found ("the recording
+    // turned out to be the least interesting part"). Superlative + insight noun keeps
+    // ordinary "turned out to be the most expensive option" clean.
+    /\b(?:turned|turns|turning)\s+out\s+to\s+be\s+the\s+(?:least|most)\s+(?:interesting|important|surprising|revealing|valuable|useful)\s+(?:part|thing|piece|bit)\b/gi,
+    // Require a reveal-style continuation; "the real story was covered by..."
+    // describes a literal story and is not a staged discovery.
+    /\bthe\s+real\s+story\s+(?:here\s+)?(?:is|was)\b(?=\s+(?:the|that|how|why|what)\b)/gi,
+  ];
+
   // ─── Negation chains ───────────────────────────────────────────────
   // "No fluff, no filler, no jargon" / "It didn't ask, didn't wait" /
   // "Don't call it X. Call it Y." Precision guards, in order: the
@@ -1209,7 +1219,38 @@ const AIDetector = (() => {
     return { text: chars.join(''), maskedFrontmatter, maskedHtmlComments };
   }
 
-  function maskMultilineBlockquotes(text) {
+  // Blank the content of double-quoted spans and keep the quote marks, so
+  // offsets and the curly-quote signal survive. Based on QUOTED_SPAN in
+  // scripts/self-scan.js minus its single-quote branch: apostrophes in
+  // contractions and possessives would pair up across ordinary prose. A
+  // straight quote touching a letter or digit on its outer side is an inch
+  // mark, not a quotation. Empty `""` pairs are consumed so they cannot
+  // shift the pairing, and a span never crosses a backtick into code. A
+  // nested quotation escaped as a pair (`\"…\"`) stays inside the span. A
+  // lone `\"` still closes it, so a path such as `"C:\Temp\"` cannot run on
+  // into the next quotation.
+  const QUOTED_SPAN_RE = /(?<![\p{L}\p{N}])"(?:\\"[^"`\n]{0,300}\\"|[^"`\n]){0,300}"(?![\p{L}\p{N}])|“[^“”`\n]{0,300}”/gu;
+  function maskQuotedSpans(text) {
+    let maskedQuotes = 0;
+    const masked = text.replace(QUOTED_SPAN_RE, (span) => {
+      // Escaped pairs can chain past the 300-character cap; score those.
+      // Count code points, as the `u` regex does, so emoji do not trip it.
+      if (span.length === 2 || [...span].length > 302) return span;
+      maskedQuotes += 1;
+      // Keep sentence punctuation so getSentences splits where it did before.
+      return span[0] + span.slice(1, -1).replace(/[^.!?]/g, ' ') + span[span.length - 1];
+    });
+    return { text: masked, maskedQuotes };
+  }
+
+  // A `>` opens a blockquote line when a space, the line end, a letter, a
+  // nested `>`, an opening double quote, emphasis, a link, or a list marker
+  // (`- `, `+ `, `1. `) follows it. That covers compact Markdown (`>text`)
+  // without swallowing comparisons such as `>=5` or `>-1`. A single quote is
+  // left out, as in the inline quote pass.
+  const BLOCKQUOTE_LINE_RE = /^\s*>(?:$|[\s\p{L}>"“*_[]|[-+]\s|\d{1,9}[.)]\s)/u;
+
+  function maskBlockquotes(text) {
     const chars = text.split('');
     const lines = [];
     const lineRe = /[^\r\n]*(?:\r\n|\n|\r|$)/g;
@@ -1220,10 +1261,9 @@ const AIDetector = (() => {
     }
 
     let quotedLines = 0;
-    const isQuote = lines.map((line) => /^\s*>\s/.test(line.text));
-    for (let i = 0; i < lines.length; i += 1) {
-      if (isQuote[i] && ((isQuote[i - 1] && i > 0) || isQuote[i + 1])) {
-        blankRange(chars, lines[i].start, lines[i].end);
+    for (const line of lines) {
+      if (BLOCKQUOTE_LINE_RE.test(line.text)) {
+        blankRange(chars, line.start, line.end);
         quotedLines += 1;
       }
     }
@@ -1234,19 +1274,31 @@ const AIDetector = (() => {
   // Keep the historical deletion behavior for default plain mode. Paragraph-
   // scoped rules depend on the surrounding lines being rejoined exactly this
   // way, so changing this prepass would change scores for existing callers.
-  function stripMultilineBlockquotes(text, sourceMap) {
+  function stripBlockquotes(text, sourceMap) {
     const rawLines = text.split(/\r?\n/);
-    const isQuote = rawLines.map((line) => /^\s*>\s/.test(line));
     const stripIndexes = new Set();
+    let blankedLines = 0;
     for (let i = 0; i < rawLines.length; i += 1) {
-      if (isQuote[i] && ((isQuote[i - 1] && i > 0) || isQuote[i + 1])) stripIndexes.add(i);
+      // A bare CR is not split here, so a CR-only document is one element.
+      // Deleting it would take the unquoted lines after the quote with it,
+      // so blank each quoted CR-separated line in place instead. Blanking
+      // keeps the element length, so the offsets below still line up.
+      if (rawLines[i].includes('\r')) {
+        rawLines[i] = rawLines[i].split('\r').map((line) => {
+          if (!BLOCKQUOTE_LINE_RE.test(line)) return line;
+          blankedLines += 1;
+          return ' '.repeat(line.length);
+        }).join('\r');
+      } else if (BLOCKQUOTE_LINE_RE.test(rawLines[i])) {
+        stripIndexes.add(i);
+      }
     }
     const kept = rawLines
       .map((_, index) => index)
       .filter((index) => !stripIndexes.has(index));
     const result = {
       text: kept.map((index) => rawLines[index]).join('\n'),
-      quotedLines: stripIndexes.size,
+      quotedLines: stripIndexes.size + blankedLines,
     };
     if (!Array.isArray(sourceMap)) return result;
 
@@ -1721,16 +1773,27 @@ const AIDetector = (() => {
 
     // Pre-pass: mask Markdown blockquotes before scoring. A human
     // reacting to AI text by quoting it shouldn't have the quoted block
-    // counted against their own writing. Requires ≥2 consecutive `> `
-    // lines to count as a blockquote — single-line `> ls -la` shell
-    // prompts in technical docs stay in the text. Masking instead of deleting
-    // keeps later issue and highlight offsets aligned with the source file.
+    // counted against their own writing. A single `> ` line counts too
+    // (#238). Masking instead of deleting keeps later issue and highlight
+    // offsets aligned with the source file.
     const blockquotes = sourceMode === 'rendered-markdown'
-      ? maskMultilineBlockquotes(text)
-      : stripMultilineBlockquotes(text, sourceMap);
+      ? maskBlockquotes(text)
+      : stripBlockquotes(text, sourceMap);
     text = blockquotes.text;
     if (blockquotes.sourceMap) sourceMap = blockquotes.sourceMap;
     const { quotedLines } = blockquotes;
+
+    // Pre-pass: the inline half of the blockquote escape hatch. Words inside
+    // a double-quoted span belong to whoever is quoted (#238). Masking runs
+    // before normalization, as blockquotes do, so bypass characters inside a
+    // quotation raise no normalization flag. Masking keeps the length, so
+    // the source map needs no update. The smart-punctuation check below
+    // reads the unmasked text, because the blanked span would otherwise
+    // count as a double space.
+    const unquotedText = normalizeText(text).text;
+    const quotes = maskQuotedSpans(text);
+    text = quotes.text;
+    const { maskedQuotes } = quotes;
 
     // Pre-pass: strip bypass-trick chars before pattern matching so
     // "delve" with a Cyrillic 'е' still hits Tier 1. Compose the map while
@@ -1761,7 +1824,7 @@ const AIDetector = (() => {
         score: 0,
         label: 'Unsupported script',
         issues: [],
-        stats: { wordCount, cjkChars, reason: 'unsegmented-script document: no inter-word spaces to count', contextMode, contextModeFallback, sourceMode, sourceModeFallback, maskedFrontmatter, maskedHtmlComments },
+        stats: { wordCount, cjkChars, reason: 'unsegmented-script document: no inter-word spaces to count', contextMode, contextModeFallback, sourceMode, sourceModeFallback, maskedFrontmatter, maskedHtmlComments, quotedLines, maskedQuotes },
         unsupportedScript: true,
       };
     }
@@ -1771,7 +1834,7 @@ const AIDetector = (() => {
         score: 0,
         label: 'Too short',
         issues: [],
-        stats: { wordCount, contextMode, contextModeFallback, sourceMode, sourceModeFallback, maskedFrontmatter, maskedHtmlComments },
+        stats: { wordCount, contextMode, contextModeFallback, sourceMode, sourceModeFallback, maskedFrontmatter, maskedHtmlComments, quotedLines, maskedQuotes },
         tooShort: true,
       };
     }
@@ -1781,7 +1844,7 @@ const AIDetector = (() => {
         score: 0,
         label: 'Text too long',
         issues: [],
-        stats: { wordCount, contextMode, contextModeFallback, sourceMode, sourceModeFallback, maskedFrontmatter, maskedHtmlComments },
+        stats: { wordCount, contextMode, contextModeFallback, sourceMode, sourceModeFallback, maskedFrontmatter, maskedHtmlComments, quotedLines, maskedQuotes },
         tooLong: true,
       };
     }
@@ -1911,6 +1974,8 @@ const AIDetector = (() => {
     issues.push(...matchPatterns(text, REAL_ACTUAL_INFLATION, 'real-actual-inflation', 'medium'));
     issues.push(...matchPatterns(text, SOCIAL_CTA_CLOSER, 'social-cta-closer', 'high'));
     issues.push(...matchPatterns(text, PERFORMED_INSIGHT, 'performed-insight', 'medium'));
+    const stagedDiscoveryIssues = matchPatterns(text, STAGED_DISCOVERY, 'performed-insight', 'medium');
+    issues.push(...stagedDiscoveryIssues);
     issues.push(...matchPatterns(text, NEGATION_CHAIN, 'negation-chain', 'high'));
     issues.push(...matchPatterns(text, DEV_BLOG_BOILERPLATE, 'dev-blog-boilerplate', 'medium'));
     issues.push(...findUnnecessaryHyphenation(text));
@@ -2040,7 +2105,7 @@ const AIDetector = (() => {
       const hasEmDash = totalEmDashes > separatorEmDashes;
       const oxfordHit = text.match(/\b\w+,\s+\w+,\s+and\s+\w+/g);
       const hasOxford = (oxfordHit?.length || 0) >= 1;
-      const doubleSpaces = (text.match(/[^.!?]  +/g) || []).length;
+      const doubleSpaces = (unquotedText.match(/[^.!?]  +/g) || []).length;
       const missingApos = /\b(?:dont|wont|cant|isnt|wasnt|shouldnt|wouldnt|couldnt|youre|theyre|its\s+a\s+\w+ing)\b/i.test(text);
       const clean = doubleSpaces === 0 && !missingApos;
       const signals = [hasCurly, hasEmDash, hasOxford, clean].filter(Boolean).length;
@@ -2460,7 +2525,20 @@ const AIDetector = (() => {
     // above a list of two items. Now the dedup runs first, then each
     // distinct issue contributes its category weight — so the number
     // reflects the same signals the user actually sees.
-    const deduped = deduplicateIssues(issues);
+    // The staged-discovery phrase can contain the older "the most interesting
+    // part" flatline match or sentence-initial "Turns out". Report the
+    // enclosing signal once while leaving unrelated findings intact.
+    const stagedDiscoverySpans = stagedDiscoveryIssues
+      .map((issue) => ({ start: issue.index, end: issue.index + issue.text.length }));
+    const nonOverlappingIssues = issues.filter((issue) =>
+      (issue.type !== 'emotional-flatline' && issue.type !== 'performed-insight') ||
+      stagedDiscoveryIssues.includes(issue) ||
+      !Number.isInteger(issue.index) ||
+      !stagedDiscoverySpans.some((span) =>
+        issue.index >= span.start && issue.index + issue.text.length <= span.end
+      )
+    );
+    const deduped = deduplicateIssues(nonOverlappingIssues);
     for (const issue of deduped) {
       rawScore += ISSUE_WEIGHTS[issue.type] ?? 2;
     }
@@ -2539,6 +2617,7 @@ const AIDetector = (() => {
         maskedHtmlComments,
         normalization: norm.flags,
         quotedLines,
+        maskedQuotes,
         unmappedHighlights: regions._unmapped ?? 0,
         denseAIVocab,
         tier1Distinct,

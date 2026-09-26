@@ -829,8 +829,12 @@ unannounced.
 
 **Carve-outs:** One hit can be a stylistic choice; several in one piece is the
 tell. Quoted speech and genuinely comedic writing keep literal punchlines.
-(Adapted from avoid-ai-writing v3.28.0, MIT; source: Simon Willison's LLM
-cliché highlighter.)
+Staged-discovery variants such as *it turned out to be the least interesting
+part* and *the real story was that...* use the same reveal frame; revise them
+when the phrasing supplies drama without new information. Keep literal outcomes
+such as *it turned out to be the most expensive option* and literal reports such
+as *the real story was covered yesterday*. (Adapted from avoid-ai-writing
+v3.28.0 and v3.36.0, MIT; source: Simon Willison's LLM cliché highlighter.)
 
 ### 87. Negation chain
 

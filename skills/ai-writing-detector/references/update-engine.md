@@ -193,6 +193,15 @@ Behavioral probe at absorb: 50-word technical prose with six exempt terms
 scored 16/5 issues in technical mode vs 53/14 in general, and no exempt term
 appeared in technical findings. Detector skill version 1.1.4.
 
+v3.36.0 post-release tip `2a7e999` changes `patterns.js` only. It masks
+double-quoted spans and recognizes single-line and compact Markdown blockquotes,
+so quoted material is excluded before scoring while offsets remain aligned to
+the source. It adds narrow staged-discovery matches under the existing
+`performed-insight` type and deduplicates contained insight/flatline signals.
+`validate.js` and `CATEGORIES.md` have no behavioral delta. Keep the package
+report layer, CLI, and smoke suite unchanged. Probes cover a staged discovery,
+a literal outcome, quoted AI phrasing, and unquoted prose.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
