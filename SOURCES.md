@@ -243,9 +243,9 @@ Reviewed for signal; not on every-update ingest unless something meaningful appe
 | status | `monitor` |
 | repo | `https://github.com/op7418/Humanizer-zh` |
 | last_ingested_version | *(none — no general content imported)* |
-| last_checked_ref | `91f3d39` |
-| last_checked_at | `2026-07-15T04:11:17-07:00` |
-| note | Chinese adaptation; last content push 2026-01-19. Check only if new commits. |
+| last_checked_ref | `f4518a8` |
+| last_checked_at | `2026-09-29T02:00:00+03:00` |
+| note | Chinese adaptation. 2026-09-23 push `f4518a8` rewrites the zh rules around meaning/voice preservation (blader v3.0.0 + stop-slop based, 31 checkpoints) and drops the mechanical-triad/dash edits we already reject; no material beyond what EN upstreams provide. Last reviewed 2026-09-29. |
 
 ### Wikipedia: Signs of AI writing
 
