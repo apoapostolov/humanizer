@@ -2,9 +2,9 @@
 
 Installable writing skills for AI agents. Each skill does one job. A mixed document does not pass through the whole suite.
 
-## What's New in 2.12.4
+## What's New in 2.12.5
 
-Humanizer adds rendered-surface line-break checks, extends its no-invented-experience guardrail to drafting in another person's voice, and absorbs staged-discovery detector guidance. The detector masks quoted material and single-line quote blocks and recognizes narrow staged-discovery variants. Writing Prose now uses Vale 3.23.0 with refreshed Microsoft styles.
+Humanizer absorbs blader/humanizer v3.1.0: a new tell for replies that re-explain what the reader already knows, example-explaining closers, method narration, and effect-seeking headings. The detector engine moves to avoid-ai-writing tip `7cd166c` with a negative-parallelism type, word-joiner and homoglyph false-positive fixes, and quote-ignore markers.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -12,9 +12,9 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.2` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.3` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.1` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.7` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.8` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.1` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 

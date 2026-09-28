@@ -6,14 +6,14 @@ the skill, decide here whether it's regex-detectable (give it a detector `type`)
 or LLM-only judgment (mark it so). When you add a detector `type`, point it back
 at the skill section it enforces.
 
-The engine exposes 53 issue `type`s (see `TYPE_LABELS` in `patterns.js`). The
+The engine exposes 54 issue `type`s (see `TYPE_LABELS` in `patterns.js`). The
 skill has more `###` sections than that — the gap is **not** missing coverage,
 it's rules that are judgment calls a regex can't make. The three groups below
 account for every entry on both sides.
 
 Three counts coexist on purpose and should not be forced to match: the README's
 **pattern-category count** (the human-facing prose catalog, derived from SKILL.md
-and guarded in CI), the engine's **53 `type`s** (which split the vocabulary tiers
+and guarded in CI), the engine's **54 `type`s** (which split the vocabulary tiers
 and add stylometric signals), and SKILL.md's `###` sections (which also include
 writer-side tests with no detectable form). The
 `categories.test.js` enforces the engine ↔ this-file mapping, and checks every
@@ -64,6 +64,7 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | `unnecessary-hyphenation` | Unnecessary hyphenation | Unnecessary hyphenation *(curated open, closed, and position-dependent subclasses only)* |
 | `performed-insight` | Performed-insight phrase | Performed-insight phrases — *partial; literal-sense exclusions documented in SKILL.md* |
 | `negation-chain` | Negation chain | Negation chains — *partial; three-item deterministic threshold documented in SKILL.md* |
+| `negative-parallelism` | Negative parallelism | Negation chains *(one type in the catalog)* — *partial: joined reveal frames (`isn't just/merely/simply X, it's Y`) flag alone; plain joined contrasts and the split-sentence reveal flag only when another frame starts within two sentences in the same paragraph, so one real correction per piece passes. `not only X but Y` and `not X but Y` correlatives stay judgment rules, as do the countdown and clipped negative tail* |
 | `dev-blog-boilerplate` | Dev-blog boilerplate | Dev-blog boilerplate — *partial; literal-sense exclusion documented in SKILL.md* |
 | `launch-intro` | Launch-copy introduction | Launch-copy dramatic introductions — *partial; `Meet X` needs a launch-copy head, `Think X meets Y` only; bare `Enter X.`, bare `Meet X, your new [role]`, and `Say hello to X` stay judgment calls* |
 | `crowd-contrast` | Dramatized crowd contrast | Dramatized contrast against the crowd — *partial; dismissive-verb gate plus closed crowd list; literal simultaneity stays clean* |
@@ -80,6 +81,8 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 > surface forms remain judgment rules rather than deterministic matches.
 > `negation-chain` requires three short sentence-initial "no …" items; two-item
 > chains remain judgment calls.
+> `negative-parallelism` flags a plain contrast only with a second frame within
+> two sentences; a single "It isn't raining, it's snowing." stays clean.
 
 ## B. Detector-only (stylometric / fingerprint — no skill prose)
 
@@ -103,7 +106,7 @@ mistake their absence for a coverage gap:
 - Copula avoidance
 - Promotional language
 - Context-dependent `actually` as a hollow intensifier *(delete it when it only adds emphasis; keep it when it carries a named correction or expectation gap). The same token performs both jobs, so matching it unconditionally would flag ordinary corrective prose.*
-- Sentence structure: "It's not X — it's Y" / split-sentence form / multi-negation countdown / tailing negation
+- Sentence structure: split-sentence negation without a minimizer ("The headline isn't the speed. The real story is Y.") / multi-negation countdown / tailing negation / "not only X but Y" and "not X but Y" correlatives *(the joined "It's not X, it's Y" frame is `negative-parallelism` in §A)*
 - Structural issues / Excessive structure / Inline-header lists / Numbered list inflation
 - Moral-adjective category errors (including ontological slop on assumptions, gratuitous universal quantifiers)
 - Invented contrast-pair mirroring

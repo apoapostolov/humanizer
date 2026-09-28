@@ -994,7 +994,10 @@ evidence. (Adapted from avoid-ai-writing v3.31.0, MIT.)
 
 **Tell:** *This matters because* or *here is why that matters* introduces a
 restatement of importance rather than a reason: *This matters because it is
-important.* The frame promises stakes and delivers the premise again.
+important.* The frame promises stakes and delivers the premise again. Same
+family: a sentence after an example that names what the example showed
+(*This shows the importance of...*, *The message was clear:*, *It was a
+lesson in patience.*).
 
 **Repair:** Cut the empty frame, or replace it with an explanation already
 present in the source. Never invent stakes. Preserve the frame when a concrete
@@ -1051,7 +1054,13 @@ can remain artificial even after the obvious vocabulary has gone.
 - **Diff-anchored writing:** Documentation or comments narrate that something
   *was added*, *was changed*, or *replaces the old approach* when the document is
   not a changelog or migration guide. Describe the current behavior and keep
-  history only when readers need it to act.
+  history only when readers need it to act. Same family: method narration
+  (*drawn from each vendor's published pricing; anything unconfirmed is flagged
+  rather than guessed*) and legends the reader can already see (*the table below
+  compares*, *this section is organized by owner*). Keep a source credit the
+  reader can follow and a caveat that changes what they should do; cut the
+  account of how you worked, and state a convention once, only when it cannot
+  be inferred. A single description of the page is weak alone.
 - **Speculative gap filling:** Missing information becomes stock biography or
   motive: someone *keeps a low profile*, *values privacy*, or *likely* followed a
   plausible path. State the gap once or omit it; do not turn absence into fact.
@@ -1097,7 +1106,9 @@ Check these publication-level patterns after the prose itself is sound:
   endpoints define a real spectrum.
 - **Mechanical formatting:** Remove decorative bold labels, title case, emoji,
   repeated label-colon lists, unnecessary small tables, skipped heading levels,
-  and thematic breaks that merely precede headings. Keep hierarchy and tables
+  and thematic breaks that merely precede headings. A heading written for
+  effect (*The decision, on one screen*) should name what the section holds
+  (*How the six options compare*). Keep hierarchy and tables
   that help readers scan or compare.
 - **Typographic over-polish:** Match surrounding quotation marks, punctuation,
   capitalization, and spacing.
@@ -1134,7 +1145,7 @@ Check these publication-level patterns after the prose itself is sound:
 5. Re-read for voice continuity and publication residue.
 6. Stop when the passage is clear, credible, and fit for purpose.
 
-## Absorbed tells 100-106
+## Absorbed tells 100-107
 
 Compact repairs from avoid-ai-writing, humanize, and humanizer-skill. Same
 status as the numbered catalog: editorial prompts, not authorship proof.
@@ -1188,6 +1199,26 @@ throat-clear before the real sentence.
 generally a good idea to*.
 
 **Repair:** Answer first. Drop the throat-clear.
+
+### 107. Re-explaining what the reader knows
+
+**Tell:** In a reply, the answer rebuilds context the reader already has: it
+restates the problem, walks the diagnosis, lays out the evidence, and reaches
+the decision in the last line. Each sentence reads fine on its own, which is
+why the shape survives sentence-level cleanup. Related: pasting a query,
+command, or numbers to prove the plan will work; re-walking background the
+other person wrote or agreed to.
+
+**Repair:** Lead with the decision. Keep only the reasoning that would change
+whether the reader agrees: usually one fact they lack and any link they need
+to act. The diagnosis and the proof belong in the ticket or document that
+follows. A reviewer raising a topic is not a request for the full write-up.
+
+**Carve-outs:** Act when the surrounding conversation is visible or the text
+is plainly a reply; when you cannot tell, ask or leave the text alone. A
+standalone document for readers with no shared context is exempt, and one
+line of framing in a long thread is ordinary. (Adapted from blader/humanizer
+v3.1.0 §26, MIT.)
 
 For before-and-after demonstrations, load [examples.md](examples.md). For tiered
 word replacements, load [vocabulary-tiers.md](vocabulary-tiers.md). For detect

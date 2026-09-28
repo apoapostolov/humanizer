@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.5] - 2026-09-29
+
+Humanizer source absorb, patch release.
+
+- **humanizer 1.7.2 -> 1.7.3:** absorb blader/humanizer v3.1.0. New catalog tell
+  107 (a reply re-explains what the reader knows; lead with the decision), an
+  example-explaining closer extension under pattern 97, method narration and
+  page legends under diff-anchored writing, effect-seeking headings under
+  mechanical formatting, and the post-rewrite sweep reordered to contrast,
+  closer, triad, dash, label.
+- **ai-writing-detector 1.1.7 -> 1.1.8:** update the engine to avoid-ai-writing
+  tip `7cd166c`. New `negative-parallelism` type (54 types): a minimizer reveal
+  flags alone, plain contrasts pair only within two sentences in one paragraph,
+  and `not only X but Y` correlatives stay unmatched. Word joiners next to
+  URLs or punctuation no longer count as bypass characters while word-splitting
+  joiners still do. Cyrillic and Greek prose no longer reads as homoglyph
+  substitution. Ignore markers exclude a passage from scoring.
+  `validate.js` is unchanged. Smoke green; behavior probes at absorb.
+- Package version: `2.12.4` -> `2.12.5`.
+
 ## [2.12.4] - 2026-09-27
 
 Humanizer source and Vale refresh, patch release.

@@ -56,8 +56,8 @@ split apart. If a comma, conjunction, subordinate clause, colon, or semicolon
 would express the relationship more naturally, combine one pair. Keep the
 period when it creates useful emphasis or clarity.
 
-After a full rewrite, sweep for the five tells that most often survive one: a
-not-X-but-Y contrast, a one-line closer, a dash, a triad, a bold label. Fix
+After a full rewrite, sweep for the tells that most often survive one: a
+not-X-but-Y contrast, a one-line closer, a triad, a dash, a bold label. Fix
 what remains; do not let the cleanup install a new template.
 
 ## 6. Repeated-frame check

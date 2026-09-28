@@ -202,6 +202,29 @@ the source. It adds narrow staged-discovery matches under the existing
 report layer, CLI, and smoke suite unchanged. Probes cover a staged discovery,
 a literal outcome, quoted AI phrasing, and unquoted prose.
 
+v3.36.0 tip range `2a7e999..7cd166c` (2026-09-29 absorb) changes
+`patterns.js` only; `validate.js` is byte-identical to the prior pin and
+`CATEGORIES.md` moves one framing line between its judgment and engine lists.
+Four durable engine changes: (1) new `negative-parallelism` type (engine 54
+types) — a reveal frame with a minimizer (`isn't just/merely/simply X, it's
+Y`) flags alone; plain joined contrasts and the split-sentence reveal flag
+only when another frame starts within two sentences in the same paragraph;
+`not only X but Y` / `not X but Y` correlatives stay unmatched on
+control-corpus frequency (#351/#353). (2) Word joiners (U+2060) next to
+URLs, spaces, or punctuation no longer count as bypass characters, while a
+joiner that splits a word still does — including a supplementary-plane letter
+boundary (#351/#353). (3) Cyrillic and Greek prose no longer reads as
+homoglyph substitution: script dominance is decided per sentence (#352).
+(4) Ignore markers `<!-- avoid-ai-writing:ignore-start/end -->` exclude a
+passage from scoring in every source mode; `stats.ignoredRegions` counts
+regions (#351). Upstream README gains a per-agent install section and
+`--source-mode`/`--context` CLI flags that the upstream bundled script had
+rejected; this package's `analyze.js` already accepts them. Probes at
+absorb: reveal-alone flags, contrast pairing within the window + paragraph,
+far-paragraph pairs and correlatives stay quiet, joiner-adjacent-to-URL
+quiet, Cyrillic prose clean, ignore-marker region counted and content
+excluded. Detector skill version 1.1.8.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

@@ -17,19 +17,19 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.4` |
+| package_version | `2.12.5` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
-| humanizer_skill_version | `1.7.2` |
+| humanizer_skill_version | `1.7.3` |
 | simple_english_skill_version | `2.4.1` |
-| ai_writing_detector_skill_version | `1.1.7` |
+| ai_writing_detector_skill_version | `1.1.8` |
 | writing_prose_skill_version | `1.2.1` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-09-27T01:19:26+03:00` |
+| last_sources_sync | `2026-09-29T02:00:00+03:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -72,10 +72,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.1.7` |
+| skill_version | `1.1.8` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `2a7e999` (v3.36.0 plus post-release commits; quote masking, broader blockquote recognition, staged-discovery patterns #238/#346/#347) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `7cd166c` (v3.36.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, per-sentence homoglyph gate, ignore markers #351/#352/#353) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. |
 
@@ -107,17 +107,17 @@ humanizer.
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
 | release_tag | `v3.36.0` |
 | release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.36.0` |
-| last_ingested_version | `3.36.0` (editorial contract + post-release tip absorbed; patterns engine updated) |
-| last_ingested_ref | `2a7e99946510` |
-| last_ingested_at | `2026-09-27T01:02:00+03:00` |
-| last_checked_at | `2026-09-27T01:02:00+03:00` |
+| last_ingested_version | `3.36.0` (post-release tip `7cd166c` absorbed; patterns engine updated) |
+| last_ingested_ref | `7cd166c32e91` |
+| last_ingested_at | `2026-09-29T02:00:00+03:00` |
+| last_checked_at | `2026-09-29T02:00:00+03:00` |
 | compare_base | `6135015` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99; 9/72/74 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.36.0`, or untagged commits on default branch after `2a7e99946510`. |
+| next_check | On newer tag than `v3.36.0`, or untagged commits on default branch after `7cd166c32e91`. |
 
 Diff helpers:
 
@@ -136,18 +136,18 @@ git -C avoid-ai-writing diff 3c0fd8a26689..origin/main -- SKILL.md CHANGELOG.md 
 | id | `blader-humanizer` |
 | status | `active_ingest` |
 | repo | `https://github.com/blader/humanizer` |
-| release_tag | `v3.0.0` |
-| release_url | `https://github.com/blader/humanizer/releases/tag/v3.0.0` |
-| last_ingested_version | `3.0.0 (9862685)` |
-| last_ingested_ref | `9862685f575c` |
-| last_ingested_at | `2026-09-06T00:00:00-07:00` |
-| last_checked_at | `2026-09-06T00:00:00-07:00` |
+| release_tag | `v3.1.0` |
+| release_url | `https://github.com/blader/humanizer/releases/tag/v3.1.0` |
+| last_ingested_version | `3.1.0 (225a6f3)` |
+| last_ingested_ref | `225a6f39ac85` |
+| last_ingested_at | `2026-09-29T02:00:00+03:00` |
+| last_checked_at | `2026-09-29T02:00:00+03:00` |
 | local_clone | `blader-humanizer` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |
 | lands_in | `skills/humanizer/SKILL.md`, `skills/humanizer/references/humanizing-text.md`, `skills/humanizer/references/ai-ism-audit.md`, `skills/humanizer/references/pattern-catalog.md` (79-80, 11/21 extensions; 9 split/countdown/tail forms), `skills/humanizer/references/vocabulary-tiers.md` (gated vocabulary), `skills/humanizer/references/required-checks.md` (workflow rules; five-tell post-rewrite sweep; historical catalog) |
 | ingest_policy | Primary same-family upstream. Import durable tells and examples. Do not adopt hard em/en dash bans. Prefer light-edit default for human-authored input. Keep information-over-shape and no-fabrication rules. Voice sample outranks generic style defaults. v2.11.0 plain-language reskin of upstream SKILL.md not adopted (house voice already plain); absorb new tells and FP carve-outs only. |
-| next_check | On newer tag than `v3.0.0`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
+| next_check | On newer tag than `v3.1.0`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
 
 Diff helpers:
 
