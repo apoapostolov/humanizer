@@ -1,4 +1,20 @@
-# Humanizer Suite
+<!-- markdownlint-disable MD033 -->
+
+<div align="center">
+
+  <h1>Humanizer Suite</h1>
+
+  <p>Help AI agents write with a human voice, explain clearly, and catch stale AI prose.</p>
+
+  <p>
+    <a href="#readme"><img src="https://img.shields.io/badge/Type-Agent%20skills-555" alt="Type: Agent skills"></a>
+    <a href="#readme"><img src="https://img.shields.io/badge/Format-Markdown-555" alt="Format: Markdown"></a>
+    <a href="https://github.com/apoapostolov/humanizer/releases/latest"><img src="https://img.shields.io/github/v/release/apoapostolov/humanizer" alt="Latest stable release version"></a>
+    <a href="https://github.com/apoapostolov/humanizer/releases/latest"><img src="https://img.shields.io/github/release-date/apoapostolov/humanizer?display_date=published_at&amp;label=last%20release" alt="Published date of latest stable release"></a>
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-green" alt="License: MIT"></a>
+  </p>
+
+</div>
 
 Installable writing skills for AI agents that need to sound like a careful
 writer, explain a procedure plainly, or check a draft for familiar AI prose
