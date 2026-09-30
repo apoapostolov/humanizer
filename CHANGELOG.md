@@ -4,32 +4,33 @@ All notable changes to this project will be documented in this file.
 
 ## [2.12.5] - 2026-09-29
 
-Humanizer source absorb, patch release.
+The writing skills catch a few more ways a helpful answer can sound staged,
+while the detector is less likely to flag ordinary text as a trick.
 
-- **humanizer 1.7.2 -> 1.7.3:** absorb blader/humanizer v3.1.0. New catalog tell
-  107 (a reply re-explains what the reader knows; lead with the decision), an
-  example-explaining closer extension under pattern 97, method narration and
-  page legends under diff-anchored writing, effect-seeking headings under
-  mechanical formatting, and the post-rewrite sweep reordered to contrast,
-  closer, triad, dash, label.
-- **ai-writing-detector 1.1.7 -> 1.1.8:** update the engine to avoid-ai-writing
-  tip `7cd166c`. New `negative-parallelism` type (54 types): a minimizer reveal
-  flags alone, plain contrasts pair only within two sentences in one paragraph,
-  and `not only X but Y` correlatives stay unmatched. Word joiners next to
-  URLs or punctuation no longer count as bypass characters while word-splitting
-  joiners still do. Cyrillic and Greek prose no longer reads as homoglyph
-  substitution. Ignore markers exclude a passage from scoring.
-  `validate.js` is unchanged. Smoke green; behavior probes at absorb.
-- Package version: `2.12.4` -> `2.12.5`.
+### Changed
+
+- Humanizer now prompts a reply to lead with the decision instead of
+  re-explaining the reader's own context. It also catches closers that explain
+  the example back to the reader, unnecessary method narration, and headings
+  that promise an effect without saying what happened.
+- AI Writing Detector recognizes negative-parallelism patterns more
+  carefully. It no longer treats word joiners beside URLs or punctuation as
+  evasions, and Cyrillic or Greek prose no longer looks like homoglyph
+  substitution. Ignore markers can exclude a passage from scoring.
 
 ## [2.12.4] - 2026-09-27
 
-Humanizer source and Vale refresh, patch release.
+This patch improves edits made for real reading surfaces and reduces false
+signals when a document quotes someone else.
 
-- **humanizer 1.7.2:** absorb rendered-surface line-break guidance and extend the fabricated-speaker guardrail to drafting in another person's voice. Add staged-discovery variants and narrow literal-use carve-outs to the performed-insight catalog.
-- **ai-writing-detector 1.1.6 -> 1.1.7:** update `patterns.js` to avoid-ai-writing tip `2a7e999`. Quoted spans and single-line quote blocks are masked; staged-discovery variants are covered. `validate.js` is unchanged.
-- **writing-prose 1.2.0 -> 1.2.1:** update Vale to `v3.23.0`, sync Microsoft styles, and verify Windows and WSL binaries. House config unchanged.
-- Package version: `2.12.3` -> `2.12.4`.
+### Changed
+
+- Humanizer considers where a line break will render and protects against
+  inventing a speaker's voice when drafting for another person.
+- AI Writing Detector skips quoted spans and single-line quote blocks when
+  evaluating staged-discovery patterns.
+- Writing Prose updates its Vale rules and Microsoft style checks. The
+  bundled gate runs on Windows and WSL.
 
 ## [2.12.3] - 2026-09-25
 

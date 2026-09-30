@@ -1,10 +1,20 @@
 # Humanizer Suite
 
-Installable writing skills for AI agents. Each skill does one job. A mixed document does not pass through the whole suite.
+Installable writing skills for AI agents that need to sound like a careful
+writer, explain a procedure plainly, or check a draft for familiar AI prose
+signals. Choose the skill for the job in front of you; a mixed document does
+not need to pass through the whole suite.
 
-## What's New in 2.12.5
+## Current source: 2.12.5
 
-Humanizer absorbs blader/humanizer v3.1.0: a new tell for replies that re-explain what the reader already knows, example-explaining closers, method narration, and effect-seeking headings. The detector engine moves to avoid-ai-writing tip `7cd166c` with a negative-parallelism type, word-joiner and homoglyph false-positive fixes, and quote-ignore markers.
+Humanizer now pushes an answer toward the reader's decision instead of
+repeating what they already told you. It also catches endings that explain an
+example twice and headings that promise an effect without saying what changed.
+The detector recognizes more staged contrasts while avoiding false flags in
+URLs, Cyrillic, Greek, and passages intentionally excluded from scoring.
+
+The latest GitHub release is 2.12.4; these 2.12.5 changes are in the current
+source tree.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
