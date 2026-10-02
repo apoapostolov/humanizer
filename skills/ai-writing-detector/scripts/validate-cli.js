@@ -33,9 +33,12 @@ function usage(code) {
   process.stderr.write(`Usage: node validate-cli.js [options] <original> <rewritten>
 
 Options:
-  --json               JSON result (schema ai-writing-detector.validate.v1)
-  --quiet              One line: ok=1|0 errors=N warnings=N
-  --fail-on-warnings   Exit 4 if warnings and no errors
+  --json                     JSON result (schema ai-writing-detector.validate.v1)
+  --quiet                    One line: ok=1|0 errors=N warnings=N
+  --fail-on-warnings         Exit 4 if warnings and no errors
+  --residual-policy <p>      error (default) blocks on residual pattern growth;
+                             warn keeps mechanical preservation errors blocking
+                             and reports residual growth as a quality warning
   -h, --help
 
 Exit 1 if preservation errors. Warnings alone exit 0 unless --fail-on-warnings.
@@ -48,6 +51,7 @@ function main(argv) {
   let json = false;
   let quiet = false;
   let failOnWarnings = false;
+  let residualPolicy = "error";
   const files = [];
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
@@ -55,7 +59,13 @@ function main(argv) {
     else if (a === "--json") json = true;
     else if (a === "--quiet" || a === "-q") quiet = true;
     else if (a === "--fail-on-warnings") failOnWarnings = true;
-    else if (a.startsWith("-")) {
+    else if (a === "--residual-policy") {
+      residualPolicy = argv[++i];
+      if (!["error", "warn"].includes(residualPolicy)) {
+        process.stderr.write("--residual-policy takes error or warn\n");
+        usage(2);
+      }
+    } else if (a.startsWith("-")) {
       process.stderr.write(`Unknown flag: ${a}\n`);
       usage(2);
     } else files.push(a);
@@ -66,7 +76,7 @@ function main(argv) {
   const rewrittenPath = path.resolve(files[1]);
   const original = fs.readFileSync(originalPath, "utf8");
   const rewritten = fs.readFileSync(rewrittenPath, "utf8");
-  const result = validate(original, rewritten);
+  const result = validate(original, rewritten, { residualPolicy });
   const errors = result.errors || [];
   const warnings = result.warnings || [];
 

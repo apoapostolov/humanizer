@@ -21,15 +21,15 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.12.5
+## Current source: 2.12.6
 
-Humanizer now pushes an answer toward the reader's decision instead of
-repeating what they already told you. It also catches endings that explain an
-example twice and headings that promise an effect without saying what changed.
-The detector recognizes more staged contrasts while avoiding false flags in
-URLs, Cyrillic, Greek, and passages intentionally excluded from scoring.
+Vocabulary diversity is now measured over 200-token windows, so a long document
+is no longer flagged for being long. A rewrite can be checked for mechanical
+damage without treating a rising pattern count as damage, and a single empty
+concession reads as ordinary prose. Vale 3.24 adds a rule test runner, and the
+house rules ship cases for it.
 
-The latest GitHub release is 2.12.4; these 2.12.5 changes are in the current
+The latest GitHub release is 2.12.4; these 2.12.6 changes are in the current
 source tree.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
@@ -40,8 +40,8 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 | --- | --- | --- |
 | Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.3` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.1` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.8` |
-| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.1` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.9` |
+| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.2` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 
 Use one skill for the job a section needs.

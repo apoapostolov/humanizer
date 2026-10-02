@@ -225,6 +225,28 @@ far-paragraph pairs and correlatives stay quiet, joiner-adjacent-to-URL
 quiet, Cyrillic prose clean, ignore-marker region counted and content
 excluded. Detector skill version 1.1.8.
 
+v3.36.0 tip range `7cd166c..bdeb726` (2026-10-03 absorb) changes `patterns.js`
+and `validate.js`; `CATEGORIES.md` did not change in the range, so the localized
+map only picked up the moved framing line. Three durable engine changes:
+(1) `false-concession` narrowed to a genuinely empty pair (#211/#359): the
+opener subject widens past one word but stays inside its clause, the vague close
+must follow a comma, semicolon or colon in the same sentence, and the close
+stops at the next clause separator. The bare `despite X challenges` opener is
+dropped. (2) `low-ttr` now averages type-token ratio over 200-token windows
+instead of taking it across the whole text (#361). Whole-text TTR falls with
+length, so the old rule fired on all 13 human control documents longer than
+1,900 tokens. (3) `validate()` returns `preservation` and `quality` separately
+and takes `residualPolicy: "error" | "warn"` (#204); `warn` keeps mechanical
+damage blocking and reports residual pattern growth as a quality warning. The
+validator also warns on numbers added by the rewrite, and `analyzeText` throws
+a `TypeError` on non-string input with full stats on empty input (#234). Upstream
+README and SKILL.md now document `--residual-policy warn` as the editorial
+policy; our `validate-cli.js` exposes the same flag so the package contract
+matches. Probes at absorb: vague pair flags, concrete continuation and
+abbreviation cases stay quiet, warn policy blocks nothing mechanical, a bad
+policy value exits 2, 3000-token varied text no longer trips low-TTR while a
+repetitive 200-token text still does. Detector skill version 1.1.9.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

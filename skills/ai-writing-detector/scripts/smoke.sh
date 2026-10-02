@@ -147,6 +147,8 @@ run_check "pattern regressions" node "$ROOT/scripts/pattern-probe.js"
 
 run_check "fence requires blank closing (#77)" node "$ROOT/scripts/fence-probe.js"
 
+run_check "false concession + residual policy + input contract (#211/#204/#234)" node "$ROOT/scripts/concession-probe.js"
+
 run_check "check-engine-pin runs" bash -c "
   set +e
   out=\$(bash '$ROOT/scripts/check-engine-pin.sh' 2>&1)

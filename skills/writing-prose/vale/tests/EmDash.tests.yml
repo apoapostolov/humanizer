@@ -1,0 +1,11 @@
+# Behavioral tests for the house rule, runnable with `vale test` (vale >= 3.24).
+# Attach this block to HermesHouse/EmDash.yml when the runner is available.
+
+- name: flags an em dash
+  input: "The plan slipped \u2014 again."
+  want: |
+    1:18:HermesHouse.EmDash:Em dash found. House rule: no em dashes; use a period, comma, colon, or restructure the sentence.
+
+- name: leaves an en dash alone
+  input: The window ran 09:00–17:00.
+  absent: true

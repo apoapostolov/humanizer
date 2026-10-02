@@ -764,10 +764,43 @@ const AIDetector = (() => {
   ];
 
   // ─── False concession ──────────────────────────────────────────────
+  // "While X is impressive, Y remains a challenge" and "Although X has made
+  // strides, Y is still an open question" only read as the AI tell when both
+  // halves are vague: an opener that concedes nothing specific, paired with a
+  // close that names no actual gap. The subject (X) is widened past a single
+  // word — "while the underlying model architecture is impressive" is as
+  // hollow as "while it is impressive" — but stays inside one clause (no
+  // comma or sentence punctuation) so the opener cannot reach across clauses.
+  // The close is required in the same sentence: a bare opener followed by a
+  // concrete, specific continuation ("...at this scale, our write pattern is
+  // append-only, so we moved the hot table to a log-structured store
+  // instead") is ordinary technical writing, not the empty frame. See #211.
+  // "Despite X challenges" is dropped entirely: alone it is too common a
+  // shape in ordinary prose to carry the tell.
+  // The close must also follow a clause separator (comma, semicolon or
+  // colon): without one, "While the model is impressive and remains a
+  // challenge to maintain, we plan to replace it next month" matched both
+  // phrases inside the opening clause and never looked at the concrete main
+  // clause that followed. See #359.
+  // Stop at the next clause separator too: a concrete continuation followed
+  // by a later vague phrase is not the empty two-half frame.
+  const FALSE_CONCESSION_SUBJECT = "[^,;:.!?\\n]{1,60}?";
+  // Known limit: a period inside an abbreviation ("U.S.", "e.g.") ends the
+  // gap the same as a real sentence boundary would, so a close on the far
+  // side of one is deliberately missed to keep that boundary guarantee;
+  // only a comma, semicolon or colon counts as the clause separator #359
+  // requires.
+  const FALSE_CONCESSION_GAP = "[^,;:.!?\\n]{0,80}?[,;:]\\s*[^,;:.!?\\n]{0,80}?";
+  const FALSE_CONCESSION_VAGUE_CLOSE =
+    "(?:remains?\\s+a\\s+challenge" +
+    "|(?:is|are)\\s+still\\s+an?\\s+open\\s+questions?" +
+    "|there\\s+(?:is|are)\\s+still\\s+work\\s+to\\s+do" +
+    "|remains?\\s+unanswered)\\b";
   const FALSE_CONCESSION = [
-    /\bwhile\s+\w+\s+is\s+impressive\b/gi,
-    /\balthough\s+\w+\s+has\s+made\s+strides\b/gi,
-    /\bdespite\s+\w+\s+challenges?\b/gi,
+    new RegExp("\\bwhile\\s+" + FALSE_CONCESSION_SUBJECT + "\\s+is\\s+impressive\\b" +
+      FALSE_CONCESSION_GAP + FALSE_CONCESSION_VAGUE_CLOSE, 'gi'),
+    new RegExp("\\balthough\\s+" + FALSE_CONCESSION_SUBJECT + "\\s+has\\s+made\\s+strides\\b" +
+      FALSE_CONCESSION_GAP + FALSE_CONCESSION_VAGUE_CLOSE, 'gi'),
   ];
 
   // ─── Rhetorical question openers ───────────────────────────────────
@@ -2013,6 +2046,40 @@ const AIDetector = (() => {
     return text.toLowerCase().match(/[\w'-]+/g) || [];
   }
 
+  // Moving-average type-token ratio (MATTR; Covington & McFall 2010,
+  // doi:10.1080/09296171003643098): the share of distinct tokens in each
+  // run of `size` consecutive tokens, averaged over every such run. Plain
+  // TTR falls as a text grows, because common words keep recurring while
+  // new ones arrive more slowly, so a fixed threshold on it measures length.
+  // The windowed mean does not drift with length, and on a text of exactly
+  // `size` tokens it equals plain TTR.
+  function movingAverageTTR(tokens, size) {
+    const counts = new Map();
+    let distinct = 0;
+    const add = (token) => {
+      const n = (counts.get(token) || 0) + 1;
+      counts.set(token, n);
+      if (n === 1) distinct += 1;
+    };
+    const drop = (token) => {
+      const n = counts.get(token) - 1;
+      if (n === 0) {
+        counts.delete(token);
+        distinct -= 1;
+      } else {
+        counts.set(token, n);
+      }
+    };
+    for (let i = 0; i < size; i += 1) add(tokens[i]);
+    let sum = distinct;
+    for (let i = size; i < tokens.length; i += 1) {
+      drop(tokens[i - size]);
+      add(tokens[i]);
+      sum += distinct;
+    }
+    return sum / ((tokens.length - size + 1) * size);
+  }
+
   function countWords(text) {
     return (text.match(/\S+/g) || []).length;
   }
@@ -2073,9 +2140,45 @@ const AIDetector = (() => {
   }
 
   function analyzeText(text, options = {}) {
-    if (!text || text.trim().length === 0) {
-      return { ...buildV2Defaults('UNSCORED', 'low'), score: 0, label: 'Empty', issues: [], stats: {}, tooShort: true };
+
+    if (typeof text !== 'string') {
+      throw new TypeError('analyzeText(text): argument must be a string');
     }
+
+    const VALID_CONTEXT_MODES = new Set(['general', 'technical', 'marketing', 'personal']);
+    const requestedMode = options.contextMode === undefined ? 'general' : options.contextMode;
+    const contextMode = VALID_CONTEXT_MODES.has(requestedMode) ? requestedMode : 'general';
+    const contextModeFallback = requestedMode !== contextMode ? requestedMode : null;
+
+    // Source mode controls which parts of a Markdown file count as prose.
+    // Plain remains the compatibility default. Rendered Markdown masks only
+    // initial YAML frontmatter and HTML comments; source-hygiene checks for
+    // hidden TODO/placeholder comments remain available through plain mode.
+    const VALID_SOURCE_MODES = new Set(['plain', 'rendered-markdown']);
+    const requestedSourceMode = options.sourceMode === undefined ? 'plain' : options.sourceMode;
+    const sourceMode = VALID_SOURCE_MODES.has(requestedSourceMode) ? requestedSourceMode : 'plain';
+    const sourceModeFallback = requestedSourceMode !== sourceMode ? requestedSourceMode : undefined;
+    if (!text || text.trim().length === 0) {
+      return {
+                ...buildV2Defaults('UNSCORED', 'low'),
+                    score: 0,
+                    label: 'Empty',
+                    issues: [],
+                    stats: {
+                        wordCount: 0,
+                        contextMode,
+                        contextModeFallback,
+                        sourceMode,
+                        sourceModeFallback,
+                        maskedFrontmatter: 0,
+                        maskedHtmlComments: 0,
+                        ignoredRegions: 0,
+                        quotedLines: 0,
+                        maskedQuotes: 0,
+                    },
+                  tooShort: true,
+                };
+              }
 
     // Map each working-string code unit back to the caller's source. Every
     // length-changing preprocessing stage composes this map as it removes
@@ -2093,19 +2196,6 @@ const AIDetector = (() => {
     // Mode validation: an unknown string (e.g. typo "tecnical") would
     // otherwise silently downgrade to general-mode behavior. Coerce to
     // 'general' and surface the original value in stats for traceability.
-    const VALID_CONTEXT_MODES = new Set(['general', 'technical', 'marketing', 'personal']);
-    const requestedMode = options.contextMode || 'general';
-    const contextMode = VALID_CONTEXT_MODES.has(requestedMode) ? requestedMode : 'general';
-    const contextModeFallback = requestedMode !== contextMode ? requestedMode : null;
-
-    // Source mode controls which parts of a Markdown file count as prose.
-    // Plain remains the compatibility default. Rendered Markdown masks only
-    // initial YAML frontmatter and HTML comments; source-hygiene checks for
-    // hidden TODO/placeholder comments remain available through plain mode.
-    const VALID_SOURCE_MODES = new Set(['plain', 'rendered-markdown']);
-    const requestedSourceMode = options.sourceMode === undefined ? 'plain' : options.sourceMode;
-    const sourceMode = VALID_SOURCE_MODES.has(requestedSourceMode) ? requestedSourceMode : 'plain';
-    const sourceModeFallback = requestedSourceMode !== sourceMode ? requestedSourceMode : undefined;
     let maskedFrontmatter = 0;
     let maskedHtmlComments = 0;
 
@@ -2816,12 +2906,17 @@ const AIDetector = (() => {
     }
 
     // ── Type-token ratio (stylometric — vocabulary diversity) ────
-    // TTR = distinct word types / total tokens. Human prose at 200+
-    // words typically sits around 0.50–0.65 for English; AI prose
-    // tends flatter (0.55–0.75 looks normal, but the lower end of the
-    // *too-flat* tail at >=200 words is where the signal lives — too
-    // FEW unique words for the length). This is the simplest of the
-    // four stylometric signals identified in the May 2026 detection-
+    // TTR = distinct word types / total tokens, taken over each 200-token
+    // window and averaged (movingAverageTTR). Whole-text TTR falls with
+    // length whoever wrote the text: on the human documents in corpus/ its
+    // median is 0.63 at 200 tokens, 0.37 at 2,000 and 0.28 at 6,000, so a
+    // fixed threshold on it flagged every 6,000-word public-domain slice.
+    // The windowed median stays between 0.62 and 0.64 at every length.
+    // Within a window, human prose typically sits around 0.50–0.65 for
+    // English; AI prose tends flatter (0.55–0.75 looks normal, but the
+    // lower end of the *too-flat* tail at >=200 words is where the signal
+    // lives — too FEW unique words for the length). This is the simplest
+    // of the four stylometric signals identified in the May 2026 detection-
     // research review: no POS tagger required, no model, pure JS.
     //
     // Threshold tuning: flag only when the sample is large enough
@@ -2837,12 +2932,11 @@ const AIDetector = (() => {
     // three). POS-bigram log-odds and function-word z-scores are
     // still TODO.
     if (tokens.length >= 200) {
-      const unique = new Set(tokens).size;
-      const ttr = unique / tokens.length;
-      if (ttr < 0.4) {
+      const diversity = movingAverageTTR(tokens, 200);
+      if (diversity < 0.4) {
         issues.push({
           type: 'low-ttr',
-          text: `Vocabulary diversity ${(ttr * 100).toFixed(1)}% (${unique} unique / ${tokens.length} tokens)`,
+          text: `Vocabulary diversity ${(diversity * 100).toFixed(1)}% (distinct words per 200-token window, ${tokens.length} tokens)`,
           severity: 'low',
           suggestion: 'Text reuses a narrow word set. Vary nouns and verbs deliberately, or check if the topic genuinely warrants the repetition.',
         });

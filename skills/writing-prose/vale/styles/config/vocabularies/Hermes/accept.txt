@@ -70,3 +70,10 @@ fluxcache
 TTLs
 namespacing
 signals_only
+lintable
+config
+runner
+linters
+case
+cases
+column

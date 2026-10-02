@@ -1,0 +1,16 @@
+# Behavioral tests for the house rule, runnable with `vale test` (vale >= 3.24).
+# Attach this block to HermesHouse/AiSlop.yml when the runner is available.
+
+- name: flags a marketing word
+  input: We delve into the data.
+  want: |
+    1:4:HermesHouse.AiSlop:AI-slop or marketing word: 'delve'. Use plain wording.
+
+- name: flags a hedge phrase
+  input: It is important to note that the queue drains slowly.
+  want: |
+    1:1:HermesHouse.AiSlop:AI-slop or marketing word: 'It is important to note'. Use plain wording.
+
+- name: leaves plain prose alone
+  input: The queue drains slowly under load.
+  absent: true

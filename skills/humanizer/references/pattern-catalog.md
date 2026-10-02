@@ -1161,7 +1161,8 @@ vague wording. Do not invent a CEO, consultant, or role to sound concrete.
 ### 101. Empty concession sandwich
 
 **Tell:** *While X is impressive, Y remains a challenge* when both halves are
-vague.
+vague. A lone pair is ordinary prose. The tell is repetition, and the vague close
+has to sit in a later clause of the same sentence.
 
 **Repair:** Specify both halves or pick a side. Distinct from empty "Not
 always. Not perfectly."

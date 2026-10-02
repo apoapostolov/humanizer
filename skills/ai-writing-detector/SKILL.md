@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.1.8
+version: 1.1.9
 related_skills:
 - humanizer
 - simple-english
@@ -121,12 +121,16 @@ node scripts/validate-cli.js original.md rewritten.md
 node scripts/validate-cli.js --json original.md rewritten.md
 node scripts/validate-cli.js --quiet original.md rewritten.md
 node scripts/validate-cli.js --fail-on-warnings original.md rewritten.md
+node scripts/validate-cli.js --residual-policy warn original.md rewritten.md
 # exit 1 on errors; exit 4 on warnings-only if --fail-on-warnings
 ```
 
 Errors: fenced code, frontmatter, blockquotes, table cells, inline code, URLs,
-paths, heading structure, residual pattern count growing.  
-Warnings: reworded headings, missing figures, large word drop.
+paths, heading structure. Residual pattern growth blocks by default
+(`--residual-policy error`); `warn` keeps mechanical errors blocking and turns
+residual growth into a review warning, so a rewrite is judged on damage, not on
+score.  Warnings: reworded headings, missing or added figures, large word drop.
+Neither a pass nor a warn proves meaning; check facts and claims yourself.
 
 ### explain
 

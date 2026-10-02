@@ -44,7 +44,7 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | `emotional-flatline` | Stock reaction framing | Stock reaction framing / Superficial -ing analyses *(stable API type; style-only for authorship scoring under the precision-first evidence policy)* |
 | `lingering-attention` | Lingering-attention claim | Lingering-attention claims *(noun-anchored frames only — the bare "I keep coming back to X" stays LLM-judgment, since a following reason clause makes it legitimate and isn't regex-detectable)* |
 | `cutoff-disclaimer` | Cutoff disclaimer | Cutoff disclaimers |
-| `false-concession` | False concession | False concession structure |
+| `false-concession` | False concession | False concession structure *(both halves vague, vague close in a later clause of the same sentence; the bare `despite X challenges` opener is not matched, and a single pair is judgment)* |
 | `rhetorical-question` | Rhetorical question | Rhetorical question openers |
 | `formulaic-opener` | Formulaic opener | Formulaic challenges |
 | `speculative-opener` | Speculative scenario opener | Speculative scenario openers |
@@ -56,7 +56,7 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | `title-case-header` | Title Case header | Title case headings |
 | `em-dash` / `formatting` | Em dash overuse / Formatting | Formatting |
 | `uniformity` | Rhythm uniformity | Rhythm and uniformity |
-| `low-ttr` | Low vocabulary diversity | Vocabulary diversity (stylometric) |
+| `low-ttr` | Low vocabulary diversity | Vocabulary diversity (stylometric) *(windowed: the mean distinct-token share over 200-token windows, so a long text is not flagged for being long)* |
 | `ai-placeholder` | Unfilled placeholder | Unfilled placeholders |
 | `ai-citation-markup` | Chatbot citation markup leak | Chatbot citation markup leaks |
 | `ai-utm-source` | AI-tool URL parameter | AI-tool URL parameters |

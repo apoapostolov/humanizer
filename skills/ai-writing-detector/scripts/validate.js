@@ -2,6 +2,7 @@
  * Packaged in apoapostolov/humanizer as skills/ai-writing-detector/scripts/validate.js
  * Prefer scripts/validate-cli.js for CLI. Prefer humanizer for rewrites.
  *
+/**
  * Avoid AI Writing — preservation validator
  *
  * SKILL.md promises that a rewrite leaves certain things alone: "Don't edit
@@ -14,9 +15,9 @@
  *   const result = validate(originalText, rewrittenText);
  *   if (!result.ok) { console.error(result.errors); }
  *
- * Errors block: they mean the rewrite destroyed or altered content it had no
- * business touching. Warnings inform: they mean something changed that is
- * usually legitimate but occasionally a mistake.
+ * Preservation errors block mechanical content damage. Residual pattern growth
+ * also blocks by default for compatibility; residualPolicy: "warn" makes that
+ * quality diagnostic advisory. Neither result proves semantic fidelity.
  *
  * Two carve-outs exist because this skill *documents* the edit in question,
  * and a validator that fires on its own skill's instructions is worse than no
@@ -310,11 +311,11 @@ const AIDetectorValidate = (() => {
    * @param {object} [options]
    * @param {object} [options.detector]   AIDetector instance; defaults to
    *                                      requiring ./patterns.js when available
-   * @param {boolean} [options.skipResidual]  skip the "patterns must not grow"
-   *                                      check (used by structure-only tests)
+   * @param {boolean} [options.skipResidual]  skip residual pattern analysis
+   * @param {"error"|"warn"} [options.residualPolicy]  growth handling (default "error")
    * @param {number} [options.maxShrinkRatio]  warn when the rewrite drops more
    *                                      than this fraction of words (default 0.4)
-   * @returns {{ok: boolean, errors: Array, warnings: Array, stats: object}}
+   * @returns {{ok: boolean, errors: Array, warnings: Array, stats: object, preservation: object, quality: object}}
    */
   function validate(original, rewritten, options = {}) {
     const errors = [];
@@ -324,6 +325,11 @@ const AIDetectorValidate = (() => {
 
     if (typeof original !== 'string' || typeof rewritten !== 'string') {
       throw new TypeError('validate(original, rewritten): both arguments must be strings');
+    }
+
+    const residualPolicy = options.residualPolicy === undefined ? 'error' : options.residualPolicy;
+    if (!['error', 'warn'].includes(residualPolicy)) {
+      throw new TypeError('validate: residualPolicy must be error or warn');
     }
 
     // The regex-backed extractors above anchor on a bare \n. A Windows-authored
@@ -422,6 +428,11 @@ const AIDetectorValidate = (() => {
       warn('number-missing', `Figures present in the original are absent from the rewrite: ${sample(lostNumbers)}. Legitimate when a numeral was spelled out; a fabrication risk otherwise.`);
     }
 
+    const addedNumbers = missingFrom(extractAll(NUMBER, newProse), extractAll(NUMBER, origProse));
+    if (addedNumbers.length) {
+      warn('number-added', `New numeric literals in the rewrite: ${sample(addedNumbers)}. Check against the source; spelling out or digitizing a number can be legitimate.`);
+    }
+
     // ── Volume: a rewrite that halves the text probably dropped content. ──
     const origWords = wordCount(original);
     const newWords = wordCount(rewritten);
@@ -430,7 +441,9 @@ const AIDetectorValidate = (() => {
       warn('large-shrink', `Rewrite dropped ${Math.round((1 - newWords / origWords) * 100)}% of the words (${origWords} → ${newWords}). Check for lost content.`);
     }
 
-    // ── Residual patterns: the rewrite must not introduce new tells. ──
+    // Keep mechanical preservation independent of the residual policy.
+    const preservation = { ok: errors.length === 0, errors: errors.slice(), warnings: warnings.slice() };
+    const quality = { status: options.skipResidual ? 'skipped' : 'unavailable', policy: residualPolicy, findings: [], residual: null };
     let residual = null;
     if (!options.skipResidual) {
       let detector = options.detector;
@@ -450,8 +463,13 @@ const AIDetectorValidate = (() => {
           scoreBefore: before.score,
           scoreAfter: after.score,
         };
+        const declined = (r) => r.document_classification === 'UNSCORED' || r.tooShort || r.tooLong || r.unsupportedScript;
+        quality.status = declined(before) || declined(after) ? 'unscored' : 'checked';
+        quality.residual = residual;
         if (after.issues.length > before.issues.length) {
-          err('residual-grew', `Rewrite introduced AI patterns: ${before.issues.length} → ${after.issues.length} flagged issues. A rewrite may leave patterns behind; it may not add them.`);
+          const message = `Residual pattern count increased: ${before.issues.length} to ${after.issues.length} flagged issues. Review applicability; this does not establish content damage.`;
+          quality.findings.push({ code: 'residual-grew', message });
+          (residualPolicy === 'warn' ? warn : err)('residual-grew', message);
         }
       }
     }
@@ -460,6 +478,8 @@ const AIDetectorValidate = (() => {
       ok: errors.length === 0,
       errors,
       warnings,
+      preservation,
+      quality,
       stats: {
         wordsBefore: origWords,
         wordsAfter: newWords,
@@ -474,7 +494,12 @@ const AIDetectorValidate = (() => {
   /** Human-readable one-liner per finding, for CLI and skill output. */
   function formatResult(result) {
     const lines = [];
-    lines.push(result.ok ? 'PASS — preservation checks clear' : `FAIL — ${result.errors.length} preservation error(s)`);
+    const mechanical = result.preservation || result;
+    lines.push(!mechanical.ok
+      ? `FAIL - ${mechanical.errors.length} mechanical preservation error(s)`
+      : result.ok ? 'PASS - no mechanical preservation errors found'
+        : 'FAIL - residual policy blocked; no mechanical preservation errors found');
+    if (result.quality) lines.push(`  residual ${result.quality.status} (policy: ${result.quality.policy})`);
     for (const e of result.errors) lines.push(`  error   [${e.code}] ${e.message}`);
     for (const w of result.warnings) lines.push(`  warning [${w.code}] ${w.message}`);
     return lines.join('\n');
@@ -487,18 +512,26 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = AIDetectorValidate;
 }
 
-// CLI: node detector/validate.js <original> <rewritten>
-// Exits 1 on a preservation error so it can gate an edit-mode run in CI.
+// CLI: node detector/validate.js [--residual-policy error|warn] <original> <rewritten>
+// Exits 1 on mechanical errors or residual growth under the default error policy.
 if (typeof require !== 'undefined' && typeof module !== 'undefined' && require.main === module) {
   const fs = require('node:fs');
-  const [origPath, newPath] = process.argv.slice(2);
-  if (!origPath || !newPath) {
-    console.error('usage: node detector/validate.js <original-file> <rewritten-file>');
+  const args = process.argv.slice(2);
+  let residualPolicy = 'error';
+  if (args[0] === '--residual-policy') {
+    args.shift();
+    residualPolicy = args.shift();
+  }
+  if (args[0] === '--') args.shift();
+  const [origPath, newPath] = args;
+  if (!origPath || !newPath || args.length !== 2 || !['error', 'warn'].includes(residualPolicy)) {
+    console.error('usage: node detector/validate.js [--residual-policy error|warn] <original-file> <rewritten-file>');
     process.exit(2);
   }
   const result = AIDetectorValidate.validate(
     fs.readFileSync(origPath, 'utf8'),
     fs.readFileSync(newPath, 'utf8'),
+    { residualPolicy },
   );
   console.log(AIDetectorValidate.formatResult(result));
   process.exit(result.ok ? 0 : 1);

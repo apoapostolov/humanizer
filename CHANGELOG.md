@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.6] - 2026-10-03
+
+The detector stops flagging long documents for being long, and a rewrite can be
+judged on damage rather than on score. Vale 3.24 brings a rule test runner.
+
+### Changed
+
+- Humanizer treats a single empty concession pair as ordinary prose. The tell is
+  repetition, and the vague close has to sit in a later clause.
+- AI Writing Detector measures vocabulary diversity over 200-token windows, so
+  long text is not flagged for length. Empty concessions need a vague close in
+  the same sentence, and the bare "despite challenges" opener no longer counts.
+- Preservation checks and residual pattern growth are separate results.
+  `--residual-policy warn` keeps mechanical damage blocking and reports
+  pattern growth as a review warning. The validator also flags numbers a
+  rewrite added.
+- Writing Prose moves to vale 3.24 and ships `vale test` cases for the em dash
+  and AI-slop rules, kept beside the styles so the styles stay lintable. The
+  Microsoft pack is unchanged.
+
 ## [2.12.5] - 2026-09-29
 
 The writing skills catch a few more ways a helpful answer can sound staged,

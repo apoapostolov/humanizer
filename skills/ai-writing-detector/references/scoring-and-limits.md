@@ -49,8 +49,25 @@ Escape hatches: `--raw` or `--json-engine` (stderr warns).
 | --- | --- |
 | 0 | OK |
 | 1 | Preservation errors |
-| 2 | Usage / Node version |
+| 2 | Usage / Node version / bad `--residual-policy` value |
 | 4 | Warnings only + `--fail-on-warnings` |
+
+## Residual policy
+
+`validate()` returns `preservation` (mechanical damage: code, frontmatter,
+blockquotes, table cells, inline code, URLs, paths, heading structure) separately
+from `quality` (residual pattern growth). Two policies:
+
+| Policy | Mechanical errors | Residual growth |
+| --- | --- | --- |
+| `error` (default, unchanged) | block, exit 1 | block, exit 1 |
+| `warn` (`--residual-policy warn`) | block, exit 1 | reported as a review warning, exit 0 |
+
+Use `warn` for an editorial pass that is allowed to leave a pattern in place on
+purpose: a growing count is a quality signal, not proof of content damage.
+Neither policy verifies meaning; claims, numbers, and scope still need a
+separate read. Upstream `--residual-policy` landed with v3.24.0-era tip `bdeb726`
+(#204).
 
 ## Exit codes (`analyze.js`)
 

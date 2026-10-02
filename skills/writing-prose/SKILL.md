@@ -2,7 +2,7 @@
 name: writing-prose
 category: writing
 description: "Draft/revise reader-facing prose with the vale house gate; articles, docs, criticism."
-version: 1.2.1
+version: 1.2.2
 tags:
 - prose
 - revision
@@ -54,6 +54,11 @@ When not to use:
 - Gate script (WSL): `scripts/vale-lint.sh` runs vale with the house config at
   warning level. Exit 0 = no error-level violations. Warnings are shown but do
   not block the exit code.
+- Rule tests (WSL, vale 3.24+): the house rules carry `vale test` cases under
+  `vale/tests/`; see [tests/RULES-TESTS.md](vale/tests/RULES-TESTS.md). They are
+  separate files on purpose, so the styles directory stays lintable and the
+  shipped rules stay short. The Win11 winget build lags the release, so the
+  cases only run where a new binary exists.
 - Direct invocation (any platform):
   `vale --config vale/vale.ini --minAlertLevel=warning <file>`. On Win11 pass
   the absolute config path:
