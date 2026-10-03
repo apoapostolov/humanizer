@@ -28,7 +28,7 @@ an instruction is never ambiguous about where a clause ends. Reader-facing
 technical prose and marketing may ration one per passage. Narrative prose is
 judged case by case, where a dash can carry a real interruption.
 
-The latest GitHub release is 2.12.7; the current source tree adds the tiering.
+The latest GitHub release is 2.12.8; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
