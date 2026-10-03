@@ -338,7 +338,7 @@ def lint(text: str) -> dict:
         "violations": v,
         "total": total,
         "total_per100w": round(total * 100.0 / words, 2),
-        "em_dash(slop-marker)": em,
+        "em_dash(count, not a ban)": em,
         "rhythm": rhythm,
         "tells": tells,
         "longest_sentence_words": (
@@ -455,5 +455,5 @@ if __name__ == "__main__":
             r = lint(fh.read())
         print(
             f"{os.path.basename(f):32} words={r['words']:4d} total={r['total']:3d} "
-            f"per100w={r['total_per100w']:6.2f} em_dash={r['em_dash(slop-marker)']:2d}"
+            f"per100w={r['total_per100w']:6.2f} em_dash={r['em_dash(count, not a ban)']:2d}"
         )
