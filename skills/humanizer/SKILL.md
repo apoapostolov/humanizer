@@ -1,7 +1,7 @@
 ---
 name: humanizer
 description: Humanize AI-sounding text with natural rewrites, voice preservation, editorial critique, and optional AI-ism audit modes.
-version: 1.7.3
+version: 1.7.4
 ---
 
 # Humanizer

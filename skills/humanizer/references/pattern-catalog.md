@@ -24,7 +24,7 @@ them.
 - [Secondary cleanup patterns](#secondary-cleanup-patterns)
 - [Delivery and provenance](#delivery-and-provenance)
 - [How to use the catalog](#how-to-use-the-catalog)
-- [Absorbed tells 100-106](#absorbed-tells-100-106)
+- [Absorbed tells 100-109](#absorbed-tells-100-109)
 
 ## Words and claims: patterns 1-6
 
@@ -1145,7 +1145,7 @@ Check these publication-level patterns after the prose itself is sound:
 5. Re-read for voice continuity and publication residue.
 6. Stop when the passage is clear, credible, and fit for purpose.
 
-## Absorbed tells 100-107
+## Absorbed tells 100-109
 
 Compact repairs from avoid-ai-writing, humanize, and humanizer-skill. Same
 status as the numbered catalog: editorial prompts, not authorship proof.
@@ -1220,6 +1220,37 @@ is plainly a reply; when you cannot tell, ask or leave the text alone. A
 standalone document for readers with no shared context is exempt, and one
 line of framing in a long thread is ordinary. (Adapted from blader/humanizer
 v3.1.0 §26, MIT.)
+
+### 108. Mannered prose
+
+**Tell:** Metaphor or flourish where a literal phrase exists. Figurative verbs
+(*rides along*, *stands on*), personified code (*the plan holds it*),
+aphoristic fragments (*wire it or delete it*), and stock framing phrases.
+*A dial worth turning* says *a parameter worth varying* with less clarity.
+
+**Repair:** Say what you mean. Check the sentence for a literal equivalent and
+use it; keep the image when it carries real meaning a plainer phrase would
+lose.
+
+**Carve-outs:** Not the same as pattern 72, which covers only the hyphenated
+*load-bearing* label, and not the secondary-cleanup aphorism formula. Sustained
+metaphor that organizes a whole passage is a writer's chosen device; flag the
+isolated flourish. (Adapted from cursor/plugins unslop, MIT.)
+
+### 109. Over-compression
+
+**Tell:** Dropped articles, verbless fragments, symbol-speak, and unexplained
+abbreviations that make the reader decode instead of read: *Parser rejects bad
+date → exit 2, no write*.
+
+**Repair:** Write whole sentences with their articles and verbs, and spell out
+arrows and abbreviations.
+
+**Carve-outs:** Recognized shorthand in code comments, console transcripts,
+changelogs, and dense tables can stay when the audience already reads it that
+way; that is a register judgment, not a defect. Related to pattern 77, which
+repairs the same habit in the opposite direction. (Adapted from
+cursor/plugins unslop, MIT.)
 
 For before-and-after demonstrations, load [examples.md](examples.md). For tiered
 word replacements, load [vocabulary-tiers.md](vocabulary-tiers.md). For detect

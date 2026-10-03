@@ -21,15 +21,13 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.12.6
+## Current source: 2.12.7
 
-Vocabulary diversity is now measured over 200-token windows, so a long document
-is no longer flagged for being long. A rewrite can be checked for mechanical
-damage without treating a rising pattern count as damage, and a single empty
-concession reads as ordinary prose. Vale 3.24 adds a rule test runner, and the
-house rules ship cases for it.
+Two catalog tells join the absorbed set: mannered prose, where metaphor stands
+where a literal phrase would do, and over-compression, where symbol-speak makes
+the reader decode. Both came from the cursor unslop audit pass.
 
-The latest GitHub release is 2.12.4; these 2.12.6 changes are in the current
+The latest GitHub release is 2.12.4; these 2.12.7 changes are in the current
 source tree.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
@@ -38,7 +36,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.3` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.4` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.1` |
 | Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.9` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.2` |

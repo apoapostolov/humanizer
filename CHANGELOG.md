@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.7] - 2026-10-03
+
+Two new catalog tells come from the cursor unslop audit pass, and the catalog
+index now matches its own contents.
+
+### Added
+
+- **Pattern 108, mannered prose:** metaphor and flourish where a literal phrase
+  exists, including figurative verbs and personified code. Sustained metaphor
+  that organizes a passage is left alone.
+- **Pattern 109, over-compression:** dropped articles, verbless fragments, and
+  symbol-speak that make the reader decode. Recognized shorthand in code
+  comments and tables can stay.
+
 ## [2.12.6] - 2026-10-03
 
 The detector stops flagging long documents for being long, and a rewrite can be
