@@ -2,7 +2,7 @@
 name: writing-prose
 category: writing
 description: "Draft/revise reader-facing prose with the vale house gate; articles, docs, criticism."
-version: 1.2.2
+version: 1.2.3
 tags:
 - prose
 - revision
@@ -86,7 +86,7 @@ Custom rules in `vale/styles/HermesHouse/`:
 
 | Rule | Level | Enforces |
 | --- | --- | --- |
-| EmDash | error | No em dash anywhere. Hard house rule: use a period, comma, colon, or restructure. |
+| EmDash | error | Gates the forbidden tier: procedures, runbooks, errors, safety text, anywhere an instruction must be parsed literally. Reader-facing technical and marketing prose may ration one per passage; narrative prose is case by case. See the rule file for the tiers. |
 | WordChoice | warning | STE-flavored plain words: utilize->use, leverage->use, prior to->before, initiate->start, demonstrate->show, in order to->to. |
 | AiSlop | warning | Marketing and AI-slop words: delve, seamless, empower, supercharge, game-changer, "it is important to note", "circle back". |
 | Weasel | suggestion | Vague intensifiers: very, really, quite, essentially, basically. |
@@ -109,7 +109,9 @@ endorsement; rename it to match your own stack if you prefer.
 
 Copy `vale/vale.ini` to the project root, adjust, then run
 `vale --config .vale.ini .`. To relax one rule for a project:
-`HermesHouse.EmDash = NO` in the project section. To add a style pack: list it
+`HermesHouse.EmDash = NO` in the project section. Relaxing EmDash is what a
+narrative or marketing tree should do, since the rule itself only gates the
+forbidden tier. To add a style pack: list it
 in `Packages`, add it to `BasedOnStyles`, run `vale sync`.
 
 ## Editorial core

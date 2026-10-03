@@ -1,10 +1,11 @@
 # Behavioral tests for the house rule, runnable with `vale test` (vale >= 3.24).
 # Attach this block to HermesHouse/EmDash.yml when the runner is available.
+# The message is the forbidden tier only; the rule file owns the tiers.
 
 - name: flags an em dash
   input: "The plan slipped \u2014 again."
   want: |
-    1:18:HermesHouse.EmDash:Em dash found. House rule: no em dashes; use a period, comma, colon, or restructure the sentence.
+    1:18:HermesHouse.EmDash:Em dash found. Forbidden tier: use a period, comma, colon, or restructure. Reader-facing technical and marketing prose may ration one per passage; narrative prose is case by case.
 
 - name: leaves an en dash alone
   input: The window ran 09:00–17:00.

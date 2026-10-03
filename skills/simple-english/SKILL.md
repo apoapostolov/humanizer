@@ -9,7 +9,7 @@ tags:
 - anti-slop
 - docs
 - lint
-version: 2.4.1
+version: 2.4.2
 related_skills:
 - writing-prose
 - humanizer
@@ -164,9 +164,13 @@ descriptive (25-word limit, no imperative).
 ### 4. Punctuation and word count
 
 - **No semicolon** in strict mode (Rule 8.1). Write two sentences instead.
-- **No em dash** (common slop marker; house rule in this package). Prefer
-  period, comma, colon, or a short new sentence. Avoid en dash as a
-  parenthetical stand-in.
+- **No em dash.** Procedures, runbooks, errors, and safety text are the
+  forbidden tier of the house dash rule: they get none, so an instruction is
+  never ambiguous about where a clause ends. Prefer period, comma, colon, or a
+  short new sentence. Avoid en dash as a parenthetical stand-in. Reader-facing
+  technical prose, marketing, and narrative prose have their own tiers; see
+  `writing-prose` `vale/styles/HermesHouse/EmDash.yml`. This skill governs
+  procedural text only.
 - Parentheses are legal for references, item numbers, abbreviations, plural
   forms, explanations, alternatives (Rule 8.3).
 - **Word counting** (Rules 8.4-8.7): in a vertical list the lead-in colon ends
@@ -337,8 +341,8 @@ ones that move the score.
    after a comma, semicolons, `e.g.`/`i.e.`/`etc.`.
 3. Search for every `if` and `when`. Each one stands at the START of its
    sentence, before the command.
-4. Replace em dashes. In strict mode, replace semicolons and expand
-   contractions.
+4. Replace em dashes. Procedural text is the forbidden tier. In strict mode,
+   replace semicolons and expand contractions.
 5. Does passive voice hide an actor the reader needs? Make that actor active.
 6. Same thing named two ways (check vs verify vs ensure; config vs settings)?
    Pick one.

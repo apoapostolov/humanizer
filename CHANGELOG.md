@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.8] - 2026-10-03
+
+The em dash rule is no longer absolute. It now has three tiers, so a dash can
+carry narrative meaning without weakening procedural text.
+
+### Changed
+
+- The em dash house rule is tiered. **Forbidden** in procedures, runbooks,
+  errors, safety text, commit messages, and structured data, where a reader must
+  parse an instruction literally. **Rationed** in reader-facing technical prose
+  and marketing: at most one per passage, never two in one sentence, and only
+  where a comma or full stop would lose the meaning. **Case by case** in
+  narrative prose, where a dash may carry an interruption or a turn.
+- The Vale `EmDash` rule stays at `error` and now gates only the forbidden tier,
+  because Vale lints one file at a time and cannot infer the register. Relax it
+  per path section or per project for prose and marketing trees.
+- Simple English covers procedural text only, so its no-em-dash rule is
+  unchanged in force and now names the tier.
+
 ## [2.12.7] - 2026-10-03
 
 Two new catalog tells come from the cursor unslop audit pass, and the catalog

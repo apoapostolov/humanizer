@@ -1,6 +1,22 @@
-# House rule: no em dash anywhere in Hermes output.
+# House rule: em dash. Deterministic gate for the forbidden tier.
+#
+# Three tiers, in force for this house style:
+#   forbidden     - procedures, runbooks, errors, safety text, commit messages,
+#                   structured data, and anywhere a reader must parse an
+#                   instruction literally. This rule is the gate.
+#   rationed      - reader-facing technical prose (READMEs, docs, specs, PR
+#                   bodies, API reference) and marketing. At most one per
+#                   passage, never two in one sentence, and only where a comma
+#                   or full stop would lose the meaning.
+#   case by case  - narrative prose, where a dash may carry an interruption or
+#                   a turn that other punctuation would flatten.
+#
+# Vale judges one file at a time and cannot infer the register, so the rule
+# stays `error`. Relax it per path section in vale.ini, or per project with
+# `HermesHouse.EmDash = NO`. The tiers are an editorial judgment; this rule
+# only stops the forbidden case from shipping unnoticed.
 extends: existence
-message: "Em dash found. House rule: no em dashes; use a period, comma, colon, or restructure the sentence."
+message: "Em dash found. Forbidden tier: use a period, comma, colon, or restructure. Reader-facing technical and marketing prose may ration one per passage; narrative prose is case by case."
 level: error
 nonword: true
 tokens:
