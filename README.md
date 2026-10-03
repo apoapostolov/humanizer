@@ -27,8 +27,7 @@ Two catalog tells join the absorbed set: mannered prose, where metaphor stands
 where a literal phrase would do, and over-compression, where symbol-speak makes
 the reader decode. Both came from the cursor unslop audit pass.
 
-The latest GitHub release is 2.12.4; these 2.12.7 changes are in the current
-source tree.
+The latest GitHub release is 2.12.7; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
