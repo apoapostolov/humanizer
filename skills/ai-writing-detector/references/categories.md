@@ -23,7 +23,7 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 
 | Detector `type` | Label | SKILL.md section |
 |---|---|---|
-| `tier1` / `tier2` / `tier3` | AI vocabulary / Word cluster / Overused word | Words and phrases to replace (`load-bearing`: immediate abstract-noun allowlist only; literal, predicative, and unlisted forms pass) |
+| `tier1` / `tier2` / `tier3` | AI vocabulary / Word cluster / Overused word | Words and phrases to replace (`tier3` fires per word at `max(3, floor(wordCount × 0.03))` uses of one listed form, so spread Tier 3 vocabulary stays clean; `load-bearing`: immediate abstract-noun allowlist only; literal, predicative, and unlisted forms pass; `technical` context mode suppresses eight technical-legitimate terms: `robust`, `comprehensive`, `seamless`, `ecosystem`, `leverage`, `facilitate`, `underpin`, `streamline`) |
 | `tier1-clarity` | Wordiness | Words and phrases to replace (Tier 1B) |
 | `transition` | AI transition | Transition phrases to remove or rewrite |
 | `template-phrase` | Template phrase | Template phrases (avoid) |
@@ -123,7 +123,10 @@ mistake their absence for a coverage gap:
 - Immaculate typography in casual registers *(folded into the Formatting section — same weak-signal tier as curly quotes, not a standalone category)*
 - Subjectless fragments and agentless passives *(docs and changelog registers are carve-outs — the fragment is the correct form there)*
 - Diff-anchored writing *(changelogs, release notes, and migration guides are carve-outs)*
-- Manufactured punchlines / staccato drama (including repeated setup/reversal punchlines: P2 only when repetition replaces concrete claims; supported reversals and intentional comedy, fiction, speeches, and quotations pass)
+- List-label periods *(the period is correct when the label is itself a full sentence; telling a noun-phrase label from a short sentence needs reading)*
+- Speculative gap-filling *(the same hedges are correct when the source itself is uncertain; the tell is a guess standing in for a missing fact, which a regex can't see)*
+- Infomercial engagement hooks *(the tell is a staged setup-and-reveal. The words themselves are ordinary English: "honestly" or "look" mid-sentence reads fine)*
+- Manufactured punchlines and staccato drama (including repeated setup/reversal punchlines: P2 only when repetition replaces concrete claims; supported reversals and intentional comedy, fiction, speeches, and quotations pass)
 - Repeated empty concession pairs (P2; meaningful concessions and isolated intentional pairs pass)
 - Consequence-free "This matters because" / "here's why that matters" restatements (concrete consequences pass)
 - Transformation crutch (P2 unexplained relabeling across a passage; literal and explained changes pass)

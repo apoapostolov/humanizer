@@ -43,6 +43,31 @@ Escape hatches: `--raw` or `--json-engine` (stderr warns).
 | multi-file args | Batch report + summary |
 | `--fail-above` / `--strict-short` | Exit 3 / 2 |
 
+## Severity map (`critical` / `high` / `medium` / `low`)
+
+The engine maps its four severity values to P-labels in `SEVERITY_LABELS`:
+`critical` = P0, `high` = P1, `medium` = P2, `low` = P3. The counts below were
+read off the vendored engine at the pinned tip, so they stay true to that pin.
+`--min-severity high` gates the first two bands.
+
+| Severity | Count | Types |
+| --- | --- | --- |
+| `critical` (P0) | 8 | `ai-citation-markup`, `ai-placeholder`, `ai-utm-source`, `chatbot`, `cutoff-disclaimer`, `reasoning-artifact`, `sycophantic`, `vague-attribution` |
+| `high` (P1) | 16 | `bullet-np-list`, `fake-casual-prop`, `formulaic-opener`, `future-narrative`, `hedge-stack`, `launch-intro`, `negation-chain`, `negative-parallelism`, `normalization-flag`, `significance-inflation`, `smart-punct-signature`, `social-cta-closer`, `speculative-opener`, `template-phrase`, `tier1`, `tier3-phrase-cluster` |
+| `medium` (P2) | 26 | `cross-para-burstiness`, `crowd-contrast`, `dev-blog-boilerplate`, `em-dash`, `false-concession`, `filler`, `fnword-trigram-entropy`, `formatting`, `generic-conclusion`, `hashtag-stuff`, `hollow-intensifier`, `lets-construction`, `lingering-attention`, `novelty-inflation`, `parenthetical-hedge`, `performed-insight`, `punct-distribution`, `real-actual-inflation`, `rhetorical-question`, `tier1-clarity`, `tier2`, `tier3-phrase`, `title-case-header`, `transition`, `uniformity`, `unnecessary-hyphenation` |
+| `low` (P3) | 4 | `confidence-calibration`, `emotional-flatline`, `low-ttr`, `tier3` |
+
+Three types emit more than one severity, so a type alone does not fix a band:
+`normalization-flag` (roleplay markers are P1, zero-width and homoglyph
+characters are P0), `fnword-trigram-entropy` (P1 when one trigram repeats across
+the document, P2 at low entropy), and `uniformity` (P2 for sentence length, P3
+for paragraph length).
+
+Engine severity and the editorial P-tiers are not the same ladder. A type can sit
+lower in the engine than its prose rule suggests (`real-actual-inflation` is P2
+here while the writing rules group it with P1 vocabulary work). Gate on
+`--min-severity` and read the band from the engine table above.
+
 ## Validate exit codes
 
 | Code | Meaning |

@@ -21,14 +21,14 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.12.8
+## Current source: 2.12.9
 
-The em dash rule is tiered instead of absolute. Procedural text gets none, so
-an instruction is never ambiguous about where a clause ends. Reader-facing
-technical prose and marketing may ration one per passage. Narrative prose is
-judged case by case, where a dash can carry a real interruption.
+Tier 3 vocabulary is counted one word at a time, so a spread of vague
+words is not a tell on its own. The detector also ships a measured
+severity map for all 54 engine types, so a threshold gate knows which band a
+type lands in.
 
-The latest GitHub release is 2.12.8; the current source tree matches it.
+The latest GitHub release is 2.12.9; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -36,9 +36,9 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.4` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.5` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.2` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.9` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.1.10` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.3` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 

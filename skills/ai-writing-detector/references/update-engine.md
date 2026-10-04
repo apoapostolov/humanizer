@@ -78,6 +78,27 @@ formalized CI/release automation (npm provenance pipeline, cursor-rules leak
 gate, pattern-count CI assertion). SOURCES release pins updated; engine pin,
 detector skill version, and `check-engine-pin.sh` unchanged.
 
+### No-engine-delta releases (continued)
+
+v3.37.0 (2026-10-04; tag `db82bc8`, docs-only) changes no `detector/` file.
+`patterns.js` is byte-identical to our pin, and the functional body of
+`validate.js` matches ours once the four-line packaging banner is stripped.
+Three durable documentation gains landed. (1) The Tier 3 threshold is now
+stated per word, `max(3, floor(wordCount x 0.03))` uses of one listed form, with
+separately listed forms counted separately, which is what the engine has always
+done. Probed: fifty Tier 3 hits spread over ten words in a 710-word text produce
+zero findings, while one word repeated past the threshold produces one. (2)
+`detector/README.md` publishes a severity-to-P-tier table, so this package ships
+its own measured version of it in `scoring-and-limits.md`, including the three
+types that emit more than one severity. (3) `CATEGORIES.md` promotes list-label
+periods, speculative gap-filling, and infomercial engagement hooks to the
+judgment-only list with their carve-outs; absorbed into our section C.
+Not vendored: the paste-field size table and the ChatGPT plugin install advice in
+`README.md` (distribution docs for destinations this package does not ship to),
+and the version/license frontmatter sweep plus the new `validate-openai-plugin.py`
+checks (upstream release plumbing). Engine pin stays `bdeb726`. Detector skill
+version 1.1.10 for the documentation absorb only.
+
 ### Engine-delta releases
 
 v3.24.0 (2026-08-07) added `unnecessary-hyphenation` to `patterns.js`: a

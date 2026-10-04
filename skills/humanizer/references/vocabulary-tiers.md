@@ -16,6 +16,8 @@ prose, second-language writing, and technical genres. Treat hits as prompts:
 - Tier 2: rewrite when two or more cluster in one paragraph without earning their
   weight.
 - Tier 3: only act when density makes the prose vague praise instead of content.
+  Density is counted per word, so a spread of Tier 3 words is not a tell on its
+  own.
 - Never swap a correct domain term for a weaker synonym to game a list.
 - Match inflected forms (adverb, gerund, plural, conjugation) unless context gives
   the variant a different honest meaning.
@@ -177,7 +179,14 @@ cluster.
 ## Tier 3 — Act only at high density
 
 Replace some instances with specifics (numbers, comparisons, mechanisms) when
-the text is saturated:
+one word from the list below is repeated heavily on its own. The threshold the
+engine uses is `max(3, floor(wordCount × 0.03))` uses of that one word, so a
+1,000-word piece needs about 30 uses before the word is a finding, which makes
+the number a floor for the least convincing case rather than a target, so cut an
+instance whenever it is doing no work regardless of the count.
+
+Separately listed forms count separately, so `significant` and
+`significantly` are two different counts.
 
 significant / significantly, innovative / innovation, effective / effectively,
 dynamic / dynamics, scalable / scalability, compelling, unprecedented,

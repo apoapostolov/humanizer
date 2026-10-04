@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.9] - 2026-10-05
+
+Upstream 3.37.0 is a documentation release: the detector engine is byte-identical
+to the pinned tip. Two of its documentation changes are durable enough to land
+here, so Tier 3 no longer reads as a vague-praise catch-all and the detector
+states its own severity bands.
+
+### Changed
+
+- Humanizer counts Tier 3 density one word at a time, at
+  `max(3, floor(wordCount x 0.03))` uses of a single listed form. Separately
+  listed forms count separately, so `significant` and `significantly` are two
+  counts. A spread of vague words across a piece is no longer a finding on its
+  own, which matches what the engine already did.
+- AI Writing Detector ships a severity map for all 54 engine types across
+  `critical` / `high` / `medium` / `low`. The bands were read off the pinned
+  engine, and the three types that emit more than one severity are named, so a
+  `--min-severity` gate knows what it is gating.
+- Three judgment rules were recorded as deliberate non-candidates in the
+  category map: list-label periods, speculative gap-filling, and infomercial
+  engagement hooks. Each needs reading, since the tell is structure rather than
+  a word.
+
+Humanizer 1.7.5, AI Writing Detector 1.1.10.
+
 ## [2.12.8] - 2026-10-03
 
 The em dash rule is no longer absolute. It now has three tiers, so a dash can
