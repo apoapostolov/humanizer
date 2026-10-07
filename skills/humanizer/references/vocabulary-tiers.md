@@ -225,6 +225,12 @@ Rewrite slot-fill constructions:
 - "I recently had the pleasure of [verb]-ing" → "I talked to," "I read," "I
   attended"
 
+Literal-sense exclusion: neutral milestones stay clean. "a first step towards
+the full API" and "a small step towards cutting our storage bill" do not
+flag; the shape needs a vague-praise adjective such as "major", "crucial",
+or "significant" before "step". The following goal does not decide the flag.
+(Adapted from avoid-ai-writing v3.37.0 post-release tip, MIT.)
+
 ## Throat-clearing openers and emphasis crutches
 
 Announcement phrases that delay the point. Cut them and state the content

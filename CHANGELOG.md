@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.10] - 2026-10-07
+
+Upstream tip `0469c97` (past v3.37.0, no new tag) narrows two FP-prone
+detector shapes (upstream #212), and the narrowing is vendored here with
+matching editorial notes.
+
+### Changed
+
+- AI Writing Detector engine: `significance-inflation` now requires an
+  inflating word immediately before "in the evolution of" (`chapter`,
+  `milestone`, `role`, `turning point`, and kin), so bare and neutral uses
+  ("a key stage in the evolution of the vertebrate eye") stay clean.
+  `template-phrase` now flags only vague-praise adjectives before "step
+  towards/forward" (`major`, `crucial`, `significant`, and kin), so neutral
+  milestones ("a first step towards the full API") stay clean.
+- Category map records both shapes as partial rules with their carve-outs,
+  and humanizer carries one-line boundary notes (pattern 1, template-phrase
+  tiers) so rewrites do not chase literal senses.
+- Upstream README install-clarification lines and the new structured
+  bug-report issue form are held upstream: install-target docs with no
+  monorepo install-contract change, and release plumbing.
+
+Humanizer 1.7.6, AI Writing Detector 1.1.11.
+
 ## [2.12.9] - 2026-10-05
 
 Upstream 3.37.0 is a documentation release: the detector engine is byte-identical

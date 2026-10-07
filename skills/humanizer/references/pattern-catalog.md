@@ -35,6 +35,11 @@ transformative, or representative of a broader shift.
 
 **Repair:** Name the concrete change and its consequence.
 
+**Boundary:** Bare *in the evolution of* is ordinary English. The inflation
+shape needs an inflating word immediately before it (*chapter*, *milestone*,
+*role*, *turning point*); neutral scientific and historical uses stay clean.
+(Adapted from avoid-ai-writing v3.37.0 post-release tip, MIT.)
+
 ### 2. Genre-register drift
 
 **Tell:** Stock genre language replaces the vocabulary of the actual world,

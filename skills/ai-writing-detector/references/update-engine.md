@@ -268,6 +268,29 @@ abbreviation cases stay quiet, warn policy blocks nothing mechanical, a bad
 policy value exits 2, 3000-token varied text no longer trips low-TTR while a
 repetitive 200-token text still does. Detector skill version 1.1.9.
 
+Untagged tip `db82bc8..0469c97` (2026-10-07 absorb, upstream #212/#376)
+changes `patterns.js`, `CATEGORIES.md`, and prose docs; `validate.js` has no
+behavioral delta (banner-only sha difference). Two durable FP fixes:
+(1) `significance-inflation` requires an inflating word immediately before
+"in the evolution of" (moment, milestone, chapter, era, turning point,
+watershed, inflection point, leap, role, new phase); bare and neutral uses
+stay clean regardless of the following object. (2) `template-phrase`
+requires a vague-praise adjective before "step towards/forward" (closed
+list of 23: meaningful, significant, major, crucial, important, big, huge,
+bold, giant, monumental, pivotal, critical, key, vital, massive,
+tremendous, substantial, decisive, landmark, historic, exciting,
+transformative); neutral adjectives ("first", "small") stay clean
+regardless of the following goal. Note the new shape matches "an" as well
+as "a" and drops the old "forward for" variant tail. Upstream also lands
+`#212` regression tests (hit + FP-quiet for both rules) and removes the two
+types from the legacy-uncovered list in `categories.test.js`; that file is
+CI tooling we do not vendor. README install lines and the bug-report form
+are held upstream. Category map rows for both types now carry the partial
+carve-out notes; humanizer pattern 1 and the template-phrase tiers carry
+one-line boundary notes. Probes at absorb: inflating-word hit, literal
+evolution-of quiet, vague-praise step hit, neutral step quiet. Detector
+skill version 1.1.11.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
