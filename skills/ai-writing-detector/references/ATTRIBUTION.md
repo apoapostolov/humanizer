@@ -14,6 +14,9 @@
 | Path | Role |
 | --- | --- |
 | `scripts/report.js` | Sanitized analyze report (`signals_only`) |
+| `scripts/longdoc.js` | Long-document chunking and word-weighted scoring |
+| `scripts/longdoc-probe.js` | Behavioral probe for long-document scoring |
+| `scripts/engine-fixtures.js` | Verbatim upstream engine fixture suite (275 cases) |
 | `scripts/analyze.js` | Production CLI |
 | `scripts/validate-cli.js` | Validate CLI + JSON schema wrapper |
 | `scripts/smoke.sh` | Fixture smoke tests |
@@ -33,5 +36,7 @@ shipped. See [measurement-notes.md](measurement-notes.md).
    after the pin in monorepo `SOURCES.md`.
 2. Copy engine files into `scripts/` (keep our `report.js` / CLIs / smoke).
 3. Refresh `references/categories.md` if types change.
-4. Run `bash scripts/smoke.sh`.
+4. Refresh `scripts/engine-fixtures.js` from the new upstream
+   `detector/patterns.test.js` (verbatim, keep the provenance header).
+5. Run `bash scripts/smoke.sh`.
 5. Bump skill `version` (patch for engine pin; minor if report schema breaks).

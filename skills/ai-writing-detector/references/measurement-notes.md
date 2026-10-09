@@ -47,6 +47,15 @@ Prose instructions fail silently. `validate.js` encodes: do not break fences,
 frontmatter, tables, inline code, URLs, paths, heading structure; do not finish
 with more residual flags than you started with.
 
+### Long documents are scored by a word-weighted chunk average
+
+The engine caps at 10,000 words and returns a clean-looking zero above it. The
+package chunks the text and takes the word-weighted average of the accepted
+chunks, rounded, matching upstream `self-scan.js` (#382). A clean long document
+still lands in the minimal band; a sloppy one no longer reads as clean. The
+`long_document` block in the report names the chunk counts, so a partly
+unscored or declined document is visible rather than implied clean.
+
 ## What we deliberately do not claim
 
 - We do not republish upstream FPR/TPR/AUC as product guarantees.

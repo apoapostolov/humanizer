@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.1.12
+version: 1.2.0
 related_skills:
 - humanizer
 - simple-english
@@ -148,6 +148,7 @@ Neither a pass nor a warn proves meaning; check facts and claims yourself.
 ```bash
 bash scripts/smoke.sh
 bash scripts/check-engine-pin.sh
+node scripts/engine-fixtures.js
 npm run smoke
 ```
 
@@ -161,7 +162,7 @@ changes under `skills/ai-writing-detector/`.
 1. Sanitized report first (text, `--quiet`, `--summary-only`, or `--json`)
 2. Lead with warnings + bands + clusters, not the number alone
 3. Call out Tier 1B clarity separately from Tier 1A markers
-4. Surface `reliability.too_short`
+4. Surface `reliability.too_short` and `long_document` when present
 5. Never claim human-written or AI-written from the score
 6. Rewrite request → humanizer (no score-chase)
 
@@ -175,10 +176,17 @@ changes under `skills/ai-writing-detector/`.
 Vendored from [conorbronsdon/avoid-ai-writing](https://github.com/conorbronsdon/avoid-ai-writing)
 detector (MIT): `scripts/patterns.js`, `scripts/validate.js`.  
 Package report layer: `scripts/report.js` (this skill — not upstream).  
+Long-document scoring: `scripts/longdoc.js` (this skill — not upstream).  
 Pin procedure: monorepo `SOURCES.md` + `scripts/check-engine-pin.sh` +
 `references/update-engine.md`.  
 Self-contained: no external clone required.
 
 Requires **Node.js >= 18** (`package.json` engines). No npm dependencies.
 
-Skill version: **1.1.12**. Engine pin: avoid-ai-writing tip `5a5cf6a` (v3.37.0 post-release tip; `features` flags only as a verb, the lookalike gate decides per sentence, and the word tables carry concrete suggestions).
+Documents over 10,000 words are split on paragraph boundaries into chunks
+of at most 4,000 words and scored by a word-weighted average of the accepted
+chunks, mirroring upstream `self-scan.js` (#382). A long draft is never
+reported as a clean zero. The report carries a `long_document` block with the
+chunk counts; a document with no paragraph breaks stays refused and says so.
+
+Skill version: **1.2.0**. Engine pin: avoid-ai-writing tip `5a5cf6a` (v3.37.0 post-release tip; `features` flags only as a verb, the lookalike gate decides per sentence, and the word tables carry concrete suggestions).

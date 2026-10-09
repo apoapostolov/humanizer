@@ -331,19 +331,23 @@ banner is stripped. Five durable changes:
    unsupported importance claim. Probed at absorb through the engine's own
    `suggestion` field.
 4. **Long self-scan documents use a rounded word-weighted average** of their
-   accepted chunks instead of the worst chunk score (#382). This lives in
-   upstream `scripts/self-scan.js`, which this package does not vendor; the
-   vendored engine refuses text over 10,000 words outright, so short-document
-   scoring here is unchanged. Recorded as a measurement note, not a vendored
-   behaviour.
+   accepted chunks instead of the worst chunk score (#382). Upstream keeps this
+   in `scripts/self-scan.js`, which this package does not vendor. The package
+   reimplements the same algorithm in `scripts/longdoc.js` and applies it in the
+   analyze CLI, because the engine refusal above 10,000 words returned a clean
+   zero for a long draft. Short-document scoring is unchanged.
 5. **Sentence-boundary handling** for the homoglyph pass is shared with the
    normalization pre-pass, so Markdown block starts cannot hide a swap inside
    unrelated text.
 
-Not vendored: `scripts/self-scan.js` and its new test file (upstream self-scan
-tooling, not the detector engine), `detector/patterns.test.js` (upstream CI
-fixtures), `cursor-rules/`, `dist/`, and the `.ssot.yaml` / promo-drift workflow
-release plumbing. Engine pin moves to `5a5cf6a`. Detector skill version 1.1.12.
+Vendored since 2.12.12: `detector/patterns.test.js` as
+`scripts/engine-fixtures.js` (verbatim, 275 cases, requires the vendored
+`./patterns.js`), and the `#382` algorithm as `scripts/longdoc.js`. Still not
+vendored: `scripts/self-scan.js` (upstream self-scan tooling, not the detector
+engine), `cursor-rules/` (the generated rule drops the `normalize-quotes.js`
+command, which this monorepo does not ship), `dist/` (flattened paste artifact
+with no local consumer), and the `.ssot.yaml` / promo-drift workflow release
+plumbing. Engine pin stays `5a5cf6a`. Detector skill version 1.2.0.
 
 ## 6. Opinion report (required)
 

@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.12] - 2026-10-09
+
+The two items 2.12.11 held are implemented. Long documents are now scored
+instead of refused, and the upstream engine fixture suite is vendored so the
+pin is proven on every run.
+
+### Added
+
+- AI Writing Detector scores documents over 10,000 words. The engine refuses
+  them and returns label `Text too long` with score 0 and no issues, which in a
+  report is indistinguishable from a clean zero. The package now splits the
+  text on paragraph boundaries into chunks of at most 4,000 words, scans each
+  chunk, and combines the accepted chunks with a word-weighted average,
+  rounded. The algorithm mirrors upstream `self-scan.js` (#382), so this
+  package and the upstream self-scan tool agree on a long document. A 134,720
+  word sample that previously reported score 0 with no issues now reports score
+  5 with 265 issues across 35 chunks.
+- The analyze report carries a `long_document` block: `chunks`, `chunks_scored`,
+  `chunks_unscored`, `engine_limit_words`, `chunk_words`, `declined`. Text and
+  quiet output state the same counts. A chunk below the reliable length is
+  excluded and counted, a chunk in an unsupported script declines the whole
+  document, and a document with no blank-line paragraph breaks cannot be
+  chunked, so the engine refusal stands and the report warns that the input was
+  never scanned. `reliability.engine_too_long` names the last case.
+- The upstream engine fixture suite is vendored verbatim as
+  `scripts/engine-fixtures.js` (275 cases from `detector/patterns.test.js` at
+  tip `5a5cf6a`, blob `24b5a3e5`). It requires `./patterns.js`, so it runs
+  against the vendored engine with no clone present and proves the pin on every
+  documented behavior. It runs in smoke and in the GitHub Actions workflow.
+- `scripts/longdoc-probe.js` pins the long-document behavior in 8 cases,
+  including the word-weighted average, the clean long document staying in the
+  minimal band, and the unbroken single-block refusal.
+
+### Changed
+
+- AI Writing Detector skill version 1.2.0 (new report field and new scoring
+  behavior). Monorepo 2.12.12.
+
+### Held
+
+- Upstream `cursor-rules/` stays held. The generator rewrites the marks-pass
+  paragraph to drop the `normalize-quotes.js` command, so a port here would
+  claim a mechanical marks pass the monorepo has no script for. The portable
+  form of that rule is already in `skills/humanizer/references/pattern-catalog.md`.
+- Upstream `dist/` is a flattened paste artifact with no local consumer, and the
+  `.ssot.yaml` promo-drift workflow is release plumbing.
+
+Humanizer 1.7.7, AI Writing Detector 1.2.0.
+
 ## [2.12.11] - 2026-10-09
 
 Upstream tip `5a5cf6a` (past v3.37.0, no new tag) makes the `features` finding

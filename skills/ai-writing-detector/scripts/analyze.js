@@ -24,6 +24,7 @@ function requireNode() {
 requireNode();
 
 const AIDetector = require("./patterns.js");
+const longdoc = require("./longdoc.js");
 const {
   buildAnalyzeReport,
   buildBatchReport,
@@ -54,6 +55,9 @@ Options:
   -h, --help             Show help
 
 Notes:
+  Documents over 10,000 words are split on paragraph boundaries and scored by a
+  word-weighted average of their chunks, so a long draft is not reported as a
+  clean zero. The report carries a long_document block with the chunk counts.
   Default report sets interpretation=signals_only and omits document_classification.
   Multi-file → batch schema ai-writing-detector.analyze.batch.v1 (+ summary totals)
   Do not treat scores as authorship proof. For rewrites use humanizer.
@@ -146,10 +150,21 @@ function parseArgs(argv) {
   };
 }
 
+/**
+ * Scan one input. The engine refuses text over 10,000 words and returns a
+ * clean-looking zero for it, so long documents are chunked and scored here.
+ */
+function scanText(text, opts) {
+  const engineOptions = { contextMode: opts.contextMode };
+  const engineResult = AIDetector.analyzeText(text, engineOptions);
+  if (!longdoc.needsChunking(text)) return engineResult;
+
+  const longResult = longdoc.analyzeLongText(text, engineOptions);
+  return longResult || engineResult;
+}
+
 function analyzeOne(text, source, opts) {
-  const engineResult = AIDetector.analyzeText(text, {
-    contextMode: opts.contextMode,
-  });
+  const engineResult = scanText(text, opts);
   if (opts.jsonEngine) return { engineOnly: engineResult };
 
   return buildAnalyzeReport(engineResult, {
@@ -196,9 +211,7 @@ function main(argv) {
       process.stderr.write("--json-engine supports exactly one input\n");
       process.exit(2);
     }
-    const engineResult = AIDetector.analyzeText(jobs[0].text, {
-      contextMode: opts.contextMode,
-    });
+    const engineResult = scanText(jobs[0].text, opts);
     process.stdout.write(JSON.stringify(engineResult, null, 2) + "\n");
     process.stderr.write(
       "warning: --json-engine emits authorship-shaped fields; do not use as proof\n"

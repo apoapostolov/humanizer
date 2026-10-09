@@ -27,3 +27,6 @@ jobs:
 
       - name: Run smoke
         run: bash skills/ai-writing-detector/scripts/smoke.sh
+
+      - name: Upstream engine fixtures
+        run: node skills/ai-writing-detector/scripts/engine-fixtures.js

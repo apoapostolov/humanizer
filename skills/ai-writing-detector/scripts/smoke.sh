@@ -145,9 +145,35 @@ execFileSync(process.execPath,['$VALIDATE','--fail-on-warnings','$FIX/validate-b
 run_check "report module loads" node -e "require('$ROOT/scripts/report.js')"
 run_check "pattern regressions" node "$ROOT/scripts/pattern-probe.js"
 
+run_check "long document chunked and scored (#382)" node "$ROOT/scripts/longdoc-probe.js"
+
+# Verbatim upstream engine fixtures: proves the vendored engine still
+# matches its pin on every documented behavior.
+run_check "upstream engine fixtures (275)" node "$ROOT/scripts/engine-fixtures.js"
+
 run_check "fence requires blank closing (#77)" node "$ROOT/scripts/fence-probe.js"
 
 run_check "false concession + residual policy + input contract (#211/#204/#234)" node "$ROOT/scripts/concession-probe.js"
+
+run_check "long document is not a clean zero through the CLI" node -e "
+const {execFileSync}=require('child_process');
+const fs=require('fs');
+const os=require('os');
+const path=require('path');
+const p=path.join(os.tmpdir(),'aid-longdoc-smoke.md');
+const para=Array(120).fill('Ordinary sentence about the pipeline and its output.').join(' ');
+const slop='The dashboard serves as a robust and comprehensive hub that showcases a vibrant tapestry of synergy. ';
+const parts=[];
+for (let i=0;i<120;i++) parts.push((i%7===0?slop:'')+para);
+fs.writeFileSync(p, parts.join('\\n\\n'), 'utf8');
+const r=JSON.parse(execFileSync(process.execPath,['$ANALYZE','--json',p],{encoding:'utf8'}));
+fs.unlinkSync(p);
+if (r.word_count <= 10000) process.exit(1);
+if (!r.long_document || r.long_document.chunks_scored < 2) process.exit(2);
+if (r.long_document.declined) process.exit(3);
+if (r.score === 0 && r.issue_count === 0) process.exit(4);
+if (r.reliability.engine_too_long) process.exit(5);
+"
 
 run_check "check-engine-pin runs" bash -c "
   set +e

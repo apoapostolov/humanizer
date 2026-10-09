@@ -115,6 +115,37 @@ function buildAnalyzeReport(engineResult, opts = {}) {
     );
   }
 
+  // Long documents are chunked before scanning. Report the chunk counts so a
+  // declined or partly unscored document is visible instead of reading clean.
+  const longStats = engineResult.stats || {};
+  const isLongDocument =
+    longStats.chunksScored != null || engineResult.declined === true;
+  const longDocument = isLongDocument
+    ? {
+        chunks: longStats.chunks || 0,
+        chunks_scored: longStats.chunksScored || 0,
+        chunks_unscored: longStats.chunksUnscored || 0,
+        engine_limit_words: longStats.engineLimitWords || null,
+        chunk_words: longStats.chunkWords || null,
+        declined: engineResult.declined === true,
+      }
+    : null;
+  if (longDocument && longDocument.declined) {
+    warnings.push(
+      "Long document declined: a chunk uses an unsupported script, so this is not a completed scan."
+    );
+  }
+  if (longDocument && longDocument.chunks_unscored > 0 && !longDocument.declined) {
+    warnings.push(
+      `Long document: ${longDocument.chunks_unscored} of ${longDocument.chunks} chunk(s) were below the reliable length and are not in the score.`
+    );
+  }
+  if (engineResult.tooLong === true) {
+    warnings.push(
+      `Input is over the ${longStats.engineLimitWords || 10000}-word engine limit and could not be chunked: it carries no blank-line paragraph breaks. This is not a completed scan. Split it into paragraphs.`
+    );
+  }
+
   // Score/label stay from full engine run (threshold tools expect full score).
   // Filtered views affect issue lists/bands only.
   const report = {
@@ -139,10 +170,12 @@ function buildAnalyzeReport(engineResult, opts = {}) {
     },
     samples,
     warnings,
+    long_document: longDocument,
     reliability: {
       too_short: tooShort,
       min_words_recommended: MIN_WORDS_RELIABLE,
       engine_too_short: Boolean(engineTooShort),
+      engine_too_long: engineResult.tooLong === true,
     },
     handoff: {
       rewrite_quality: "humanizer",
@@ -162,11 +195,16 @@ function formatAnalyzeText(report, opts = {}) {
   if (opts.quiet) {
     const src = report.source ? ` source=${report.source}` : "";
     const warn = report.reliability && report.reliability.too_short ? " too_short=1" : "";
+    const long = report.long_document
+      ? ` long=1 chunks=${report.long_document.chunks}` +
+        ` scored=${report.long_document.chunks_scored}` +
+        ` unscored=${report.long_document.chunks_unscored}`
+      : "";
     return (
       `score=${report.score} label=${JSON.stringify(String(report.label || ""))}` +
       ` issues=${report.issue_count} words=${report.word_count}` +
       ` t1m=${report.bands.tier1_markers} t1c=${report.bands.tier1_clarity}` +
-      ` other=${report.bands.other_signals}${warn}${src}\n`
+      ` other=${report.bands.other_signals}${warn}${long}${src}\n`
     );
   }
 
@@ -190,6 +228,14 @@ function formatAnalyzeText(report, opts = {}) {
       : ""));
   lines.push(`words: ${report.word_count}`);
   lines.push(`context: ${report.context_mode}`);
+  if (report.long_document) {
+    const ld = report.long_document;
+    const declined = ld.declined ? " declined" : "";
+    lines.push(
+      `long document: ${ld.chunks} chunk(s), ${ld.chunks_scored} scored,` +
+        ` ${ld.chunks_unscored} unscored${declined} (engine limit ${ld.engine_limit_words} words, chunk ${ld.chunk_words})`
+    );
+  }
   if (report.reliability && report.reliability.too_short) {
     lines.push(
       `reliability: TOO_SHORT (need ~${report.reliability.min_words_recommended}+ words for a stable read)`

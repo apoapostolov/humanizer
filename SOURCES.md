@@ -17,12 +17,12 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.11` |
+| package_version | `2.12.12` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
 | humanizer_skill_version | `1.7.7` |
 | simple_english_skill_version | `2.4.2` |
-| ai_writing_detector_skill_version | `1.1.12` |
+| ai_writing_detector_skill_version | `1.2.0` |
 | writing_prose_skill_version | `1.2.3` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
@@ -72,10 +72,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.1.12` |
+| skill_version | `1.2.0` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `5a5cf6a` (v3.37.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393, per-sentence lookalike gate #389, concrete word-table suggestions #215/#380, word-weighted long-document score #382) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `5a5cf6a` (v3.37.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393, per-sentence lookalike gate #389, concrete word-table suggestions #215/#380, word-weighted long-document score #382, now scored by package `scripts/longdoc.js` instead of refused) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. |
 

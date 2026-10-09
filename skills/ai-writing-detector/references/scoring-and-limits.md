@@ -110,6 +110,28 @@ separate read. Upstream `--residual-policy` landed with v3.24.0-era tip `bdeb726
 - Not a target to minimize for "undetectable" output
 - Not a substitute for provenance
 
+## Long documents (over 10,000 words)
+
+The vendored engine refuses text over 10,000 words: label `Text too long`,
+score 0, no issues. Reported as-is that reads like a clean zero, so this
+package scores those documents instead. It splits the text on paragraph
+boundaries into chunks of at most 4,000 words, scans each chunk, and combines
+the accepted chunks with a word-weighted average, rounded. Issue categories are
+counted across every accepted chunk. The algorithm mirrors upstream
+`scripts/self-scan.js` (#382), so this package and the upstream self-scan tool
+agree on a long document.
+
+- A chunk below the reliable length is excluded and counted in
+  `long_document.chunks_unscored`; the report warns when that count is above
+  zero.
+- A chunk in an unsupported script declines the whole document: score 0, label
+  `Unsupported script`, `long_document.declined` true, and a warning. That is
+  not a completed scan.
+- A document with no blank-line paragraph breaks cannot be chunked. The engine
+  refusal stands and the report warns that the input was never scanned.
+- `word_count` is the words of the accepted chunks, which is less than the file
+  length when a chunk was excluded.
+
 ## Known calibration limits (upstream research, avoid-ai-writing v3.22+)
 
 1. Composite score can be weak at class separation.

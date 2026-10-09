@@ -1,6 +1,6 @@
 {
   "name": "ai-writing-detector",
-  "version": "1.1.12",
+  "version": "1.2.0",
   "private": true,
   "description": "Signals-only AI-writing scan + rewrite preservation validate (not authorship proof)",
   "license": "MIT",
@@ -11,6 +11,8 @@
     "analyze": "node scripts/analyze.js",
     "validate": "node scripts/validate-cli.js",
     "smoke": "bash scripts/smoke.sh",
+    "fixtures": "node scripts/engine-fixtures.js",
+    "longdoc-probe": "node scripts/longdoc-probe.js",
     "check-engine-pin": "bash scripts/check-engine-pin.sh"
   }
 }
