@@ -291,6 +291,60 @@ one-line boundary notes. Probes at absorb: inflating-word hit, literal
 evolution-of quiet, vague-praise step hit, neutral step quiet. Detector
 skill version 1.1.11.
 
+Untagged tip `0469c97..5a5cf6a` (2026-10-09 absorb, upstream
+#215/#351/#380/#382/#384/#389/#391/#393) changes `patterns.js` and
+`CHANGELOG.md` only; `validate.js` and `CATEGORIES.md` have no delta, and the
+functional body of `validate.js` still matches ours once the four-line packaging
+banner is stripped. Five durable changes:
+
+1. **`features` is a copula substitute only as a verb** (#351/#384/#391/#393).
+   A bounded noun-context heuristic covers sentence, line and list openers,
+   determiners, numbers, possessives, quantifiers, `of`/`or` and compound
+   modifiers, plus bare product objects ("we ship features"), and treats
+   "which/what features" in an indirect question and "whose features" as nouns.
+   Verb uses still flag: "the app features a dashboard", relative clauses
+   ("a library which features dashboards"), and versioned product subjects
+   ("GPT-5 features a..."). Upstream states plainly that this is a context
+   heuristic, not a grammatical classifier. Probed at absorb: "three new
+   features" and a *Features* heading quiet, "the app features a dashboard" and
+   "a library which features dashboards" still flag, "Decide which features
+   matter" quiet, "a library features support for async tasks" flags while "The
+   experimental features support for offline mode" stays quiet.
+2. **The lookalike gate is decided per sentence** (#389, follow-up to #352).
+   A sentence unit now keeps internal ASCII-token dots ("07.10", "v1.2",
+   "report.pdf") and prose hard wraps, and ends only on sentence punctuation,
+   blank lines, Markdown separators/tables and HTML block starts. A word spelled
+   entirely in lookalike letters is swapped only when its sentence holds no
+   non-lookalike Cyrillic or Greek letter. Probed at absorb: Russian technical
+   prose beside English terms is quiet where the old engine emitted
+   `normalization-flag`. Fully substituted words beside Russian or Greek prose,
+   including across plain hard wraps, remain a documented limit.
+3. **Word-table suggestions are concrete** (#215/#380). Rows that read
+   *describe what changed* / *describe the actual complexity* now carry a direct
+   alternative (`game-changer` -> "changes how [X] works", `tapestry` ->
+   "complex structure, rich history", `synergy` -> "combined effect, benefit of
+   working together", `symphony` -> "coordination, balance", `multifaceted` ->
+   "having several parts, with several aspects", `paradigm-shifting` ->
+   "changes the basic model", `transformative` -> "changes how [X] works" as an
+   adjective and "major change, overhaul" as a noun). `breakthrough` is removed
+   from the `game-changer` suggestions so the table stops preserving an
+   unsupported importance claim. Probed at absorb through the engine's own
+   `suggestion` field.
+4. **Long self-scan documents use a rounded word-weighted average** of their
+   accepted chunks instead of the worst chunk score (#382). This lives in
+   upstream `scripts/self-scan.js`, which this package does not vendor; the
+   vendored engine refuses text over 10,000 words outright, so short-document
+   scoring here is unchanged. Recorded as a measurement note, not a vendored
+   behaviour.
+5. **Sentence-boundary handling** for the homoglyph pass is shared with the
+   normalization pre-pass, so Markdown block starts cannot hide a swap inside
+   unrelated text.
+
+Not vendored: `scripts/self-scan.js` and its new test file (upstream self-scan
+tooling, not the detector engine), `detector/patterns.test.js` (upstream CI
+fixtures), `cursor-rules/`, `dist/`, and the `.ssot.yaml` / promo-drift workflow
+release plumbing. Engine pin moves to `5a5cf6a`. Detector skill version 1.1.12.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

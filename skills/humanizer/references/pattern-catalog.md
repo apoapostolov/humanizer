@@ -125,6 +125,11 @@ from avoid-ai-writing v3.33.0 and blader/humanizer v3.0.0, MIT.)
 
 **Repair:** Prefer the plain verb unless the substitute adds meaning.
 
+**Boundary:** *Features* is a copula substitute only as a verb ("the app
+features a dashboard"). The plural noun is ordinary product writing, so "three
+new features", a *Features* heading, and "we ship features" stay clean.
+(Adapted from avoid-ai-writing v3.37.0 post-release tip, MIT.)
+
 ### 11. Elegant variation and repeated openings
 
 **Tell:** Synonyms rotate to avoid repeating the correct name, technical term, or

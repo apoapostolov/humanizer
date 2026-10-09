@@ -2,6 +2,47 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.11] - 2026-10-09
+
+Upstream tip `5a5cf6a` (past v3.37.0, no new tag) makes the `features` finding
+verb-only, decides the lookalike gate per sentence, and gives the word tables
+concrete suggestions. The engine is vendored byte-identical and the editorial
+tables follow it.
+
+### Changed
+
+- AI Writing Detector engine: `features` now flags as copula avoidance only when
+  it is a verb ("the app features a dashboard"). Noun contexts stay clean:
+  "three new features", a *Features* heading, "we ship features", and "which /
+  what / whose features" in an indirect question. Relative clauses and versioned
+  product subjects still flag. Upstream calls this a context heuristic, not a
+  grammatical classifier.
+- The homoglyph gate now decides per sentence and keeps internal dots
+  ("07.10", "v1.2") and prose hard wraps inside a sentence, so short Russian
+  words in Russian technical prose beside English terms no longer read as
+  lookalike swaps. Fully substituted words beside Russian or Greek prose remain
+  a documented limit.
+- Word tables carry concrete alternatives where they used to say *describe what
+  changed*: `game-changer`, `tapestry`, `vibrant`, `synergy`, `symphony`,
+  `multifaceted`, `paradigm-shifting`, and `transformative`. `breakthrough` is
+  gone from the `game-changer` row so the table stops preserving an unsupported
+  importance claim. Humanizer's Tier 1A / Tier 2 tables follow the same wording.
+- Category map rows for `tier1-clarity` and `normalization-flag` now carry their
+  partial carve-outs, so a `--min-severity` gate knows what it is gating.
+- A behavioral probe for the noun/verb split and the per-sentence lookalike gate
+  joins the smoke suite.
+
+### Held
+
+- Upstream long-document scoring (a rounded word-weighted average of accepted
+  chunks) lives in `scripts/self-scan.js`, which this package does not vendor.
+  The vendored engine refuses text over 10,000 words, so short-document scoring
+  is unchanged; the change is recorded as a measurement note.
+- Upstream `detector/patterns.test.js`, `cursor-rules/`, `dist/`, and the
+  `.ssot.yaml` promo-drift workflow are CI and release plumbing.
+
+Humanizer 1.7.7, AI Writing Detector 1.1.12.
+
 ## [2.12.10] - 2026-10-07
 
 Upstream tip `0469c97` (past v3.37.0, no new tag) narrows two FP-prone

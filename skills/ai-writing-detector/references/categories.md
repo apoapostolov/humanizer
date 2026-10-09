@@ -24,7 +24,7 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | Detector `type` | Label | SKILL.md section |
 |---|---|---|
 | `tier1` / `tier2` / `tier3` | AI vocabulary / Word cluster / Overused word | Words and phrases to replace (`tier3` fires per word at `max(3, floor(wordCount × 0.03))` uses of one listed form, so spread Tier 3 vocabulary stays clean; `load-bearing`: immediate abstract-noun allowlist only; literal, predicative, and unlisted forms pass; `technical` context mode suppresses eight technical-legitimate terms: `robust`, `comprehensive`, `seamless`, `ecosystem`, `leverage`, `facilitate`, `underpin`, `streamline`) |
-| `tier1-clarity` | Wordiness | Words and phrases to replace (Tier 1B) |
+| `tier1-clarity` | Wordiness | Words and phrases to replace (Tier 1B) — *partial; `features` flags only as a verb, since the noun-context heuristic covers sentence, line, and list openers, determiners, numbers, possessives, quantifiers, and bare product objects, and keeps indirect-question and plural-subject forms clean* |
 | `transition` | AI transition | Transition phrases to remove or rewrite |
 | `template-phrase` | Template phrase | Template phrases (avoid) — *partial; in the step-towards/forward shape, only the listed vague-praise adjectives (such as "major", "crucial", "significant") before "step" flag; neutral adjectives ("first", "small") stay clean regardless of the following goal* |
 | `tier3-phrase` / `tier3-phrase-cluster` | Boilerplate phrase / cluster | Template phrases (avoid) |
@@ -94,7 +94,7 @@ not as a phrase a human editor would look up:
 | `punct-distribution` | Punctuation distribution | Per-paragraph punctuation uniformity |
 | `fnword-trigram-entropy` | Grammar repetition | Function-word trigram entropy |
 | `cross-para-burstiness` | Cross-paragraph rhythm | Sentence-length variance across paragraphs |
-| `normalization-flag` | Bypass-trick chars | Zero-width / homoglyph humanizer-bypass detection |
+| `normalization-flag` | Bypass-trick chars | Zero-width / homoglyph humanizer-bypass detection — *partial; the lookalike swap is decided per sentence and needs a sentence with no non-lookalike Cyrillic or Greek letter, so Russian technical prose beside English terms stays clean; fully substituted words beside Russian or Greek prose remain a documented limit* |
 
 ## C. Skill-only (LLM judgment — no detector `type`)
 

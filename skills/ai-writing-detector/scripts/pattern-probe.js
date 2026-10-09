@@ -44,3 +44,26 @@ assert(!blockquoteResult.issues.some((issue) => issue.type === 'tier1' || issue.
 
 console.log('PASS  staged discovery and literal-outcome quote carve-outs');
 console.log('PASS  quoted spans and single-line blockquotes excluded from scoring');
+
+const featuresNoun = [
+  'The release ships three new features and a smaller download.',
+  'The notes list each owner and the date the work finished before the review began.',
+].join(' ');
+const featuresNounResult = analyzeText(featuresNoun, context);
+assert(!featuresNounResult.issues.some((issue) => issue.type === 'tier1-clarity' && /features/i.test(issue.text)), 'noun "features" should stay clean');
+
+const featuresVerb = [
+  'The app features a dashboard that lists every device.',
+  'The team recorded the response times before the release and filed the numbers in the shared folder.',
+].join(' ');
+const featuresVerbResult = analyzeText(featuresVerb, context);
+assert(featuresVerbResult.issues.some((issue) => issue.type === 'tier1-clarity' && /features/i.test(issue.text)), 'verb "features" should be reported');
+
+const russianTechnical = [
+  'Мы добавили make_json_safe() на Enum и проверили r/StableDiffusion от 07.10.',
+  'The build passed and the log lists each step with its duration, so the reviewer can follow what changed.',
+].join(' ');
+const russianTechnicalResult = analyzeText(russianTechnical, context);
+assert(!russianTechnicalResult.issues.some((issue) => issue.type === 'normalization-flag'), 'Russian technical prose with English terms should stay clean');
+
+console.log('PASS  features noun/verb split and per-sentence lookalike gate');

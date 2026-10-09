@@ -38,7 +38,7 @@ a flag means in detect mode.
 | --- | --- |
 | delve / delve into | explore, dig into, look at |
 | landscape (metaphor) | field, space, industry, world |
-| tapestry | name the actual complexity |
+| tapestry | complex structure, rich history, or name the actual complexity |
 | realm | area, field, domain |
 | paradigm | model, approach, framework |
 | embark | start, begin |
@@ -52,22 +52,22 @@ a flag means in detect mode.
 | underscores | highlights, shows |
 | meticulous / meticulously | careful, detailed, precise |
 | seamless / seamlessly | smooth, easy, without friction |
-| game-changer / game-changing | name what changed and why it matters |
-| hit differently / hits different | say what changed, or cut |
+| game-changer / game-changing | changes how [X] works, or name what changed and why it matters |
+| hit differently / hits different | feels different, affects me/us differently, or cut |
 | watershed moment | turning point, shift, or what changed |
-| marking a pivotal moment | state what happened |
+| marking a pivotal moment | changing [X], leading to [Y], or state what happened |
 | the future looks bright | specific claim or cut |
 | only time will tell | specific claim or cut |
 | nestled | is located, sits, is in |
-| vibrant | name what is active, or cut |
+| vibrant | lively, active, or name what is active |
 | thriving | growing, active, or cite a number |
-| despite challenges… continues to thrive | name challenge and response, or cut |
+| despite challenges… continues to thrive | keeps growing despite [named difficulty], or name the challenge and the response |
 | showcasing | showing, demonstrating, or cut the clause |
 | deep dive / dive into | look at, examine, explore |
 | unpack / unpacking | explain, break down, walk through |
 | bustling | busy, active, or name what makes it busy |
 | intricate / intricacies | complex, detailed, or name the complexity |
-| complexities | name them, or use problems / details |
+| complexities | problems, details, or name them |
 | ever-evolving | changing, growing, or describe how |
 | enduring | lasting, long-running, or cite duration |
 | daunting | hard, difficult, challenging |
@@ -78,11 +78,11 @@ a flag means in detect mode.
 | thought leader / thought leadership | expert, authority, or name the contribution |
 | best practices | what works, proven methods, standard approach |
 | at its core | cut; state the claim |
-| synergy / synergies | name the combined effect |
+| synergy / synergies | combined effect, benefit of working together |
 | interplay | relationship, connection, interaction |
 | keen (intensifier) | interested, eager, or cut |
 | genuinely / genuine (intensifier) | cut; state the fact |
-| symphony (metaphor) | name the coordination or combination |
+| symphony (metaphor) | coordination, balance, or name the combination |
 | embrace (metaphor) | adopt, accept, use, switch to |
 | load-bearing (metaphor) | essential, critical, necessary, or name what breaks |
 | lean into | accept, embrace, or name the specific move |
@@ -146,7 +146,7 @@ machine-authorship signals.
 | underpin | support, form the basis of |
 | nuanced | specific, subtle, detailed, or name the nuance |
 | crucial | important, key, necessary |
-| multifaceted | name the facets, or cut |
+| multifaceted | having several parts, with several aspects, or name the facets |
 | ecosystem (metaphor) | system, community, network, market |
 | myriad | many, numerous, or give a number |
 | plethora | many, a lot of, or give a number |
@@ -159,8 +159,8 @@ machine-authorship signals.
 | illuminate | clarify, explain, show |
 | elucidate | explain, clarify, spell out |
 | juxtapose | compare, contrast, set side by side |
-| paradigm-shifting | name what shifted |
-| transformative / transformation | name what changed and how |
+| paradigm-shifting | changes the basic model, changes how [X] is understood |
+| transformative / transformation | changes how [X] works (adjective); major change, overhaul (noun) |
 | cornerstone | foundation, basis, key part |
 | paramount | most important, top priority |
 | poised (to) | ready, set, about to |
@@ -322,6 +322,8 @@ Say why something matters instead of a generic thumbs-up.
 
 Tables and tier logic follow avoid-ai-writing v3.22.3 (Tier 1A/1B split) and
 brandonwise/humanizer-influenced tiering; the abstract-metaphor-nouns table
-absorbs cursor/plugins unslop (tip@99559f2). Keep this file as a rewrite aid. The
+absorbs cursor/plugins unslop (tip@99559f2). Rows that once read *describe what
+changed* now carry a concrete alternative (avoid-ai-writing v3.37.0 post-release
+tip, MIT). Keep this file as a rewrite aid. The
 main diagnosis path remains [pattern-catalog.md](pattern-catalog.md) and the
 editing sequence in [humanizing-text.md](humanizing-text.md).

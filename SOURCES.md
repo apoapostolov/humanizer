@@ -17,19 +17,19 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.10` |
+| package_version | `2.12.11` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
-| humanizer_skill_version | `1.7.6` |
+| humanizer_skill_version | `1.7.7` |
 | simple_english_skill_version | `2.4.2` |
-| ai_writing_detector_skill_version | `1.1.11` |
+| ai_writing_detector_skill_version | `1.1.12` |
 | writing_prose_skill_version | `1.2.3` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-10-07T03:05:00+03:00` |
+| last_sources_sync | `2026-10-09T03:07:27+03:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -72,10 +72,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.1.10` |
+| skill_version | `1.1.12` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `0469c97` (v3.37.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, per-sentence homoglyph gate, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `5a5cf6a` (v3.37.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393, per-sentence lookalike gate #389, concrete word-table suggestions #215/#380, word-weighted long-document score #382) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. |
 
@@ -107,17 +107,17 @@ humanizer.
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
 | release_tag | `v3.37.0` |
 | release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.37.0` |
-| last_ingested_version | `3.37.0 (post-release tip `0469c97` absorbed; #212 literal-sense carve-outs, patterns engine updated)` |
-| last_ingested_ref | `0469c977d65a` |
-| last_ingested_at | `2026-10-07T03:05:00+03:00` |
-| last_checked_at | `2026-10-07T03:05:00+03:00` |
+| last_ingested_version | `3.37.0 (post-release tip `5a5cf6a` absorbed; `features` noun/verb split, per-sentence lookalike gate, concrete word-table suggestions)` |
+| last_ingested_ref | `5a5cf6a45331` |
+| last_ingested_at | `2026-10-09T03:07:27+03:00` |
+| last_checked_at | `2026-10-09T03:07:27+03:00` |
 | compare_base | `6135015` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99; 9/72/74 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs (severity bands read off the pinned engine, so they stay true to the pin) |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.37.0`, or untagged commits on default branch after `0469c977d65a`. |
+| next_check | On newer tag than `v3.37.0`, or untagged commits on default branch after `5a5cf6a45331`. |
 
 Diff helpers:
 
@@ -125,8 +125,8 @@ Diff helpers:
 # After git fetch in local_clone:
 git -C avoid-ai-writing fetch --tags origin
 git -C avoid-ai-writing tag -l 'v*' --sort=v:refname | tail -5
-git -C avoid-ai-writing log --oneline 3c0fd8a26689..origin/main
-git -C avoid-ai-writing diff 3c0fd8a26689..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md README.md
+git -C avoid-ai-writing log --oneline 0469c977d65a..origin/main
+git -C avoid-ai-writing diff 0469c977d65a..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md README.md
 ```
 
 ### 2. blader/humanizer

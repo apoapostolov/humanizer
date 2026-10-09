@@ -20,7 +20,7 @@ echo "ai-writing-detector engine pin check"
 echo "skill_root=$ROOT"
 echo "patterns_sha=$(sha "$PAT_LOCAL")"
 echo "validate_sha=$(sha "$VAL_LOCAL")"
-echo "expected_upstream_tag=v3.37.0 + tip 0469c97 (#212 literal-sense carve-outs for significance-inflation and template-phrase; patterns.js changed, validate.js body unchanged; see monorepo SOURCES.md)"
+echo "expected_upstream_tag=v3.37.0 + tip 5a5cf6a (#351/#384/#391/#393 features noun/verb split, #389 per-sentence lookalike gate, #215/#380 concrete word-table suggestions; patterns.js changed, validate.js body unchanged; see monorepo SOURCES.md)"
 
 if [[ -z "$CLONE" ]]; then
   # Common layout — only used if present
