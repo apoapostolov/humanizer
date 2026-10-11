@@ -1,5 +1,6 @@
-# Behavioral tests for the house rule, runnable with `vale test` (vale >= 3.24).
-# Attach this block to HermesHouse/EmDash.yml when the runner is available.
+# Behavioral tests for HermesHouse/EmDash.yml, runnable with `vale test`
+# (vale >= 3.24). Run from the skill directory:
+#   vale --config vale/vale.ini test
 # The message is the forbidden tier only; the rule file owns the tiers.
 
 - name: flags an em dash

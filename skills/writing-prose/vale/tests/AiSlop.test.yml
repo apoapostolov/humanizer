@@ -1,5 +1,6 @@
-# Behavioral tests for the house rule, runnable with `vale test` (vale >= 3.24).
-# Attach this block to HermesHouse/AiSlop.yml when the runner is available.
+# Behavioral tests for HermesHouse/AiSlop.yml, runnable with `vale test`
+# (vale >= 3.24). Run from the skill directory:
+#   vale --config vale/vale.ini test
 
 - name: flags a marketing word
   input: We delve into the data.

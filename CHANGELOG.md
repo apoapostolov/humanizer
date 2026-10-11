@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.13] - 2026-10-11
+
+The house `vale test` cases now run. The Win11 winget build caught up with
+vale 3.24.0, which ships the runner, but the case files carried the wrong
+extension, so every run stopped with `no test cases found` and the rules had
+no behavioral gate. Cases are renamed to the documented `.test.yml`
+extension and the docs are corrected: `want` is a string rather than a list,
+the runner reads the case files directly, and no block is attached to a rule.
+
+### Fixed
+
+- `vale test` runs the house rule cases on Win11 and WSL. The files under
+  `vale/tests/` used `.tests.yml`, which vale does not read, so the runner
+  found no cases and exited 2 on every run. `AiSlop.test.yml` and
+  `EmDash.test.yml` report 5 passed, 0 failed.
+- The docs that described the wrong procedure are corrected: `want` pins a
+  whole alert string rather than a list, a case dropped into `styles/` would
+  be linted as a rule file, and an attached `tests:` block runs in isolation
+  from the house config. `RULES-TESTS.md`, `SKILL.md`, and both case headers
+  now state the working invocation.
+
+### Changed
+
+- SOURCES pins: cursor/plugins unslop moves to `978ca6e`, a token-distillation
+  refactor of the unslop SKILL.md with no editorial change. The vale pin now
+  records that the Win11 winget manifest reached 3.24.0.
+
 ## [2.12.12] - 2026-10-09
 
 The two items 2.12.11 held are implemented. Long documents are now scored

@@ -17,19 +17,19 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.12` |
+| package_version | `2.12.13` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
 | humanizer_skill_version | `1.7.7` |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.2.0` |
-| writing_prose_skill_version | `1.2.3` |
+| writing_prose_skill_version | `1.2.4` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-10-09T03:07:27+03:00` |
+| last_sources_sync | `2026-10-11T03:45:00+03:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -110,7 +110,7 @@ humanizer.
 | last_ingested_version | `3.37.0 (post-release tip `5a5cf6a` absorbed; `features` noun/verb split, per-sentence lookalike gate, concrete word-table suggestions)` |
 | last_ingested_ref | `5a5cf6a45331` |
 | last_ingested_at | `2026-10-09T03:07:27+03:00` |
-| last_checked_at | `2026-10-09T03:07:27+03:00` |
+| last_checked_at | `2026-10-11T03:39:00+03:00` |
 | compare_base | `6135015` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
@@ -141,7 +141,7 @@ git -C avoid-ai-writing diff 0469c977d65a..origin/main -- SKILL.md CHANGELOG.md 
 | last_ingested_version | `3.1.0 (225a6f3)` |
 | last_ingested_ref | `225a6f39ac85` |
 | last_ingested_at | `2026-09-29T02:00:00+03:00` |
-| last_checked_at | `2026-09-29T02:00:00+03:00` |
+| last_checked_at | `2026-10-11T03:39:00+03:00` |
 | local_clone | `blader-humanizer` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |
@@ -169,7 +169,7 @@ git -C blader-humanizer diff 43c97670b563cfa75e4f16ef00c32e933104d10a..origin/ma
 | last_ingested_version | `tip@8da1f03` |
 | last_ingested_ref | `8da1f030185bdfe8471220585162991eaeb970e9` |
 | last_ingested_at | `2026-08-04T00:00:00-07:00` |
-| last_checked_at | `2026-08-17T12:44:55-07:00` |
+| last_checked_at | `2026-10-11T03:39:00+03:00` |
 | compare_base | `8da1f03` |
 | local_clone | `hardikpandya-stop-slop` |
 | clone_policy | third-party → `<git-ext>` only |
@@ -194,16 +194,16 @@ git -C hardikpandya-stop-slop diff 8da1f030185bdfe8471220585162991eaeb970e9..ori
 | status | `active_ingest` |
 | repo | `https://github.com/cursor/plugins` |
 | release_tag | *(none — repo publishes no releases)* |
-| last_ingested_version | `tip@23e4138 (unslop SKILL.md, 2026-09-07)` |
-| last_ingested_ref | `23e4138daa01c42d4969f7a5465f82704e64f798` |
-| last_ingested_at | `2026-10-03T14:10:00+03:00` |
-| last_checked_at | `2026-10-03T14:10:00+03:00` |
+| last_ingested_version | `tip@978ca6e (unslop SKILL.md token-distillation pass, 2026-10-11; editorial content unchanged) |
+| last_ingested_ref | `978ca6e9c0e0` |
+| last_ingested_at | `2026-10-11` |
+| last_checked_at | `2026-10-11` |
 | local_clone | `cursor-plugins` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `pstack/skills/unslop/SKILL.md` (note: under `pstack/`, not `skills/`) |
 | lands_in | `skills/humanizer/references/vocabulary-tiers.md` ("Abstract metaphor nouns" section), `skills/humanizer/references/required-checks.md` ("Interchangeability test" under revision gate), `skills/humanizer/references/pattern-catalog.md` (Secondary cleanup patterns: mid-sentence colon crutch; absorbed tells 108 mannered prose, 109 over-compression) |
 | ingest_policy | Low-frequency single-file source. Absorb only items not already covered by avoid-ai-writing / blader / stop-slop catalogs. **Reject** the absolute em-dash ban (pattern 13, including its no-parentheses/no-en-dash extension) — standing reject: hard dash bans as authorship proof. **Reject** "adding soul" injection guidance — conflicts with never-inject guardrails (fake first person, manufactured stakes). Rewrite absorbed material into humanizer voice; no wholesale pattern numbering import. |
-| next_check | Diff `23e4138..origin/main -- pstack/skills/unslop/SKILL.md` on scan. |
+| next_check | Diff `978ca6e..origin/main -- pstack/skills/unslop/SKILL.md` on scan. |
 
 ## Writing-prose ingest sources
 
@@ -224,12 +224,12 @@ by the scan script via the GitHub releases API (no local clone needed).
 | release_url | `https://github.com/vale-cli/vale/releases/tag/v3.24.0` |
 | last_ingested_version | `3.24.0` |
 | last_ingested_at | `2026-10-03` |
-| last_checked_at | `2026-10-05T02:34:55+03:00` |
-| win11_winget | `3.23.0` installed, manifest not yet at 3.24.0 (checked 2026-10-05); WSL `~/.local/bin/vale` 3.24.0; Microsoft styles re-synced, no pack change |
+| last_checked_at | `2026-10-11T03:45:00+03:00` |
+| win11_winget | `3.24.0` installed as of 2026-10-11 (manifest caught up with the 3.24.0 release); WSL `~/.local/bin/vale` 3.24.0; Microsoft styles re-synced, no pack change |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |
-| next_check | On a release tag newer than `v3.24.0`, or a winget manifest newer than `3.23.0`. |
+| next_check | On a release tag newer than `v3.24.0`. The 3.24.0 `vale test` runner now runs on the Win11 winget build; the house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). |
 
 ## Monitor-only sources
 
@@ -244,7 +244,7 @@ Reviewed for signal; not on every-update ingest unless something meaningful appe
 | repo | `https://github.com/op7418/Humanizer-zh` |
 | last_ingested_version | *(none — no general content imported)* |
 | last_checked_ref | `f4518a8` |
-| last_checked_at | `2026-10-05T02:34:55+03:00` |
+| last_checked_at | `2026-10-11T03:39:00+03:00` |
 | note | Chinese adaptation. 2026-09-23 push `f4518a8` rewrites the zh rules around meaning/voice preservation (blader v3.0.0 + stop-slop based, 31 checkpoints) and drops the mechanical-triad/dash edits we already reject; no material beyond what EN upstreams provide. Last reviewed 2026-09-29. |
 
 ### Wikipedia: Signs of AI writing

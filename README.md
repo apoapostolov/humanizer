@@ -21,7 +21,7 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.12.11
+## Current source: 2.12.13
 
 The detector flags `features` only as a verb, so "three new features" and a
 *Features* heading stay clean. The lookalike gate decides per sentence, which
@@ -29,7 +29,7 @@ stops Russian technical prose beside English terms from reading as a swap, and
 the word tables now carry concrete alternatives where they used to say
 "describe what changed".
 
-The latest GitHub release is 2.12.11; the current source tree matches it.
+The latest GitHub release is 2.12.13; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
