@@ -149,7 +149,7 @@ run_check "long document chunked and scored (#382)" node "$ROOT/scripts/longdoc-
 
 # Verbatim upstream engine fixtures: proves the vendored engine still
 # matches its pin on every documented behavior.
-run_check "upstream engine fixtures (275)" node "$ROOT/scripts/engine-fixtures.js"
+run_check "upstream engine fixtures (270)" node "$ROOT/scripts/engine-fixtures.js"
 
 run_check "fence requires blank closing (#77)" node "$ROOT/scripts/fence-probe.js"
 

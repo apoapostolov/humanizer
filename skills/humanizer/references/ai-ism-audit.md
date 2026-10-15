@@ -36,10 +36,15 @@ hiring, publication, or attribution decisions.
 
 Flag only. No rewrite. Use when the writer wants to decide, when patterns may be
 intentional, or when auditing published or third-party text that must stay
-intact. Group findings by severity (P0 / P1 / P2). Note clear problems vs.
+intact. Group findings by canonical severity (P0 / P1 / P2); stock transitions
+such as "Moreover" are P2, not P1. Cite only catalog patterns: in replacement
+tables, only the Prefer-over column, never the suggested alternative. Omit
+sub-threshold weak matches (a single Tier 2 word without two occurrences in
+the same paragraph) from Issues found; discuss them under Assessment as
 judgment calls. Keep Tier 1A frequency-band markers visually separate from
 Tier 1B clarity edits, and say which is which. A wordiness fix is a writing
-suggestion, not evidence about who wrote the text.
+suggestion, not evidence about who wrote the text. Say whether the detector
+ran; detect mode performs no rewrite.
 
 ### edit
 
@@ -313,8 +318,8 @@ asks for a full audit package, use:
 
 ### detect
 
-1. Issues found by severity (keep Tier 1A markers separate from Tier 1B clarity)
-2. Assessment: must-fix vs. judgment call vs. intentional craft
+1. Issues found by canonical severity (keep Tier 1A markers separate from Tier 1B clarity; omit sub-threshold weak matches)
+2. Assessment: must-fix vs. judgment call vs. intentional craft, including any sub-threshold context
 
 ### edit
 

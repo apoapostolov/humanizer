@@ -67,3 +67,33 @@ const russianTechnicalResult = analyzeText(russianTechnical, context);
 assert(!russianTechnicalResult.issues.some((issue) => issue.type === 'normalization-flag'), 'Russian technical prose with English terms should stay clean');
 
 console.log('PASS  features noun/verb split and per-sentence lookalike gate');
+const featuresSupportVerbSamples = [
+  'The library features support for asynchronous requests when the device goes offline.',
+  'This Windows 11 app features support for dark mode across the full platform.',
+  'In 2024 the library features support for asynchronous requests across every region.',
+  'It features support for loops across the compiler pipeline without issues.',
+];
+for (const sample of featuresSupportVerbSamples) {
+  const result = analyzeText(sample, context);
+  assert(result.issues.some((issue) => issue.type === 'tier1-clarity' && /features/i.test(issue.text)), `verb support-for should flag: ${sample}`);
+}
+
+const featuresSupportNounSamples = [
+  'The two platform features support for older protocols on devices without hardware acceleration.',
+  'All of the system features support for older protocols on devices without hardware acceleration.',
+  'The 100 platform features support for older protocols on devices without hardware acceleration.',
+  'The library features support for loops on devices without hardware acceleration.',
+];
+for (const sample of featuresSupportNounSamples) {
+  const result = analyzeText(sample, context);
+  assert(!result.issues.some((issue) => issue.type === 'tier1-clarity' && /features/i.test(issue.text)), `plural/partitive support-for should stay clean: ${sample}`);
+}
+
+const { normalizeText } = require('./patterns.js');
+for (const underline of ['--', '---', '==']) {
+  const setext = `Позвоните в поддержку.\nаст now to secure it\n${underline}\nИ еще русский текст.`;
+  const normalized = normalizeText(setext);
+  assert.equal(normalized.text, setext.replace('аст', 'act'), `setext ${underline} should still swap the isolated lookalike`);
+}
+
+console.log('PASS  features support-for subject split and setext lookalike bounds');

@@ -341,13 +341,36 @@ banner is stripped. Five durable changes:
    unrelated text.
 
 Vendored since 2.12.12: `detector/patterns.test.js` as
-`scripts/engine-fixtures.js` (verbatim, 275 cases, requires the vendored
+`scripts/engine-fixtures.js` (verbatim, requires the vendored
 `./patterns.js`), and the `#382` algorithm as `scripts/longdoc.js`. Still not
 vendored: `scripts/self-scan.js` (upstream self-scan tooling, not the detector
 engine), `cursor-rules/` (the generated rule drops the `normalize-quotes.js`
 command, which this monorepo does not ship), `dist/` (flattened paste artifact
 with no local consumer), and the `.ssot.yaml` / promo-drift workflow release
-plumbing. Engine pin stays `5a5cf6a`. Detector skill version 1.2.0.
+plumbing. Engine pin was `5a5cf6a` through 2.12.13.
+
+Untagged tip `5a5cf6a..2dc826f` (2026-10-15 absorb, upstream
+#387/#390/#323/#396) changes `patterns.js` and `detector/patterns.test.js`;
+`validate.js` and `CATEGORIES.md` have no delta. Three durable changes:
+
+1. **`features support for` subject split** (#387, follow-up to #351/#384).
+   Versioned and year-led product subjects stay verbs ("This Windows 11 app
+   features support for...", "In 2024 the library features..."). Counted and
+   partitive plurals stay nouns ("The two platform features", "All of the
+   system features"). A digit inside a product name or a date before the
+   subject is not a plural count. Relative-clause predicates no longer flip
+   the reading. Probed at absorb: four verb hits and four noun-quiet samples.
+2. **Setext underlines bound the lookalike gate** (#390). Two-hyphen level-2
+   underlines (`--`) join `---` as sentence bounds, so surrounding blocks do
+   not share homoglyph script evidence. Probed at absorb through
+   `normalizeText`.
+3. **Catalog-grounded detect audit** (#323). Model-only detect findings cite
+   only catalog patterns, use canonical P-tiers (transitions such as
+   "Moreover" are P2), omit suggested replacement alternatives, and keep
+   sub-threshold Tier 2/3 matches out of Issues found. Absorbed into
+   humanizer detect-mode contract. Not vendored: `evals/rewrite/check-detect-audit.cjs`.
+
+Engine pin `2dc826f`. Detector skill version 1.2.1. Fixtures: 270 cases.
 
 ## 6. Opinion report (required)
 

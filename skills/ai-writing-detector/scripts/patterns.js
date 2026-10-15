@@ -77,7 +77,7 @@ const AIDetector = (() => {
   // Dates, versions and ASCII filenames keep internal dots; prose may hard-wrap.
   // Other sentence punctuation and Markdown/HTML block starts separate units, even
   // without a space, so unrelated Russian text cannot hide an English word.
-  const SENTENCE_UNIT_GLOBAL_RE = /(?:[^.!?\r\n]|(?<=[A-Za-z0-9_])\.(?=[A-Za-z0-9_])|\r?\n(?![ \t]*(?:\r?\n|(?:[-*+]|#{1,6}|\d+[.)])\s|[><|]|`{3}|~{3}|(?:(?:-[ \t]*){3,}|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,}|=+)[ \t]*(?:\r?\n|$)|:?-+:?[ \t]*(?:\|[ \t]*:?-+:?[ \t]*)+\|?[ \t]*(?:\r?\n|$))))+/g;
+  const SENTENCE_UNIT_GLOBAL_RE = /(?:[^.!?\r\n]|(?<=[A-Za-z0-9_])\.(?=[A-Za-z0-9_])|\r?\n(?![ \t]*(?:\r?\n|(?:[-*+]|#{1,6}|\d+[.)])\s|[><|]|`{3}|~{3}|(?:-+|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,}|(?:-[ \t]*){3,}|=+)[\t ]*(?:\r?\n|$)|:?-+:?[\t ]*(?:\|[\t ]*:?-+:?[\t ]*)+\|?[\t ]*(?:\r?\n|$))))+/g;
   // Words are letter runs; a hyphen splits them, so "API-сервис" stays two
   // words and its Russian half is not swapped.
   const LETTER_RUN_GLOBAL_RE = /[\p{L}\p{M}]+/gu;
@@ -368,21 +368,39 @@ const AIDetector = (() => {
       return true;
     }
 
-    // "A library features support for..." is a verb.
-    // "System features support for..." is a plural noun subject + verb.
+    // "The library features support for..." is a verb.
+    // "Security features support for..." is a plural noun subject + verb.
     if (FEATURES_VERB_SUBJECTS.test(before) && /^\s+support\s+for\b/i.test(after)) {
-      const hasPluralDeterminer = /\b(?:these|those|all|some|many|few|various|multiple|several|both)\s+[\w-]+\s+$/i.test(before);
+      // A nearby quantifier in an earlier clause cannot make a singular pronoun plural.
+      if (/\b(?:it|he|she)\s+$/i.test(before)) return false;
+      const hasPluralDeterminer = /\b(?:these|those|all|some|many|few|various|multiple|several|both)\s+(?:[\w-]+\s+){1,2}$/i.test(before);
+      // Count words modify "features" only when they follow its determiner.
+      // A digit inside a product name ("This Windows 11 app") or a date before
+      // the subject ("In 2024 the library") is not a plural count.
+      const hasPluralCount = /\b(?:the|a|an|this|that|my|our|your|their|its|his|her|each|every)\s+(?:(?:\d{1,2}|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|dozen)\s+(?:[\w-]+\s+){1,2}|(?!(?:19|20)\d{2}\s)\d{3,}\s+(?!(?:[\w-]+\s+)?(?:app|release|model|version|update)\s+$)(?:[\w-]+\s+){1,2})$/i.test(before);
       const extendedAfter = text.slice(end, end + 100);
-      const hasPluralPredicate = /^\s+support\s+for(?:[^.?!;]{0,80})?\b(?:and|but|or|nor)\s+(?:are|were|have|do|reject|accept|allow|deny|provide|require|use|make|work|help|give|take|need|become|seem|look|show|include|offer|support|fail|pass|lack|prefer|choose|prevent|stop)\b/i.test(extendedAfter);
+      // A predicate inside a relative clause modifying the object (e.g. "teams that connect and remain online")
+      // is not coordinated with the main subject. Limit predicate search to the direct prepositional object.
+      const hasPartitivePlural = /\b(?:all|some|many|most|few|several|both|\d+|two|three|four|five|six|seven|eight|nine|ten)\s+of\s+(?:the|my|our|your|their|its|his|her)\s+(?:[\w-]+\s+){1,3}$/i.test(before);
+      const hasPluralPredicate = /^\s+support\s+for(?:(?!\b(?:that|which|who|whom|whose|where|when)\b)[^.?!;]){0,80}?\b(?:and|but|or|nor)\s+(?:are|were|have|do|reject|accept|allow|deny|provide|require|use|make|work|help|give|take|need|become|seem|look|show|include|offer|support|remain|fail|pass|lack|prefer|choose|prevent|stop)\b/i.test(extendedAfter);
+      const hasForObject = /^\s+support\s+for(?:-|\s+)(?:profit|loops?)\b/i.test(after);
+      // Numeric modifiers and plural cues exclude a singular-subject reading:
+      // "The two platform features..." has plural noun "features".
       // Do not borrow a determiner across a preposition or conjunction:
       // "a suite of system features" still has plural noun "features".
       // "that" can introduce a clause and "which" can determine plural nouns.
       // A relative pronoun needs its own determiner-led subject evidence.
-      const hasSingularEvidence = /\b(?:a|an|this|that|every|each|one)\s+(?:(?!(?:of|for|in|with|and|or|which|what|that|who)\b)[\w-]+\s+){1,3}$/i.test(before)
+      const hasUnambiguousSingular = /\b(?:a|an|this|that|every|each|one)\s+(?:(?!(?:of|for|in|with|and|or|which|what|that|who|two|three|four|five|six|seven|eight|nine|ten|multiple|several|many|few|both|various)\b)[\w-]+\s+){1,3}$/i.test(before)
         || /\b(?:it|he|she)\s+$/i.test(before)
-        || /\b(?:a|an|the|this|that|my|our|your|their|its|his|her|each|every)\s+[\w-]+\s+(?:which|that|who)\s+$/i.test(before);
+        || /\b(?:a|an|this|that|each|every|one)\s+[\w-]+\s+(?:which|that|who)\s+$/i.test(before);
+
+      const hasSingularEvidence = hasUnambiguousSingular
+        || /\b(?:the|my|our|your|their|its|his|her)\s+(?:(?!(?:of|for|in|with|and|or|which|what|that|who|two|three|four|five|six|seven|eight|nine|ten|multiple|several|many|few|both|various)\b)[\w-]+\s+){1,3}$/i.test(before)
+        || /\b(?:the|my|our|your|their|its|his|her)\s+[\w-]+\s+(?:which|that|who)\s+$/i.test(before);
       
-      if (!hasPluralDeterminer && !hasPluralPredicate && hasSingularEvidence) {
+      // Unambiguous singular subjects ("It", "This app") cannot be plural-noun phrases,
+      // so hasForObject ("support for loops") only suppresses ambiguous determiners ("The library").
+      if (!hasPluralDeterminer && !hasPluralCount && !hasPartitivePlural && !hasPluralPredicate && (hasUnambiguousSingular || (!hasForObject && hasSingularEvidence))) {
         return false;
       }
     }

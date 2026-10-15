@@ -21,15 +21,14 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.12.13
+## Current source: 2.12.14
 
-The detector flags `features` only as a verb, so "three new features" and a
-*Features* heading stay clean. The lookalike gate decides per sentence, which
-stops Russian technical prose beside English terms from reading as a swap, and
-the word tables now carry concrete alternatives where they used to say
-"describe what changed".
+The detector flags `features` only as a verb, including versioned product
+subjects such as "This Windows 11 app features support for dark mode". Counted
+and partitive plurals stay clean. Setext underlines bound the lookalike gate
+the same way thematic breaks already did.
 
-The latest GitHub release is 2.12.13; the current source tree matches it.
+The latest GitHub release is 2.12.14; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -37,9 +36,9 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.7` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.8` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.2` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.2.0` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.2.1` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.3` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 

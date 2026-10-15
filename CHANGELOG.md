@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.14] - 2026-10-15
+
+Upstream tip `2dc826f` (past v3.37.0, no new tag) tightens the `features
+support for` noun/verb split and treats Markdown setext underlines as
+sentence bounds for the lookalike gate. The engine is vendored
+byte-identical and the detect-mode contract follows the catalog-grounding
+note.
+
+### Changed
+
+- AI Writing Detector engine: versioned and year-led product subjects stay
+  verbs (`This Windows 11 app features support for...`, `In 2024 the library
+  features...`). Counted and partitive plurals stay nouns (`The two platform
+  features`, `All of the system features`). A digit inside a product name or
+  a date before the subject is not a plural count. Relative-clause predicates
+  (`teams that connect and remain online`) no longer flip the reading.
+- The lookalike gate now treats two-hyphen setext underlines (`--`) as block
+  bounds the same way `---` already was, so surrounding blocks do not share
+  homoglyph evidence (#390).
+- Detect mode cites only catalog patterns, groups by canonical P-tiers
+  (transitions such as "Moreover" are P2), and keeps sub-threshold weak
+  matches in Assessment rather than Issues found (#323). Humanizer's detect
+  contract follows that wording.
+- Engine fixtures refresh to 270 cases at tip `2dc826f`.
+
+### Held
+
+- Upstream `evals/rewrite/check-detect-audit.cjs` and the mutation-control
+  suite stay upstream: they audit a model-only detect pass this package does
+  not ship.
+- cursor/plugins unslop drops "Must always apply." from its skill
+  description. Packaging-only; no editorial absorb.
+- `cursor-rules/`, `dist/`, and plugin copies of `patterns.js` stay held.
+
+Humanizer 1.7.8, AI Writing Detector 1.2.1.
+
 ## [2.12.13] - 2026-10-11
 
 The house `vale test` cases now run. The Win11 winget build caught up with

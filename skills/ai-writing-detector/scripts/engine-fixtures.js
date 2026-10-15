@@ -2,12 +2,12 @@
  * Upstream engine fixture suite (vendored).
  *
  * Source: conorbronsdon/avoid-ai-writing `detector/patterns.test.js`
- *         @ tip 5a5cf6a45331, blob 24b5a3e5f2997bea6040ef61f3fa51ee8ff89387
+ *         @ tip 2dc826f7b9aea762f5557e56ba88a3e515bd2fed, blob b8fa0e4a65c54b4e2df48ace437689e087ae5c37
  *         (v3.37.0 post-release tip; MIT)
  *
  * Verbatim except for this header: the suite requires `./patterns.js`, which
  * in this directory is the vendored engine at blob
- * eda87accca2680fa73ca466db338b4e2bb841224 (byte-identical to upstream
+ * 43a9ab1f7d4d32d17111a943bcbfdc41ad4ce785 (byte-identical to upstream
  * `detector/patterns.js`).
  *
  * This is a verbatim copy, not a rewrite. When the engine pin moves, refresh
@@ -1371,15 +1371,36 @@ test('features: residual precision checks from #384', () => {
   ]) {
     assert.equal(featuresHit(text), undefined, `noun read as a verb: ${text}`);
   }
-  // Deferred cases from #384: singular verb subjects for "support for".
+  // Deferred cases from #384 / #387: singular verb subjects for "support for".
   // The plural-noun subject cases (like "The experimental features support for loops") 
   // continue to correctly read as nouns because of their determiner/adjective context.
   for (const text of [
     'A library features support for asynchronous requests when the device goes offline.',
+    'The library features support for asynchronous requests when the device goes offline.',
+    'Our library features support for asynchronous requests across every supported device in our network.',
     'This library features support for asynchronous requests across every supported device in our network.',
     'That JavaScript library features support for rendering interactive charts in real time.',
+    'The JavaScript library features support for rendering interactive charts in real time.',
+    'This Windows 11 app features support for dark mode across the full platform.',
+    'The Windows 11 app features support for dark mode across the full platform.',
+    'In 2024 the library features support for asynchronous requests across every region.',
+    'The 2024 release features support for dark mode across every region we serve.',
+    'The 365 app features support for offline mode across every region we serve.',
+    'Our 2024 release features support for offline caching across every region we serve.',
+    'The 2024 model features support for dark mode across the whole platform.',
+    'The 2025 update features support for offline caching across every region.',
+    'The 365 model features support for offline mode across every region we serve.',
+    'This 365 version features support for older protocols across every region.',
+    'Many say it features support for dark mode across all supported devices.',
+    'Some say it features support for older protocols across every region.',
     'We tested a library which features support for both protocols seamlessly.',
     'We tested a library that features support for both protocols on older devices.',
+    'The platform features support for asynchronous requests across every supported region.',
+    'The tool features support for custom plugins across every supported region.',
+    'The app features support for offline caching across every supported region.',
+    'It features support for loops across the compiler pipeline without issues.',
+    'This app features support for loops across every target platform in our test suite.',
+    'This library features support for teams that connect and remain online.',
   ]) {
     assert.ok(featuresHit(text), `verb skipped: ${text}`);
   }
@@ -1388,6 +1409,20 @@ test('features: residual precision checks from #384', () => {
     'These system features support for older protocols on devices without hardware acceleration.',
     'Decide which features support for-profit organizations that assist people with disabilities.',
     'The library features support for loops but reject while loops in the embedded language.',
+    'The library features support for-profit organizations that assist people with disabilities.',
+    'The library features support for loops on devices without hardware acceleration.',
+    'The two platform features support for older protocols.',
+    'The two platform features support for older protocols on devices without hardware acceleration.',
+    'The 2 platform features support for older protocols on devices without hardware acceleration.',
+    'Our two platform features support for older protocols on devices without hardware acceleration.',
+    'Many system features support for older protocols on devices without acceleration.',
+    'All of the system features support for older protocols on devices without hardware acceleration.',
+    'Some of our platform features support for legacy clients across every region.',
+    'Two of the platform features support for older protocols on devices without acceleration.',
+    'The twelve platform features support for older protocols on devices without hardware acceleration.',
+    'The 100 platform features support for older protocols on devices without hardware acceleration.',
+    'The 150 library features support for older protocols on devices without hardware acceleration.',
+    'The 100 new platform features support for older protocols on devices without hardware acceleration.',
     'Both system features support for older protocols on devices without hardware acceleration.',
     'The system features support for older protocols and remain enabled by default.',
     'We compare a suite of system features support for legacy applications.',
@@ -1849,7 +1884,7 @@ test('Markdown blocks do not share script evidence across an unterminated line',
 
 test('Markdown separators, table delimiters and HTML starts keep script evidence separate', () => {
   for (const newline of ['\n', '\r\n']) {
-    for (const separator of ['---', '***', '___', '===', '=', '- - -', '* * *', '_ _ _', '  ---  ']) {
+    for (const separator of ['---', '--', '***', '___', '===', '==', '=', '- - -', '* * *', '_ _ _', '  ---  ', '  --  ']) {
       const text = `аст now to secure it${newline}${separator}${newline}Позвоните в поддержку`;
       const normalized = AIDetector.normalizeText(text);
       assert.equal(normalized.text, text.replace('аст', 'act'), separator);
@@ -1866,6 +1901,17 @@ test('Markdown separators, table delimiters and HTML starts keep script evidence
     const prose = `Ответы со ссылкой на docker v1.2${newline}от 07.10 снимем в понедельник.`;
     assert.equal(AIDetector.normalizeText(prose).text, prose);
     assert.equal(AIDetector.normalizeText(prose).flags.homoglyph, 0);
+  }
+});
+
+test('Setext heading underlines keep script evidence separate across blocks', () => {
+  for (const newline of ['\n', '\r\n']) {
+    for (const underline of ['===', '==', '=', '---', '--', '  ===', '  --']) {
+      const text = `Позвоните в поддержку.${newline}аст now to secure it${newline}${underline}${newline}И еще русский текст.`;
+      const normalized = AIDetector.normalizeText(text);
+      assert.equal(normalized.text, text.replace('аст', 'act'), underline);
+      assert.equal(normalized.flags.homoglyph, 3, underline);
+    }
   }
 });
 

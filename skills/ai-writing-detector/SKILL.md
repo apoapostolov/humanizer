@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.2.0
+version: 1.2.1
 related_skills:
 - humanizer
 - simple-english
@@ -189,4 +189,4 @@ chunks, mirroring upstream `self-scan.js` (#382). A long draft is never
 reported as a clean zero. The report carries a `long_document` block with the
 chunk counts; a document with no paragraph breaks stays refused and says so.
 
-Skill version: **1.2.0**. Engine pin: avoid-ai-writing tip `5a5cf6a` (v3.37.0 post-release tip; `features` flags only as a verb, the lookalike gate decides per sentence, and the word tables carry concrete suggestions).
+Skill version: **1.2.1**. Engine pin: avoid-ai-writing tip `2dc826f` (v3.37.0 post-release tip; `features support for` keeps versioned and year-led product subjects as verbs, counted and partitive plurals as nouns, and setext underlines bound the lookalike gate).

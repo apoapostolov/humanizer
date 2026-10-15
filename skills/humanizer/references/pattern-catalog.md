@@ -126,8 +126,11 @@ from avoid-ai-writing v3.33.0 and blader/humanizer v3.0.0, MIT.)
 **Repair:** Prefer the plain verb unless the substitute adds meaning.
 
 **Boundary:** *Features* is a copula substitute only as a verb ("the app
-features a dashboard"). The plural noun is ordinary product writing, so "three
-new features", a *Features* heading, and "we ship features" stay clean.
+features a dashboard", "This Windows 11 app features support for dark mode").
+The plural noun is ordinary product writing, so "three new features", a
+*Features* heading, "we ship features", counted subjects ("The two platform
+features"), and partitives ("All of the system features") stay clean. A year
+or version in the product name does not make the subject plural.
 (Adapted from avoid-ai-writing v3.37.0 post-release tip, MIT.)
 
 ### 11. Elegant variation and repeated openings
