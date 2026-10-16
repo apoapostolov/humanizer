@@ -149,11 +149,13 @@ run_check "long document chunked and scored (#382)" node "$ROOT/scripts/longdoc-
 
 # Verbatim upstream engine fixtures: proves the vendored engine still
 # matches its pin on every documented behavior.
-run_check "upstream engine fixtures (270)" node "$ROOT/scripts/engine-fixtures.js"
+run_check "upstream engine fixtures (278)" node "$ROOT/scripts/engine-fixtures.js"
 
 run_check "fence requires blank closing (#77)" node "$ROOT/scripts/fence-probe.js"
 
 run_check "false concession + residual policy + input contract (#211/#204/#234)" node "$ROOT/scripts/concession-probe.js"
+
+run_check "v3.38.0 dead/long-live + typography-as-style (#351)" node "$ROOT/scripts/v3380-probe.js"
 
 run_check "long document is not a clean zero through the CLI" node -e "
 const {execFileSync}=require('child_process');

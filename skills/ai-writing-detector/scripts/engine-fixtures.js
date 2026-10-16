@@ -2,12 +2,12 @@
  * Upstream engine fixture suite (vendored).
  *
  * Source: conorbronsdon/avoid-ai-writing `detector/patterns.test.js`
- *         @ tip 2dc826f7b9aea762f5557e56ba88a3e515bd2fed, blob b8fa0e4a65c54b4e2df48ace437689e087ae5c37
- *         (v3.37.0 post-release tip; MIT)
+ *         @ tip 0a4f1ad101683fd8734241ed46430a0b4a9af729, blob abb6cf024ca3a1fba49519cf6da65e1371759e76
+ *         (v3.38.0 + post-release tip; MIT)
  *
  * Verbatim except for this header: the suite requires `./patterns.js`, which
  * in this directory is the vendored engine at blob
- * 43a9ab1f7d4d32d17111a943bcbfdc41ad4ce785 (byte-identical to upstream
+ * f33a8fadca1717892b2020c36d6f51b452f58285 (byte-identical to upstream
  * `detector/patterns.js`).
  *
  * This is a verbatim copy, not a rewrite. When the engine pin moves, refresh
@@ -582,6 +582,40 @@ test('smart-punct signature is not corroborated by separator-only em dashes', ()
   const r = AIDetector.analyzeText(text);
   const hits = r.issues.filter((i) => i.type === 'smart-punct-signature');
   assert.equal(hits.length, 0, 'separator-only dashes should not complete the co-occurrence signature');
+});
+
+test('#351: house-style punctuation does not change authorship outputs', () => {
+  // Synthetic contract fixtures, not labeled human-corpus evidence. Change
+  // only one apostrophe so word counts, prose dashes, and other hits match.
+  const plain = "The editor's notes arrived before lunch, so Mara read the first page while the room was still empty. The report covers labels, dates, and names — each checked against the signed copy in the archive. A short note explains why the final page has a blank line near the bottom. Nobody changed the order of the entries after the clerk counted them on Friday. Later that day, Jo found the folder beside the door and put it back on the shelf. The key remained with the desk clerk until the next shift began, when a runner came to collect the files.";
+  const prefixes = ['', 'Delve intricate tapestry pivotal meticulous testament vibrant bustling nestled beacon. '];
+  for (const prefix of prefixes) {
+    for (const contextMode of ['general', 'technical', 'marketing', 'personal']) {
+      for (const sourceMode of ['plain', 'rendered-markdown']) {
+        const control = AIDetector.analyzeText(prefix + plain, { contextMode, sourceMode });
+        const result = AIDetector.analyzeText(prefix + plain.replace("editor's", 'editor’s'), { contextMode, sourceMode });
+        assert.ok(control.stats.wordCount >= 80 && control.stats.wordCount < 150);
+        assert.equal(result.stats.wordCount, control.stats.wordCount);
+        if (prefix) {
+          assert.ok(control.score >= 40 && control.score < 70, 'exercise the corroborator classification boundary');
+          assert.equal(control.document_classification, 'MIXED');
+        }
+        const hits = result.issues.filter(i => i.type === 'smart-punct-signature');
+        assert.equal(hits.length, sourceMode === 'plain' ? 1 : 0);
+        if (hits.length) {
+          assert.equal(hits[0].severity, 'low');
+          assert.match(hits[0].suggestion, /not evidence of AI authorship/);
+        }
+        assert.deepEqual(result.issues.filter(i => i.type !== 'smart-punct-signature'), control.issues,
+          'other findings must stay active');
+        for (const field of ['score', 'label', 'document_classification', 'confidence_category']) {
+          assert.equal(result[field], control[field], `${contextMode}/${sourceMode}: typography changed ${field}`);
+        }
+        assert.deepEqual(result.class_probabilities, control.class_probabilities);
+        assert.deepEqual(result.highlight_sentence_for_ai, control.highlight_sentence_for_ai);
+      }
+    }
+  }
 });
 
 test('em-dash detector still fires on mid-sentence splices at the same density', () => {
@@ -3033,6 +3067,24 @@ test('performed-insight: literal punchline and naming senses stay clean', () => 
   );
   const hits = r.issues.filter((i) => i.type === 'performed-insight');
   assert.equal(hits.length, 0, `false positives: ${JSON.stringify(hits.map((i) => i.text))}`);
+});
+
+test('performed-insight: dead/long-live titles and literal announcements need judgment', () => {
+  const samples = [
+    '# Software Engineering is Dead. Long Live Software Engineering\n\nThe essay compares two definitions of the job and explains which tasks remain.',
+    'The king is dead; long live the king. The herald read the succession announcement outside the palace.',
+    'The old format is dead — long live the new format. The archive retains both versions for readers.',
+  ];
+  for (const sourceMode of ['plain', 'rendered-markdown']) {
+    for (const sample of samples) {
+      const r = AIDetector.analyzeText(sample, { sourceMode });
+      assert.ok(r.stats.wordCount >= 10, 'exercise detection rather than the too-short return');
+      assert.deepEqual(r.issues.filter(i => i.type === 'performed-insight'), [], `${sourceMode}: ${sample}`);
+    }
+    const r = AIDetector.analyzeText(samples[0] + '\n\nSit with that for a moment. The files remain in the archive.', { sourceMode });
+    assert.ok(r.issues.some(i => i.type === 'performed-insight' && /sit with that/i.test(i.text)),
+      'an unrelated deterministic phrase must still fire beside the title');
+  }
 });
 
 test('performed-insight: sentence-initial Turns out keeps a clean text and index', () => {

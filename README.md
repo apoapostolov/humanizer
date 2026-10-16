@@ -21,14 +21,15 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.12.14
+## Current source: 2.12.15
 
-The detector flags `features` only as a verb, including versioned product
-subjects such as "This Windows 11 app features support for dark mode". Counted
-and partitive plurals stay clean. Setext underlines bound the lookalike gate
-the same way thematic breaks already did.
+The detector keeps house-style typography out of authorship scoring. Curly
+punctuation, a prose em dash, and an Oxford comma together report at low
+severity as a style check in plain text, and they cannot move the score, label,
+or confidence. The "X is dead; long live Y" phrase is editorial judgment now,
+so essay titles and supported contrasts stay clean.
 
-The latest GitHub release is 2.12.14; the current source tree matches it.
+The latest GitHub release is 2.12.15; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -36,10 +37,10 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.8` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.9` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.2` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.2.1` |
-| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.3` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.2.2` |
+| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.4` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 
 Use one skill for the job a section needs.

@@ -2,6 +2,55 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.15] - 2026-10-16
+
+avoid-ai-writing v3.38.0 plus the post-release tip at `0a4f1ad`. Two engine
+rules leave authorship scoring for reading and style, and the monorepo severity
+map is re-measured against the pinned engine.
+
+### Changed
+
+- AI Writing Detector engine: the deterministic "X is dead; long live Y" match
+  leaves `performed-insight` (#351). Essay titles, supported contrasts, and
+  literal succession announcements share the wording, so the phrase becomes
+  editorial judgment while the rest of the performed-insight family still
+  detects.
+- `smart-punct-signature` becomes a style check. Its authorship weight drops
+  from 6 to 0, its severity moves from `high` to `low`, it reports only in
+  `plain` source mode, and it leaves the classifier's weak corroborators. Curly
+  punctuation, a prose em dash, and an Oxford comma together can no longer move
+  the score, label, probabilities, confidence, or AI sentence highlights, and
+  rendered Markdown omits the finding because publication typography stays.
+  Upstream reached the house position that typography is never authorship
+  evidence.
+- Severity bands are re-measured from the pinned engine: `critical` 9, `high`
+  16, `medium` 26, `low` 6, with `smart-punct-signature` and `uniformity` now
+  listed in `low`. The four zero-weight style-only types are named, and the
+  table lists a type in each band it can emit.
+- New `scripts/severity-bands.js` prints the bands and authorship weights by
+  reading the vendored engine, so the published map cannot drift from the pin.
+- Humanizer pattern 86 records the dead/long-live carve-out, and the formatting
+  audit treats curly quotes and immaculate typography as style questions.
+- Engine fixtures refresh to 278 checks at tip `0a4f1ad`.
+
+### Fixed
+
+- The README skill table and SOURCES packaged section show the shipped
+  `writing-prose` 1.2.4. They had read 1.2.3 since that release, and the
+  version-alignment test caught it.
+
+### Held
+
+- Upstream `scripts/reference-loading.js`, its eval traces, and the dated
+  `evals/gate-calibration/` artifact stay upstream: research tooling with no
+  local consumer. `cursor-rules/`, `dist/`, and the plugin copies of
+  `patterns.js` stay held.
+- The rewritten gate-calibration paragraph in `detector/README.md` cites a
+  corpus this package does not ship, so it is recorded in
+  `references/update-engine.md` rather than vendored.
+
+Humanizer 1.7.9, AI Writing Detector 1.2.2.
+
 ## [2.12.14] - 2026-10-15
 
 Upstream tip `2dc826f` (past v3.37.0, no new tag) tightens the `features

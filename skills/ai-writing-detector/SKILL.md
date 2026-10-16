@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.2.1
+version: 1.2.2
 related_skills:
 - humanizer
 - simple-english
@@ -189,4 +189,14 @@ chunks, mirroring upstream `self-scan.js` (#382). A long draft is never
 reported as a clean zero. The report carries a `long_document` block with the
 chunk counts; a document with no paragraph breaks stays refused and says so.
 
-Skill version: **1.2.1**. Engine pin: avoid-ai-writing tip `2dc826f` (v3.37.0 post-release tip; `features support for` keeps versioned and year-led product subjects as verbs, counted and partitive plurals as nouns, and setext underlines bound the lookalike gate).
+Four findings are **style-only**, with zero authorship weight in the engine:
+`em-dash`, `emotional-flatline`, `smart-punct-signature`, and
+`unnecessary-hyphenation`. They appear in finding totals and in count-based
+gates, and they cannot move the score, label, probabilities, confidence, or AI
+sentence highlights. `smart-punct-signature` is the narrowest: `plain` source
+mode only, always `low` severity, no classifier corroboration. Curly
+punctuation, a prose em dash, and an Oxford comma together stay a style check,
+because an editor or a house style produces the same combination. Regenerate
+the measured severity bands and weights with `node scripts/severity-bands.js`.
+
+Skill version: **1.2.2**. Engine pin: avoid-ai-writing tip `0a4f1ad` (v3.38.0 plus post-release tip; the deterministic "X is dead; long live Y" match is retired to judgment, and `smart-punct-signature` becomes a zero-weight plain-mode style check).

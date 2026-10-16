@@ -60,7 +60,7 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | `ai-placeholder` | Unfilled placeholder | Unfilled placeholders |
 | `ai-citation-markup` | Chatbot citation markup leak | Chatbot citation markup leaks |
 | `ai-utm-source` | AI-tool URL parameter | AI-tool URL parameters |
-| `smart-punct-signature` | Smart-punct signature | Formatting (curly quotation marks) — *partial* |
+| `smart-punct-signature` | Smart-punct signature | Formatting (curly quotation marks) — *style-only: plain mode, zero authorship weight* |
 | `unnecessary-hyphenation` | Unnecessary hyphenation | Unnecessary hyphenation *(curated open, closed, and position-dependent subclasses only)* |
 | `performed-insight` | Performed-insight phrase | Performed-insight phrases — *partial; literal-sense exclusions documented in SKILL.md* |
 | `negation-chain` | Negation chain | Negation chains — *partial; three-item deterministic threshold documented in SKILL.md* |
@@ -70,13 +70,17 @@ prose statement of the engine `type` total against `TYPE_LABELS`.
 | `crowd-contrast` | Dramatized crowd contrast | Dramatized contrast against the crowd — *partial; dismissive-verb gate plus closed crowd list; literal simultaneity stays clean* |
 | `fake-casual-prop` | Fake-casual prop | Fake-casual register — *partial; six stage directions plus four wink parentheticals only; verdict closers, label openers, self-QA volleys, and `because of course it does` stay judgment calls* |
 
-> **Partial map:** `smart-punct-signature` fires only when curly quotes co-occur
-> with an em-dash, an Oxford comma, and clean typing (≥80 words) — never on curly
-> punctuation alone. The SKILL.md Formatting rule treats curly quotes as a weak,
-> corroborating signal in plain-text contexts and excludes apostrophes. The two
-> agree in spirit (curly punctuation is never conclusive on its own) but differ in
-> mechanism — so this is a partial map, not 1:1.
-> `performed-insight` omits literal "the punchline" and "worth naming" senses;
+> **Partial map:** `smart-punct-signature` is style-only. In `plain` mode it
+> requires curly punctuation, a prose em dash, an Oxford comma, the existing
+> spacing and contraction checks, and at least 80 words; rendered-Markdown mode
+> omits it because publication typography stays. It reports at `low` severity
+> with zero authorship weight and no classifier corroboration, so score, label,
+> probabilities, confidence, and AI sentence highlights stay unchanged.
+> The SKILL.md Formatting rule treats curly quotes as a style prompt in
+> plain-text contexts and excludes apostrophes. Co-occurrence does not establish
+> machine authorship.
+> `performed-insight` omits "the punchline", "worth naming", and
+> "X is dead; long live Y" because legitimate uses need reading;
 > `dev-blog-boilerplate` omits literal "batteries included." Those ambiguous
 > surface forms remain judgment rules rather than deterministic matches.
 > `negation-chain` requires three short sentence-initial "no …" items; two-item
@@ -127,6 +131,7 @@ mistake their absence for a coverage gap:
 - Speculative gap-filling *(the same hedges are correct when the source itself is uncertain; the tell is a guess standing in for a missing fact, which a regex can't see)*
 - Infomercial engagement hooks *(the tell is a staged setup-and-reveal. The words themselves are ordinary English: "honestly" or "look" mid-sentence reads fine)*
 - Manufactured punchlines and staccato drama (including repeated setup/reversal punchlines: P2 only when repetition replaces concrete claims; supported reversals and intentional comedy, fiction, speeches, and quotations pass)
+- Performed-insight "X is dead; long live Y" form *(essay titles, supported contrasts, and literal succession announcements share the wording; judge whether it substitutes for an argument)*
 - Repeated empty concession pairs (P2; meaningful concessions and isolated intentional pairs pass)
 - Consequence-free "This matters because" / "here's why that matters" restatements (concrete consequences pass)
 - Transformation crutch (P2 unexplained relabeling across a passage; literal and explained changes pass)

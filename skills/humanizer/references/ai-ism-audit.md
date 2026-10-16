@@ -179,12 +179,16 @@ Use these with the catalog. Prefer clusters and reader impact over single hits.
   outside lists still count. A prose dash inside a normal heading still counts.
 - **Bold and emoji headers:** Prefer structure over decoration. Social may keep
   sparse end-of-line emoji.
-- **Curly quotes in plain-text contexts:** Weak corroborating signal in code
-  comments, commit messages, or plaintext drafts. Not conclusive; Word and OS
-  editors curl by default. Leave finished publications alone.
-- **Immaculate casual typography:** Perfect polish in chat/issue replies can
-  corroborate other signals. When editing a human's casual text, preserve their
-  typos and capitalization quirks rather than sanding the fingerprint off.
+- **Curly quotes in plain-text contexts:** A style question, not evidence. Word,
+  Google Docs, macOS, and iOS curl quotes by default, and an editor or house
+  style can also produce curly punctuation, prose em dashes, and Oxford commas
+  together. Use straight quotes where the destination requires them; leave
+  finished publications, locale-correct punctuation, and house style alone.
+- **Immaculate casual typography:** Review it as a style choice. Correct spacing,
+  punctuation, and capitalization can come from a careful writer or an editor.
+  When editing a human's casual text, preserve their contractions, capitalization
+  quirks, and deliberate rough edges instead of sanding the fingerprint off; do
+  not add mistakes to imitate a person.
 - **Hashtag stuffing:** Long trailing tag blocks (about 6+) mixing project tags
   with broad category tags. Prefer 2–3 specific tags or none.
 - **Title case subheads:** Prefer sentence case for section headings unless house

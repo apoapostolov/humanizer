@@ -846,8 +846,11 @@ Staged-discovery variants such as *it turned out to be the least interesting
 part* and *the real story was that...* use the same reveal frame; revise them
 when the phrasing supplies drama without new information. Keep literal outcomes
 such as *it turned out to be the most expensive option* and literal reports such
-as *the real story was covered yesterday*. (Adapted from avoid-ai-writing
-v3.28.0 and v3.36.0, MIT; source: Simon Willison's LLM cliché highlighter.)
+as *the real story was covered yesterday*. An essay title, a supported contrast,
+or a literal succession announcement in *X is dead; long live Y* form names the
+argument, so judge whether the wording substitutes for one rather than flagging
+the phrase. (Adapted from avoid-ai-writing v3.28.0, v3.36.0, and v3.38.0, MIT;
+source: Simon Willison's LLM cliché highlighter.)
 
 ### 87. Negation chain
 

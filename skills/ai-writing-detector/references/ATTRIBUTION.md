@@ -16,7 +16,9 @@
 | `scripts/report.js` | Sanitized analyze report (`signals_only`) |
 | `scripts/longdoc.js` | Long-document chunking and word-weighted scoring |
 | `scripts/longdoc-probe.js` | Behavioral probe for long-document scoring |
-| `scripts/engine-fixtures.js` | Verbatim upstream engine fixture suite (275 cases) |
+| `scripts/engine-fixtures.js` | Verbatim upstream engine fixture suite (278 checks) |
+| `scripts/severity-bands.js` | Static measurement of severity bands and authorship weights |
+| `scripts/v3380-probe.js` | Behavioral probes for the v3.38.0 + tip absorb |
 | `scripts/analyze.js` | Production CLI |
 | `scripts/validate-cli.js` | Validate CLI + JSON schema wrapper |
 | `scripts/smoke.sh` | Fixture smoke tests |
@@ -38,5 +40,7 @@ shipped. See [measurement-notes.md](measurement-notes.md).
 3. Refresh `references/categories.md` if types change.
 4. Refresh `scripts/engine-fixtures.js` from the new upstream
    `detector/patterns.test.js` (verbatim, keep the provenance header).
-5. Run `bash scripts/smoke.sh`.
-5. Bump skill `version` (patch for engine pin; minor if report schema breaks).
+5. Run `bash scripts/smoke.sh`, then re-measure the bands with
+   `node scripts/severity-bands.js` and update `references/scoring-and-limits.md`.
+6. Add a behavioral probe for any rule the release claims to fix or retire.
+7. Bump skill `version` (patch for engine pin; minor if report schema breaks).

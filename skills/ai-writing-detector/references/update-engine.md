@@ -372,6 +372,45 @@ Untagged tip `5a5cf6a..2dc826f` (2026-10-15 absorb, upstream
 
 Engine pin `2dc826f`. Detector skill version 1.2.1. Fixtures: 270 cases.
 
+Tag `v3.38.0` (2026-10-15) plus post-release tip `0a4f1ad` (2026-10-16 absorb,
+upstream #351/#406/#351-titles/#215/#380/#405) changes `patterns.js`,
+`detector/patterns.test.js`, `detector/CATEGORIES.md`, `references/patterns.md`
+and `detector/README.md`; `validate.js` has no delta and its body still matches
+ours once the packaging banner is stripped. Two durable engine changes:
+
+1. **The "X is dead; long live Y" match leaves `performed-insight`** (#351,
+   tag `f9f626b`). The deterministic regex is retired to editorial judgment.
+   Essay titles, supported contrasts, and literal succession announcements
+   share the wording, so a mechanical match cannot separate them from the tic.
+   Probed at absorb: "The old build system is dead; long live the new one"
+   quiet, "That's the whole point of the rewrite" still flags. Editorial side:
+   catalog pattern 86 carve-outs and the judgment list in `categories.md`.
+2. **House-style typography stops feeding authorship output** (#351, post-release
+   tip `0b2469d`). `smart-punct-signature` keeps its public type but its
+   authorship weight drops 6 to 0, its severity moves `high` to `low`, and the
+   finding is gated to `sourceMode === 'plain'`, because rendered Markdown
+   preserves publication typography. It also leaves the classifier's weak
+   corroborators, so a curly-quote plus prose-em-dash plus Oxford-comma
+   combination cannot move the score, label, probabilities, confidence, or AI
+   sentence highlights even near a classification boundary. It stays in
+   plain-mode finding totals. Probed at absorb: rendered mode quiet; plain mode
+   emits `low`; score, classification, and confidence identical against a
+   straight-punctuation control. This is upstream converging on our house rule
+   that typography is never authorship evidence.
+3. **Word-table and gate-calibration docs** (#215/#380, #401). Replacement-table
+   rows were already absorbed on the previous pass. The gate calibration note in
+   `detector/README.md` now points at a dated `evals/gate-calibration/` artifact;
+   that artifact and `scripts/reference-loading.js` (with its `evals/`) are
+   upstream research tooling with no local consumer, so nothing is vendored.
+
+Engine pin `0a4f1ad`. Detector skill version 1.2.2. Fixtures: 278 checks. Bands
+re-measured with `scripts/severity-bands.js`: `critical` 9 (`normalization-flag`
+now listed here as well as in `high`), `high` 16 (in `fnword-trigram-entropy`,
+out `smart-punct-signature`), `medium` 26 (unchanged), `low` 6 (in
+`smart-punct-signature` and `uniformity`). The previous table undercounted the
+three multi-band types; the measured table lists a type in each band it can
+emit.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

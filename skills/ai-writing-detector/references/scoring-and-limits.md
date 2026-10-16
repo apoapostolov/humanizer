@@ -52,16 +52,30 @@ read off the vendored engine at the pinned tip, so they stay true to that pin.
 
 | Severity | Count | Types |
 | --- | --- | --- |
-| `critical` (P0) | 8 | `ai-citation-markup`, `ai-placeholder`, `ai-utm-source`, `chatbot`, `cutoff-disclaimer`, `reasoning-artifact`, `sycophantic`, `vague-attribution` |
-| `high` (P1) | 16 | `bullet-np-list`, `fake-casual-prop`, `formulaic-opener`, `future-narrative`, `hedge-stack`, `launch-intro`, `negation-chain`, `negative-parallelism`, `normalization-flag`, `significance-inflation`, `smart-punct-signature`, `social-cta-closer`, `speculative-opener`, `template-phrase`, `tier1`, `tier3-phrase-cluster` |
+| `critical` (P0) | 9 | `ai-citation-markup`, `ai-placeholder`, `ai-utm-source`, `chatbot`, `cutoff-disclaimer`, `normalization-flag`, `reasoning-artifact`, `sycophantic`, `vague-attribution` |
+| `high` (P1) | 16 | `bullet-np-list`, `fake-casual-prop`, `fnword-trigram-entropy`, `formulaic-opener`, `future-narrative`, `hedge-stack`, `launch-intro`, `negation-chain`, `negative-parallelism`, `normalization-flag`, `significance-inflation`, `social-cta-closer`, `speculative-opener`, `template-phrase`, `tier1`, `tier3-phrase-cluster` |
 | `medium` (P2) | 26 | `cross-para-burstiness`, `crowd-contrast`, `dev-blog-boilerplate`, `em-dash`, `false-concession`, `filler`, `fnword-trigram-entropy`, `formatting`, `generic-conclusion`, `hashtag-stuff`, `hollow-intensifier`, `lets-construction`, `lingering-attention`, `novelty-inflation`, `parenthetical-hedge`, `performed-insight`, `punct-distribution`, `real-actual-inflation`, `rhetorical-question`, `tier1-clarity`, `tier2`, `tier3-phrase`, `title-case-header`, `transition`, `uniformity`, `unnecessary-hyphenation` |
-| `low` (P3) | 4 | `confidence-calibration`, `emotional-flatline`, `low-ttr`, `tier3` |
+| `low` (P3) | 6 | `confidence-calibration`, `emotional-flatline`, `low-ttr`, `smart-punct-signature`, `tier3`, `uniformity` |
 
-Three types emit more than one severity, so a type alone does not fix a band:
-`normalization-flag` (roleplay markers are P1, zero-width and homoglyph
-characters are P0), `fnword-trigram-entropy` (P1 when one trigram repeats across
-the document, P2 at low entropy), and `uniformity` (P2 for sentence length, P3
-for paragraph length).
+The counts are types that can emit that band, so a type present in two bands
+appears twice. Three types emit more than one severity, so a type alone does not
+fix a band: `normalization-flag` (roleplay markers are P1, zero-width and
+homoglyph characters are P0), `fnword-trigram-entropy` (P1 when one trigram
+repeats across the document, P2 at low entropy), and `uniformity` (P2 for
+sentence length, P3 for paragraph length).
+
+Style-only types carry zero authorship weight in the engine's `ISSUE_WEIGHTS`:
+`em-dash`, `emotional-flatline`, `smart-punct-signature`, and
+`unnecessary-hyphenation`. They still count toward finding totals and any
+count-based gate, and they cannot move the score, label, probabilities,
+classification, or confidence. `smart-punct-signature` is the narrowest of the
+four: it reports only in `plain` source mode, always at `low` severity, and
+never corroborates the classifier. Filter by type or severity when only
+higher-priority findings should block a file.
+
+Regenerate the bands after any engine absorb with
+`node scripts/severity-bands.js`, which reads the vendored `scripts/patterns.js`.
+That output is the source for this table.
 
 Engine severity and the editorial P-tiers are not the same ladder. A type can sit
 lower in the engine than its prose rule suggests (`real-actual-inflation` is P2

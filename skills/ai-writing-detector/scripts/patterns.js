@@ -636,7 +636,9 @@ const AIDetector = (() => {
     'fake-casual-prop': 8,
     'title-case-header': 4,
     'parenthetical-hedge': 3,
-    'smart-punct-signature': 6,
+    // House-style typography is a style review prompt, not authorship
+    // evidence. Keep it neutral in both the score and classifier (#351).
+    'smart-punct-signature': 0,
     'punct-distribution': 6,
     'fnword-trigram-entropy': 5,
     'cross-para-burstiness': 5,
@@ -1118,7 +1120,8 @@ const AIDetector = (() => {
     /(?:['\u2019]s|\b(?:is|was|are|were))\s+the\s+(?:whole|entire)\s+(?:point|game|ballgame|trick|pitch|idea|play|business\s+model|value\s+proposition)\b/gi,
     /\b(?:that|this)(?:['\u2019]s|\s+(?:is|was))\s+the\s+part\s+(?:that|I|you|we|nobody|no\s+one|most\s+people)\b/gi,
     /\bthe\s+only\s+[\w'\u2019-]+\s+that\s+(?:matters|counts)\b/gi,
-    /\bis\s+dead\s*[.;,:\u2013\u2014]\s*long\s+live\b/gi,
+    // "X is dead; long live Y" also names an essay or a literal succession
+    // announcement. Whether the contrast earns its place needs reading (#351).
     /\b(?:that|this)(?:['\u2019]s|\s+(?:is|was))\s+why\s+[^.!?\n]{0,60}\s+mattered\b/gi,
   ];
 
@@ -2674,13 +2677,15 @@ const AIDetector = (() => {
     }
 
     // ── Smart-punctuation co-occurrence signature ────────────────────
-    // Curly quotes + em-dash + Oxford comma all present + zero typos
-    // (no double-spaces, no missing apostrophes in common contractions)
-    // is a near-dispositive paste-from-LLM signature: humans typing
-    // directly into a textarea don't produce all four. Standalone any of
-    // these is meaningless — co-occurrence is the signal. Separator-position
-    // dashes are typography and don't corroborate it.
-    {
+    // Curly punctuation + prose em dash + Oxford comma, with no sampled
+    // spacing or common-contraction anomalies,
+    // can also come from house style or editor settings. Keep the existing
+    // narrow shape as a low-priority style check in plain source only.
+    // Rendered Markdown deliberately preserves publication typography.
+    // This finding has no weight or classifier corroborator. Separator-only
+    // dashes do not complete the shape, and the spacing/contraction checks
+    // below are limited heuristics, not proof that a document has no typos.
+    if (sourceMode === 'plain') {
       const hasCurly = /[“”‘’]/.test(text);
       const totalEmDashes = (text.match(/—/g) || []).length;
       const separatorEmDashes = (text.match(SEPARATOR_DASH_RE) || []).length
@@ -2695,9 +2700,9 @@ const AIDetector = (() => {
       if (signals >= 4 && wordCount >= 80) {
         issues.push({
           type: 'smart-punct-signature',
-          text: 'curly-quotes + em-dash + Oxford comma + zero typos',
-          severity: 'high',
-          suggestion: 'Smart-punctuation signature consistent with LLM output. Humans typing into textareas rarely produce all four.',
+          text: 'curly punctuation + prose em dash + Oxford comma',
+          severity: 'low',
+          suggestion: 'Check destination style before changing punctuation. Preserve house-style typography; this combination is not evidence of AI authorship.',
         });
       }
     }
@@ -3416,13 +3421,12 @@ const AIDetector = (() => {
       (hasReasoning && hasChatbot ? 1 : 0) +
       (denseAIVocab ? 1 : 0);
 
-    // Weak (stylometric) corroborators — suggestive on their own,
-    // dispositive in combination. Smart-punct-signature matches
-    // Word-edited human prose so doesn't count without other support.
+    // Weak stylometric corroborators. The style-only smart-punct finding
+    // must not alter classification, probabilities, or confidence even when
+    // other findings already put the score near a classification boundary.
     const stylometricHits = ['punct-distribution', 'cross-para-burstiness', 'fnword-trigram-entropy']
       .filter((t) => issues.some((i) => i.type === t)).length;
-    const hasSmartPunct = issues.some((i) => i.type === 'smart-punct-signature');
-    const weakCorrob = (stylometricHits >= 2 ? 1 : 0) + (hasSmartPunct ? 1 : 0);
+    const weakCorrob = stylometricHits >= 2 ? 1 : 0;
 
     // Thresholds:
     //   score < 15 with no strong → HUMAN_ONLY
