@@ -17,10 +17,10 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.15` |
+| package_version | `2.12.16` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
-| humanizer_skill_version | `1.7.9` |
+| humanizer_skill_version | `1.7.10` |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.2.2` |
 | writing_prose_skill_version | `1.2.4` |
@@ -29,7 +29,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-10-16T11:19:32+03:00` |
+| last_sources_sync | `2026-10-19T04:44:36+03:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -107,17 +107,17 @@ humanizer.
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
 | release_tag | `v3.38.0` |
 | release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.38.0` |
-| last_ingested_version | `3.38.0 (post-release tip `0a4f1ad` absorbed; dead/long-live performed-insight match retired to judgment, house-style typography made a zero-weight plain-mode style check)` |
-| last_ingested_ref | `0a4f1ad10168` |
-| last_ingested_at | `2026-10-16T11:19:32+03:00` |
-| last_checked_at | `2026-10-16T11:19:32+03:00` |
+| last_ingested_version | `3.38.0 (post-release tip `013d1db` absorbed; editorial decision cards #206/#404 land as pattern 110 plus the scope-keeping and assessment carve-outs; dead/long-live performed-insight match retired to judgment, house-style typography a zero-weight plain-mode style check)` |
+| last_ingested_ref | `013d1db6b432` |
+| last_ingested_at | `2026-10-19T04:44:36+03:00` |
+| last_checked_at | `2026-10-19T04:44:36+03:00` |
 | compare_base | `6135015` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
-| lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99; 9/72/74 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs (severity bands read off the pinned engine, so they stay true to the pin) |
+| lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99, 110; 9/16/56/72/74/98/99/101 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs (severity bands read off the pinned engine, so they stay true to the pin) |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.38.0`, or untagged commits on default branch after `0a4f1ad10168`. |
+| next_check | On newer tag than `v3.38.0`, or untagged commits on default branch after `013d1db6b432`. |
 
 Diff helpers:
 
@@ -125,8 +125,8 @@ Diff helpers:
 # After git fetch in local_clone:
 git -C avoid-ai-writing fetch --tags origin
 git -C avoid-ai-writing tag -l 'v*' --sort=v:refname | tail -5
-git -C avoid-ai-writing log --oneline 0a4f1ad101683fd8734241ed46430a0b4a9af729..origin/main
-git -C avoid-ai-writing diff 0a4f1ad101683fd8734241ed46430a0b4a9af729..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md README.md
+git -C avoid-ai-writing log --oneline 013d1db6b43288c08fcba422fcda3b981ec93dd9..origin/main
+git -C avoid-ai-writing diff 013d1db6b43288c08fcba422fcda3b981ec93dd9..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md README.md
 ```
 
 ### 2. blader/humanizer

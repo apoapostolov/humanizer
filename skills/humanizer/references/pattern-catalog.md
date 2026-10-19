@@ -24,7 +24,7 @@ them.
 - [Secondary cleanup patterns](#secondary-cleanup-patterns)
 - [Delivery and provenance](#delivery-and-provenance)
 - [How to use the catalog](#how-to-use-the-catalog)
-- [Absorbed tells 100-109](#absorbed-tells-100-109)
+- [Absorbed tells 100-110](#absorbed-tells-100-110)
 
 ## Words and claims: patterns 1-6
 
@@ -113,10 +113,14 @@ countdown straight to the positive claim. Write a clipped tail as a real
 clause (*without forcing the user to guess*) or cut it.
 
 **Carve-outs:** Keep a contrast when the negative half corrects a belief the
-reader actually holds, or when both halves carry information. Negations
+reader actually holds, when it carries the argument, or when both halves carry
+information. When the positive claim is not supplied, report the empty contrast
+instead of inventing a differentiator; repetition alone does not authorize
+removing a contrast with content. Negations
 enumerating spec constraints in a list (*no dependencies, no telemetry*) are
 list content, not a reveal. (Split-sentence, countdown, and tail forms adapted
-from avoid-ai-writing v3.33.0 and blader/humanizer v3.0.0, MIT.)
+from avoid-ai-writing v3.33.0 and blader/humanizer v3.0.0, MIT. Contrast
+carve-out extended from the avoid-ai-writing post-v3.38.0 tip, MIT.)
 
 ### 10. Copula avoidance
 
@@ -181,6 +185,12 @@ could*, *to a degree*, or *where possible*.
 adding evidence.
 
 **Repair:** State the stronger claim directly and support it.
+
+**Carve-outs:** Keep a contrast that carries the argument or corrects a real
+misconception, and retain both supplied propositions when simplifying a frame,
+including a stated value judgment. Repetition alone does not authorize removal.
+Never invent a differentiator to fill an empty second half. (Adapted from the
+avoid-ai-writing post-v3.38.0 tip, MIT.)
 
 ## Paragraphs and point of view: patterns 17-27
 
@@ -501,7 +511,9 @@ Still contextual prompts, not authorship proof.
 **Tell:** A modal stacks with a hedge adverb: *could potentially*, *may
 eventually*, *might ultimately*.
 
-**Repair:** Keep one hedge. Make a usable claim.
+**Repair:** Keep one hedge. Make a usable claim. A qualifier that carries a
+distinct condition, a different timing, or the writer's confidence stays; a
+requested blunt voice is not authority to upgrade a hypothesis to a result.
 
 ### 57. Real or actual adjective inflation
 
@@ -1028,7 +1040,9 @@ claim fails: *Not always. Not perfectly.* repeated across a passage. One
 honest hedge becomes a rhythm of performed humility.
 
 **Repair:** Fold repeated empty concessions into a limitation already stated
-in the source, or cut them. Never invent a failure case.
+in the source, or cut them. Keep every supplied assessment and limitation; a
+generic-sounding concession is still the writer's claim. Never invent a failure
+case or drop a stated assessment because its wording is ordinary.
 
 **Carve-outs:** Meaningful concessions (*Not during failover. Not for expired
 tokens*) and an isolated intentional pair pass. Judgment-only P2. (Adapted
@@ -1042,8 +1056,11 @@ first half and flips it in the second, so repeated flips replace concrete
 claims with generic surprise or deflation. This concerns setup and payoff
 across sentences; pattern 77 covers runs of same-shape fragments.
 
-**Repair:** Keep at most one reversal and give the rest concrete claims.
-Treat as a clarity and rhythm edit, not proof of authorship.
+**Repair:** Keep at most one reversal and give the rest concrete claims. A
+repair must not shrink the supplied scope: *We planned for every failure mode.
+Except the one that happened* becomes *We planned for every failure mode except
+the one that happened*, not a generic admission that one was missed. Treat as a
+clarity and rhythm edit, not proof of authorship.
 
 **Carve-outs:** Supported reversals, isolated intentional lines, and genuine
 comedy, fiction, speeches, and quotations pass. Repetition alone is not a
@@ -1161,7 +1178,7 @@ Check these publication-level patterns after the prose itself is sound:
 5. Re-read for voice continuity and publication residue.
 6. Stop when the passage is clear, credible, and fit for purpose.
 
-## Absorbed tells 100-109
+## Absorbed tells 100-110
 
 Compact repairs from avoid-ai-writing, humanize, and humanizer-skill. Same
 status as the numbered catalog: editorial prompts, not authorship proof.
@@ -1180,8 +1197,11 @@ vague wording. Do not invent a CEO, consultant, or role to sound concrete.
 vague. A lone pair is ordinary prose. The tell is repetition, and the vague close
 has to sit in a later clause of the same sentence.
 
-**Repair:** Specify both halves or pick a side. Distinct from empty "Not
-always. Not perfectly."
+**Repair:** Specify both halves, or keep the supplied assessment and flag the
+scope it leaves unstated; the writer's positive or negative judgment is source
+meaning, not filler to choose between. Distinct from empty "Not always. Not
+perfectly." (Assessment carve-out from the avoid-ai-writing post-v3.38.0 tip,
+MIT.)
 
 ### 102. Significance-adverb density
 
@@ -1267,6 +1287,24 @@ changelogs, and dense tables can stay when the audience already reads it that
 way; that is a register judgment, not a defect. Related to pattern 77, which
 repairs the same habit in the opposite direction. (Adapted from
 cursor/plugins unslop, MIT.)
+
+### 110. Stock reaction frame
+
+**Tell:** A stock introduction carries the writer's stance instead of a fact:
+*What surprised me most was...*, *The most interesting part...*, *What I love
+about this is...*. The frame is soft; the judgment inside it is the writer's.
+
+**Repair:** Cut the frame when the supplied fact already carries its whole
+meaning, and rephrase only while keeping the reaction, preference, or ranking.
+A stated judgment stands as source meaning even when its reason is missing, so
+never drop it, and never trade a named emotion for theatrical body language to
+satisfy *show, don't tell*. Add an expectation or a cause only when the source
+supplies one.
+
+**Carve-outs:** Fiction, deliberate rhetorical openings, and frames whose
+preference is stated elsewhere in the source pass. When the judgment cannot be
+reconstructed safely, keep it and report the gap. (Adapted from the
+avoid-ai-writing post-v3.38.0 tip, MIT.)
 
 For before-and-after demonstrations, load [examples.md](examples.md). For tiered
 word replacements, load [vocabulary-tiers.md](vocabulary-tiers.md). For detect

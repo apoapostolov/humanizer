@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.16] - 2026-10-19
+
+avoid-ai-writing post-v3.38.0 tip `013d1db` (editorial decision cards #206/#404,
+large-file scope reword #410). No engine file moved, so the detector pin and its
+1.2.2 skill version stay where v3.38.0 left them; this pass absorbs editorial
+judgment only.
+
+### Changed
+
+- Humanizer pattern 110 **Stock reaction frame** carries the grounded-reaction
+  rule: a stated reaction, preference, or ranking is source meaning even when its
+  reason is missing, a stock introduction goes only when the supplied fact
+  already carries the whole meaning, and a named emotion is never traded for
+  theatrical body language to satisfy *show, don't tell*.
+- Pattern 99 forbids shrinking supplied scope in a repair. *We planned for every
+  failure mode. Except the one that happened* keeps its claimed coverage instead
+  of collapsing into a generic admission that one was missed.
+- Pattern 101 stops telling the editor to pick a side in an empty concession
+  sandwich: the writer's positive or negative assessment stays and the unstated
+  scope is reported. Patterns 9, 16, 56, and 98 gain the matching carve-outs, so
+  a contrast that carries the argument stays, a qualifier carrying a distinct
+  condition or the writer's confidence stays, supplied assessments and
+  limitations stay, and a missing half is reported rather than invented.
+
+### Held
+
+- The upstream decision-card pilot format (stable `ec-*` IDs, per-rule cards
+  still pending cross-family evaluation) stays upstream. The catalog keeps its
+  numbered patterns and its absorbed-tells section.
+- The conversation-scope reword in upstream `SKILL.md` changes no meaning, and
+  the `SUPPORT.md` static-scanner notes are release plumbing.
+- `blader/humanizer` moved only README sponsorship and badge text;
+  `cursor/plugins` moved `main` 50 commits with no
+  `pstack/skills/unslop/SKILL.md` diff, so neither pin chased.
+
+Humanizer 1.7.10, AI Writing Detector 1.2.2.
+
 ## [2.12.15] - 2026-10-16
 
 avoid-ai-writing v3.38.0 plus the post-release tip at `0a4f1ad`. Two engine
