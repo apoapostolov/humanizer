@@ -2,12 +2,12 @@
  * Upstream engine fixture suite (vendored).
  *
  * Source: conorbronsdon/avoid-ai-writing `detector/patterns.test.js`
- *         @ tip 0a4f1ad101683fd8734241ed46430a0b4a9af729, blob abb6cf024ca3a1fba49519cf6da65e1371759e76
+ *         @ tip 209815cdeb4af942616daec89a5e0a706c804e3a, blob dec03ae1e11e84cc39810710862c90d8d7217de1
  *         (v3.38.0 + post-release tip; MIT)
  *
  * Verbatim except for this header: the suite requires `./patterns.js`, which
  * in this directory is the vendored engine at blob
- * f33a8fadca1717892b2020c36d6f51b452f58285 (byte-identical to upstream
+ * 0bd5feb4d945fe6115ffd791395fd9b20d042a8b (byte-identical to upstream
  * `detector/patterns.js`).
  *
  * This is a verbatim copy, not a rewrite. When the engine pin moves, refresh
@@ -460,6 +460,8 @@ test('adversarial Markdown scans stay within a bounded time', () => {
     ['heading tab run', (n) => `## 1.1.1${'\t'.repeat(n)}— x\n${ordinary}`, 20000],
     ['long version digits', (n) => `## 1.1.${'1'.repeat(n)}]x — 2026-01-01\n${ordinary}`, 64000],
     ['indented block run', (n) => `- ${' '.repeat(n)}X\rY\n${ordinary}`, 10000],
+    ['table delimiter tab run', (n) => `${ordinary}\n-|-${'\t'.repeat(n)}x`, 4000],
+    ['thematic break tab run', (n) => `${ordinary}\n***${'\t'.repeat(n)}x`, 4000],
   ];
   for (const [name, build, base] of attacks) {
     const { small, large } = timeScaling(build, base);

@@ -77,7 +77,7 @@ const AIDetector = (() => {
   // Dates, versions and ASCII filenames keep internal dots; prose may hard-wrap.
   // Other sentence punctuation and Markdown/HTML block starts separate units, even
   // without a space, so unrelated Russian text cannot hide an English word.
-  const SENTENCE_UNIT_GLOBAL_RE = /(?:[^.!?\r\n]|(?<=[A-Za-z0-9_])\.(?=[A-Za-z0-9_])|\r?\n(?![ \t]*(?:\r?\n|(?:[-*+]|#{1,6}|\d+[.)])\s|[><|]|`{3}|~{3}|(?:-+|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,}|(?:-[ \t]*){3,}|=+)[\t ]*(?:\r?\n|$)|:?-+:?[\t ]*(?:\|[\t ]*:?-+:?[\t ]*)+\|?[\t ]*(?:\r?\n|$))))+/g;
+  const SENTENCE_UNIT_GLOBAL_RE = /(?:[^.!?\r\n]|(?<=[A-Za-z0-9_])\.(?=[A-Za-z0-9_])|\r?\n(?![ \t]*(?:\r?\n|(?:[-*+]|#{1,6}|\d+[.)])\s|[><|]|`{3}|~{3}|(?:(?:-+|=+)[\t ]*|(?:\*[ \t]*){3,}|(?:_[ \t]*){3,}|(?:-[ \t]*){3,})(?:\r?\n|$)|:?-+:?[\t ]*(?:\|[\t ]*:?-+:?[\t ]*)+(?:\|[\t ]*)?(?:\r?\n|$))))+/g;
   // Words are letter runs; a hyphen splits them, so "API-сервис" stays two
   // words and its Russian half is not swapped.
   const LETTER_RUN_GLOBAL_RE = /[\p{L}\p{M}]+/gu;
@@ -2276,13 +2276,18 @@ const AIDetector = (() => {
     };
   }
 
+  // The analysis contexts and source modes analyzeText() accepts. The CLIs
+  // import these lists instead of keeping their own copies.
+  const CONTEXT_MODES = Object.freeze(['general', 'technical', 'marketing', 'personal']);
+  const SOURCE_MODES = Object.freeze(['plain', 'rendered-markdown']);
+
   function analyzeText(text, options = {}) {
 
     if (typeof text !== 'string') {
       throw new TypeError('analyzeText(text): argument must be a string');
     }
 
-    const VALID_CONTEXT_MODES = new Set(['general', 'technical', 'marketing', 'personal']);
+    const VALID_CONTEXT_MODES = new Set(CONTEXT_MODES);
     const requestedMode = options.contextMode === undefined ? 'general' : options.contextMode;
     const contextMode = VALID_CONTEXT_MODES.has(requestedMode) ? requestedMode : 'general';
     const contextModeFallback = requestedMode !== contextMode ? requestedMode : null;
@@ -2291,7 +2296,7 @@ const AIDetector = (() => {
     // Plain remains the compatibility default. Rendered Markdown masks only
     // initial YAML frontmatter and HTML comments; source-hygiene checks for
     // hidden TODO/placeholder comments remain available through plain mode.
-    const VALID_SOURCE_MODES = new Set(['plain', 'rendered-markdown']);
+    const VALID_SOURCE_MODES = new Set(SOURCE_MODES);
     const requestedSourceMode = options.sourceMode === undefined ? 'plain' : options.sourceMode;
     const sourceMode = VALID_SOURCE_MODES.has(requestedSourceMode) ? requestedSourceMode : 'plain';
     const sourceModeFallback = requestedSourceMode !== sourceMode ? requestedSourceMode : undefined;
@@ -3580,6 +3585,8 @@ const AIDetector = (() => {
     getColor,
     SEVERITY_LABELS,
     TYPE_LABELS,
+    CONTEXT_MODES,
+    SOURCE_MODES,
   };
 })();
 

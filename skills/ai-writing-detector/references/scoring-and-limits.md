@@ -124,6 +124,17 @@ separate read. Upstream `--residual-policy` landed with v3.24.0-era tip `bdeb726
 - Not a target to minimize for "undetectable" output
 - Not a substitute for provenance
 
+## Bounded scan time
+
+The engine scans adversarial Markdown in bounded time. A long whitespace run
+after a table delimiter (`-|-`) or a thematic break (`***`) used to trigger
+quadratic backtracking in the sentence-unit regex, so a 64 KB input took seconds
+before the word limit applied. The pinned engine matches each whitespace run one
+way, so those shapes scan in milliseconds with identical findings. A large input
+still meets the documented word limit below, so treat a slow scan as an input
+problem first, and run `node scripts/v3418-probe.js` when a timing regression is
+suspected.
+
 ## Long documents (over 10,000 words)
 
 The vendored engine refuses text over 10,000 words: label `Text too long`,

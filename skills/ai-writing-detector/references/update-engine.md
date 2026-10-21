@@ -411,6 +411,35 @@ out `smart-punct-signature`), `medium` 26 (unchanged), `low` 6 (in
 three multi-band types; the measured table lists a type in each band it can
 emit.
 
+Untagged tip `013d1db..209815c` (2026-10-21 absorb, upstream #413/#414/#418
+plus two corpus-only commits) changes `detector/patterns.js` and
+`detector/patterns.test.js`, and adds two lines to `CHANGELOG.md`; `validate.js`
+has no delta, so its body still matches once the packaging banner is stripped.
+Two durable engine changes:
+
+1. **The sentence-unit regex no longer backtracks quadratically** (#418). Two
+   adjacent `[\t ]*` runs inside the table-delimiter and thematic-break
+   lookaheads let one whitespace run split many ways, so `analyzeText()` went
+   quadratic on a long tab run after `-|-` or `***` (64k tabs took about 6 s,
+   before the word limit applied). Each run can now match one way, and matching
+   is unchanged (upstream ran a 300k-case differential fuzz: 0 differences).
+   Probed at absorb with the old and the new engine on the same inputs: 64k tabs
+   after `-|-` 5975 ms to 23 ms, after `***` 6867 ms to 20 ms, ordinary prose
+   identical in output. `scripts/v3418-probe.js` holds a 1500 ms budget for both
+   shapes, which the old engine fails and the new one clears by two orders of
+   magnitude.
+2. **`CONTEXT_MODES` and `SOURCE_MODES` are exported** (#413/#414). The engine
+   publishes the frozen lists of modes `analyzeText()` accepts and validates
+   against them, and the upstream CLIs import those lists instead of keeping
+   their own copies. This package never carried a second copy, so no local
+   behavior changes; the probe asserts both lists are frozen and that every
+   exported mode is still accepted without a fallback.
+
+Engine pin `209815c`. Detector skill version 1.2.3. Fixtures: 278 checks (the two
+new adversarial timing cases extend the existing bounded-time test, so the count
+is unchanged). No pattern, severity, or weight moved, so the measured severity
+bands stay as published for the v3.38.0 pass.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

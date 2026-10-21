@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.2.2
+version: 1.2.3
 related_skills:
 - humanizer
 - simple-english
@@ -199,4 +199,4 @@ punctuation, a prose em dash, and an Oxford comma together stay a style check,
 because an editor or a house style produces the same combination. Regenerate
 the measured severity bands and weights with `node scripts/severity-bands.js`.
 
-Skill version: **1.2.2**. Engine pin: avoid-ai-writing tip `0a4f1ad` (v3.38.0 plus post-release tip; the deterministic "X is dead; long live Y" match is retired to judgment, and `smart-punct-signature` becomes a zero-weight plain-mode style check).
+Skill version: **1.2.3**. Engine pin: avoid-ai-writing tip `209815c` (v3.38.0 plus post-release tip; the sentence-unit regex no longer backtracks quadratically on a long tab run after a table delimiter or a thematic break, with matching unchanged, and the engine exports its `CONTEXT_MODES` and `SOURCE_MODES` lists. The deterministic "X is dead; long live Y" match stays retired to judgment, and `smart-punct-signature` stays a zero-weight plain-mode style check).

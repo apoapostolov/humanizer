@@ -157,6 +157,8 @@ run_check "false concession + residual policy + input contract (#211/#204/#234)"
 
 run_check "v3.38.0 dead/long-live + typography-as-style (#351)" node "$ROOT/scripts/v3380-probe.js"
 
+run_check "tip 209815c bounded sentence-unit scan + mode exports (#413/#414/#418)" node "$ROOT/scripts/v3418-probe.js"
+
 run_check "long document is not a clean zero through the CLI" node -e "
 const {execFileSync}=require('child_process');
 const fs=require('fs');

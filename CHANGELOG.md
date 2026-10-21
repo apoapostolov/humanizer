@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.17] - 2026-10-21
+
+avoid-ai-writing untagged tip `013d1db..209815c` (#413/#414/#418). The engine
+moves, so the detector pin and its skill version move with it; no editorial rule
+changed.
+
+### Changed
+
+- **Detector engine to tip `209815c`** (skill 1.2.2 to 1.2.3). The sentence-unit
+  regex now matches each whitespace run one way, so a long tab run after a
+  Markdown table delimiter (`-|-`) or a thematic break (`***`) no longer scans
+  quadratically: 64 KB of tabs went from about 6 seconds to about 20 ms, with
+  matching unchanged. The engine also exports its frozen `CONTEXT_MODES` and
+  `SOURCE_MODES` lists.
+- Detector fixtures refresh to the tip (278 checks; the two new adversarial
+  timing cases extend the existing bounded-time test).
+- `references/scoring-and-limits.md` records the bounded scan time, and
+  `scripts/v3418-probe.js` gates both shapes plus the mode exports in smoke.
+- `references/update-engine.md` records the absorb.
+
+### Held
+
+- blader/humanizer tip (`225a6f3..8c307f3`): README sponsorship and badge edits
+  only. No skill content moved, so the pin stays at `v3.1.0`.
+- Upstream corpus additions in the same window (W3C www-talk and RFC 4180
+  seeds) stay upstream-only per the corpus policy.
+
 ## [2.12.16] - 2026-10-19
 
 avoid-ai-writing post-v3.38.0 tip `013d1db` (editorial decision cards #206/#404,
