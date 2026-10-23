@@ -2,7 +2,7 @@
 name: writing-prose
 category: writing
 description: "Draft/revise reader-facing prose with the vale house gate; articles, docs, criticism."
-version: 1.2.4
+version: 1.2.5
 tags:
 - prose
 - revision
@@ -50,7 +50,10 @@ When not to use:
 
 - vale binary: WSL `~/.local/bin/vale`; Win11 via winget (`errata-ai.Vale`).
   The latest release is tracked as ingest source #1; pins live in the
-  repository root `SOURCES.md` (not here).
+  repository root `SOURCES.md` (not here). Version floor is 3.24 for the
+  rule tests. On 3.25.1 and newer a multi-word swap also matches across a
+  line wrap, so a phrase broken over two lines is caught; builds before
+  3.25.1 call that same draft clean.
 - Gate script (WSL): `scripts/vale-lint.sh` runs vale with the house config at
   warning level. Exit 0 = no error-level violations. Warnings are shown but do
   not block the exit code.
@@ -102,7 +105,11 @@ accept-list) and Repetition.
 
 Add domain terms to `vale/styles/config/vocabularies/Hermes/accept.txt` so
 Spelling does not flag them. Common stack terms (Jellyfin, Prowlarr, WSL, ...)
-are pre-loaded. The `Hermes` vocab name is a project label, not an
+are pre-loaded. Vale 3.25 and newer ship a technical default dictionary that
+already clears everyday developer words (`frontmatter`, `monorepo`, `npm`,
+`vendored`), so the accept list only needs names and terms specific to a
+project. An older build still flags those words, which is the one reason to
+keep the generic entries there. The `Hermes` vocab name is a project label, not an
 endorsement; rename it to match your own stack if you prefer.
 
 ## Per-project overrides

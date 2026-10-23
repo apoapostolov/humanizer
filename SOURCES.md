@@ -17,19 +17,19 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.17` |
+| package_version | `2.12.18` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
 | humanizer_skill_version | `1.7.10` |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.2.3` |
-| writing_prose_skill_version | `1.2.4` |
+| writing_prose_skill_version | `1.2.5` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-10-21T04:51:09+03:00` |
+| last_sources_sync | `2026-10-23T05:05:00+03:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -146,7 +146,7 @@ git -C avoid-ai-writing diff 209815cdeb4af942616daec89a5e0a706c804e3a..origin/ma
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |
 | lands_in | `skills/humanizer/SKILL.md`, `skills/humanizer/references/humanizing-text.md`, `skills/humanizer/references/ai-ism-audit.md`, `skills/humanizer/references/pattern-catalog.md` (79-80, 11/21 extensions; 9 split/countdown/tail forms), `skills/humanizer/references/vocabulary-tiers.md` (gated vocabulary), `skills/humanizer/references/required-checks.md` (workflow rules; five-tell post-rewrite sweep; historical catalog) |
-| ingest_policy | Primary same-family upstream. Import durable tells and examples. Do not adopt hard em/en dash bans. Prefer light-edit default for human-authored input. Keep information-over-shape and no-fabrication rules. Voice sample outranks generic style defaults. v2.11.0 plain-language reskin of upstream SKILL.md not adopted (house voice already plain); absorb new tells and FP carve-outs only. |
+| ingest_policy | Primary same-family upstream. Import durable tells and examples. Do not adopt hard em/en dash bans. Prefer light-edit default for human-authored input. Keep information-over-shape and no-fabrication rules. Voice sample outranks generic style defaults. v2.11.0 plain-language reskin of upstream SKILL.md not adopted (house voice already plain); absorb new tells and FP carve-outs only. README sponsorship and badge churn after `225a6f39ac85` is packaging noise: held, not ingested, pin stays at `v3.1.0`. |
 | next_check | On newer tag than `v3.1.0`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
 
 Diff helpers:
@@ -220,16 +220,16 @@ by the scan script via the GitHub releases API (no local clone needed).
 | status | `active_ingest` |
 | kind | `release_api` (Go binary + style packs; no vendored prose) |
 | repo | `https://github.com/vale-cli/vale` |
-| release_tag | `v3.24.0` |
-| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.24.0` |
-| last_ingested_version | `3.24.0` |
-| last_ingested_at | `2026-10-03` |
-| last_checked_at | `2026-10-15T04:21:56+03:00` |
-| win11_winget | `3.24.0` installed as of 2026-10-11 (manifest caught up with the 3.24.0 release); WSL `~/.local/bin/vale` 3.24.0; Microsoft styles re-synced, no pack change |
+| release_tag | `v3.25.1` |
+| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.25.1` |
+| last_ingested_version | `3.25.1` |
+| last_ingested_at | `2026-10-23` |
+| last_checked_at | `2026-10-23T05:05:00+03:00` |
+| win11_winget | `3.24.0` (winget manifest still behind 3.25.1 as of 2026-10-23; upgrade when it catches up). WSL `~/.local/bin/vale` 3.25.1, previous binary kept as `~/.local/bin/.vale-3.24.0`. Microsoft styles re-synced on 3.25.1, no pack change. |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |
-| next_check | On a release tag newer than `v3.24.0`. The 3.24.0 `vale test` runner now runs on the Win11 winget build; the house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). |
+| next_check | On a release tag newer than `v3.25.1`, or when the winget manifest catches up. The house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). Both 3.24.0 and 3.25.1 run the suite green. |
 
 ## Monitor-only sources
 

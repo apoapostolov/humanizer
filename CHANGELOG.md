@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.12.18] - 2026-10-23
+
+vale `v3.24.0` to `v3.25.1` ingest for `writing-prose`. No house rule or config
+change: the binary and the pin move together, and the gate output was measured
+before and after.
+
+### Changed
+
+- **vale pin to `v3.25.1`** (writing-prose 1.2.4 to 1.2.5). The WSL binary is
+  updated from the release asset, with the previous build kept beside it. Win11
+  winget still serves 3.24.0, so that upgrade waits for the manifest.
+  `vale sync` on 3.25.1 left the Microsoft pack byte identical.
+- Measured gate delta over the same four skill docs: 55 alerts down to 40, and
+  all 15 dropped alerts were `Vale.Spelling` false positives on everyday
+  developer words (`frontmatter`, `monorepo`, `npm`, `vendored`, `Postgres`,
+  `performant`). No em dash alert moved, so the forbidden tier holds.
+- Behavioral probe for the line-wrap fix: three drafts with one unwrapped
+  phrase and two wrapped mid-phrase. 3.24.0 caught 1 of 3, 3.25.1 caught 3 of 3.
+- `vale test` green on both builds: 2 files, 5 passed.
+- `writing-prose` SKILL.md records the 3.24 test floor, the line-wrap behavior,
+  and the technical default dictionary that 3.25 adds.
+
+### Held
+
+- blader/humanizer tip `225a6f3..8c307f3`: README sponsorship and badge edits
+  only, already held in 2.12.17. The pin stays at `v3.1.0`.
+- cursor/plugins 95 commits ahead: nothing inside `pstack/skills/unslop/SKILL.md`
+  moved, so no ingest.
+- Win11 winget upgrade to 3.25.1: manifest still at 3.24.0 as of this release.
+
 ## [2.12.17] - 2026-10-21
 
 avoid-ai-writing untagged tip `013d1db..209815c` (#413/#414/#418). The engine
