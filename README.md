@@ -21,20 +21,14 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.12.16
+## Current source: 2.13.0
 
-The humanizer catalog now protects the writer's judgments. A stated reaction,
-preference, or ranking counts as source meaning even when the reason is missing,
-a repair keeps the scope the source claimed, and an empty concession or contrast
-is reported instead of invented.
+Short Humanizer is the compact 26-tell rewrite. It keeps every claim and
+strips the common AI habits without loading the full humanizer catalog. Use
+it when context is tight. Use Humanizer when the draft needs voice work,
+chase mode, or a stubborn audit.
 
-The detector keeps house-style typography out of authorship scoring. Curly
-punctuation, a prose em dash, and an Oxford comma together report at low
-severity as a style check in plain text, and they cannot move the score, label,
-or confidence. The "X is dead; long live Y" phrase is editorial judgment now,
-so essay titles and supported contrasts stay clean.
-
-The latest GitHub release is 2.12.16; the current source tree matches it.
+The latest GitHub release is 2.13.0; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -42,11 +36,12 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
 | Need | Skill | Version |
 | --- | --- | --- |
-| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.10` |
+| Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.11` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.2` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.2.2` |
-| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.4` |
+| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.2.3` |
+| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.5` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
+| Strip 26 common AI tells without loading the full catalog | [`short-humanizer`](skills/short-humanizer/) | `1.0.0` |
 
 Use one skill for the job a section needs.
 
@@ -57,6 +52,7 @@ Use one skill for the job a section needs.
 - **Measure signals without making authorship claims.** AI Writing Detector reports issue bands and can compare a before/after pair for damaged code, URLs, or structure.
 - **Pair editorial judgment with a repeatable gate.** Writing Prose ships its Vale configuration, house rules, and long-form references with the skill.
 - **Match the audience.** Writing Voice picks Chat, Human, or Worker, then optional tone overlays. It routes to Humanizer's voice-profile table and does not invent a personality the source never had.
+- **Keep the rewrite cheap.** Short Humanizer is the compact 26-tell pass. Load Humanizer when the draft needs catalogs, chase, or voice match.
 
 ## Minimal Examples
 
@@ -103,6 +99,7 @@ cp -R skills/simple-english ~/.hermes/skills/writing/
 cp -R skills/ai-writing-detector ~/.hermes/skills/writing/
 cp -R skills/writing-prose ~/.hermes/skills/writing/
 cp -R skills/writing-voice ~/.hermes/skills/writing/
+cp -R skills/short-humanizer ~/.hermes/skills/writing/
 ```
 
 Or install an individual package with `skills.sh`:
@@ -113,6 +110,7 @@ npx skills add apoapostolov/humanizer --skill simple-english
 npx skills add apoapostolov/humanizer --skill ai-writing-detector
 npx skills add apoapostolov/humanizer --skill writing-prose
 npx skills add apoapostolov/humanizer --skill writing-voice
+npx skills add apoapostolov/humanizer --skill short-humanizer
 ```
 
 ## Repository Layout
@@ -123,7 +121,8 @@ skills/
 ├── simple-english/
 ├── ai-writing-detector/
 ├── writing-prose/
-└── writing-voice/
+├── writing-voice/
+└── short-humanizer/
 ```
 
 Each package contains its own `SKILL.md`, agent metadata, references, and any runtime scripts it needs. Maintainer guidance is in [AGENTS.md](AGENTS.md).
@@ -136,4 +135,4 @@ Support, feedback, and feature ideas: [@ApoMakesMods](https://x.com/ApoMakesMods
 
 This repository is licensed under the [MIT License](LICENSE).
 
-Simple English source limits and credits are documented in [`source-and-limits.md`](skills/simple-english/references/source-and-limits.md). Detector engine attribution is in [`ATTRIBUTION.md`](skills/ai-writing-detector/references/ATTRIBUTION.md).
+Simple English source limits and credits are documented in [`source-and-limits.md`](skills/simple-english/references/source-and-limits.md). Detector engine attribution is in [`ATTRIBUTION.md`](skills/ai-writing-detector/references/ATTRIBUTION.md). Short Humanizer adapts [thecodebeatz/short-humanizer](https://github.com/thecodebeatz/short-humanizer) (MIT).

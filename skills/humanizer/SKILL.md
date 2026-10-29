@@ -1,7 +1,7 @@
 ---
 name: humanizer
 description: Humanize AI-sounding text with natural rewrites, voice preservation, editorial critique, and optional AI-ism audit modes.
-version: 1.7.10
+version: 1.7.11
 ---
 
 # Humanizer
@@ -92,6 +92,8 @@ embedded when another task only needs the cleaned text.
 - For mechanical AI-writing **scores**, hosted detector spread, or rewrite
   preservation validate, use sibling skill `ai-writing-detector`. Chase mode
   in this skill consumes those scores. It does not replace the detector.
+- For a compact 26-tell rewrite without catalogs or chase, use sibling
+  skill `short-humanizer`.
 
 Load only what the task needs.
 

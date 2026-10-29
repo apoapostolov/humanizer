@@ -36,12 +36,15 @@ This repository currently centers on:
 - [`skills/writing-prose/`](./skills/writing-prose/): vale-gated prose craft
   (v1.1.0); editorial rules + deterministic lint gate; house style in `vale/`;
   ingest source vale-cli/vale tracked in `SOURCES.md`
+- [`skills/short-humanizer/`](./skills/short-humanizer/): compact 26-tell rewrite
+  (v1.0.0); house hybrids for dashes, quotes, and passive voice
 - [`README.md`](./README.md): public docs and install
 - [`CHANGELOG.md`](./CHANGELOG.md): user-facing release notes only
 
 Do not turn this repository into a general prompt dump. Keep each writing skill
-on one job: voice (humanizer), STE form (simple-english), mechanical signals
-(ai-writing-detector), vale-gated prose craft (writing-prose).
+on one job: voice (humanizer), compact tell rewrite (short-humanizer), STE form
+(simple-english), mechanical signals (ai-writing-detector), vale-gated prose
+craft (writing-prose).
 
 Keep each installable skill self-contained under `skills/<name>/`. Do not place
 runtime references or agent metadata at the repository root. Do **not** ship
@@ -50,7 +53,8 @@ validate scripts belong only in `skills/ai-writing-detector/`.
 
 The skills may cooperate, but they must not become a sequential filter stack.
 Route by the job of each section. Simple English controls technical form;
-humanizer preserves a writer; writing-prose shapes broader reader-facing prose.
+humanizer preserves a writer; short-humanizer is the cheap tell pass;
+writing-prose shapes broader reader-facing prose.
 
 ## Landing pages (non-negotiable)
 
@@ -238,6 +242,7 @@ links; confirm against stronger sources before editing the skill.
 | Extra long-form heuristics | `references/long-form-diagnostics.md` |
 | Authorship vs style (high-stakes) | `skills/humanizer/references/provenance.md` |
 | STE / plain tech docs / voice-lint | `skills/simple-english/**` |
+| Compact 26-tell rewrite | `skills/short-humanizer/**` |
 | Display name / default prompt | `skills/*/agents/openai.yaml` |
 | Install paths or public positioning | `README.md` |
 | User-facing capability change | `CHANGELOG.md` |

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Short Humanizer"
+  short_description: "Compact 26-tell rewrite that keeps every claim"
+  default_prompt: "Use $short-humanizer to rewrite this text with the compact tell list while preserving every claim."

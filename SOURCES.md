@@ -17,19 +17,21 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.12.18` |
+| package_version | `2.13.0` |
 | package_path | `.` |
-| skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/` |
-| humanizer_skill_version | `1.7.10` |
+| skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
+| humanizer_skill_version | `1.7.11` |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.2.3` |
 | writing_prose_skill_version | `1.2.5` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
+| short_humanizer_skill_version | `1.0.0` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
 | live_simple_english_path | `~/.hermes/skills/writing/simple-english` |
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
-| last_sources_sync | `2026-10-23T05:05:00+03:00` |
+| live_short_humanizer_path | `~/.hermes/skills/writing/short-humanizer` |
+| last_sources_sync | `2026-10-29T03:56:00+02:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -78,6 +80,19 @@ sources were touched.
 | upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `209815c` (v3.38.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. |
+
+### short-humanizer
+
+| Field | Value |
+| --- | --- |
+| id | `short-humanizer` |
+| status | `packaged_skill` |
+| skill_version | `1.0.0` |
+| path | `skills/short-humanizer/` |
+| live_clone | `~/.hermes/skills/writing/short-humanizer` |
+| upstream_kit | `https://github.com/thecodebeatz/short-humanizer` @ `3836a2a67587e0e7d725d7e005fa394504f42eae` |
+| lands_in | monorepo `skills/short-humanizer/` (SKILL, LICENSE, `agents/openai.yaml`) |
+| note | Compact 26-tell rewrite. House hybrids: stacked dashes only (no hard dash ban), keep passive when the actor is unknown, match source quote family. Not a voice catalog and not a detector. |
 
 ### writing-prose
 
@@ -204,6 +219,34 @@ git -C hardikpandya-stop-slop diff 8da1f030185bdfe8471220585162991eaeb970e9..ori
 | lands_in | `skills/humanizer/references/vocabulary-tiers.md` ("Abstract metaphor nouns" section), `skills/humanizer/references/required-checks.md` ("Interchangeability test" under revision gate), `skills/humanizer/references/pattern-catalog.md` (Secondary cleanup patterns: mid-sentence colon crutch; absorbed tells 108 mannered prose, 109 over-compression) |
 | ingest_policy | Low-frequency single-file source. Absorb only items not already covered by avoid-ai-writing / blader / stop-slop catalogs. **Reject** the absolute em-dash ban (pattern 13, including its no-parentheses/no-en-dash extension) — standing reject: hard dash bans as authorship proof. **Reject** "adding soul" injection guidance — conflicts with never-inject guardrails (fake first person, manufactured stakes). Rewrite absorbed material into humanizer voice; no wholesale pattern numbering import. |
 | next_check | Diff `6ce45c5..origin/main -- pstack/skills/unslop/SKILL.md` on scan. |
+
+### 5. thecodebeatz/short-humanizer
+
+| Field | Value |
+| --- | --- |
+| id | `short-humanizer` |
+| status | `active_ingest` |
+| repo | `https://github.com/thecodebeatz/short-humanizer` |
+| release_tag | *(none — untagged repo)* |
+| last_ingested_version | `tip@3836a2a` |
+| last_ingested_ref | `3836a2a67587e0e7d725d7e005fa394504f42eae` |
+| last_ingested_at | `2026-10-29T03:56:00+02:00` |
+| last_checked_at | `2026-10-29T03:56:00+02:00` |
+| compare_base | `3836a2a` |
+| local_clone | `short-humanizer` |
+| clone_policy | third-party → `<git-ext>` only |
+| primary_paths | `skills/short-humanizer/SKILL.md`, `README.md`, `LICENSE` |
+| lands_in | `skills/short-humanizer/` (sibling packaged skill; not folded into humanizer) |
+| ingest_policy | Keep as a compact sibling. Absorb durable tell-list edits into `skills/short-humanizer/SKILL.md`. Rewrite into house voice. **Hybrid** the hard em/en dash ban (item 8): stacked dashes only; keep a source dash used on purpose; do not add dashes for drama. **Hybrid** curly-quote flattening (item 21): match the source quote family on unedited spans; do not add curly quotes. **Hybrid** passive voice (item 11): keep it when the actor is unknown or the object is the point. **Reject** wholesale paste into `skills/humanizer/` (humanizer stays the catalog). **Reject** experiment corpora, judge prompts, and Claude plugin metadata. **Reject** SOUL.md injection as the install path; this package is a skill folder. |
+| next_check | Untagged repo — diff `3836a2a..origin/main` on `primary_paths` each scan. |
+
+Diff helpers:
+
+```bash
+git -C short-humanizer fetch origin
+git -C short-humanizer log --oneline 3836a2a67587e0e7d725d7e005fa394504f42eae..origin/main
+git -C short-humanizer diff 3836a2a67587e0e7d725d7e005fa394504f42eae..origin/main -- skills/short-humanizer/SKILL.md README.md LICENSE
+```
 
 ## Writing-prose ingest sources
 

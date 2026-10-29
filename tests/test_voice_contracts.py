@@ -32,6 +32,7 @@ class VoiceContractTests(unittest.TestCase):
             "ai-writing-detector": "ai_writing_detector_skill_version",
             "writing-prose": "writing_prose_skill_version",
             "writing-voice": "writing_voice_skill_version",
+            "short-humanizer": "short_humanizer_skill_version",
         }
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         sources = (ROOT / "SOURCES.md").read_text(encoding="utf-8")
@@ -82,6 +83,16 @@ class VoiceContractTests(unittest.TestCase):
         self.assertIn("## Skill boundaries", skill)
         self.assertIn("Do not run every skill across the", skill)
         self.assertNotIn("\n- writing\n", skill)
+
+    def test_short_humanizer_keeps_house_hybrids(self) -> None:
+        skill = read_skill("short-humanizer")
+        self.assertIn("Stacked em or en dashes", skill)
+        self.assertIn("Keep a single dash the source used on purpose", skill)
+        self.assertIn("Keep it when the actor is unknown", skill)
+        self.assertIn("Match the source's straight or curly quotes", skill)
+        collapsed = re.sub(r"\s+", " ", skill)
+        self.assertIn("not proof of authorship", collapsed)
+        self.assertNotIn("Use commas, periods, colons or parentheses.\n", skill)
 
 
 if __name__ == "__main__":

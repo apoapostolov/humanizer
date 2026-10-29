@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.13.0] - 2026-10-29
+
+Short Humanizer is a compact rewrite skill. It keeps every claim and strips
+26 common AI-writing habits without loading the full Humanizer catalog.
+
+### Added
+
+- **Short Humanizer 1.0.0.** A 26-tell rewrite for when context is tight.
+  Stacked dashes are the dash rule, not a hard ban. Passive voice stays when
+  the actor is unknown. New prose matches the source quote family. Load
+  Humanizer for catalogs, chase mode, or voice match.
+
 ## [2.12.18] - 2026-10-23
 
 vale `v3.24.0` to `v3.25.1` ingest for `writing-prose`. No house rule or config
