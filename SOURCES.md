@@ -20,7 +20,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | package_version | `2.13.0` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
-| humanizer_skill_version | `1.7.11` |
+| humanizer_skill_version | `1.7.11` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.0 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.2.3` |
 | writing_prose_skill_version | `1.2.5` |
@@ -156,7 +156,7 @@ git -C avoid-ai-writing diff 209815cdeb4af942616daec89a5e0a706c804e3a..origin/ma
 | last_ingested_version | `3.1.0 (225a6f3)` |
 | last_ingested_ref | `225a6f39ac85` |
 | last_ingested_at | `2026-09-29T02:00:00+03:00` |
-| last_checked_at | `2026-10-15T04:21:56+03:00` |
+| last_checked_at | `2026-10-29T04:20:00+02:00` |
 | local_clone | `blader-humanizer` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |
@@ -184,7 +184,7 @@ git -C blader-humanizer diff 43c97670b563cfa75e4f16ef00c32e933104d10a..origin/ma
 | last_ingested_version | `tip@8da1f03` |
 | last_ingested_ref | `8da1f030185bdfe8471220585162991eaeb970e9` |
 | last_ingested_at | `2026-08-04T00:00:00-07:00` |
-| last_checked_at | `2026-10-15T04:21:56+03:00` |
+| last_checked_at | `2026-10-29T04:20:00+02:00` |
 | compare_base | `8da1f03` |
 | local_clone | `hardikpandya-stop-slop` |
 | clone_policy | third-party → `<git-ext>` only |
@@ -212,7 +212,7 @@ git -C hardikpandya-stop-slop diff 8da1f030185bdfe8471220585162991eaeb970e9..ori
 | last_ingested_version | `tip@6ce45c5` (unslop SKILL.md description drop of "Must always apply."; editorial content unchanged, held) |
 | last_ingested_ref | `6ce45c59b930` |
 | last_ingested_at | `2026-10-15` |
-| last_checked_at | `2026-10-15T04:21:56+03:00` |
+| last_checked_at | `2026-10-29T04:20:00+02:00` |
 | local_clone | `cursor-plugins` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `pstack/skills/unslop/SKILL.md` (note: under `pstack/`, not `skills/`) |
@@ -287,7 +287,7 @@ Reviewed for signal; not on every-update ingest unless something meaningful appe
 | repo | `https://github.com/op7418/Humanizer-zh` |
 | last_ingested_version | *(none — no general content imported)* |
 | last_checked_ref | `f4518a8` |
-| last_checked_at | `2026-10-15T04:21:56+03:00` |
+| last_checked_at | `2026-10-29T04:20:00+02:00` |
 | note | Chinese adaptation. 2026-09-23 push `f4518a8` rewrites the zh rules around meaning/voice preservation (blader v3.0.0 + stop-slop based, 31 checkpoints) and drops the mechanical-triad/dash edits we already reject; no material beyond what EN upstreams provide. Last reviewed 2026-09-29. |
 
 ### Wikipedia: Signs of AI writing
@@ -366,8 +366,16 @@ Trigger phrases: `update humanizer sources`, `refresh humanizer upstreams`,
      for source absorbs. See [Version bump policy](#humanizer-package-version).
    - Update `CHANGELOG.md` / `README.md` with the new `package_version`.
    - Set `package_version` and `last_sources_sync` in this file.
-   - Sync installable tree to `~/.hermes/skills/writing/humanizer/`.
-   - Commit in `.`. Push only if the user asks.
+   - Sync installable tree to `~/.hermes/skills/writing/humanizer/` **only when
+     the live copy is the generic edition**. On this host the live Hermes
+     editions of `humanizer`, `simple-english`, `ai-writing-detector` and
+     `writing-prose` are personalized: they carry
+     `references/apo-voice-profile.md` and run ahead of the public versions
+     (humanizer 1.11.0 live against 1.7.11 public). Compare before copying
+     (`diff -rq skills/<name> <live path>`); a live tree that differs is the
+     newer edition and must not be replaced by the public folder. Only
+     `short-humanizer` is byte-identical between public and live.
+   - Commit and push in `.` (commit+push is one unit of work).
 
 5. **Report** (mandatory after every real diff pass, even if nothing landed)
 
