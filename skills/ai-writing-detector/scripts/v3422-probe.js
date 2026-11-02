@@ -1,7 +1,8 @@
 // Behavioral probe: avoid-ai-writing #422 — stats.indentedBlocks must count only
 // real indented code blocks (blank line outside a list), not fenced content and
 // not four-space paragraph continuations.
-const V = require("C:/git-public/humanizer/skills/ai-writing-detector/scripts/validate.js");
+const path = require("node:path");
+const V = require(path.join(__dirname, "validate.js"));
 const { extractIndentedBlocks } = V;
 
 const cases = [
