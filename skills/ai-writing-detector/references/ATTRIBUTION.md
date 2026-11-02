@@ -20,6 +20,7 @@
 | `scripts/severity-bands.js` | Static measurement of severity bands and authorship weights |
 | `scripts/v3380-probe.js` | Behavioral probes for the v3.38.0 + tip absorb |
 | `scripts/v3418-probe.js` | Behavioral probes for the tip 209815c absorb |
+| `scripts/v3422-probe.js` | Behavioral probes for the tip 9d5a999 absorb (#422) |
 | `scripts/analyze.js` | Production CLI |
 | `scripts/validate-cli.js` | Validate CLI + JSON schema wrapper |
 | `scripts/smoke.sh` | Fixture smoke tests |

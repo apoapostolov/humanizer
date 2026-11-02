@@ -440,6 +440,42 @@ new adversarial timing cases extend the existing bounded-time test, so the count
 is unchanged). No pattern, severity, or weight moved, so the measured severity
 bands stay as published for the v3.38.0 pass.
 
+## 7. tip `9d5a999` absorb (2026-11-02) -- preservation stats accuracy (#422)
+
+`detector/validate.js` only. `patterns.js` and `patterns.test.js` carried no
+change across `209815c..9d5a999`, so the vendored engine and the fixture suite
+are byte-identical and only the validate body moves (banner kept).
+
+What changed: `extractIndentedBlocks()` fed `stats.indentedBlocks`, which
+counted every four-space line outside a crude list flag. Two shapes inflated it:
+
+1. Lines inside a fenced block, because the fence content was never excluded.
+2. Four-space paragraph continuations (a Markdown lazy continuation), which sit
+   in the same paragraph rather than in an indented code block.
+
+The new body tracks fence spans by character offset, keeps a tab-indented fence
+opener as indented code (a tab before the marker makes it code, not a fence),
+counts a block only when the line starts the block (`current !== null`) or
+follows a blank line, and tracks list content indentation by columns so a fence
+outside the list's content indent closes the list while one nested inside keeps
+it.
+
+Scope check: `indentedBlocks` appears only in the validate result stats. The
+package report layer never surfaces it, so no CLI output, alert, severity, or
+weight moved. This is an accuracy fix in a stat that downstream consumers read,
+not a scoring change.
+
+Probe: `scripts/v3422-probe.js`, seven cases (fence only, fence nested in a
+list, lazy continuation, real indented block, indented list content,
+tab-indented fence opener, plain prose). The pre-absorb engine fails the first
+and third; the absorbed engine passes all seven. Smoke runs it.
+
+Verification: `bash scripts/smoke.sh` green (24 checks), engine fixtures still
+278 checks, `check-engine-pin.sh` prints the new tag line and the unchanged
+patterns sha, and the validate body equals upstream once the four package
+banner lines are stripped. Fixtures header now names the new tip and records
+that the file is unchanged since `209815c`.
+
 ## 6. Opinion report (required)
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what

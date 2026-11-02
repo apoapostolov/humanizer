@@ -2,7 +2,7 @@
 name: writing-prose
 category: writing
 description: "Draft/revise reader-facing prose with the vale house gate; articles, docs, criticism."
-version: 1.2.5
+version: 1.2.6
 tags:
 - prose
 - revision
@@ -53,7 +53,10 @@ When not to use:
   repository root `SOURCES.md` (not here). Version floor is 3.24 for the
   rule tests. On 3.25.1 and newer a multi-word swap also matches across a
   line wrap, so a phrase broken over two lines is caught; builds before
-  3.25.1 call that same draft clean.
+  3.25.1 call that same draft clean. 3.26.0 is a performance and browser-build
+  release: a sentence or title capitalization rule no longer slows with each
+  exception, and an ignored class now covers an image's alt text. No house
+  rule, config, style pack, or alert moved on 3.26.0.
 - Gate script (WSL): `scripts/vale-lint.sh` runs vale with the house config at
   warning level. Exit 0 = no error-level violations. Warnings are shown but do
   not block the exit code.

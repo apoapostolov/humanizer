@@ -17,13 +17,13 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.13.0` |
+| package_version | `2.13.1` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
 | humanizer_skill_version | `1.7.11` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.0 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
 | simple_english_skill_version | `2.4.2` |
-| ai_writing_detector_skill_version | `1.2.3` |
-| writing_prose_skill_version | `1.2.5` |
+| ai_writing_detector_skill_version | `1.2.4` |
+| writing_prose_skill_version | `1.2.6` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | short_humanizer_skill_version | `1.0.0` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
@@ -31,7 +31,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
 | live_short_humanizer_path | `~/.hermes/skills/writing/short-humanizer` |
-| last_sources_sync | `2026-10-29T03:56:00+02:00` |
+| last_sources_sync | `2026-11-02T04:25:00+02:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -74,10 +74,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.2.2` |
+| skill_version | `1.2.4` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `209815c` (v3.38.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `9d5a999` (v3.38.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414, preservation `stats.indentedBlocks` counts only real indented code blocks #422) |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. |
 
@@ -100,7 +100,7 @@ sources were touched.
 | --- | --- |
 | id | `writing-prose` |
 | status | `packaged_skill` |
-| skill_version | `1.2.4` |
+| skill_version | `1.2.6` |
 | path | `skills/writing-prose/` |
 | live_clone | `~/.hermes/skills/writing/writing-prose` |
 | upstream_kit | `https://github.com/vale-cli/vale` (binary + style packs; house config is ours) |
@@ -122,17 +122,17 @@ humanizer.
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
 | release_tag | `v3.38.0` |
 | release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.38.0` |
-| last_ingested_version | `3.38.0 (post-release tip `209815c` absorbed; #418 bounds the sentence-unit scan on long whitespace runs, #413/#414 export the accepted mode lists; earlier tip editorial: decision cards #206/#404, dead/long-live performed-insight retired to judgment, house-style typography a zero-weight plain-mode style check)` |
-| last_ingested_ref | `209815cdeb4a` |
-| last_ingested_at | `2026-10-21T04:51:09+03:00` |
-| last_checked_at | `2026-10-21T04:51:09+03:00` |
-| compare_base | `013d1db` |
+| last_ingested_version | `3.38.0 (post-release tip `9d5a999` absorbed; #422 makes the preservation validator count only real indented code blocks, so fenced content and four-space paragraph continuations stop inflating `stats.indentedBlocks`; earlier tip: #418 bounds the sentence-unit scan on long whitespace runs, #413/#414 export the accepted mode lists, decision cards #206/#404, decision cards #206/#404, dead/long-live performed-insight retired to judgment, house-style typography a zero-weight plain-mode style check)` |
+| last_ingested_ref | `9d5a9994c0fd` |
+| last_ingested_at | `2026-11-02T04:25:00+02:00` |
+| last_checked_at | `2026-11-02T04:25:00+02:00` |
+| compare_base | `209815c` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99, 110; 9/16/56/72/74/98/99/101 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs (severity bands read off the pinned engine, so they stay true to the pin) |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.38.0`, or untagged commits on default branch after `209815cdeb4a`. |
+| next_check | On newer tag than `v3.38.0`, or untagged commits on default branch after `9d5a9994c0fd`. |
 
 Diff helpers:
 
@@ -140,8 +140,8 @@ Diff helpers:
 # After git fetch in local_clone:
 git -C avoid-ai-writing fetch --tags origin
 git -C avoid-ai-writing tag -l 'v*' --sort=v:refname | tail -5
-git -C avoid-ai-writing log --oneline 209815cdeb4af942616daec89a5e0a706c804e3a..origin/main
-git -C avoid-ai-writing diff 209815cdeb4af942616daec89a5e0a706c804e3a..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md detector/patterns.js detector/validate.js README.md
+git -C avoid-ai-writing log --oneline 9d5a9994c0fd..origin/main
+git -C avoid-ai-writing diff 9d5a9994c0fd..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md detector/patterns.js detector/validate.js README.md
 ```
 
 ### 2. blader/humanizer
@@ -263,16 +263,16 @@ by the scan script via the GitHub releases API (no local clone needed).
 | status | `active_ingest` |
 | kind | `release_api` (Go binary + style packs; no vendored prose) |
 | repo | `https://github.com/vale-cli/vale` |
-| release_tag | `v3.25.1` |
-| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.25.1` |
-| last_ingested_version | `3.25.1` |
-| last_ingested_at | `2026-10-23` |
-| last_checked_at | `2026-10-23T05:05:00+03:00` |
-| win11_winget | `3.24.0` (winget manifest still behind 3.25.1 as of 2026-10-23; upgrade when it catches up). WSL `~/.local/bin/vale` 3.25.1, previous binary kept as `~/.local/bin/.vale-3.24.0`. Microsoft styles re-synced on 3.25.1, no pack change. |
+| release_tag | `v3.26.0` |
+| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.26.0` |
+| last_ingested_version | `3.26.0` |
+| last_ingested_at | `2026-11-02` |
+| last_checked_at | `2026-11-02T04:25:00+02:00` |
+| win11_winget | `3.25.1` (winget manifest still serves 3.25.1 while the release is 3.26.0 as of 2026-11-02; upgrade when it catches up). WSL `~/.local/bin/vale` 3.26.0, previous binary kept as `~/.local/bin/.vale-3.25.1`. Microsoft styles re-synced on 3.26.0, no pack change. |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |
-| next_check | On a release tag newer than `v3.25.1`, or when the winget manifest catches up. The house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). Both 3.24.0 and 3.25.1 run the suite green. |
+| next_check | On a release tag newer than `v3.26.0`, or when the winget manifest catches up. The house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). 3.24.0, 3.25.1 and 3.26.0 run the suite green. |
 
 ## Monitor-only sources
 

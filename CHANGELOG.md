@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.13.1] - 2026-11-02
+
+Two ingest pins move, one engine body and one binary. The detector gets an
+accuracy fix in its preservation stats; prose tooling gets a vale build with no
+observable change to the house gate.
+
+### Changed
+
+- **Detector engine to tip `9d5a999`** (skill 1.2.3 to 1.2.4). The preservation
+  validator's `stats.indentedBlocks` now counts only indented blocks that
+  follow a blank line outside a list. Fenced code and four-space paragraph
+  continuations stopped inflating the count, and a top-level fence ends a
+  preceding list while a nested fence keeps it. `patterns.js` and the vendored
+  fixture suite are unchanged at this tip.
+- **vale pin to `v3.26.0`** (writing-prose 1.2.5 to 1.2.6). The WSL binary is
+  updated from the release asset, with 3.25.1 kept beside it. `vale sync`
+  left the Microsoft pack byte identical, `vale test` stays green (2 files,
+  5 passed), and the measured gate over four skill docs is unchanged at 149
+  alerts with zero added and zero dropped tuples.
+- `writing-prose` SKILL.md records the 3.26 behavior: a capitalization rule no
+  longer slows with each exception, and an ignored class now covers an image's
+  alt text.
+
+### Held
+
+- **vale 3.26.0 WebAssembly build.** The release ships `vale.wasm` plus a JS
+  host API for browsers and Node. No host in this stack runs vale in a browser,
+  so the artifacts stay upstream-only.
+- Win11 winget upgrade to 3.26.0: the manifest still serves 3.25.1.
+- blader/humanizer tip `225a6f3..0ef9fe5`: README sponsorship, badge, and plugin
+  manifest edits only. The pin stays at `v3.1.0`.
+- cursor/plugins 173 commits ahead: nothing inside `pstack/skills/unslop/SKILL.md`
+  moved, so no ingest.
+
+### Probes
+
+- `scripts/v3422-probe.js` holds seven indented-block cases. The pre-absorb
+  engine fails two of them (fenced content and a lazy continuation counted as
+  blocks); the absorbed engine passes all seven, and smoke runs it.
+
 ## [2.13.0] - 2026-10-29
 
 Short Humanizer is a compact rewrite skill. It keeps every claim and strips

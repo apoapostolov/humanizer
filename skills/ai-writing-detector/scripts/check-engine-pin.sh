@@ -20,7 +20,7 @@ echo "ai-writing-detector engine pin check"
 echo "skill_root=$ROOT"
 echo "patterns_sha=$(sha "$PAT_LOCAL")"
 echo "validate_sha=$(sha "$VAL_LOCAL")"
-echo "expected_upstream_tag=v3.38.0 + tip 209815c (#418 sentence-unit regex is linear on long tab runs after a table delimiter or thematic break, matching unchanged; #413/#414 engine exports CONTEXT_MODES and SOURCE_MODES; patterns.js and patterns.test.js changed, validate.js body unchanged; see monorepo SOURCES.md)"
+echo "expected_upstream_tag=v3.38.0 + tip 9d5a999 (#422 preservation stats.indentedBlocks counts only real indented code blocks; validate.js changed, patterns.js and patterns.test.js unchanged since 209815c; see monorepo SOURCES.md)"
 
 if [[ -z "$CLONE" ]]; then
   # Common layout — only used if present

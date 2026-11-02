@@ -2,7 +2,8 @@
  * Upstream engine fixture suite (vendored).
  *
  * Source: conorbronsdon/avoid-ai-writing `detector/patterns.test.js`
- *         @ tip 209815cdeb4af942616daec89a5e0a706c804e3a, blob dec03ae1e11e84cc39810710862c90d8d7217de1
+ *         @ tip 9d5a9994c0fd (unchanged since 209815cdeb4af942616daec89a5e0a706c804e3a),
+ *         blob dec03ae1e11e84cc39810710862c90d8d7217de1
  *         (v3.38.0 + post-release tip; MIT)
  *
  * Verbatim except for this header: the suite requires `./patterns.js`, which
