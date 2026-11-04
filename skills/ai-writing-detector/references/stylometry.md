@@ -111,8 +111,8 @@ There is no phrase catalog here, so nothing is language-specific:
 - Sentences and words come from `Intl.Segmenter`, with an abbreviation guard for
   English, Indonesian, and the common European set. Pass `--lang` when the
   segmenter guesses badly; it only affects splitting.
-- Cyrillic, Greek, and Latin-script text outside English measure normally.
-  Bulgarian prose has been measured in the fixture suite.
+- Cyrillic, Greek, and Latin-script text outside English measure normally. The
+  fixture suite measures Cyrillic prose end to end.
 - CJK splits on `。！？` when the locale is set to a CJK language.
 - N-gram detection filters the built-in 20-word English function list by
   default. `--stopwords FILE` replaces it with a JSON array or a
@@ -132,11 +132,11 @@ There is no phrase catalog here, so nothing is language-specific:
 
 Re-vendoring is diff, port, then prove parity:
 
-1. `git -C C:/git-ext/humanizer-lint fetch --tags` and diff the four upstream
+1. `git -C <git-ext>/humanizer-lint fetch --tags` and diff the four upstream
    paths against the pinned ref in `SOURCES.md`.
 2. Port only changes to the functions listed above.
 3. Run `node scripts/stylometry-fixtures.mjs`. Its parity block pins the
    metrics from upstream v1.5.1 on one fixed text; a drift in definitions shows
    up as a failing number, not as a slow slide.
-4. Re-run `node C:/git-ext/humanizer-lint/scripts/analyze.mjs --file <same text>`
+4. Re-run `node <git-ext>/humanizer-lint/scripts/analyze.mjs --file <same text>`
    and confirm the metric lines still match to four decimals.

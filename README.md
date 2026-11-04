@@ -28,7 +28,7 @@ strips the common AI habits without loading the full humanizer catalog. Use
 it when context is tight. Use Humanizer when the draft needs voice work,
 chase mode, or a stubborn audit.
 
-The latest GitHub release is 2.13.2; this tree is ahead of it.
+The latest GitHub release is 2.14.0; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
