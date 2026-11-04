@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.2.4
+version: 1.3.0
 related_skills:
 - humanizer
 - simple-english
@@ -28,6 +28,8 @@ scores into authorship claims.
 ## Mission
 
 - Flag regex-detectable AI-writing patterns (vendored engine)
+- Measure prose shape: sentence spread, adjacent delta, MATTR, repeated n-grams
+  (vendored stylometry, no verdict attached)
 - Run an optional **hosted spread** tester (uploads only with `--upload`)
 - Emit a **sanitized report** (`interpretation: signals_only`) by default
 - Separate Tier 1A markers from Tier 1B clarity hits
@@ -57,6 +59,7 @@ scores into authorship claims.
 | Chase hosted or local scores | `humanizer` Chase, then this skill |
 | STE / docs form control | `simple-english` |
 | Score, issue list, category map | **this skill** |
+| Sentence rhythm, MATTR, repeated-phrase numbers | **this skill** (`stylometry`) |
 | Hosted detector spread | **this skill** (`test_detectors.py`) |
 | Preserve code/URLs/structure after edit | **this skill** (`validate`) |
 | Cron / batch signal scan | **this skill** (`--quiet`, multi-file) |
@@ -103,6 +106,29 @@ echo 'text' | node scripts/analyze.js --stdin
 Human text puts **warnings first** (short-input trap visible before a low score)
 and labels tier1 as 1A markers vs tier1-clarity as 1B.
 
+### stylometry
+
+```bash
+node scripts/stylometry.mjs file.md
+node scripts/stylometry.mjs --json file.md
+node scripts/stylometry.mjs --sentence-map file.md
+node scripts/stylometry.mjs --lang bg file.md
+node scripts/stylometry.mjs --quiet a.md b.md
+node scripts/stylometry.mjs --stopwords words.txt file.md
+echo 'text' | node scripts/stylometry.mjs --stdin
+```
+
+Reports sentence-length CV, adjacent delta, paragraph CV, short and long
+sentence shares, MATTR, repeated n-grams, uniform runs, flat paragraphs and
+repeated sentence openings. Sanitizes Markdown first, so code, headings, tables
+and frontmatter never count as prose. Schema
+`ai-writing-detector.stylometry.v1`, `interpretation: diagnostics_only`.
+
+No score, no status, no exit-code threshold. The upstream gate asks a
+pre-LLM essay to add six-word sentences it never had, so the thresholds stay
+out of this skill. [references/stylometry.md](references/stylometry.md) carries
+the evidence and the field list.
+
 ### hosted spread
 
 ```bash
@@ -135,6 +161,7 @@ Neither a pass nor a warn proves meaning; check facts and claims yourself.
 ### explain
 
 - [references/categories.md](references/categories.md)
+- [references/stylometry.md](references/stylometry.md)
 - [references/scoring-and-limits.md](references/scoring-and-limits.md)
 - [references/measurement-notes.md](references/measurement-notes.md)
 - [references/relationship-to-humanizer.md](references/relationship-to-humanizer.md)
@@ -171,6 +198,15 @@ changes under `skills/ai-writing-detector/`.
 1. ok / errors / warnings (or quiet one-liner)
 2. Exit 1 on errors; exit 4 on warnings if `--fail-on-warnings`
 
+**stylometry**
+
+1. Lead with the measurement line, then the findings that name sentences
+2. Say plainly that shape is not authorship, and that a flat number is not a
+   machine verdict
+3. Point at the sentences worth rereading; never propose fragments or merged
+   sentences as a way to move a metric
+4. Below eight sentences or 120 words, report the reliability note first
+
 ## Engine
 
 Vendored from [conorbronsdon/avoid-ai-writing](https://github.com/conorbronsdon/avoid-ai-writing)
@@ -180,6 +216,13 @@ Long-document scoring: `scripts/longdoc.js` (this skill — not upstream).
 Pin procedure: monorepo `SOURCES.md` + `scripts/check-engine-pin.sh` +
 `references/update-engine.md`.  
 Self-contained: no external clone required.
+
+Stylometry is a second, narrower vendored slice from
+[humanizer-lint](https://github.com/yanstd888/humanizer-lint) (MIT): the
+tokenizer, Markdown sanitizer, variation metrics and rhythm rules behind
+`scripts/stylometry.mjs`. Its lexical packs, thresholds, score and PASS/FAIL
+gate are not vendored. Vendored paths, the parity fixture and the re-vendor
+procedure are in [references/stylometry.md](references/stylometry.md).
 
 Requires **Node.js >= 18** (`package.json` engines). No npm dependencies.
 
@@ -199,4 +242,4 @@ punctuation, a prose em dash, and an Oxford comma together stay a style check,
 because an editor or a house style produces the same combination. Regenerate
 the measured severity bands and weights with `node scripts/severity-bands.js`.
 
-Skill version: **1.2.4**. Engine pin: avoid-ai-writing tip `9d5a999` (v3.38.0 plus post-release tip; the preservation validator counts only indented blocks that follow a blank line outside a list, so fenced code and four-space paragraph continuations no longer inflate `stats.indentedBlocks`; the sentence-unit regex does not backtrack quadratically on a long tab run after a table delimiter or a thematic break, with matching unchanged, and the engine exports its `CONTEXT_MODES` and `SOURCE_MODES` lists. The deterministic "X is dead; long live Y" match stays retired to judgment, and `smart-punct-signature` stays a zero-weight plain-mode style check).
+Skill version: **1.3.0**. Engine pin: avoid-ai-writing tip `9d5a999` (v3.38.0 plus post-release tip; the preservation validator counts only indented blocks that follow a blank line outside a list, so fenced code and four-space paragraph continuations no longer inflate `stats.indentedBlocks`; the sentence-unit regex does not backtrack quadratically on a long tab run after a table delimiter or a thematic break, with matching unchanged, and the engine exports its `CONTEXT_MODES` and `SOURCE_MODES` lists. The deterministic "X is dead; long live Y" match stays retired to judgment, and `smart-punct-signature` stays a zero-weight plain-mode style check). Stylometry pin: humanizer-lint `v1.5.1`.

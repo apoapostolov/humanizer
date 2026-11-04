@@ -190,6 +190,8 @@ run_check "check-engine-pin runs" bash -c "
   test \"\$code\" -eq 0 -o \"\$code\" -eq 1
 "
 
+run_check "stylometry fixtures (parity, sanitizer, guardrails)" node "$ROOT/scripts/stylometry-fixtures.mjs"
+
 echo ""
 echo "passed=$pass failed=$fail"
 if [[ "$fail" -gt 0 ]]; then

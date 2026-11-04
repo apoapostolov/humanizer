@@ -2,6 +2,50 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.0] - 2026-11-04
+
+The detector gains a measurement mode for prose shape. Readings come from a
+local, zero-dependency port of humanizer-lint's stylometry core; its score and
+pass/fail gates do not come with it.
+
+### Added
+
+- **Stylometry mode in ai-writing-detector** (skill 1.2.4 to 1.3.0). `node
+  scripts/stylometry.mjs draft.md` reports sentence-length CV, adjacent delta,
+  paragraph CV, short and long sentence shares, moving-average type-token
+  ratio, repeated n-grams, uniform runs, flat paragraphs and repeated sentence
+  openings. Output schema `ai-writing-detector.stylometry.v1` carries
+  `interpretation: diagnostics_only` and no score, status or authorship field.
+  Markdown is sanitized first, so fenced code, headings, tables and frontmatter
+  never count as prose. `--sentence-map`, `--lang`, `--quiet`, `--json`,
+  `--stopwords`, `--no-ngrams` and multi-file batch are supported.
+- `references/stylometry.md` documents each field, the metric definitions, what
+  the numbers do not mean, language behaviour, and the re-vendor procedure.
+- `scripts/stylometry-fixtures.mjs` holds eleven checks, including a parity
+  block that pins the metrics from humanizer-lint v1.5.1 on one fixed text so a
+  drift in the ported definitions fails the suite instead of sliding quietly.
+  `scripts/smoke.sh` runs it.
+
+Metric definitions matched humanizer-lint v1.5.1 to four decimals on three
+separate texts (183, 283 and 162 words) before the port was accepted.
+
+### Held
+
+- **The upstream score, `passScore`, and the PASS/FAIL rhythm gate.** Upstream
+  thresholds are CV 0.45, adjacent delta 4, short-sentence share 0.15, long
+  0.10 and MATTR 0.74 for English. Its own pre-LLM human essay (CV 0.5946,
+  delta 15.5385, MATTR 0.8276, 28.6% long sentences) returns `FAIL` at score 86
+  because no sentence of it has six words or fewer. Importing the gate would
+  ask human prose to grow fragments it never needed, against the humanizer rule
+  that length follows the thought.
+- **The eight lexical slop packs.** `scripts/patterns.js` already owns the
+  phrase register; a second one would drift, and the detector report already
+  carries those hits with replacement wording.
+- **Compression ratio and `voiceProfileDeviation`.** The deterministic DEFLATE
+  ratio duplicates repetition coverage the engine already measures with
+  function-word trigram entropy, and the voice deviation needs a supplied
+  profile and invites a verdict.
+
 ## [2.13.2] - 2026-11-04
 
 An editorial calibration pass on the humanizer catalog, driven by upstream's

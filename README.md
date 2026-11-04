@@ -21,14 +21,14 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.13.1
+## Current source: 2.14.0
 
 Short Humanizer is the compact 26-tell rewrite. It keeps every claim and
 strips the common AI habits without loading the full humanizer catalog. Use
 it when context is tight. Use Humanizer when the draft needs voice work,
 chase mode, or a stubborn audit.
 
-The latest GitHub release is 2.13.1; the current source tree matches it.
+The latest GitHub release is 2.13.2; this tree is ahead of it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
@@ -38,7 +38,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 | --- | --- | --- |
 | Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.12` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.2` |
-| Scan for AI-writing signals or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.2.4` |
+| Scan for AI-writing signals, measure prose shape, or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.3.0` |
 | Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.6` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 | Strip 26 common AI tells without loading the full catalog | [`short-humanizer`](skills/short-humanizer/) | `1.0.0` |
@@ -49,7 +49,7 @@ Use one skill for the job a section needs.
 
 - **Rewrite without replacing the writer.** Humanizer keeps facts, technical terms, uncertainty, point of view, and deliberate style while cutting filler.
 - **Control technical form when clarity is the priority.** Simple English offers strict and STE-flavored modes plus a Python linter.
-- **Measure signals without making authorship claims.** AI Writing Detector reports issue bands and can compare a before/after pair for damaged code, URLs, or structure.
+- **Measure signals without making authorship claims.** AI Writing Detector reports issue bands, measures sentence rhythm and vocabulary spread, and can compare a before/after pair for damaged code, URLs, or structure.
 - **Pair editorial judgment with a repeatable gate.** Writing Prose ships its Vale configuration, house rules, and long-form references with the skill.
 - **Match the audience.** Writing Voice picks Chat, Human, or Worker, then optional tone overlays. It routes to Humanizer's voice-profile table and does not invent a personality the source never had.
 - **Keep the rewrite cheap.** Short Humanizer is the compact 26-tell pass. Load Humanizer when the draft needs catalogs, chase, or voice match.
@@ -68,6 +68,7 @@ AI Writing Detector exposes a zero-dependency Node.js scan and a preservation ch
 
 ```bash
 node skills/ai-writing-detector/scripts/analyze.js path/to/file.md
+node skills/ai-writing-detector/scripts/stylometry.mjs path/to/file.md
 node skills/ai-writing-detector/scripts/validate-cli.js before.md after.md
 bash skills/ai-writing-detector/scripts/smoke.sh
 ```

@@ -9,6 +9,20 @@
 - Category research trail: upstream `detector/CATEGORIES.md` (rewritten locally
   as `references/categories.md`)
 
+## Stylometry slice
+
+- Project: [yanstd888/humanizer-lint](https://github.com/yanstd888/humanizer-lint)
+- Vendored paths (pin `v1.5.1`):
+  `scripts/utils/tokenizer.mjs` → `scripts/stylometry/tokenizer.mjs`,
+  `scripts/utils/sanitizer-mapped.mjs` → `scripts/stylometry/sanitizer.mjs`,
+  `scripts/utils/metrics-core.mjs` → `scripts/stylometry/metrics.mjs`,
+  `scripts/core/analyzer-core.mjs` (rhythm functions) →
+  `scripts/stylometry/rhythm.mjs`, `rules/en-slop.json` (stopword list only) →
+  `scripts/stylometry/stopwords-en.json`
+- License: MIT
+- Not vendored: lexical slop packs, compression ratio, score, thresholds, and
+  the PASS/FAIL gate. Local reasoning in `references/stylometry.md`.
+
 ## This package (not upstream)
 
 | Path | Role |
@@ -23,6 +37,9 @@
 | `scripts/v3422-probe.js` | Behavioral probes for the tip 9d5a999 absorb (#422) |
 | `scripts/analyze.js` | Production CLI |
 | `scripts/validate-cli.js` | Validate CLI + JSON schema wrapper |
+| `scripts/stylometry.mjs` | Stylometry CLI (measurements only, no verdict) |
+| `scripts/stylometry-fixtures.mjs` | Parity and guardrail fixtures for the stylometry slice |
+| `scripts/stylometry/*` | Vendored tokenizer, sanitizer, metrics and rhythm rules |
 | `scripts/smoke.sh` | Fixture smoke tests |
 | `fixtures/` | Deterministic test inputs |
 | `references/*` | Limits, examples, relationship, localized categories |
