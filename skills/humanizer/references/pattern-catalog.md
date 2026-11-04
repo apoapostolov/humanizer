@@ -223,6 +223,10 @@ unclear.
 **Repair:** Let sentence length follow thought. Use short sentences for hard
 turns and longer ones for connected reasoning.
 
+**Evidence:** Sentence-length variation is the one shape measurement separated
+cleanly, and it held in every register tested. Treat the even paragraph as a
+reliable target ([provenance.md](provenance.md)).
+
 ### 21. Signposting sentence
 
 **Tell:** *It is important to note*, *the key point is*, *here is what matters*,
@@ -911,7 +915,10 @@ statements they were hiding.
 **Tell:** Three or more consecutive sentences opening on the same word (*Maybe
 nobody needed it. Maybe it solved the wrong problem. Maybe the timing was
 off.*), or consecutive sentences on one repeated skeleton. Deliberate anaphora
-is a rhetorical device; a run that is not doing persuasive work is a tell.
+is a rhetorical device; review a run that is not doing persuasive work as a
+rhythm problem. Measured frequency runs the other way, higher in the matched
+human text than in model continuations, so a run is never evidence of who wrote
+the passage ([provenance.md](provenance.md)).
 
 **Repair:** Keep the first, vary or merge the rest.
 
@@ -922,8 +929,10 @@ avoid-ai-writing, MIT.)
 ### 91. Stranded auxiliary contrast
 
 **Tell:** A reversal landed on a bare auxiliary: *The tool died; the data
-didn't.* One instance is a fine sentence; as a recurring rhythm it is a
-signature move, and the clipped contrast poses as earned insight.
+didn't.* One instance is a fine sentence; as a recurring rhythm the clipped
+contrast poses as earned insight. Measured frequency is higher in the matched
+human text, so density is the only readable signal, and it is an editing one
+([provenance.md](provenance.md)).
 
 **Repair:** Ration it. If the piece already has one, write the next contrast
 out in full.
@@ -935,8 +944,9 @@ avoid-ai-writing, MIT.)
 ### 92. Colon into a triple
 
 **Tell:** A colon opening onto exactly three comma-separated items: *separate
-ports, processes, and local state*. The default rhythm LLM prose uses to sound
-concrete, whether or not the content has three parts.
+ports, processes, and local state*. Modestly more frequent in model
+continuations than in the matched human text, and rare in both, whether or not
+the content has three parts ([provenance.md](provenance.md)).
 
 **Repair:** Audit the list. If there are really two things, or four, write
 that; if the items are padding, cut to the one that matters.
@@ -1163,8 +1173,10 @@ Check these publication-level patterns after the prose itself is sound:
   following paragraph already contains the substance.
 - **Hyphenated modifier stacking:** Clusters such as *high-quality,
   data-driven, client-facing* pile compound modifiers on one noun. The
-  individual hyphens may be correct; the tell is the density. Rewrite to the
-  modifier that matters.
+  individual hyphens may be correct; the density is what to reread. Measured
+  comma-separated hyphen-pair counts were higher in the matched human text, so
+  treat this as a clarity edit with no authorship weight
+  ([provenance.md](provenance.md)).
 - **Audit-report inflation:** Do not attach an exhaustive narrative of minor edits
   unless the user needs an audit trail. Report only consequential choices,
   evidence gaps, and changes the writer may want to reverse.

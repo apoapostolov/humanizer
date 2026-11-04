@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.13.2] - 2026-11-04
+
+An editorial calibration pass on the humanizer catalog, driven by upstream's
+published measurements of five catalog claims. No detector engine file moved,
+so the detector skill and its engine pin stay where they are.
+
+### Changed
+
+- **Humanizer catalog claims corrected where measurement disagrees** (skill
+  1.7.11 to 1.7.12). Same-opener sentence runs, stranded auxiliary contrasts,
+  and comma-separated hyphen-pair stacks all measured more frequent in the
+  matched human text than in model continuations. Patterns 90 and 91 and the
+  hyphen-stacking bullet now describe a rhythm to reread instead of a
+  signature. Colon into a triple keeps a measured 1.6-2.2x gap on a shape rare
+  in both. Pattern 20 keeps its stronger claim: sentence-length variation
+  separated cleanly in every register tested.
+- `skills/humanizer/references/provenance.md` gains the counts behind those
+  corrections and what they do not show. Vocabulary diversity did not separate
+  the two corpora, and one model scored above the human median.
+
+### Held
+
+- **avoid-ai-writing `--style` hard checks** (`colons`, `semicolons`, and
+  `emDash: "never"` in `scripts/check-style.js`, with clock-time, ratio, URL
+  scheme, table-delimiter, HTML-entity, and code carve-outs). That is house-style
+  CLI machinery this package does not run; form control stays with
+  `simple-english` and the `writing-prose` vale gate.
+- **Upstream README official-sources and sponsorship section.** Distribution
+  policy, not writing knowledge.
+- **`docs/research/hape-2026-11/`, the `.gitattributes` byte freeze, and the
+  `dist/` / `cursor-rules/` mirrors.** Research files and packaging stay
+  upstream.
+- **blader/humanizer README sponsorship and badge churn** (`0ef9fe5`). No
+  `SKILL.md` change, so the pin stays at `v3.1.0`.
+
 ## [2.13.1] - 2026-11-02
 
 Two ingest pins move, one engine body and one binary. The detector gets an
