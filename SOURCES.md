@@ -17,7 +17,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.14.0` |
+| package_version | `2.14.1` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
 | humanizer_skill_version | `1.7.12` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.0 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
@@ -123,11 +123,11 @@ humanizer.
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
 | release_tag | `v3.38.0` |
 | release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.38.0` |
-| last_ingested_version | `3.38.0 (post-release tip `f6fbc00` absorbed: five catalog claims measured against a parallel human/model corpus, and the humanizer catalog corrected where the counts point the other way; `--style` hard `colons`/`semicolons`/`emDash: never` checks and the README sponsorship section held as upstream machinery; earlier tip `9d5a999`: #422 preservation `stats.indentedBlocks`, #418 bounded sentence-unit scan, #413/#414 mode exports, decision cards #206/#404)` |
-| last_ingested_ref | `f6fbc0015ce8` |
-| last_ingested_at | `2026-11-04T04:45:00+02:00` |
-| last_checked_at | `2026-11-04T04:45:00+02:00` |
-| compare_base | `9d5a999` |
+| last_ingested_version | `3.38.0 (post-release tip `30971f1` absorbed: PATTERN_TABLES frozen export of the pattern tables for tooling (Vale style generation); analyzeText and all detection unchanged; validate.js unchanged; earlier tip `f6fbc00`: five catalog claims measured; `--style` colons/semicolons/emDash; README sponsorship held; tip `9d5a999`: #422 preservation stats.indentedBlocks, #418 bounded sentence-unit scan, #413/#414 mode exports)` |
+| last_ingested_ref | `30971f1c50c6` |
+| last_ingested_at | `2026-11-06T04:45:00+02:00` |
+| last_checked_at | `2026-11-06T04:45:00+02:00` |
+| compare_base | `30971f1c50c6` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `references/patterns.md`, `README.md` |
@@ -157,7 +157,7 @@ git -C avoid-ai-writing diff f6fbc0015ce8..origin/main -- SKILL.md CHANGELOG.md 
 | last_ingested_version | `3.1.0 (225a6f3)` |
 | last_ingested_ref | `225a6f39ac85` |
 | last_ingested_at | `2026-09-29T02:00:00+03:00` |
-| last_checked_at | `2026-11-04T04:45:00+02:00` |
+| last_checked_at | `2026-11-06T04:45:00+02:00` |
 | local_clone | `blader-humanizer` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |

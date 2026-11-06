@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.1] - 2026-11-06
+
+### Changed
+
+- Vendored detector engine (`patterns.js`) refreshed to avoid-ai-writing tip
+  `30971f1` (still release `v3.38.0`). Adds the `PATTERN_TABLES` frozen export
+  of the pattern tables for tooling that re-emits them (Vale style generation);
+  `analyzeText()` and all detection unchanged, `validate.js` unchanged.
+
 ## [2.14.0] - 2026-11-04
 
 The detector gains a measurement mode for prose shape. Readings come from a
