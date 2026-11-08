@@ -3,7 +3,9 @@
 // Vendored from humanizer-lint (MIT, yanstd888) `scripts/utils/sanitizer-mapped.mjs`.
 // Strips frontmatter, fenced code, headings, tables, thematic breaks, link
 // targets, bare URLs and inline code before measurement, so markup never
-// counts as prose. The offset map is kept because the upstream tests use it.
+// counts as prose. Every Markdown link keeps its text and drops its target,
+// relative and mailto targets included since upstream v1.6.0. The offset map
+// is kept because the upstream tests use it.
 //
 // The exported function is unchanged. See ../references/stylometry.md.
 
@@ -54,7 +56,7 @@ export function sanitizeMarkdownWithMap(input) {
   value = replace(value, /\r\n?/g, (m, v) => ({ text: '\n', map: [v.map[m.index]] }));
   value = replace(value, /^---\s*\n[\s\S]*?\n---\s*(?:\n|$)/g, () => literal(''));
   value = removeFences(value);
-  value = replace(value, /\[([^\]]+)\]\(https?:\/\/[^\s)]+\)/gi, (m, v) => slice(v, m.index + 1, m.index + 1 + m[1].length));
+  value = replace(value, /\[([^\]]+)\]\([^\s)]+\)/gi, (m, v) => slice(v, m.index + 1, m.index + 1 + m[1].length));
   value = replace(value, /`[^`\n]+`/g, () => literal(ENTITY));
   value = replace(value, /https?:\/\/[^\s)]+/gi, (m, v) => {
     const trailing = m[0].match(/[.!?,;:]+$/u)?.[0] ?? '';

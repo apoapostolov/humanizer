@@ -3,8 +3,9 @@
  * Behavioural fixtures for scripts/stylometry.mjs.
  *
  * The pinned numbers in the parity block were produced by humanizer-lint
- * v1.5.1 (`node scripts/analyze.mjs --file`) on the same text at vendoring
- * time. They exist so a future edit to the ported metric code cannot drift
+ * (`node scripts/analyze.mjs --file`) on the same text at vendoring time:
+ * v1.5.1 for the metric block, re-confirmed unchanged at v1.6.0, plus the
+ * v1.6.0 relative-link case below. They exist so a future edit to the ported metric code cannot drift
  * silently away from the definitions the numbers claim to implement.
  */
 
@@ -122,6 +123,13 @@ check('sanitizer drops headings and fenced code from prose', () => {
 check('abbreviations and decimals do not end a sentence', () => {
   const r = report(fixture('abbrev.md', 'Dr. Smith counted 3.5 files, e.g. the ones by Mr. Janez. Then he stopped. That was all.'));
   assert(r.measurement.sentence_count === 3, `expected 3 sentences, got ${r.measurement.sentence_count}`);
+});
+
+check('a relative Markdown link counts its text, not its target', () => {
+  const r = report(fixture('rel.md', 'Read the [install guide](docs/setup.md) before you start. The [wiki](https://example.com/w) is older. Then run the command.'));
+  assert(r.measurement.word_count === 15, `expected 15 words, got ${r.measurement.word_count}`);
+  const text = JSON.stringify(r);
+  assert(!text.includes('setup.md'), 'a relative link target leaked into the report');
 });
 
 check('repeated n-gram is reported with its occurrence count', () => {

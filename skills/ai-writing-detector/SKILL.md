@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.3.1
+version: 1.3.2
 related_skills:
 - humanizer
 - simple-english
@@ -242,4 +242,4 @@ punctuation, a prose em dash, and an Oxford comma together stay a style check,
 because an editor or a house style produces the same combination. Regenerate
 the measured severity bands and weights with `node scripts/severity-bands.js`.
 
-Skill version: **1.3.0**. Engine pin: avoid-ai-writing tip `9d5a999` (v3.38.0 plus post-release tip; the preservation validator counts only indented blocks that follow a blank line outside a list, so fenced code and four-space paragraph continuations no longer inflate `stats.indentedBlocks`; the sentence-unit regex does not backtrack quadratically on a long tab run after a table delimiter or a thematic break, with matching unchanged, and the engine exports its `CONTEXT_MODES` and `SOURCE_MODES` lists. The deterministic "X is dead; long live Y" match stays retired to judgment, and `smart-punct-signature` stays a zero-weight plain-mode style check). Stylometry pin: humanizer-lint `v1.5.1`.
+Skill version: **1.3.2**. Engine pin: avoid-ai-writing tip `9d5a999` (v3.38.0 plus post-release tip; the preservation validator counts only indented blocks that follow a blank line outside a list, so fenced code and four-space paragraph continuations no longer inflate `stats.indentedBlocks`; the sentence-unit regex does not backtrack quadratically on a long tab run after a table delimiter or a thematic break, with matching unchanged, and the engine exports its `CONTEXT_MODES` and `SOURCE_MODES` lists. The deterministic "X is dead; long live Y" match stays retired to judgment, and `smart-punct-signature` stays a zero-weight plain-mode style check). Stylometry pin: humanizer-lint `v1.6.0`.

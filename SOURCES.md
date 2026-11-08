@@ -17,12 +17,12 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.14.1` |
+| package_version | `2.14.2` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
 | humanizer_skill_version | `1.7.12` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.0 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
 | simple_english_skill_version | `2.4.2` |
-| ai_writing_detector_skill_version | `1.3.0` |
+| ai_writing_detector_skill_version | `1.3.2` |
 | writing_prose_skill_version | `1.2.6` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | short_humanizer_skill_version | `1.0.0` |
@@ -31,7 +31,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
 | live_short_humanizer_path | `~/.hermes/skills/writing/short-humanizer` |
-| last_sources_sync | `2026-11-04T10:09:31+02:00` |
+| last_sources_sync | `2026-11-08T17:20:00+02:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -74,11 +74,11 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.3.0` |
+| skill_version | `1.3.2` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
 | upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `9d5a999` (v3.38.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414, preservation `stats.indentedBlocks` counts only real indented code blocks #422) |
-| upstream_stylometry | `yanstd888/humanizer-lint` @ `v1.5.1` `66bbc64` — narrow slice only (tokenizer, Markdown sanitizer, variation metrics, rhythm rules); lexical packs, compression ratio, score and PASS/FAIL gate not vendored. Pin and policy in source 6 below. |
+| upstream_stylometry | `yanstd888/humanizer-lint` @ `v1.6.0` `c6b9641` — narrow slice only (tokenizer, Markdown sanitizer, variation metrics, rhythm rules); lexical packs, compression ratio, score and PASS/FAIL gate not vendored. Pin and policy in source 6 below. |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. Stylometry mode reports shape numbers with no score or status. |
 
@@ -257,26 +257,26 @@ git -C short-humanizer diff 3836a2a67587e0e7d725d7e005fa394504f42eae..origin/mai
 | status | `active_ingest` (stylometry slice only) |
 | kind | `git` |
 | repo | `https://github.com/yanstd888/humanizer-lint` |
-| release_tag | `v1.5.1` |
-| release_url | `https://github.com/yanstd888/humanizer-lint/releases/tag/v1.5.1` |
-| last_ingested_version | `1.5.1` |
-| last_ingested_ref | `66bbc64245a7d639fb32b445634feeeb88839e30` |
-| last_ingested_at | `2026-11-04T10:09:31+02:00` |
-| last_checked_at | `2026-11-04T10:09:31+02:00` |
-| compare_base | `66bbc64` |
+| release_tag | `v1.6.0` |
+| release_url | `https://github.com/yanstd888/humanizer-lint/releases/tag/v1.6.0` |
+| last_ingested_version | `1.6.0` |
+| last_ingested_ref | `c6b964114caa2e97535742b2f98ae37661c57033` |
+| last_ingested_at | `2026-11-08T17:20:00+02:00` |
+| last_checked_at | `2026-11-08T17:20:00+02:00` |
+| compare_base | `c6b9641` |
 | local_clone | `humanizer-lint` |
 | clone_policy | third-party → `<git-ext>` only |
-| primary_paths | `scripts/utils/tokenizer.mjs`, `scripts/utils/sanitizer-mapped.mjs`, `scripts/utils/metrics-core.mjs`, `scripts/core/analyzer-core.mjs`, `rules/en-slop.json`, `profiles/default-human.json`, `tests/corpus/en-pre-llm-essay.txt` |
+| primary_paths | `scripts/utils/tokenizer.mjs`, `scripts/utils/sanitizer-mapped.mjs`, `scripts/utils/metrics-core.mjs`, `scripts/core/analyzer-core.mjs`, `scripts/core/rhythm-checks.mjs`, `rules/en-slop.json`, `profiles/default-human.json`, `tests/corpus/en-pre-llm-essay.txt` |
 | lands_in | `skills/ai-writing-detector/scripts/stylometry.mjs`, `skills/ai-writing-detector/scripts/stylometry/`, `skills/ai-writing-detector/scripts/stylometry-fixtures.mjs`, `skills/ai-writing-detector/references/stylometry.md` |
-| ingest_policy | Absorb **measurements only**: sentence and paragraph variation, adjacent delta, MATTR, repeated n-grams, uniform runs, flat paragraphs, repeated openings. **Reject** the lexical slop packs (the detector engine already owns phrase catalogs; two registers would drift), the score, `passScore`, the PASS/FAIL status line and its rhythm/distribution gates. The gate is uncalibrated: upstream's own pre-LLM human essay returns `FAIL` at score 86 because none of its sentences is six words or shorter, so importing it would demand invented fragments. **Reject** `voiceProfileDeviation` (needs a profile and invites a verdict). **Reject** the deterministic DEFLATE compression ratio (the detector already measures repetition with function-word trigram entropy). Keep metric definitions byte-compatible and prove it: `scripts/stylometry-fixtures.mjs` pins upstream v1.5.1 numbers, and a port that drifts fails the suite. Any absorbed change is patch-only unless it adds a mode. |
-| next_check | On a tag newer than `v1.5.1`, or untagged commits after `66bbc64`. Diff `primary_paths` in `humanizer-lint`; re-run the parity fixture and the upstream `scripts/analyze.mjs` on the same text to confirm the metric lines still match to four decimals. |
+| ingest_policy | Absorb **measurements only**: sentence and paragraph variation, adjacent delta, MATTR, repeated n-grams, uniform runs, flat paragraphs, repeated openings. **Reject** the lexical slop packs (the detector engine already owns phrase catalogs; two registers would drift), the score, `passScore`, the PASS/FAIL status line and its rhythm/distribution gates. The gate is uncalibrated: upstream's own pre-LLM human essay returns `FAIL` at score 86 because none of its sentences is six words or shorter, so importing it would demand invented fragments. **Reject** `voiceProfileDeviation` (needs a profile and invites a verdict). **Reject** the deterministic DEFLATE compression ratio (the detector already measures repetition with function-word trigram entropy). Keep metric definitions byte-compatible and prove it: `scripts/stylometry-fixtures.mjs` pins upstream v1.5.1 numbers, and a port that drifts fails the suite. Any absorbed change is patch-only unless it adds a mode. **v1.6.0:** absorbed the link-target fix (every Markdown link keeps its text and drops its target, relative and mailto included, so a relative link no longer counts two words of markup as prose). Rejected the analyzer-core modularization: `v1.6.0` moved the rhythm functions into `scripts/core/rhythm-checks.mjs` and rewrote `analyzer-core` around them, but the metric definitions on the parity text are unchanged to four decimals, so no port change was owed. Rejected the `editorial` block added to `rules/en-slop.json` (hook and opener lists, replacement hints) as a lexical register this slice does not ship. |
+| next_check | On a tag newer than `v1.6.0`, or untagged commits after `c6b9641`. Diff `primary_paths` in `humanizer-lint`; re-run the parity fixture and the upstream `scripts/analyze.mjs` on the same text to confirm the metric lines still match to four decimals. |
 
 Diff helpers:
 
 ```bash
 git -C humanizer-lint fetch --tags origin
-git -C humanizer-lint log --oneline 66bbc64245a7d639fb32b445634feeeb88839e30..origin/main
-git -C humanizer-lint diff 66bbc64245a7d639fb32b445634feeeb88839e30..origin/main -- scripts/utils/tokenizer.mjs scripts/utils/sanitizer-mapped.mjs scripts/utils/metrics-core.mjs scripts/core/analyzer-core.mjs rules/en-slop.json profiles/default-human.json
+git -C humanizer-lint log --oneline c6b964114caa2e97535742b2f98ae37661c57033..origin/main
+git -C humanizer-lint diff c6b964114caa2e97535742b2f98ae37661c57033..origin/main -- scripts/utils/tokenizer.mjs scripts/utils/sanitizer-mapped.mjs scripts/utils/metrics-core.mjs scripts/core/analyzer-core.mjs scripts/core/rhythm-checks.mjs rules/en-slop.json profiles/default-human.json
 ```
 
 Vendoring evidence recorded at ingest:

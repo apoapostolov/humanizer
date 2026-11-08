@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.2] - 2026-11-08
+
+### Changed
+
+- Stylometry pin moved to humanizer-lint `v1.6.0` (`c6b9641`). One fix is in
+  the vendored slice: a Markdown link keeps its text and drops its target for
+  any target, not only `http(s)`, so a relative link such as
+  `[install guide](docs/setup.md)` no longer counts two words of markup as
+  prose. The fixture suite pins the upstream number for that case.
+- The `v1.6.0` analyzer-core split into `rhythm-checks`, `scoring`, and
+  `markdown-findings` is not ported: the metric definitions are unchanged, and
+  the parity text still matches upstream to four decimals. The `editorial` block
+  the release added to `rules/en-slop.json` stays out; this slice ships no
+  lexical register.
+- `package.json` now carries the skill version (`1.3.2`); it had lagged at
+  `1.3.0` while `SKILL.md` said `1.3.1`.
+
 ## [2.14.1] - 2026-11-06
 
 ### Changed

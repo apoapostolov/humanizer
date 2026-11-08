@@ -12,7 +12,7 @@
 ## Stylometry slice
 
 - Project: [yanstd888/humanizer-lint](https://github.com/yanstd888/humanizer-lint)
-- Vendored paths (pin `v1.5.1`):
+- Vendored paths (pin `v1.6.0`):
   `scripts/utils/tokenizer.mjs` → `scripts/stylometry/tokenizer.mjs`,
   `scripts/utils/sanitizer-mapped.mjs` → `scripts/stylometry/sanitizer.mjs`,
   `scripts/utils/metrics-core.mjs` → `scripts/stylometry/metrics.mjs`,

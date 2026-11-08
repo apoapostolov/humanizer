@@ -124,7 +124,7 @@ There is no phrase catalog here, so nothing is language-specific:
 | Local path | Upstream path | Change |
 | --- | --- | --- |
 | `scripts/stylometry/tokenizer.mjs` | `scripts/utils/tokenizer.mjs` | Unchanged |
-| `scripts/stylometry/sanitizer.mjs` | `scripts/utils/sanitizer-mapped.mjs` | Unchanged |
+| `scripts/stylometry/sanitizer.mjs` | `scripts/utils/sanitizer-mapped.mjs` | Unchanged apart from the `v1.6.0` link fix: every Markdown link keeps its text and drops its target, so relative and `mailto:` targets stop counting as prose |
 | `scripts/stylometry/metrics.mjs` | `scripts/utils/metrics-core.mjs` | Kept CV, deviation, adjacent delta, MATTR; dropped the deterministic DEFLATE compression ratio, the score, and the thresholds |
 | `scripts/stylometry/rhythm.mjs` | `scripts/core/analyzer-core.mjs` | Kept the n-gram, uniform-run, flat-paragraph and repeated-opening functions; dropped `fixInstruction` strings and every lexical pack |
 | `scripts/stylometry/stopwords-en.json` | `rules/en-slop.json` `stopwords` | The 20-word function list only |
@@ -136,7 +136,8 @@ Re-vendoring is diff, port, then prove parity:
    paths against the pinned ref in `SOURCES.md`.
 2. Port only changes to the functions listed above.
 3. Run `node scripts/stylometry-fixtures.mjs`. Its parity block pins the
-   metrics from upstream v1.5.1 on one fixed text; a drift in definitions shows
-   up as a failing number, not as a slow slide.
+   metrics from upstream v1.5.1 on one fixed text, re-confirmed unchanged at
+   `v1.6.0`; a drift in definitions shows up as a failing number, not as a slow
+   slide. One further case pins the `v1.6.0` relative-link word count.
 4. Re-run `node <git-ext>/humanizer-lint/scripts/analyze.mjs --file <same text>`
    and confirm the metric lines still match to four decimals.
