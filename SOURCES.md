@@ -17,10 +17,10 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.14.2` |
+| package_version | `2.14.3` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
-| humanizer_skill_version | `1.7.12` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.0 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
+| humanizer_skill_version | `1.7.13` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.2 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.3.2` |
 | writing_prose_skill_version | `1.2.6` |
@@ -152,18 +152,18 @@ git -C avoid-ai-writing diff f6fbc0015ce8..origin/main -- SKILL.md CHANGELOG.md 
 | id | `blader-humanizer` |
 | status | `active_ingest` |
 | repo | `https://github.com/blader/humanizer` |
-| release_tag | `v3.1.0` |
-| release_url | `https://github.com/blader/humanizer/releases/tag/v3.1.0` |
-| last_ingested_version | `3.1.0 (225a6f3)` |
-| last_ingested_ref | `225a6f39ac85` |
-| last_ingested_at | `2026-09-29T02:00:00+03:00` |
-| last_checked_at | `2026-11-06T04:45:00+02:00` |
+| release_tag | `v4.0.0` |
+| release_url | `https://github.com/blader/humanizer/releases/tag/v4.0.0` |
+| last_ingested_version | `4.0.0 (b48c832)` |
+| last_ingested_ref | `b48c832f0f80` |
+| last_ingested_at | `2026-11-10T17:30:00+02:00` |
+| last_checked_at | `2026-11-10T17:30:00+02:00` |
 | local_clone | `blader-humanizer` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `README.md`, examples, changelog if present |
 | lands_in | `skills/humanizer/SKILL.md`, `skills/humanizer/references/humanizing-text.md`, `skills/humanizer/references/ai-ism-audit.md`, `skills/humanizer/references/pattern-catalog.md` (79-80, 11/21 extensions; 9 split/countdown/tail forms), `skills/humanizer/references/vocabulary-tiers.md` (gated vocabulary), `skills/humanizer/references/required-checks.md` (workflow rules; five-tell post-rewrite sweep; historical catalog) |
-| ingest_policy | Primary same-family upstream. Import durable tells and examples. Do not adopt hard em/en dash bans. Prefer light-edit default for human-authored input. Keep information-over-shape and no-fabrication rules. Voice sample outranks generic style defaults. v2.11.0 plain-language reskin of upstream SKILL.md not adopted (house voice already plain); absorb new tells and FP carve-outs only. README sponsorship and badge churn after `225a6f39ac85` is packaging noise: held, not ingested, pin stays at `v3.1.0`. |
-| next_check | On newer tag than `v3.1.0`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
+| ingest_policy | Primary same-family upstream. Import durable tells and examples. Do not adopt hard em/en dash bans. Prefer light-edit default for human-authored input. Keep information-over-shape and no-fabrication rules. Voice sample outranks generic style defaults. v2.11.0 plain-language reskin of upstream SKILL.md not adopted (house voice already plain); absorb new tells and FP carve-outs only. v4.0.0 absorbed the two durability gains only: the concrete injection forms in the data-not-instructions rule, and file-mode whole-file read plus coverage reporting. **Rejected** v4.0.0's "add a specific detail you know to be true" (and the same move in pattern 14): the house rule is source-supported specifics only, never invented fact. Held: the Before/After example rewritten for nearly every pattern (this catalog carries its own examples), pi install steps, and the README sponsorship/badge churn. |
+| next_check | On newer tag than `v4.0.0`, or untagged commits on default branch after `last_ingested_ref` if the user wants tip tracking. |
 
 Diff helpers:
 
@@ -419,7 +419,7 @@ Trigger phrases: `update humanizer sources`, `refresh humanizer upstreams`,
      editions of `humanizer`, `simple-english`, `ai-writing-detector` and
      `writing-prose` are personalized: they carry
      `references/apo-voice-profile.md` and run ahead of the public versions
-     (humanizer 1.11.0 live against 1.7.11 public). Compare before copying
+     (humanizer 1.11.2 live against 1.7.13 public). Compare before copying
      (`diff -rq skills/<name> <live path>`); a live tree that differs is the
      newer edition and must not be replaced by the public folder. Only
      `short-humanizer` is byte-identical between public and live.
