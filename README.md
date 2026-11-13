@@ -39,7 +39,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full history.
 | Preserve a writer's voice while removing stiff or generic prose | [`humanizer`](skills/humanizer/) | `1.7.13` |
 | Write procedures, errors, runbooks, and clear technical sections | [`simple-english`](skills/simple-english/) | `2.4.2` |
 | Scan for AI-writing signals, measure prose shape, or verify that an edit preserved structure | [`ai-writing-detector`](skills/ai-writing-detector/) | `1.3.2` |
-| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.6` |
+| Draft reader-facing prose with a deterministic Vale review gate | [`writing-prose`](skills/writing-prose/) | `1.2.7` |
 | Pick the right register for an audience: three modes plus tone overlays | [`writing-voice`](skills/writing-voice/) | `1.1.0` |
 | Strip 26 common AI tells without loading the full catalog | [`short-humanizer`](skills/short-humanizer/) | `1.0.0` |
 

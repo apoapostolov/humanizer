@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.4] - 2026-11-13
+
+### Changed
+
+- Vale moves to `v3.27.0` (`vale-cli/vale`). The WSL binary is updated and the
+  previous one kept as `~/.local/bin/.vale-3.26.0`; the Win11 winget manifest still
+  serves 3.26.0, so Win11 stays on the old build until it catches up. The release
+  lints French, German and Spanish in the language itself, ships tree-sitter
+  grammars as WebAssembly modules that `vale sync` installs, and stops a hard line
+  break from joining a nested list to the item above it (#1225).
+- The Microsoft pack was re-synced on 3.27.0. `OxfordComma` gained guards for a
+  fronted prepositional phrase, for `, such as` / `, in order to` items and for a
+  sentence-initial subject list, and the package now ships `LICENSE` with
+  `license_files` in `meta.json`. The house config sets `Microsoft.OxfordComma = NO`,
+  so no enabled rule changed: `vale test` is 5 passed / 0 failed, and a README draft
+  returns the same 7 alerts under 3.26.0 and 3.27.0.
+- `cursor/plugins` pin advances to `24621db` with nothing ingested:
+  `pstack/skills/unslop/SKILL.md` is the same blob as at `6ce45c5`, so only the pin
+  moved.
+- Held the avoid-ai-writing tip `a04645a`. Its three commits touch `README.md` and
+  `CHANGELOG.md` to document another product's Antigravity plugin install; no
+  detector or catalog file changed, so the pin stays at `30971f1c`.
+
 ## [2.14.3] - 2026-11-10
 
 ### Changed

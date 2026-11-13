@@ -17,13 +17,13 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.14.3` |
+| package_version | `2.14.4` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
 | humanizer_skill_version | `1.7.13` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.2 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.3.2` |
-| writing_prose_skill_version | `1.2.6` |
+| writing_prose_skill_version | `1.2.7` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | short_humanizer_skill_version | `1.0.0` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
@@ -101,7 +101,7 @@ sources were touched.
 | --- | --- |
 | id | `writing-prose` |
 | status | `packaged_skill` |
-| skill_version | `1.2.6` |
+| skill_version | `1.2.7` |
 | path | `skills/writing-prose/` |
 | live_clone | `~/.hermes/skills/writing/writing-prose` |
 | upstream_kit | `https://github.com/vale-cli/vale` (binary + style packs; house config is ours) |
@@ -210,16 +210,16 @@ git -C hardikpandya-stop-slop diff 8da1f030185bdfe8471220585162991eaeb970e9..ori
 | status | `active_ingest` |
 | repo | `https://github.com/cursor/plugins` |
 | release_tag | *(none — repo publishes no releases)* |
-| last_ingested_version | `tip@6ce45c5` (unslop SKILL.md description drop of "Must always apply."; editorial content unchanged, held) |
-| last_ingested_ref | `6ce45c59b930` |
-| last_ingested_at | `2026-10-15` |
-| last_checked_at | `2026-10-29T04:20:00+02:00` |
+| last_ingested_version | `tip@24621db` (no primary-path change since `6ce45c5`: `pstack/skills/unslop/SKILL.md` is the same blob, so the pin moved and nothing was ingested) |
+| last_ingested_ref | `24621dbc` |
+| last_ingested_at | `2026-11-13` |
+| last_checked_at | `2026-11-13T17:10:00+02:00` |
 | local_clone | `cursor-plugins` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `pstack/skills/unslop/SKILL.md` (note: under `pstack/`, not `skills/`) |
 | lands_in | `skills/humanizer/references/vocabulary-tiers.md` ("Abstract metaphor nouns" section), `skills/humanizer/references/required-checks.md` ("Interchangeability test" under revision gate), `skills/humanizer/references/pattern-catalog.md` (Secondary cleanup patterns: mid-sentence colon crutch; absorbed tells 108 mannered prose, 109 over-compression) |
 | ingest_policy | Low-frequency single-file source. Absorb only items not already covered by avoid-ai-writing / blader / stop-slop catalogs. **Reject** the absolute em-dash ban (pattern 13, including its no-parentheses/no-en-dash extension) — standing reject: hard dash bans as authorship proof. **Reject** "adding soul" injection guidance — conflicts with never-inject guardrails (fake first person, manufactured stakes). Rewrite absorbed material into humanizer voice; no wholesale pattern numbering import. |
-| next_check | Diff `6ce45c5..origin/main -- pstack/skills/unslop/SKILL.md` on scan. |
+| next_check | Diff `24621db..origin/main -- pstack/skills/unslop/SKILL.md` on scan. |
 
 ### 5. thecodebeatz/short-humanizer
 
@@ -305,16 +305,16 @@ by the scan script via the GitHub releases API (no local clone needed).
 | status | `active_ingest` |
 | kind | `release_api` (Go binary + style packs; no vendored prose) |
 | repo | `https://github.com/vale-cli/vale` |
-| release_tag | `v3.26.0` |
-| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.26.0` |
-| last_ingested_version | `3.26.0` |
-| last_ingested_at | `2026-11-02` |
-| last_checked_at | `2026-11-02T04:25:00+02:00` |
-| win11_winget | `3.25.1` (winget manifest still serves 3.25.1 while the release is 3.26.0 as of 2026-11-02; upgrade when it catches up). WSL `~/.local/bin/vale` 3.26.0, previous binary kept as `~/.local/bin/.vale-3.25.1`. Microsoft styles re-synced on 3.26.0, no pack change. |
+| release_tag | `v3.27.0` |
+| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.27.0` |
+| last_ingested_version | `3.27.0` |
+| last_ingested_at | `2026-11-13` |
+| last_checked_at | `2026-11-13T17:10:00+02:00` |
+| win11_winget | `3.26.0` installed (the manifest serves 3.26.0 while the release is 3.27.0 as of 2026-11-13; upgrade when it catches up). WSL `~/.local/bin/vale` 3.27.0, previous binary kept as `~/.local/bin/.vale-3.26.0`. Microsoft styles re-synced on 3.27.0: `OxfordComma` gained false-positive guards (fronted prepositional phrase, `, such as`, `, in order to`, sentence-initial subject list) and the package now ships `LICENSE` with `license_files` in `meta.json`. The house config sets `Microsoft.OxfordComma = NO`, so no enabled rule changed; `vale test` is 5 passed / 0 failed on 3.27.0 and the README draft returns the same 7 alerts on 3.26.0 and 3.27.0. |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |
-| next_check | On a release tag newer than `v3.26.0`, or when the winget manifest catches up. The house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). 3.24.0, 3.25.1 and 3.26.0 run the suite green. |
+| next_check | On a release tag newer than `v3.27.0`, or when the winget manifest catches up. The house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). 3.24.0, 3.25.1, 3.26.0 and 3.27.0 run the suite green. |
 
 ## Monitor-only sources
 
