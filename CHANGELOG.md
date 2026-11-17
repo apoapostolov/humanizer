@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.5] - 2026-11-17
+
+### Changed
+
+- `ai-writing-detector` absorbs `conorbronsdon/avoid-ai-writing` tip `563be13`
+  (#438). The em-dash rate no longer counts the separator dash in an HTML list
+  item that opens with a `<strong>`, `<b>` or `<a>` lead term of at most five
+  words, matching the Markdown `- **Term** — gloss` exemption; dashes after
+  plain text, later in the item or in a bold clause still count. Sentence-length
+  uniformity drops a glossary of three or more distinct bold-lead definitions
+  with wrapped lines; a repeated label such as `**Note:**`, prose beside the
+  glossary and the five-sentence / 0.25 gates are unchanged. Vendored
+  `patterns.js` byte-identical to the tip blob, a new `v4380-probe.js` covers
+  both fixes and smoke is 26 passed / 0 failed. Detector skill 1.3.2 -> 1.3.3.
+- Pins advanced with no editorial content absorbed: `avoid-ai-writing` tag
+  `v3.38.0` -> `v3.39.0` (README documents another product's Antigravity plugin
+  and a fact-check companion; held), and `cursor/plugins` unslop tip
+  `24621db` -> `e1cc0312` (the tell list was condensed, no new tell; the stricter
+  rule 13 dash ban is a standing reject; held).
+
 ## [2.14.4] - 2026-11-13
 
 ### Changed

@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.3.2
+version: 1.3.3
 related_skills:
 - humanizer
 - simple-english

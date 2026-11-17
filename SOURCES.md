@@ -17,12 +17,12 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.14.4` |
+| package_version | `2.14.5` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
 | humanizer_skill_version | `1.7.13` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.2 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
 | simple_english_skill_version | `2.4.2` |
-| ai_writing_detector_skill_version | `1.3.2` |
+| ai_writing_detector_skill_version | `1.3.3` |
 | writing_prose_skill_version | `1.2.7` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | short_humanizer_skill_version | `1.0.0` |
@@ -74,10 +74,10 @@ sources were touched.
 | --- | --- |
 | id | `ai-writing-detector` |
 | status | `packaged_skill` |
-| skill_version | `1.3.2` |
+| skill_version | `1.3.3` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `9d5a999` (v3.38.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414, preservation `stats.indentedBlocks` counts only real indented code blocks #422) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `563be13` (v3.39.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414, preservation `stats.indentedBlocks` counts only real indented code blocks #422, HTML `<li>` lead-term separator dashes and glossary rhythm excluded from em-dash/uniformity #438) |
 | upstream_stylometry | `yanstd888/humanizer-lint` @ `v1.6.0` `c6b9641` — narrow slice only (tokenizer, Markdown sanitizer, variation metrics, rhythm rules); lexical packs, compression ratio, score and PASS/FAIL gate not vendored. Pin and policy in source 6 below. |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. Stylometry mode reports shape numbers with no score or status. |
@@ -121,19 +121,19 @@ humanizer.
 | id | `avoid-ai-writing` |
 | status | `active_ingest` |
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
-| release_tag | `v3.38.0` |
-| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.38.0` |
-| last_ingested_version | `3.38.0 (post-release tip `30971f1` absorbed: PATTERN_TABLES frozen export of the pattern tables for tooling (Vale style generation); analyzeText and all detection unchanged; validate.js unchanged; earlier tip `f6fbc00`: five catalog claims measured; `--style` colons/semicolons/emDash; README sponsorship held; tip `9d5a999`: #422 preservation stats.indentedBlocks, #418 bounded sentence-unit scan, #413/#414 mode exports)` |
-| last_ingested_ref | `30971f1c50c6` |
-| last_ingested_at | `2026-11-06T04:45:00+02:00` |
-| last_checked_at | `2026-11-06T04:45:00+02:00` |
-| compare_base | `30971f1c50c6` |
+| release_tag | `v3.39.0` |
+| release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.39.0` |
+| last_ingested_version | `3.39.0 (post-release tip 563be13 #438 detector FP fix absorbed; packaging-only README/CHANGELOG held)` |
+| last_ingested_ref | `563be13` |
+| last_ingested_at | `2026-11-17T17:00:00+02:00` |
+| last_checked_at | `2026-11-17T17:00:00+02:00` |
+| compare_base | `563be13` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `references/patterns.md`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99, 110; 9/16/56/72/74/98/99/101 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs (severity bands read off the pinned engine, so they stay true to the pin) |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.38.0`, or untagged commits on default branch after `f6fbc0015ce8`. |
+| next_check | On newer tag than `v3.39.0`, or untagged commits on default branch after tip `563be13`. |
 
 Diff helpers:
 
