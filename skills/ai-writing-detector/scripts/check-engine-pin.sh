@@ -20,7 +20,7 @@ echo "ai-writing-detector engine pin check"
 echo "skill_root=$ROOT"
 echo "patterns_sha=$(sha "$PAT_LOCAL")"
 echo "validate_sha=$(sha "$VAL_LOCAL")"
-echo "expected_upstream_tag=v3.39.0 + tip 563be13 (#438 HTML <li> lead-term separator dashes and glossary rhythm excluded from em-dash/uniformity; patterns.js changed, validate.js unchanged; see monorepo SOURCES.md)"
+echo "expected_upstream_tag=v3.39.0 + tip a5d6bae (#140 out-of-the-box slogans and hyphenation fix also match Unicode hyphens U+2010/U+2011 and en dash U+2013; em-dash separator carve-out no longer scans U+2028/U+2029 runs quadratically with matching unchanged; see monorepo SOURCES.md)"
 
 if [[ -z "$CLONE" ]]; then
   # Common layout — only used if present

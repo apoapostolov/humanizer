@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.6] - 2026-11-18
+
+### Changed
+
+- `ai-writing-detector` absorbs `conorbronsdon/avoid-ai-writing` post-release tip
+  `a5d6bae` (#140). The `dev-blog-boilerplate` slogan and `unnecessary-hyphenation`
+  fix now also match "out of the box" written with Unicode hyphen U+2010,
+  non-breaking hyphen U+2011 or en dash U+2013, with the "works out" idiom, em
+  dash, U+2015 and U+2012 figure dash still clean. The em-dash separator
+  carve-out no longer rescans U+2028/U+2029 line-terminator runs quadratically,
+  with matching unchanged (a 99 KB input dropped from about 40 s to bounded
+  time). Vendored `patterns.js` byte-identical to the tip blob, `validate.js`
+  unchanged, a new `vtip-probe.js` covers both fixes and smoke is 27 passed /
+  0 failed. Detector skill 1.3.3 -> 1.3.4. Pins: `avoid-ai-writing`
+  `563be13` -> `a5d6bae`, `cursor/plugins` unslop `24621db` -> `35a9094` (tells
+  condensed into terser one-liners, no new tell; the stricter rule 13 dash ban
+  is a standing reject; nothing ingested). Upstream `README.md` packaging and
+  `references/patterns.md` claim-qualification edits held: house style already
+  rejects frequency claims as proof.
+
 ## [2.14.5] - 2026-11-17
 
 ### Changed

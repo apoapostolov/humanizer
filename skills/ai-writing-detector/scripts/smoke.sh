@@ -159,6 +159,8 @@ run_check "v3.38.0 dead/long-live + typography-as-style (#351)" node "$ROOT/scri
 run_check "v4.3.0 HTML list / glossary rhythm (#438)" node "$ROOT/scripts/v4380-probe.js"
 
 run_check "tip 209815c bounded sentence-unit scan + mode exports (#413/#414/#418)" node "$ROOT/scripts/v3418-probe.js"
+run_check "tip a5d6bae Unicode hyphen out-of-box + U+2028/U+2029 (#140)" node "$ROOT/scripts/vtip-probe.js"
+
 run_check "tip 9d5a999 preservation indented-block accuracy (#422)" node "$ROOT/scripts/v3422-probe.js"
 
 run_check "long document is not a clean zero through the CLI" node -e "

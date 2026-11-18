@@ -17,7 +17,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.14.5` |
+| package_version | `2.14.6` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
 | humanizer_skill_version | `1.7.13` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.2 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
@@ -31,7 +31,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
 | live_short_humanizer_path | `~/.hermes/skills/writing/short-humanizer` |
-| last_sources_sync | `2026-11-08T17:20:00+02:00` |
+| last_sources_sync | `2026-11-18T17:00:00+02:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -77,7 +77,7 @@ sources were touched.
 | skill_version | `1.3.3` |
 | path | `skills/ai-writing-detector/` |
 | live_clone | `~/.hermes/skills/writing/ai-writing-detector` |
-| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `563be13` (v3.39.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414, preservation `stats.indentedBlocks` counts only real indented code blocks #422, HTML `<li>` lead-term separator dashes and glossary rhythm excluded from em-dash/uniformity #438) |
+| upstream_engine | `conorbronsdon/avoid-ai-writing` `detector/patterns.js` @ tip `a5d6bae` (v3.39.0 plus post-release commits; quote masking, blockquote recognition, staged discovery #238/#346/#347, negative-parallelism type, word-joiner word-boundary rule, ignore markers #351/#352/#353, false-concession narrowing #211/#359, windowed low-TTR #361, preservation vs residual split #204, literal-sense carve-outs #212, `features` noun/verb split #351/#384/#391/#393/#387, per-sentence lookalike gate #389/#390, concrete word-table suggestions #215/#380, word-weighted long-document score #382 via package `scripts/longdoc.js`, dead/long-live performed-insight match retired to judgment #351, house-style typography reduced to a zero-weight plain-mode style check #351, sentence-unit regex made linear on long tab runs after a table delimiter or thematic break with matching unchanged #418, exported CONTEXT_MODES/SOURCE_MODES #413/#414, preservation `stats.indentedBlocks` counts only real indented code blocks #422, HTML `<li>` lead-term separator dashes and glossary rhythm excluded from em-dash/uniformity #438, out-of-the-box boilerplate and hyphenation also match Unicode hyphens U+2010/U+2011 and en dash U+2013 #140, em-dash separator carve-out no longer scans U+2028/U+2029 runs quadratically with matching unchanged) |
 | upstream_stylometry | `yanstd888/humanizer-lint` @ `v1.6.0` `c6b9641` — narrow slice only (tokenizer, Markdown sanitizer, variation metrics, rhythm rules); lexical packs, compression ratio, score and PASS/FAIL gate not vendored. Pin and policy in source 6 below. |
 | lands_in | monorepo `skills/ai-writing-detector/` + `.github/workflows/ai-writing-detector.yml` |
 | note | Signals-only local report plus optional hosted spread (`--upload`). Chase handoff to humanizer. Not authorship proof. Stylometry mode reports shape numbers with no score or status. |
@@ -123,17 +123,17 @@ humanizer.
 | repo | `https://github.com/conorbronsdon/avoid-ai-writing` |
 | release_tag | `v3.39.0` |
 | release_url | `https://github.com/conorbronsdon/avoid-ai-writing/releases/tag/v3.39.0` |
-| last_ingested_version | `3.39.0 (post-release tip 563be13 #438 detector FP fix absorbed; packaging-only README/CHANGELOG held)` |
-| last_ingested_ref | `563be13` |
-| last_ingested_at | `2026-11-17T17:00:00+02:00` |
-| last_checked_at | `2026-11-17T17:00:00+02:00` |
-| compare_base | `563be13` |
+| last_ingested_version | `3.39.0 (post-release tip a5d6bae #140 out-of-the-box Unicode-hyphen match + U+2028/U+2029 quadratic scan fix absorbed; README packaging and references/patterns.md editorial claim-qualification held; validate.js unchanged)` |
+| last_ingested_ref | `a5d6bae` |
+| last_ingested_at | `2026-11-18T17:00:00+02:00` |
+| last_checked_at | `2026-11-18T17:00:00+02:00` |
+| compare_base | `a5d6bae` |
 | local_clone | `avoid-ai-writing` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `SKILL.md`, `CHANGELOG.md`, `detector/CATEGORIES.md`, `detector/patterns.js`, `detector/validate.js`, `references/patterns.md`, `README.md` |
 | lands_in | **Editorial (humanizer):** `skills/humanizer/references/vocabulary-tiers.md`, `ai-ism-audit.md`, `pattern-catalog.md` (56–73, 86–99, 110; 9/16/56/72/74/98/99/101 extensions; 7 em-dash style-only note), `SKILL.md`, `required-checks.md`, `humanizing-text.md`, `provenance.md`. **Engine (ai-writing-detector):** `skills/ai-writing-detector/scripts/{patterns,validate,analyze}.js`, `references/categories.md`, measurement/scoring refs (severity bands read off the pinned engine, so they stay true to the pin) |
 | ingest_policy | Split by mission. Humanizer absorbs durable editorial patterns, tier tables, audit modes, never-inject. Rewrite into humanizer voice. Reject detector-evasion defaults and authorship-proof theater inside humanizer. **Vendor** JS detector + validate + category map into `skills/ai-writing-detector/` only. Do not put the engine inside humanizer. Corpus/PROOF stay upstream-only (document findings in ai-writing-detector refs). Treat FPR/TPR/AUC as measurement notes, not product claims. |
-| next_check | On newer tag than `v3.39.0`, or untagged commits on default branch after tip `563be13`. |
+| next_check | On newer tag than `v3.39.0`, or untagged commits on default branch after tip `a5d6bae`. |
 
 Diff helpers:
 
@@ -141,8 +141,8 @@ Diff helpers:
 # After git fetch in local_clone:
 git -C avoid-ai-writing fetch --tags origin
 git -C avoid-ai-writing tag -l 'v*' --sort=v:refname | tail -5
-git -C avoid-ai-writing log --oneline f6fbc0015ce8..origin/main
-git -C avoid-ai-writing diff f6fbc0015ce8..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md detector/patterns.js detector/validate.js references/patterns.md README.md
+git -C avoid-ai-writing log --oneline a5d6bae7c0d..origin/main
+git -C avoid-ai-writing diff a5d6bae7c0d..origin/main -- SKILL.md CHANGELOG.md detector/CATEGORIES.md detector/patterns.js detector/validate.js references/patterns.md README.md
 ```
 
 ### 2. blader/humanizer
@@ -210,10 +210,10 @@ git -C hardikpandya-stop-slop diff 8da1f030185bdfe8471220585162991eaeb970e9..ori
 | status | `active_ingest` |
 | repo | `https://github.com/cursor/plugins` |
 | release_tag | *(none — repo publishes no releases)* |
-| last_ingested_version | `tip@24621db` (no primary-path change since `6ce45c5`: `pstack/skills/unslop/SKILL.md` is the same blob, so the pin moved and nothing was ingested) |
-| last_ingested_ref | `24621dbc` |
+| last_ingested_version | `tip@35a9094` (`pstack/skills/unslop/SKILL.md` rewritten into terser one-liners over the same tell ids 3/5/7-33; no new tell, the stricter rule 13 dash ban is a standing reject; pin moved, nothing ingested) |
+| last_ingested_ref | `35a90942` |
 | last_ingested_at | `2026-11-13` |
-| last_checked_at | `2026-11-13T17:10:00+02:00` |
+| last_checked_at | `2026-11-18T17:00:00+02:00` |
 | local_clone | `cursor-plugins` |
 | clone_policy | third-party → `<git-ext>` only |
 | primary_paths | `pstack/skills/unslop/SKILL.md` (note: under `pstack/`, not `skills/`) |

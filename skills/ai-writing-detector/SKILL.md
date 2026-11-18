@@ -8,7 +8,7 @@ tags:
 - signals
 - audit
 - validate
-version: 1.3.3
+version: 1.3.4
 related_skills:
 - humanizer
 - simple-english
@@ -242,4 +242,4 @@ punctuation, a prose em dash, and an Oxford comma together stay a style check,
 because an editor or a house style produces the same combination. Regenerate
 the measured severity bands and weights with `node scripts/severity-bands.js`.
 
-Skill version: **1.3.2**. Engine pin: avoid-ai-writing tip `9d5a999` (v3.38.0 plus post-release tip; the preservation validator counts only indented blocks that follow a blank line outside a list, so fenced code and four-space paragraph continuations no longer inflate `stats.indentedBlocks`; the sentence-unit regex does not backtrack quadratically on a long tab run after a table delimiter or a thematic break, with matching unchanged, and the engine exports its `CONTEXT_MODES` and `SOURCE_MODES` lists. The deterministic "X is dead; long live Y" match stays retired to judgment, and `smart-punct-signature` stays a zero-weight plain-mode style check). Stylometry pin: humanizer-lint `v1.6.0`.
+Skill version: **1.3.4**. Engine pin: avoid-ai-writing v3.39.0 + tip `a5d6bae` (the "out of the box" boilerplate and unnecessary-hyphenation fixes also match Unicode hyphens U+2010/U+2011 and the en dash U+2013, with the "works out" idiom, em dash, U+2015 and U+2012 figure dash still clean; the em-dash separator carve-out no longer rescans U+2028/U+2029 line-terminator runs quadratically, with matching unchanged. Earlier in the same engine line: HTML `<li>` lead-term separator dashes and glossary rhythm excluded from em-dash/uniformity #438; preservation `stats.indentedBlocks` counts only real indented code blocks #422; sentence-unit regex linear on long tab runs after a table delimiter or thematic break #418; CONTEXT_MODES/SOURCE_MODES exports #413/#414. The deterministic "X is dead; long live Y" match stays retired to judgment, and `smart-punct-signature` stays a zero-weight plain-mode style check). Stylometry pin: humanizer-lint `v1.6.0`.

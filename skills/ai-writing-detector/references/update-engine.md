@@ -480,3 +480,40 @@ that the file is unchanged since `209815c`.
 
 Per monorepo SOURCES Update procedure: rate changes minor/moderate/major, what
 they enable, and any rule conflicts (`change existing` / `ignore new` / `hybrid`).
+
+## 8. tip `a5d6bae` absorb (2026-11-18) -- #140 Unicode out-of-the-box hyphens, bounded separator scan
+
+Base `563be13..a5d6bae`, 5 upstream commits, `detector/patterns.js` only among
+runtime files (`detector/patterns.test.js` changed upstream but is not vendored;
+`validate.js` unchanged). Three hunks, all additive.
+
+1. `DEV_BLOG_BOILERPLATE` "it just works ... out of the box" negative lookahead
+   adds U+2010, U+2011 and U+2013 to the separator class.
+2. The `unnecessary-hyphenation` fix matches `out[-hyphens]of[-hyphens]the[-hyphens]box`
+   over ASCII hyphen, U+2010, U+2011 and U+2013, suggesting "out of the box".
+   The em dash, U+2015 and the U+2012 figure dash stay excluded so the "works
+   out" idiom is not flagged.
+3. `SEPARATOR_DASH_RE` leading indent changes from `^\s*` to
+   `^[^\S\n\r\u2028\u2029]*`: under the `m` flag, `\s` also matched the U+2028 /
+   U+2029 line terminators, so a long run was rescanned from every line start
+   (about 40 s on a 99 KB input). Matching is unchanged; only the bound moves.
+
+Opinion (required): #140 is **minor** and adopted -- it closes a false-negative
+for editor/autocorrect hyphen substitutions and aligns with the house rule that
+matching should not depend on which hyphen a keyboard emitted. The bounded
+scan is **minor** and adopted -- a pure performance fix with byte-identical
+matches, no severity, weight or pattern changed, so the published severity
+bands stay true. Rule conflict: none. Upstream `README.md` (install paths,
+pre-commit `rev`, clawhub CLI) is packaging-only and held; `references/patterns.md`
+only qualifies overstated frequency claims, which the house already rejects as
+proof, so nothing durable is absorbed there.
+
+Probe: `scripts/vtip-probe.js` covers all three Unicode hyphens for both issue
+types with exact span and suggestion, four negative cases (em dash, U+2015,
+U+2012 figure dash, bare "works out" idiom), the separator-dash carve-out under
+`\n` / U+2028 / U+2029 and mixed runs, and a bounded-time guard on 8000-char
+U+2028 / U+2029 runs.
+
+Verification: vendored `patterns.js` byte-identical to the tip blob, live and
+monorepo installs byte-identical, `bash scripts/smoke.sh` green (27 passed /
+0 failed) in both installs, `check-engine-pin.sh` note updated to the new tip.
