@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.7] - 2026-11-19
+
+### Changed
+
+- `humanizer` absorbs `blader/humanizer` tip `a48c60c` (v4.0.0 + 6 commits).
+  Added the informal-source carve-out (chat, comments, rants, angry reviews keep
+  their lowercase, abbreviations, fragments and emphatic stops; one tell is not
+  enough except chatbot residue, two unrelated tells make it a rewrite target,
+  keep the writer's anger and blunt wording) to `humanizing-text.md`, and the
+  El Attar et al. 2026 cross-domain study (30 LLMs, most signals shift with model
+  and text type) to `provenance.md`. Standing rejects held: the injected
+  `</skill>`/operator/system-message wording (already absorbed at v4.0.0), the
+  "add a specific detail you know to be true" move (source-supported details
+  only), upstream pattern-number validation tooling, README sponsorship/badge
+  churn, and wording-only polish. Humanizer skill 1.7.13 -> 1.7.14.
+- `writing-prose` follows vale `v3.28.0` (Markdoc reading, apostrophe-entity and
+  list-item placement fixes, in-process reStructuredText/AsciiDoc, Docker and
+  dependency changes). No Microsoft style-pack rule or house-config change, so
+  `vale sync` is a no-op; WSL binary updated with 3.27.0 kept as a backup, winget
+  manifest still at 3.26.0. Writing-prose skill 1.2.7 -> 1.2.8.
+- Package version 2.14.6 -> 2.14.7.
+
 ## [2.14.6] - 2026-11-18
 
 ### Changed

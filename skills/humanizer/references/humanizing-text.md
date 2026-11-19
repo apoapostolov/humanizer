@@ -52,6 +52,15 @@ rewrite, default to cleanup. Make a change only when you can name the reader-fac
 problem it solves. Treat unusual cadence, repetition, abstraction, and small rough
 edges as possible fingerprints before treating them as defects.
 
+Informal source text is often human already. Chat messages, comments, rants, and
+angry reviews use lowercase, abbreviations, fragments, and emphatic stops
+("Worst. Service. Ever.") as their register; leave that register alone. One tell is
+not enough to rewrite such text (chatbot residue is the exception), but two
+unrelated tells in the same passage make the whole piece a rewrite target. Keep the
+writer's anger and blunt wording at full strength: "disgusting" stays "disgusting",
+and a plain detail such as "tried restarting it" stays. With no tell, return the
+text unchanged.
+
 ## 2. Write for the actual reader
 
 Identify what the reader needs to understand, feel, decide, or do. Put that before

@@ -43,4 +43,8 @@ shape is worth a reread, never that a machine wrote the passage.
 Source note: adapted from an earlier local humanizer fork; the measured section
 summarizes avoid-ai-writing's published catalog measurements after v3.38.0;
 reinforced by this skill's guardrails and `ai-ism-audit.md` signals-not-proof
-stance.
+stance. The cross-domain caveat is also supported by El Attar, Dönmez, Maurer, and
+Falenska, "A Systematic Analysis of Linguistic Features in AI-Generated English
+Text Detection Across Domains and Models" (arXiv:2606.04177, 2026), which covers
+30 LLMs and reports that most surface signals shift with the model and the text
+type.

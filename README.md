@@ -21,14 +21,14 @@ writer, explain a procedure plainly, or check a draft for familiar AI prose
 signals. Choose the skill for the job in front of you; a mixed document does
 not need to pass through the whole suite.
 
-## Current source: 2.14.2
+## Current source: 2.14.7
 
 Short Humanizer is the compact 26-tell rewrite. It keeps every claim and
 strips the common AI habits without loading the full humanizer catalog. Use
 it when context is tight. Use Humanizer when the draft needs voice work,
 chase mode, or a stubborn audit.
 
-The latest GitHub release is 2.14.2; the current source tree matches it.
+The latest GitHub release is 2.14.7; the current source tree matches it.
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
