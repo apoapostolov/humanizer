@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.14.8] - 2026-11-20
+
+### Changed
+
+- `writing-prose` follows vale `v3.28.1` (two narrow engine fixes: a raw-scoped rule
+  keeps its spaces literal, and only a space between words matches a line wrap). No
+  Microsoft style-pack rule or house-config change, so `vale sync` is a no-op; WSL binary
+  updated to 3.28.1 with 3.28.0 kept as a backup, `vale test` 5 passed / 0 failed, winget
+  manifest still at 3.26.0. Writing-prose skill 1.2.8 -> 1.2.9.
+- Package version 2.14.7 -> 2.14.8.
+
 ## [2.14.7] - 2026-11-19
 
 ### Changed

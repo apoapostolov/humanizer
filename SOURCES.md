@@ -17,13 +17,13 @@ from scratch when a pin exists: pull, then diff only what changed after
 | Field | Value |
 | --- | --- |
 | package | `apoapostolov/humanizer` (monorepo) |
-| package_version | `2.14.7` |
+| package_version | `2.14.8` |
 | package_path | `.` |
 | skills | `skills/humanizer/`, `skills/simple-english/`, `skills/ai-writing-detector/`, `skills/writing-prose/`, `skills/writing-voice/`, `skills/short-humanizer/` |
 | humanizer_skill_version | `1.7.14` (public generic edition; the personalized live Hermes copy is a separate edition at 1.11.2 carrying `references/apo-voice-profile.md` and is never overwritten from this repo) |
 | simple_english_skill_version | `2.4.2` |
 | ai_writing_detector_skill_version | `1.3.3` |
-| writing_prose_skill_version | `1.2.8` |
+| writing_prose_skill_version | `1.2.9` |
 | writing_voice_skill_version | `1.1.0` (generic; the personalized Hermes copy stays at `~/.hermes/skills/user-profile/writing-voice`) |
 | short_humanizer_skill_version | `1.0.0` |
 | live_humanizer_path | `~/.hermes/skills/writing/humanizer` |
@@ -31,7 +31,7 @@ from scratch when a pin exists: pull, then diff only what changed after
 | live_ai_writing_detector_path | `~/.hermes/skills/writing/ai-writing-detector` |
 | live_writing_prose_path | `~/.hermes/skills/writing/writing-prose` |
 | live_short_humanizer_path | `~/.hermes/skills/writing/short-humanizer` |
-| last_sources_sync | `2026-11-19T17:05:00+02:00` |
+| last_sources_sync | `2026-11-20T17:01:00+02:00` |
 | last_package_release | `2026-08-17` (2.0.0, plain-english renamed to simple-english + upstream STE catalog merge) |
 
 ### Version bump policy (semver)
@@ -305,16 +305,16 @@ by the scan script via the GitHub releases API (no local clone needed).
 | status | `active_ingest` |
 | kind | `release_api` (Go binary + style packs; no vendored prose) |
 | repo | `https://github.com/vale-cli/vale` |
-| release_tag | `v3.28.0` |
-| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.28.0` |
-| last_ingested_version | `3.28.0` |
-| last_ingested_at | `2026-11-19` |
-| last_checked_at | `2026-11-19T17:05:00+02:00` |
-| win11_winget | `3.26.0` installed (the manifest serves 3.26.0 while the release is 3.28.0 as of 2026-11-19; upgrade when it catches up). WSL `~/.local/bin/vale` 3.28.0, previous binary kept as `~/.local/bin/.vale-3.27.0`. Microsoft styles re-synced on 3.27.0: `OxfordComma` gained false-positive guards (fronted prepositional phrase, `, such as`, `, in order to`, sentence-initial subject list) and the package now ships `LICENSE` with `license_files` in `meta.json`. The house config sets `Microsoft.OxfordComma = NO`, so no enabled rule changed; `vale test` is 5 passed / 0 failed on 3.27.0 and the README draft returns the same 7 alerts on 3.26.0 and 3.27.0. |
+| release_tag | `v3.28.1` |
+| release_url | `https://github.com/vale-cli/vale/releases/tag/v3.28.1` |
+| last_ingested_version | `3.28.1` |
+| last_ingested_at | `2026-11-20` |
+| last_checked_at | `2026-11-20T17:01:00+02:00` |
+| win11_winget | `3.26.0` installed (the manifest serves 3.26.0 while the release is 3.28.1 as of 2026-11-20; upgrade when it catches up). WSL `~/.local/bin/vale` 3.28.1, previous binary kept as `~/.local/bin/.vale-3.28.0`. v3.28.1 is two engine fixes only (a raw-scoped rule keeps its spaces literal; only a space between words matches a line wrap), no style-pack or house-config change, so `vale sync` is a no-op. Microsoft styles last re-synced on 3.27.0: `OxfordComma` gained false-positive guards (fronted prepositional phrase, `, such as`, `, in order to`, sentence-initial subject list) and the package now ships `LICENSE` with `license_files` in `meta.json`. The house config sets `Microsoft.OxfordComma = NO`, so no enabled rule changed; `vale test` is 5 passed / 0 failed on 3.28.1. |
 | primary_paths | `vale/styles/` (Microsoft pack via `vale sync`), house config compat, release notes |
 | lands_in | `skills/writing-prose/vale/{vale.ini, styles/}`, `skills/writing-prose/scripts/vale-lint.sh`, WSL `~/.local/bin/vale`, Win11 winget `errata-ai.Vale` |
 | ingest_policy | On a newer release: update the WSL binary from the GitHub release asset; upgrade the Win11 winget package when its manifest catches up; re-run `vale sync` for style packs; verify the house config and gate still pass (`scripts/vale-lint.sh` on the sample set, then `vale --config vale/vale.ini` on a real draft); absorb only durable rule/config gains and keep the house style single-voice. Do not vendor the upstream binary into the skill tree. Pin updates are patch-only. |
-| next_check | On a release tag newer than `v3.27.0`, or when the winget manifest catches up. The house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). 3.24.0, 3.25.1, 3.26.0 and 3.27.0 run the suite green. |
+| next_check | On a release tag newer than `v3.28.1`, or when the winget manifest catches up. The house cases use the `.test.yml` extension (a `.tests.yml` file reports `no test cases found`, and `want` is a string rather than a list). 3.24.0, 3.25.1, 3.26.0 and 3.27.0 run the suite green. |
 
 ## Monitor-only sources
 
